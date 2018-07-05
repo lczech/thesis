@@ -1,0 +1,235 @@
+\documentclass{wissdoc}
+
+% ----------------------------------------------------------------
+%    My Information
+% ----------------------------------------------------------------
+
+\newcommand{\myname}{Lucas~Czech}
+\newcommand{\mytitle}{Novel Methods for Post-Processing Evolutionary Data Using Machine Learning Techniques}
+% \newcommand{\myinstitute}{Institute for Program Structures\\and Data Organization (IPD)}
+
+\newcommand{\reviewerone}{Prof.~Dr.~Alexandros~Stamatakis}
+\newcommand{\reviewertwo}{Prof.~Dr.~Emmanuel~Müller}
+\newcommand{\advisorone}{}
+\newcommand{\advisortwo}{}
+
+\newcommand{\timestart}{July 1, 2014}
+\newcommand{\timeend}{September 30, 2018}
+\newcommand{\submissiontime}{September 30, 2018}
+\newcommand{\submissionlocation}{Karlsruhe}
+
+\author{\myname}
+\title{\mytitle}
+
+%% Informationen für die PDF-Datei
+\pdfstringdefDisableCommands{\def\\#1{ #1}}
+\hypersetup{
+	pdfauthor={\myname},
+	pdftitle={\mytitle},
+	pdfsubject={In this work, we present a system for recognizing spelled speech in English that supports phrases like "A as in alpha".},
+	pdfkeywords={automatic speech recognition, spelling, English, phrases, NATO alphabet, confusion network, depth first search, beam search, letters, alphabets}
+}
+
+% ----------------------------------------------------------------
+%    Customization
+% ----------------------------------------------------------------
+
+\newcommand\todo[1]{{\color{purple}{TODO: #1}}}
+
+% Define custom styles
+\newcommand\toolname{\textsc}
+\newcommand\taxonname{\textit}
+\newcommand\fileformat{\texttt}
+
+\newcommand\tabref[1]{Table~\ref{#1}}
+\newcommand\figref[1]{Figure~\ref{#1}}
+% \newcommand\suppfigref[1]{S\ref{#1}~Fig}
+
+% ART Paper
+\newcommand\paperart{
+    \item \textbf{Lucas Czech}, Pierre Barbera, and Alexandros Stamatakis.
+        "Methods for Automatic Reference Trees and Multilevel Phylogenetic Placement."
+        \textit{Bioinformatics}, 2018.
+}
+
+% Phylogenetic Postprocessing Paper
+\newcommand\paperpppp{
+    \item \textbf{Lucas Czech} and Alexandros Stamatakis.
+        "Scalable Methods for Post-Processing, Visualizing, and Analyzing Phylogenetic Placements."
+        \textit{PLOS One}, 2018.
+}
+
+% Command for framed boxes.
+\newcommand\paperbox[3]{
+    \begin{framed}
+    % \noindent
+    #1
+    \begin{itemize}
+        #2
+    \end{itemize}
+    % \noindent
+    #3
+    \end{framed}
+}
+
+% https://tex.stackexchange.com/a/5255
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% ----------------------------------------------------------------
+%    Settings
+% ----------------------------------------------------------------
+
+\input{macros}
+\graphicspath{{pdf/}}
+
+% Trennhilfen
+% Wichtig!
+% Im ngerman-paket sind zusätzlich folgende Trennhinweise enthalten:
+% "- = zusätzliche Trennstelle
+% "| = Vermeidung von Ligaturen und mögliche Trennung (bsp: Schaf"|fell)
+% "~ = Bindestrich an dem keine Trennung erlaubt ist (bsp: bergauf und "~ab)
+% "= = Bindestrich bei dem Worte vor und dahinter getrennt werden dürfen
+% "" = Trennstelle ohne Erzeugung eines Trennstrichs (bsp: und/""oder)
+\hyphenation{
+}
+
+% Index-Datei öffnen
+\makeindex
+
+% ----------------------------------------------------------------
+%    Main Document
+% ----------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter
+\pagenumbering{roman}
+
+\include{tex/f_00_titlepage}
+\blankpage
+
+\include{tex/f_01_abstract}
+\blankpage
+
+\include{tex/f_02_declaration}
+\blankpage
+
+\include{tex/f_03_preface}
+\blankpage
+
+% ------------------------------------------
+%    Directories
+% ------------------------------------------
+
+{\parskip 0pt\tableofcontents}
+\blankpage
+
+{\parskip 0pt\listoffigures}
+\blankpage
+
+{\parskip 0pt\listoftables}
+\blankpage
+
+% {\parskip 0pt\listofalgorithms}
+% \blankpage
+
+\chapter*{List of Acronyms}
+\begin{acronym}
+    \acro{RT}[RT]{reference tree}
+%     \acroplural{RT}[RTs]{reference trees}
+    \acro{RA}[RA]{reference alignment}
+%     \acroplural{RA}[RAs]{reference alignment}
+    \acro{QS}[QS]{query sequence}
+%     \acroplural{QS}[QSs]{query sequences}
+
+    \acro{BT}[BT]{backbone tree}
+%     \acroplural{BT}[BTs]{backbone trees}
+    \acro{CT}[CT]{clade tree}
+%     \acroplural{CT}[CTs]{clade trees}
+
+    \acro{LWR}[LWR]{likelihood weight ratio}
+%     \acroplural{LWR}[LWRs]{likelihood weight ratios}
+
+    \acro{ART}[ART]{automatic reference tree}
+
+    \acro{PCA}[PCA]{Principal Components Analysis}
+    \acro{MDS}[MDS]{Multidimensional scaling}
+
+    \acro{BV}[BV]{Bacterial Vaginosis}
+    \acro{NTS}[NTS]{Neotropical Soils}
+    \acro{TO}[TO]{Tara Oceans}
+    \acro{HMP}[HMP]{Human Microbiome Project}
+\end{acronym}
+\blankpage
+
+% ------------------------------------------
+%    Main Part
+% ------------------------------------------
+
+\mainmatter
+\pagenumbering{arabic}
+
+\include{tex/m_00_introduction}
+\include{tex/m_01_foundations}
+\include{tex/m_02_art}
+\include{tex/m_03_visualization}
+\include{tex/m_04_clustering}
+\include{tex/m_05_conclusion}
+
+% ------------------------------------------
+%    Appendices
+% ------------------------------------------
+
+\appendix
+\include{tex/s_00_appendix}
+
+% ------------------------------------------
+%    Literature
+% ------------------------------------------
+
+\backmatter
+
+% add toc line
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+
+% include also non-cited sources that are in the bib file
+% \nocite{*}
+
+% \bibliographystyle{itmabbrv} % mit abgekürzten Vornamen der Autoren
+% \bibliographystyle{itmalpha}  % ausgeschriebene Vornamen der Autoren
+% \bibliographystyle{IEEEtranSA}	% english style
+
+\bibliographystyle{abbrvnat}
+% \bibliographystyle{unsrtnat}
+% \bibliographystyle{gerplain} % klappt nicht
+
+% \bibliographystyle{plain}
+% % \bibliographystyle{ieee}
+% \bibliographystyle{natbib}
+
+\bibliography{thesis}
+
+% ------------------------------------------
+%    Indices
+% ------------------------------------------
+
+% % the file macros2 defines some special formattings for the index,
+% % maybe it should be checked out once the index is needed!
+% \cleardoublepage
+% \phantomsection
+% % \addcontentsline{toc}{chapter}{Index}
+% \printindex            % Index, Stichwortverzeichnis
+
+% TODO evtl hier leere seite zum schluss einbauen!
+% \clearpage
+% \fancyhf{}
+% \pagestyle{empty}
+% % \newpage
+% % \cleardoublepage
+% \mbox{}
+% % \newpage
+% % \mbox{}
+
+\end{document}

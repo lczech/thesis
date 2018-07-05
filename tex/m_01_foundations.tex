@@ -1,0 +1,439 @@
+% ######################################################################################################################
+%         Foundations
+% ######################################################################################################################
+
+\chapter{Foundations}
+\label{ch:Foundations}
+
+\paperbox{
+    This chapter is partially based on the peer-reviewed publications:
+}{\paperart \paperpppp}{
+    \textbf{Contributions:} Lucas Czech... Pierre Barbera... Alexandros Stamatakis... and...
+}
+
+sequences, sampling, alignments, trees, placement, distances
+
+% ######################################################################################################################
+%         Evolution and Genetics
+% ######################################################################################################################
+
+\section{Evolution and Genetics}
+\label{ch:Foundations:sec:EvolutionGenetics}
+
+there is sequencing \cite{Sanger1975}, also of the human genome \cite{Venter2001},
+which gets cheaper all the time \cite{Wetterstrand2018}
+
+dna, sequencing, ngs
+
+% https://en.wikipedia.org/wiki/On_the_Origin_of_Species
+
+% ======================================================================================================================
+%     Metagenomics
+% ======================================================================================================================
+
+\subsection{Metagenomics}
+\label{ch:Foundations:sec:EvolutionGenetics:sub:Metagenomics}
+
+metagenomics, metagenetics, env studies, sampling etc
+
+The availability of high-throughput DNA sequencing technologies has revolutionized biology by transforming it
+into an ever more data-driven and compute-intense discipline \cite{Escobar-Zepeda2015}.
+In particular, Next Generation Sequencing (NGS) \cite{Logares2012} has given rise to novel methods for studying
+microbial environments \cite{Morgan2010,Edwards2013,Sunagawa2013a,Matsen2015}.
+NGS techniques are often used in metagenomic studies to sequence organisms
+in water \cite{Karsenti2011,Giner2016,Gran-Stadniczenko2017} or soil \cite{Dupont2016,Mahe2017} samples,
+in the human microbiome \cite{Huttenhower2012,Methe2012,Srinivasan2012},
+and a plethora of other environments.
+These studies yield a large set of short anonymous DNA sequences, so-called reads, for each sample.
+Reads that are obtained from specific parts of the genome are called meta-barcoding reads;
+most often, reads are amplified before sequencing and later de-replicated again, resulting in so-called amplicons.
+
+High-throughput DNA sequencing technologies have revolutionized biology by transforming it
+into a data-driven computational discipline \citep{Escobar-Zepeda2015}.
+Next Generation Sequencing (NGS) methods now allow for studying microbial samples
+directly extracted from their environment \citep{Morgan2010,Edwards2013,Sunagawa2013a,Matsen2015,Oulas2015}
+For each sample, these methods yield a set of short, anonymous DNA sequences, so-called reads.
+
+
+challenges and bottlenecks in metag analysis \cite{Scholz2012}
+bottleneck is computational analysis. who is there, what are they doing \cite{Desai2012}
+(aka taxonomic and functional diversity)
+metag review and caveats. it brings its problems \cite{Temperton2012}
+
+% ======================================================================================================================
+%     Multiple Sequence Alignments
+% ======================================================================================================================
+
+\subsection{Multiple Sequence Alignments}
+\label{ch:Foundations:sec:EvolutionGenetics:sub:MSA}
+
+% ======================================================================================================================
+%     Consensus Sequences
+% ======================================================================================================================
+
+\subsection{Consensus Sequences}
+\label{ch:Foundations:sec:EvolutionGenetics:sub:ConsensusSequences}
+
+ambiguity chars \cite{IUPAC1971}
+
+cons methods: see art
+
+% ######################################################################################################################
+%         Phylogenetic Trees
+% ######################################################################################################################
+
+\section{Phylogenetic Trees}
+\label{ch:Foundations:sec:PhylogeneticTrees}
+
+phylogenetics is...
+
+also, we can infer trees \cite{Felsenstein2004}
+
+% ======================================================================================================================
+%     Tree Inference
+% ======================================================================================================================
+
+\subsection{Tree Inference}
+\label{ch:Foundations:sec:PhylogeneticTrees:sub:TreeInference}
+
+ML
+
+% ######################################################################################################################
+%         Phylogenetic Placement
+% ######################################################################################################################
+
+\section{Phylogenetic Placement}
+\label{ch:Foundations:sec:PhylogeneticPlacement}
+
+% ======================================================================================================================
+%     Motivation
+% ======================================================================================================================
+
+\subsection{Motivation}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Motivation}
+
+% although the methods generally are applicable to both.
+A typical task in metagenomic studies is to identify and classify these sequences with respect
+to known reference sequences, either in a taxonomic or phylogenetic context.
+% another typical task: to discover novel diversity. not here.
+
+Conventional methods like \toolname{Blast} \cite{Altschul1990} are based on sequence similarity.
+Such methods are fast, but only attain satisfying accuracy levels
+if the query sequences (e.g., the environmental reads or amplicons) are sufficiently similar to the reference sequences.
+Furthermore, the best \toolname{Blast} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
+% \todo{Mention further methods here, for example Vervier 2015}
+
+Alternatively, so-called phylogenetic (or evolutionary) placement methods \cite{Matsen2010,Berger2011,Barbera2018}
+identify query sequences based on a phylogenetic tree of reference sequences.
+Thereby, they incorporate information about the evolutionary history of the species under study
+and hence provide a more accurate means for read identification.
+The result of phylogenetic placement is a mapping of the query sequences to the branches of the reference tree.
+Such a mapping also elucidates the evolutionary distance between the query and the reference sequences.
+
+This information represents useful biological knowledge \emph{per se}.
+For example, the classification of query sequences can be summarized by means of sequence abundances \cite{Pace1997,Hugenholtz1998},
+or to obtain taxonomic annotations \cite{Kozlov2016}.
+The data can also be utilized to derive further knowledge or hypotheses.
+Existing methods such as Edge PCA and Squash Clustering \cite{Matsen2011a} are, for instance, able
+to visualize differences between sets of metagenomic samples,
+or to cluster samples based on placement similarity.
+Note that distinct samples from one study are typically mapped to the same underlying reference tree,
+thus facilitating such comparisons.
+
+
+
+phylogenetic placement \cite{Matsen2010,Berger2011,Barbera2018}, cited more than 630 times (as of 2018-07-01)
+considered an established method
+
+There also exist variants of phylogenetic placement that use maximum parsimony \cite{Berger2011}
+and minimum evolution \cite{Filipski2015} instead of maximum likelihood,
+variants that calculate Bayesian posterior probabilities \cite{Matsen2010},
+and boosting methods to improve the accuracy of the placements \cite{Mirarab2012}.
+Phylogenetic placement has been used for a variety of applications and derived pipelines, such as
+species delimitation \cite{Zhang2013,Kapli2017},
+genome and metagenome analysis \cite{Darling2014},
+taxonomic identification and phylogenetic profiling \cite{Nguyen2014}, and
+identification and correction of taxonomically mislabeled sequences \cite{Kozlov2016}.
+
+combine 1,010 more citations (as of 2018-07-01)
+
+aligning
+
+kommt unten noch mal!
+
+, using programs such as \toolname{PaPaRa} \citep{Berger2011a,Berger2012} or
+\toolname{hmmalign}, which is a subprogram of the \toolname{HMMER} suite \citep{Eddy1998,Eddy2009}.
+
+% ======================================================================================================================
+%     Introduction
+% ======================================================================================================================
+
+\subsection{Introduction}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Introduction}
+
+In brief, phylogenetic placement calculates the most probable insertion branches for each given \acf{QS} on a \acf{RT}.
+The \acp{QS} are reads or amplicons from environmental samples.
+The \ac{RT} and the reference sequences it represents are typically assembled by the user
+so that they capture the expected species diversity in the samples.
+Nonetheless, we recently presented an automated approach
+for selecting and constructing appropriate reference sequences from large sequence databases \cite{Czech2018}.
+As phylogenetic placement used a maximum likelihood criterion, the \ac{RT} has to be strictly bifurcating.
+Prior to the placement, the \acp{QS} need to be aligned against the reference alignment of the \ac{RT} by programs such as
+\toolname{PaPaRa} \cite{Berger2011a,Berger2012} or
+\toolname{hmmalign}, which is part of the \toolname{HMMER} suite \cite{Eddy1998,Eddy2009}.
+The placement is then conducted by initially inserting one \ac{QS} as a new tip into a branch of the tree,
+then re-optimizing the branch lengths that are most affected by the insertion,
+and thereafter evaluating the resulting likelihood score of the tree under a given model of nucleotide evolution,
+such as the Generalized Time-Reversible (GTR) model \cite{Tavare1986}.
+The \ac{QS} is then removed from the current branch and subsequently placed into all other branches of the \ac{RT}.
+
+Thus, for each branch of the tree, the process yields a so-called \emph{placement} of the \ac{QS},
+that is, an optimized position on the branch, along with a likelihood score for the whole tree.
+The likelihood scores for a \ac{QS} are then transformed into probabilities,
+which quantify the uncertainty of placing the sequence on the respective branch \cite{Strimmer2002,VonMering2007}.
+Those probabilities are called \acp{LWR}.
+The accumulated \ac{LWR} sum over all branches for a single \ac{QS} is $1.0$.
+\figref{fig:tree_epa} shows an example depicting the placements of one \ac{QS}, including the respective \acp{LWR}.
+
+\begin{figure}[hpbt]
+    \centering
+%     \includegraphics[width=.6\linewidth]{img/tree_epa.pdf}
+    \caption[Phylogenetic Placement of a Query Sequence]{
+        \textbf{Phylogenetic Placement of a Query Sequence.}
+        Each branch of the reference tree is tested as a potential insertion position, called a ``placement'' (blue dots).
+        Note that placements have a specific position on their branch, due to the branch length optimization process.
+        A probability of how likely it is that the sequence belongs to a specific branch is computed
+        (numbers next to dots),
+        which is called the \emph{likelihood weight ratio} (LWR).
+%         based on the maximum likelihood score of the whole tree. %(that is, including the query sequence)
+        The bold number (0.7) denotes the most probable placement of the sequence.
+    }
+    \label{fig:tree_epa}
+\end{figure}
+
+This process is repeated for every \ac{QS}.
+Note that the placement process is conducted {\em independently} for each \ac{QS}.
+% Shorter: This placement process is conducted independently for each sequence.
+That is, for each \ac{QS}, the algorithm starts calculating placements from scratch on the original \ac{RT}.
+%This enables parallelization,
+%and avoids unstable trees, which might result from adding too many sequences of short length to the tree.
+
+In summary, the result of a phylogenetic placement analysis is a mapping of the \acp{QS} in a sample
+to positions on the branches of the \ac{RT}.
+Each such position, along with the corresponding \ac{LWR}, is called a placement of the \ac{QS}.
+% The result of phylogenetic placement is a mapping of each \ac{QS} (e.g., environmental reads)
+% to positions on the branches of the \ac{RT}, amended by probabilities in form of their likelihood weight ratios.
+% Each \ac{QS} is thus represented by its placement positions, which are also called its placements.
+% along with the respective likelihood weight ratios.f
+% total: sum up. placement profile. imbalance. explain in later chapter.
+% Here, we use these sample profiles to discover: clusters, correlation with meta-data.
+
+\todo{besser unterbringen}
+The data is usually stored in so-called \fileformat{jplace} files \cite{Matsen2012}.
+
+Each such sample represents a geographical location, a body site, a point in time, etc.
+In the following, we represent a sample by the placement locations of its metagenomic \acp{QS},
+including the respective per-branch \acp{LWR}.
+Furthermore, for a specific analysis, we assume the standard use case,
+that is, all placements were computed on the same fixed \acf{RT} and \acl{RA}.
+
+% ######################################################################################################################
+%         Phylogenetic Placement Processing
+% ######################################################################################################################
+
+\section{Phylogenetic Placement Processing}
+\label{ch:Foundations:sec:PhylogeneticPlacementProcessing}
+
+% thus, wehn dealing with many samples, an imporatn question is how to make them comparable when differing numbres o sequences
+% the problem arises because different samples zies. can span many order sof magnitude.
+When placing multiple samples, for instance, from different locations,
+typically, the same \ac{RT} is used, in order to allow for comparisons of the phylogenetic composition of these samples.
+In this context, it sis important to consider how to properly normalize the samples.
+Normalization is required as the sample size (often also called library size),
+that is, the number of sequences per sample, can vary by several orders of magnitude,
+due to efficiency variations in the sequencing process or biases introduced by the amplification process.
+Selecting an appropriate normalization strategy constitutes a common problem in many metagenomic studies.
+The appropriateness depends on data characteristics \cite{Weiss2017}, but also on the biological question asked.
+For example, estimating indices such as the species richness are often implemented
+via rarefaction and rarefaction curves \cite{Gotelli2001},
+which however ignores a potentially large amount of the available valid data \cite{McMurdie2014}.
+Furthermore, the specific type of input sequence data has to be taken into account for normalization:
+Biases induced by the amplification process can potentially be avoided if, instead of amplicons,
+data based on shotgun sequencing are used, such as \textsubscript{mi}tags \cite{Logares2014}.
+Moreover, the sequences can be clustered prior to phylogenetic placement analysis,
+for instance, by constructing operational taxonomic units (OTUs) \cite{Edgar2010,Mahe2014,Mahe2015,Rognes2016}.
+Analyses using OTUs focus on species diversity instead of simple abundances.
+OTU clustering substantially reduces the number of sequences,
+and hence greatly decreases the computational cost for placement analyses.
+Lastly, one may completely ignore the abundances (which are called ``multiplicities'' of placements) of the placed
+sequences, reads, or OTUs, and only be interested in their presence/absence when comparing samples.
+
+Which of the above analysis strategies is deployed,
+depends on the specific design of the study and the research question at hand.
+The common challenge is that the number of sequences per sample differs, which affects most post-analysis methods.
+Before introducing our methods,
+we therefore explain how the necessary normalizations of sample sizes can be performed in the following.
+We also describe general techniques for interpreting and working with phylogenetic placement data.
+%These are not methods of their own, but tools necessary for later.
+Some of these techniques have been used before as building blocks
+for methods like Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}.
+%and we mostly stick to established terminology.
+
+% ======================================================================================================================
+%     Edge Masses
+% ======================================================================================================================
+
+\subsection{Edge Masses}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeMasses}
+
+Methods that compare samples directly based on their sequences,
+such as the UniFrac distance \cite{Lozupone2005,Lozupone2007a},
+can benefit from rarefaction \cite{Weiss2017}.
+However, in the context of phylogenetic placement, rarefaction is not necessary.
+Thus, more valid data can be kept.
+% Directly comparing individual anonymous sequences can be too computationally demanding for large contemporary metagenomic datasets.
+% hence, the quantitative methods we present here do not consider the \acp{QS} individually.
+% as contemporary metagenomic datasets are often too large to allow for this level of granularity,
+To this end, it is convenient to think of the reference tree as a graph
+(when exploiting graph properties of the tree, we refer to the branches of the tree as edges).
+Then, the per-branch \acp{LWR} for a single \ac{QS}
+can be interpreted as mass points distributed over the edges of the \ac{RT},
+including their respective placement positions on the branches,
+cf.~\figref{fig:tree_epa}.
+This implies that each \ac{QS} has a total accumulated mass of $1.0$ on the \ac{RT}.
+We call this the \emph{mass interpretation} of the placed \acp{QS}, and henceforth use mass and \ac{LWR} interchangeably.
+The \emph{mass of an edge} refers to the sum of the \acp{LWR} on that edge for all \acp{QS} of a sample,
+as shown in \figref{fig:imbalance:sub:ReferenceTree}.
+The total mass of a sample is then the sum over all edge masses,
+which is identical to the number of \acp{QS} in the sample.
+% \todo{This neglects that not all placements are stored in jplace, so that the mass per QS can be $<1$.
+% This fact is not necessary for explaining any of the methods (although it is accounted for in my implementation).
+% I think we can thus omit it for simplicity.}
+
+\begin{figure}[!ht]
+    \centering
+%     \includegraphics[width=0.6\linewidth]{img/imbalance.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:imbalance:sub:ReferenceTree}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:imbalance:sub:Matrices}
+    \end{subfigure}
+    \caption[Edge Masses and Imbalances]{
+        \textbf{Edge Masses and Imbalances.}
+        \subref{fig:imbalance:sub:ReferenceTree}
+        Reference tree where each edge is annotated with the normalized mass (first value, blue) and
+        imbalance (second value, red) of the placements in a sample.
+        The imbalance is the sum of masses on the root side of the edge minus the sum of the masses on the non-root side.
+        The depicted tree is unrooted, hence, its top-level trifurcation (gray dot) is used as ``root'' node.
+        An exemplary calculation of the imbalance is given at the top.
+        Because terminal edges only have a root side, their imbalance is not informative.
+        \subref{fig:imbalance:sub:Matrices}
+        The masses and imbalances for the edges of a sample constitute the rows of the first two matrices.
+        The third matrix contains the available meta-data features for each sample.
+        These matrices are used to calculate, for instance, the edge principal components or correlation coefficients.
+    }
+    \label{fig:imbalance}
+\end{figure}
+
+The key idea is to use the distribution of placement mass points over the edges of the \ac{RT} to characterize a sample.
+This allows for normalizing samples of different size
+by scaling the total sample mass to unit mass $1.0$.
+In other words, absolute abundances are converted into relative abundances.
+This way, rare species, which might have been removed by rarefaction, can be kept,
+as they only contribute a negligible mass to the branches into which they have been placed.
+This approach is analogous to using proportional values for methods based on OTU count tables,
+that is, scaling each sample/column of the table by its sum of OTU counts \cite{Weiss2017}.
+% In the following, we will mostly work with normalized samples.
+Most of the methods presented here use normalized samples, that is, they use relative abundances.
+As relative abundances are compositional data, certain caveats occur \cite{Aitchison1986,Lovell2015},
+which we discuss where appropriate.
+
+When working with large numbers of \acp{QS},
+the mass interpretation allows to further simplify and reduce the data:
+The masses on each edge of the tree can be quantized into $b$ discrete bins,
+that is, each edge is divided into $b$ intervals (or bins) of the corresponding branch length.
+All mass points on that edge are then accumulated into their respective nearest bin.
+% , for example, at their nearest interval midpoint.
+% Using midpoints means that masses are only minimally moved.
+The parameter $b$ controls the resolution and accuracy of this approximation.
+In the extreme case $b:=1$, all masses on an edge are grouped into one single bin.
+This \emph{branch binning} process drastically reduces the number of mass points
+that need to be stored and analyzed in several methods we present,
+while only inducing a negligible decrease in accuracy.
+As shown in \tabref{tab:hmp_binning_error}. %Supplementary Table~\ref{supp:tab:hmp_binning_error},
+branch binning can yield a speedup of up to 75\% for post-analysis run-times.
+
+Furthermore, using masses allows to summarize a set of samples
+by annotating the \ac{RT} with their average per-edge mass distribution.
+This procedure, also called \emph{squashing} \cite{Matsen2011a}, sums over all sample masses per edge
+and then normalizes them once more to obtain unit mass for this resulting average tree.
+This normalized tree thereby summarizes the (sub-)set of samples it represents.
+
+% ======================================================================================================================
+%     Edge Imbalances
+% ======================================================================================================================
+
+\subsection{Edge Imbalances}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeImbalances}
+
+So far, we have only considered the per-edge masses.
+Often, however, it is also of interest to ``summarize'' the mass of an entire clade. %, that is, to consider per-clade masses.
+For example, sequences of the \ac{RT} that represent species or strains might not provide sufficient phylogenetic signal
+for properly resolving the phylogenetic placement of short sequences \cite{Dunthorn2014}.
+In these cases, the placement mass of a sequence can be spread across different edges representing the same genus or species,
+thus blurring analyses based on per-edge masses.
+% e.g., when using regions of the genome that lack the necessary phylogenetic signal for species delimitation.
+% In that case, the distinction between masses on two related species branches ...
+% it might be more useful to ``summarize'' the mass for the whole genus, that is, to consider per-clade masses.
+% These masses then can be interpreted relative to the masses in the rest of the tree.
+% The above visualizations show each edge individually, that is, they do not reveal information about whole clades.
+Instead, a clade-based summary can yield clearer analysis results.
+It can be computed by using the tree structure to appropriately transform the edge masses.
+% The \acp{RT} used for phylogenetic placement are generally unrooted.
+% They contain however a special node, the top-level trifurcation,
+% which serves as a ``hook'' when drawing and storing the tree, and which we can consider as a root for simplicity.
+Each edge splits the tree into two parts, of which only one contains the root (or top-level trifurcation) of the tree.
+For a given edge, its mass difference is then calculated by summing all masses in the root part of the tree
+and subtracting all masses in the other part,
+while ignoring the mass of the edge itself \cite{Matsen2011a}.
+% For a given edge, the edge mass difference is calculated as the difference between
+% the sum of masses on the root side of the edge and all masses on the other side \cite{Matsen2011a}.
+This difference is called the \emph{imbalance} of the edge.
+It is usually normalized to represent unit total mass,
+as the absolute (not normalized) imbalance otherwise propagates the effects of differing sample sizes all across the tree.
+% doesn't matter where the root is, entries will change relative to each other accordingly when re-rooting
+An example of the imbalance calculation is shown in \figref{fig:imbalance:sub:ReferenceTree}.
+The edge imbalance relates the masses on the two sides of an edge to each other.
+This implicitly captures the \ac{RT} topology and reveals information about its clades.
+Furthermore, this transformation can also reveal differences in the placement mass distribution
+of nearby branches of the tree.
+This is in contrast to the KR distance, which yields low values for masses that are close to each other on the tree.
+% This is for example useful when the tree contains taxa representing species or even strain level,
+% which can often not be resolved using phylogenetic placement,
+% e.g., when using regions of the genome that lack the necessary phylogenetic signal for species delimitation.
+%Note that, %for normalized samples with unit total mass,
+%the imbalance of a leaf edge is simply the total mass of the tree minus the mass of the edge.
+% It thus contains mostly irrelevant information and can often be left out.
+Examples that illustrate the different use cases for edge mass and edge imbalance metrics are shown in the Results section.
+
+The edge masses and edge imbalances per sample can be summarized by two matrices,
+which we use for all further downstream edge- and clade-related analyses, respectively.
+In these matrices, each row corresponds to a sample, and each column to an edge of the \ac{RT}.
+Note that these matrices can either store absolute or relative abundances,
+depending on whether the placement mass was normalized.
+
+Furthermore, many studies provide meta-data for their samples,
+for instance, the pH value or temperature of the samples' environment.
+Such meta-data features can also be summarized in a per-sample matrix, where each column corresponds to one feature.
+The three matrices are shown in \figref{fig:imbalance:sub:Matrices}.
+Quantitative meta-data features are the most suitable for our purposes,
+as they can be used to detect correlations with the placement mass distributions of samples.
+For example, Edge principal components analysis (Edge PCA) \cite{Matsen2011a}
+is a method that utilizes the imbalance matrix to detect and visualize edges
+with a high heterogeneity of mass difference between samples.
+Edge PCA further allows to annotate its plots with meta-data variables, for instance, by coloring,
+thus establishing a connection between differences in samples and differences in their meta-data \cite{Srinivasan2012}.
+In the following, we propose several new techniques to analyze placement data and their associated meta-data.

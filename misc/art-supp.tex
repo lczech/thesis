@@ -1,0 +1,160 @@
+\documentclass[a4paper,10pt,DIV=14]{scrartcl}
+% \documentclass[a4paper,10pt,DIV=13]{scrartcl} % scrreprt
+
+\usepackage[utf8]{inputenc}
+
+% ######################################################################################################################
+%         Custom Packages
+% ######################################################################################################################
+
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+
+\usepackage[]{natbib}
+\usepackage[english]{babel}
+
+% https://reu.dimacs.rutgers.edu/Symbols.pdf
+\usepackage{amssymb}
+
+% https://tex.stackexchange.com/a/6105
+\usepackage[binary-units=true]{siunitx}
+
+% https://tex.stackexchange.com/questions/94845/problems-with-toprule-and-midrule-in-a-table
+\usepackage{booktabs}
+
+% https://ctan.org/pkg/relsize
+\usepackage{relsize}
+
+\usepackage[bf,format=plain]{caption}
+
+% https://tex.stackexchange.com/questions/135358/changing-the-formatting-of-subcaption-for-reference
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+% https://tex.stackexchange.com/a/39981
+\usepackage[nolist,nohyperlinks]{acronym}
+
+% http://bytesizebio.net/2013/03/11/adding-supplementary-tables-and-figures-in-latex/
+\newcommand{\beginsupplement}{%
+    \setcounter{table}{0}
+    \renewcommand{\thetable}{S\arabic{table}}%
+    \setcounter{figure}{0}
+    \renewcommand{\thefigure}{S\arabic{figure}}%
+}
+
+% Excluded the following lines from the pnas class file.
+% Include them here again to ensure correct setup.
+% See https://tex.stackexchange.com/q/1863
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\renewcommand\UrlFont{\color{black}\sffamily}
+
+% \externaldocument[main:]{main}
+
+\usepackage{nameref,zref-xr}
+\zxrsetup{toltxlabel}
+\zexternaldocument*{art}
+
+% https://tex.stackexchange.com/questions/180019/grouping-two-tables-one-above-the-other
+\usepackage{hypcap} % fix the links
+
+% todo environment
+% \newcounter{todo}
+% \newcommand\todo[1]{\refstepcounter{todo}{\color{purple}{#1}}\addcontentsline{todolist}{subsection}{\thetodo:~#1}}
+% un-comment the next line in order to hide all todos:
+% \renewcommand\todo[1]{}
+\newcommand\todo[1]{{\color{purple}{#1}}}
+\newcommand\alexis[1]{{\color{orange}{#1}}}
+
+% Suppress KOMA script warning
+% https://tex.stackexchange.com/q/412368
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+
+% https://nw360.blogspot.de/2007/12/rename-bibliography-title-in-latex.html
+% https://tex.stackexchange.com/a/306268
+\renewcommand\refname{References}
+\renewcommand\bibname{References}
+\addto{\captionsenglish}{%
+  \renewcommand{\bibname}{References}
+}
+
+% Define custom styles
+\newcommand\toolname{\textsc}
+\newcommand\taxonname{\textit}
+
+% ######################################################################################################################
+%         Title and Header
+% ######################################################################################################################
+
+% Title Page
+\title{Supplement:\\Methods for Automatic Reference Trees and Multilevel Phylogenetic Placement}
+\author{Lucas Czech and Alexandros Stamatakis}
+\date{}
+
+% ######################################################################################################################
+%         Document
+% ######################################################################################################################
+
+\begin{document}
+
+% \begin{abstract}
+% sflkdsjfkj sf
+% \end{abstract}
+
+\begin{acronym}
+
+\end{acronym}
+
+\beginsupplement
+
+% \maketitle
+
+\begingroup
+\let\center\flushleft
+\let\endcenter\endflushleft
+\maketitle
+\endgroup
+
+% ######################################################################################################################
+%         Detail Texts
+% ######################################################################################################################
+
+
+% ======================================================================================================================
+%     Bio Datasets
+% ======================================================================================================================
+
+\section{Empirical Dataset Analysis}
+\label{sec:DetailsBioDatasets}
+
+\subsection{Bacterial Vaginosis}
+\label{sec:DetailsBioDatasets:sub:BV}
+
+\subsection{Human Microbiome Project}
+\label{sec:DetailsBioDatasets:sub:HMP}
+
+% ======================================================================================================================
+%     Implementation
+% ======================================================================================================================
+
+\section{Pipeline and Implementation}
+\label{sec:Implementation}
+
+\clearpage
+
+\clearpage
+
+
+
+
+% ######################################################################################################################
+%         Appendices
+% ######################################################################################################################
+
+\clearpage
+
+% Bibliography
+\bibliographystyle{natbib}
+% \bibliographystyle{apalike}
+\bibliography{art-bib}
+
+\end{document}
