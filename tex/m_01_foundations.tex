@@ -11,7 +11,7 @@
     \textbf{Contributions:} Lucas Czech... Pierre Barbera... Alexandros Stamatakis... and...
 }
 
-sequences, sampling, alignments, trees, placement, distances
+In this chapter, we introduce\ldots
 
 % ######################################################################################################################
 %         Evolution and Genetics
@@ -20,12 +20,31 @@ sequences, sampling, alignments, trees, placement, distances
 \section{Evolution and Genetics}
 \label{ch:Foundations:sec:EvolutionGenetics}
 
-there is sequencing \cite{Sanger1975}, also of the human genome \cite{Venter2001},
-which gets cheaper all the time \cite{Wetterstrand2018}
+% Evolution is change in the heritable characteristics of biological populations over successive generations.
+% \url{https://en.wikipedia.org/wiki/Evolution}
+% the process by which new species or populations of living things develop from preexisting forms through successive generations
+% \url{https://www.merriam-webster.com/dictionary/evolution}
+% Evolution is a process of continuous branching and diversification from common trunks. This pattern of irreversible separation gives life's history its basic directionality. —Stephen Jay Gould
+% \url{https://www.merriam-webster.com/dictionary/evolution}
+
+Evolution is the continuous process of diversification of biological species and populations through successive generations
+
+this process was not understood for a long time. static species.
+
 
 dna, sequencing, ngs
 
 % https://en.wikipedia.org/wiki/On_the_Origin_of_Species
+
+% ======================================================================================================================
+%     Genome Sequencing
+% ======================================================================================================================
+
+\subsection{Genome Sequencing}
+\label{ch:Foundations:sec:EvolutionGenetics:sub:GenomeSequencing}
+
+there is sequencing \cite{Sanger1975}, also of the human genome \cite{Venter2001},
+which gets cheaper all the time \cite{Wetterstrand2018}
 
 % ======================================================================================================================
 %     Metagenomics
@@ -35,6 +54,7 @@ dna, sequencing, ngs
 \label{ch:Foundations:sec:EvolutionGenetics:sub:Metagenomics}
 
 metagenomics, metagenetics, env studies, sampling etc
+samples from locations, points in time, etc \todo{find passage in paper/or wherever it is copied here}
 
 The availability of high-throughput DNA sequencing technologies has revolutionized biology by transforming it
 into an ever more data-driven and compute-intense discipline \cite{Escobar-Zepeda2015}.
@@ -96,7 +116,15 @@ also, we can infer trees \cite{Felsenstein2004}
 \subsection{Tree Inference}
 \label{ch:Foundations:sec:PhylogeneticTrees:sub:TreeInference}
 
-ML
+subst models
+
+tree search
+
+ML grundidee
+
+tree properties, BL, node names, etc
+
+tree formats?
 
 % ######################################################################################################################
 %         Phylogenetic Placement
@@ -171,6 +199,8 @@ kommt unten noch mal!
 \subsection{Introduction}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:Introduction}
 
+\todo{pipeline diagram, data flow, etc, reference to chapters?!}
+
 In brief, phylogenetic placement calculates the most probable insertion branches for each given \acf{QS} on a \acf{RT}.
 The \acp{QS} are reads or amplicons from environmental samples.
 The \ac{RT} and the reference sequences it represents are typically assembled by the user
@@ -197,7 +227,7 @@ The accumulated \ac{LWR} sum over all branches for a single \ac{QS} is $1.0$.
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=.6\linewidth]{img/tree_epa.pdf}
+    \includegraphics[width=.6\linewidth]{pppp/tree_epa.pdf}
     \caption[Phylogenetic Placement of a Query Sequence]{
         \textbf{Phylogenetic Placement of a Query Sequence.}
         Each branch of the reference tree is tested as a potential insertion position, called a ``placement'' (blue dots).
@@ -248,7 +278,7 @@ that is, all placements were computed on the same fixed \acf{RT} and \acl{RA}.
 % the problem arises because different samples zies. can span many order sof magnitude.
 When placing multiple samples, for instance, from different locations,
 typically, the same \ac{RT} is used, in order to allow for comparisons of the phylogenetic composition of these samples.
-In this context, it sis important to consider how to properly normalize the samples.
+In this context, it is important to consider how to properly normalize the samples.
 Normalization is required as the sample size (often also called library size),
 that is, the number of sequences per sample, can vary by several orders of magnitude,
 due to efficiency variations in the sequencing process or biases introduced by the amplification process.
@@ -276,7 +306,7 @@ we therefore explain how the necessary normalizations of sample sizes can be per
 We also describe general techniques for interpreting and working with phylogenetic placement data.
 %These are not methods of their own, but tools necessary for later.
 Some of these techniques have been used before as building blocks
-for methods like Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}.
+for methods like Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}. \todo{see below}
 %and we mostly stick to established terminology.
 
 % ======================================================================================================================
@@ -284,7 +314,7 @@ for methods like Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}.
 % ======================================================================================================================
 
 \subsection{Edge Masses}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeMasses}
+\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:EdgeMasses}
 
 Methods that compare samples directly based on their sequences,
 such as the UniFrac distance \cite{Lozupone2005,Lozupone2007a},
@@ -312,7 +342,7 @@ which is identical to the number of \acp{QS} in the sample.
 
 \begin{figure}[!ht]
     \centering
-%     \includegraphics[width=0.6\linewidth]{img/imbalance.pdf}
+    \includegraphics[width=0.6\linewidth]{pppp/imbalance.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:imbalance:sub:ReferenceTree}
@@ -363,7 +393,7 @@ In the extreme case $b:=1$, all masses on an edge are grouped into one single bi
 This \emph{branch binning} process drastically reduces the number of mass points
 that need to be stored and analyzed in several methods we present,
 while only inducing a negligible decrease in accuracy.
-As shown in \tabref{tab:hmp_binning_error}. %Supplementary Table~\ref{supp:tab:hmp_binning_error},
+As shown in \tabref{tab:hmp_binning_error}.
 branch binning can yield a speedup of up to 75\% for post-analysis run-times.
 
 Furthermore, using masses allows to summarize a set of samples
@@ -377,7 +407,7 @@ This normalized tree thereby summarizes the (sub-)set of samples it represents.
 % ======================================================================================================================
 
 \subsection{Edge Imbalances}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeImbalances}
+\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:EdgeImbalances}
 
 So far, we have only considered the per-edge masses.
 Often, however, it is also of interest to ``summarize'' the mass of an entire clade. %, that is, to consider per-clade masses.
@@ -437,3 +467,26 @@ with a high heterogeneity of mass difference between samples.
 Edge PCA further allows to annotate its plots with meta-data variables, for instance, by coloring,
 thus establishing a connection between differences in samples and differences in their meta-data \cite{Srinivasan2012}.
 In the following, we propose several new techniques to analyze placement data and their associated meta-data.
+
+% ======================================================================================================================
+%     Distance between Samples
+% ======================================================================================================================
+
+\subsection{Distance between Samples}
+\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:Distances}
+
+kr distance. ref to nh distance?!
+\cite{Evans2012}
+
+% ======================================================================================================================
+%     Existing Analysis Methods
+% ======================================================================================================================
+
+\subsection{Existing Analysis Methods}
+\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:ExistingMethods}
+
+squash clustering
+edge pca
+\cite{Matsen2011a,Evans2012}
+
+we use these methods repeatedly to compare our novel methods to.

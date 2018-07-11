@@ -129,7 +129,12 @@
 %\usepackage{float} %z.B. \floatstyle{ruled}
 
 %% Seitengröße mit geometry-Paket einstellen
-\geometry{left=3cm,right=3cm,top=23mm,bottom=25mm,head=14.5pt}
+%\geometry{left=3cm,right=3cm,top=23mm,bottom=25mm,head=14.5pt}
+\geometry{left=3cm,right=3cm,top=35mm,bottom=3cm,head=14.5pt}
+
+% added by LC: add space between header and text block
+% https://tex.stackexchange.com/a/56553
+\setlength{\headsep}{10mm}
 
 %% Stil
 \parindent 0cm                     % Absatzanfang wird nicht eingerückt

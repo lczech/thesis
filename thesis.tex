@@ -31,51 +31,6 @@
 }
 
 % ----------------------------------------------------------------
-%    Customization
-% ----------------------------------------------------------------
-
-\newcommand\todo[1]{{\color{purple}{TODO: #1}}}
-
-% Define custom styles
-\newcommand\toolname{\textsc}
-\newcommand\taxonname{\textit}
-\newcommand\fileformat{\texttt}
-
-\newcommand\tabref[1]{Table~\ref{#1}}
-\newcommand\figref[1]{Figure~\ref{#1}}
-% \newcommand\suppfigref[1]{S\ref{#1}~Fig}
-
-% ART Paper
-\newcommand\paperart{
-    \item \textbf{Lucas Czech}, Pierre Barbera, and Alexandros Stamatakis.
-        "Methods for Automatic Reference Trees and Multilevel Phylogenetic Placement."
-        \textit{Bioinformatics}, 2018.
-}
-
-% Phylogenetic Postprocessing Paper
-\newcommand\paperpppp{
-    \item \textbf{Lucas Czech} and Alexandros Stamatakis.
-        "Scalable Methods for Post-Processing, Visualizing, and Analyzing Phylogenetic Placements."
-        \textit{PLOS One}, 2018.
-}
-
-% Command for framed boxes.
-\newcommand\paperbox[3]{
-    \begin{framed}
-    % \noindent
-    #1
-    \begin{itemize}
-        #2
-    \end{itemize}
-    % \noindent
-    #3
-    \end{framed}
-}
-
-% https://tex.stackexchange.com/a/5255
-\DeclareMathOperator*{\argmax}{arg\,max}
-
-% ----------------------------------------------------------------
 %    Settings
 % ----------------------------------------------------------------
 
@@ -93,12 +48,12 @@
 \hyphenation{
 }
 
-% Index-Datei öffnen
-\makeindex
-
 % ----------------------------------------------------------------
 %    Main Document
 % ----------------------------------------------------------------
+
+% Index-Datei öffnen
+\makeindex
 
 \begin{document}
 

@@ -11,6 +11,8 @@
     \textbf{Contributions:} Lucas Czech... Alexandros Stamatakis...
 }
 
+\todo{distance measures, nhd, simulations, mantel test}
+
 % ######################################################################################################################
 %         Motivation
 % ######################################################################################################################
@@ -60,11 +62,11 @@ This results in a hierarchical clustering tree that has meaningful, and hence in
 Remark:
 Squash clustering uses the KR distance, which is based on mass distributions on the edges of the \ac{RT}.
 It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead.
-For instance, figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
+For instance, Figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
 on a dataset of Bacterial Vaginosis, a disease of the vagina.
 On the left hand side of the figure, the blue data points, representing healthy women, cluster close together,
 while the red data points, which belong to sick patients, spread over the rest of the graph.
-The result of Squash Clustering on this dataset is presented in figure 1 of \cite{Srinivasan2012}.
+The result of Squash Clustering on this dataset is presented in Figure 1 of \cite{Srinivasan2012}.
 The bottom half of the clustering tree, containing mainly healthy samples, has short branches,
 while the top half, with mostly samples from sick patients, has many long branches.
 Thus, Squash Clustering and normal PCA represent almost equivalent information in this case.
@@ -96,7 +98,7 @@ It is thus possible to calculate distances between samples and centroids,
 and to calculate their average mass distributions, as described earlier.
 Our implementation follows Lloyd's algorithm \cite{Lloyd1982},
 % to iteratively improve the assignments and the centroids,
-as shown in Algorithm \ref{algo:kmeans}.
+as shown in \algref{algo:kmeans}.
 
 \vspace*{1em} % \todo{maybe remove later again}
 \begin{algorithm}
@@ -140,7 +142,7 @@ The cluster centroids can be visualized as trees with a mass distribution,
 analogous to how Squash Clustering visualizes inner nodes of the clustering tree.
 That is, each centroid can be represented as the average mass distribution of the samples that were assigned to it.
 This allows to inspect the centroids and thus to interpret how the samples were clustered.
-Examples of this are shown in \figref{fig:centroids}. %Supplementary Fig~\ref{fig:centroids}.
+Examples of this are shown in \figref{fig:centroids}.
 
 The key question is how to select an appropriate $k$
 that reflects the number of ``natural'' clusters in the data.
@@ -165,14 +167,14 @@ describing where each sample was taken from, c.f.~\figref{fig:hmp_kmeans_all_18}
 
 In each assignment step of the algorithm, distances from all samples to all centroids are calculated,
 which has a time complexity of $\mathcal{O}(n \cdot k)$.
-In order to accelerate this step, we can apply branch binning as introduced in Section \ref{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeMasses}.
+In order to accelerate this step, we can apply branch binning as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeMasses}.
 % It is both possible to bin all samples, or just the centroid masses,
 % but not the samples, as an intermediate approximation.
 For the \ac{BV} dataset, we found that even using just \num{2} bins per edge does not alter the cluster assignments.
 Branch binning reduces the number of mass points that have to be accessed in memory during KR distance calculations;
 however, the costs for tree traversals remain.
 Thus, we observed a maximal speedup of 75\% when using one bin per branch,
-see S\ref{tab:hmp_binning_error}~Table for details.
+see \tabref{tab:hmp_binning_error} for details.
 % even binning to \num{1} bin,
 % that is, combining all placement masses on a branch into one point,
 % changes the cluster assignment of only \num{2} of {220} samples
@@ -264,7 +266,7 @@ Note that the mapping of colors to clusters is arbitrary and depends on the rand
 % That figure is bonkers. Everything condensed in half a page. I like it!
 \begin{figure}[!ht]
     \centering
-%     \includegraphics[width=\linewidth]{img/cluster_kmeans.pdf}
+    \includegraphics[width=\linewidth]{pppp/cluster_kmeans.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:cluster_kmeans:sub:mass_tree}
@@ -422,7 +424,7 @@ This is further explored by using the Elbow method as shown in \figref{fig:elbow
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/hmp_kmeans_all_18.pdf}
+    \includegraphics[width=\linewidth]{pppp/hmp_kmeans_all_18.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:hmp_kmeans_all_18:sub:em_unconstr}
@@ -526,7 +528,7 @@ In contrast, \toolname{guppy} needed \num{43} days for this dataset.
 % The performance and the effects of binning on the distance values are explored
 % in Section {link to correct sub section of eval. also, performance is now spread}.
 Lastly, branch binning can be used to achieve additional speedups,
-as shown in S\ref{tab:hmp_binning_error}~Table.
+as shown in \tabref{tab:hmp_binning_error}.
 
 % ######################################################################################################################
 %         Conclusion and Outlook
@@ -602,7 +604,7 @@ We also conducted these tests on the BV dataset, were the relative error is even
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/kmeans_all.pdf}
+    \includegraphics[width=\linewidth]{pppp/kmeans_all.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:kmeans_all:sub:mds_em}
@@ -649,7 +651,7 @@ We also conducted these tests on the BV dataset, were the relative error is even
         and by the Nugent score of the samples (last column).
         The Nugent score is included to allow comparison of the health status of patients with the clustering results.
         \subref{fig:kmeans_all:sub:mds_em}, \subref{fig:kmeans_all:sub:pca_em} and \subref{fig:kmeans_all:sub:epca_ei}
-        are identical to Figs~\ref{fig:cluster_kmeans}\subref{fig:cluster_kmeans:sub:mds},
+        are identical to \figref{fig:cluster_kmeans}\subref{fig:cluster_kmeans:sub:mds},
         \subref{fig:cluster_kmeans:sub:pca} and \subref{fig:cluster_kmeans:sub:edgepca} of the main text, respectively.
         \subref{fig:kmeans_all:sub:pca_ns} and \subref{fig:kmeans_all:sub:epca_ns} are recalculations of
         Figures~4 and 3 of \cite{Matsen2011b}, respectively.
@@ -669,7 +671,7 @@ We also conducted these tests on the BV dataset, were the relative error is even
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/centroids.pdf}
+    \includegraphics[width=\linewidth]{pppp/centroids.pdf}
     \caption[Example of $k$-means cluster centroids visualization]{
         % In this figure, I assume that the reader is already familiar with the characteristics of the dataset.
         % No need to repeat everything over again...
@@ -706,7 +708,7 @@ We also conducted these tests on the BV dataset, were the relative error is even
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=0.6\linewidth]{img/hmp_kmeans_all_8.pdf}
+    \includegraphics[width=0.6\linewidth]{pppp/hmp_kmeans_all_8.pdf}
     \caption[Clustering using Phylogenetic $k$-means on the HMP dataset]{
         \textbf{Clustering using Phylogenetic $k$-means on the HMP dataset.}
         $k$ is set to 8, instead of $k:=18$ as in the main text,
@@ -730,7 +732,7 @@ We also conducted these tests on the BV dataset, were the relative error is even
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/elbows.pdf}
+    \includegraphics[width=\linewidth]{pppp/elbows.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:elbows:sub:bv_phylo}
@@ -776,7 +778,7 @@ We also conducted these tests on the BV dataset, were the relative error is even
         For the HMP dataset, the elbow is less pronounced.
         We suspect that this is due to the broad reference tree not being able to adequately
         resolve fine-grained differences between samples,
-        see S1 Text for details. %Supplementary Section \ref{sec:DetailsEmpiricalDatasets} for details.
+        see \secref{ch:EmpiricalDatasets} for details.
         Likely candidates for $k$ are $4-6$ for \subref{fig:elbows:sub:hmp_phylo}
         and around $7$ for \subref{fig:elbows:sub:hmp_imb}.
         These values are consistent with the number of coherent ``blocks'' of clusters,

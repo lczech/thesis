@@ -33,6 +33,37 @@ For large datasets, the per-edge masses can vary by several orders of magnitude.
 In these cases, it is often preferable to use a logarithmic scaling, as shown in \cite{Mahe2017}.
 %In addition to visualizing each sample separately, the average mass distribution gives an overview of a set of samples.
 
+\todo{refine}
+more advanced version for example when doing tax assignment can be done with hierarchical pie charts,
+as for instance offered by the Krona tool \cite{Ondov2011}.
+
+pie charts are typical \cite{Huttenhower2012}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{abundances_comparison.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:abundances_comparison:sub:pie_chart}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:abundances_comparison:sub:branch_colors}
+    \end{subfigure}
+    \caption[Visualization of read abundances]{
+        \textbf{Visualization of read abundances.}
+        Using neotrop data, we show a typical pie chart of taxonomic abundances in
+        \subref{fig:abundances_comparison:sub:pie_chart}
+        and the much more informative per-branch visualization in
+        \subref{fig:abundances_comparison:sub:branch_colors},
+        similar to \cite{Mahe2017}.
+        note that pie charts are usually not considered good visualization practice,
+        and thus better use bar plots. but, it seems to be a default in many papers...
+        \todo{cite them!}
+    }
+    \label{fig:abundances_comparison}
+\end{figure}
+
 These simple visualizations directly depict the placement masses on the tree.
 When visualizing the accumulated masses of multiple samples at once,
 it is important to chose the appropriate normalization strategy for the task at hand.
@@ -80,7 +111,7 @@ This allows to examine which edges exhibit a high heterogeneity of placement mas
 % vary in terms of their placements,
 and indicates which edges discriminate samples.
 As edge mass values can span many orders of magnitude,
-it might be necessary to scale the variance logarithmically. %, % as shown in Figure~\ref{fig:var_cor:sub:em_varl},
+it might be necessary to scale the variance logarithmically. %, % as shown in \figref{fig:var_cor:sub:em_varl},
 %or to use some other form of normalization.
 Often, one is more interested in the branches with high placement mass.
 In these cases, using the standard deviation or variance is appropriate,
@@ -103,7 +134,7 @@ and discussed in Section \nameref{ch:Visualization:sec:Results}.
 
 \begin{figure}[!ht]
     \centering
-%     \includegraphics[width=\linewidth]{img/var_cor.pdf}
+    \includegraphics[width=\linewidth]{pppp/var_cor.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:var_cor:sub:em_varl}
@@ -213,9 +244,9 @@ We further compared our methods to the visualization of Edge PCA components on t
 To this end, we recalculated Figures 4 and 5 of \cite{Matsen2011a},
 and visualized them with our color scheme in \figref{fig:epca} for ease of comparison.
 They show the first two components of Edge PCA, mapped back to the \ac{RT}.
-The first component %, \figref{fig:epca:sub:comp1},
+The first component, \figref{fig:epca:sub:comp1},
 reveals that the \taxonname{Lactobacillus} clade represents the axis with the highest heterogeneity across samples,
-while the second component%, \figref{fig:epca:sub:comp2},
+while the second component, \figref{fig:epca:sub:comp2},
 further distinguishes between the two aforementioned clades within \taxonname{Lactobacillus}.
 Edge Correlation also highlights the \taxonname{Lactobacillus} clade as shown in \figref{fig:var_cor:sub:ei_var},
 but does not distinguish further between its sub-clades.
@@ -330,7 +361,7 @@ The variants of the methods presented here are hence best used in combination wi
 
 \begin{figure}[!ht]
     \centering
-%     \includegraphics[width=\linewidth]{img/all_dispersions.pdf}
+    \includegraphics[width=\linewidth]{pppp/all_dispersions.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:all_dispersions:sub:em_var}
@@ -389,7 +420,7 @@ The variants of the methods presented here are hence best used in combination wi
     \label{fig:all_dispersions}
 \end{figure}
 
-% the outlier in \ref{fig:all_dispersions:sub:em_var} is:
+% the outlier in \figref{fig:all_dispersions:sub:em_var} is:
 % taxon 258b-16, branch id 786, species Prevotella bivia.
 %
 % command to count the occurence of this per samples:
@@ -404,7 +435,7 @@ The variants of the methods presented here are hence best used in combination wi
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/all_nugent.pdf}
+    \includegraphics[width=\linewidth]{pppp/all_nugent.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:all_nugent:sub:pcc_em}
@@ -449,7 +480,7 @@ The variants of the methods presented here are hence best used in combination wi
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/amsel_ph.pdf}
+    \includegraphics[width=\linewidth]{pppp/amsel_ph.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:amsel_ph:sub:amsel_em}
@@ -488,7 +519,7 @@ The variants of the methods presented here are hence best used in combination wi
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/epca.pdf}
+    \includegraphics[width=\linewidth]{pppp/epca.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:epca:sub:comp1}
@@ -525,7 +556,7 @@ The variants of the methods presented here are hence best used in combination wi
 
 \begin{figure}[hpbt]
     \centering
-%     \includegraphics[width=\linewidth]{img/tara_correlation.pdf}
+    \includegraphics[width=\linewidth]{pppp/tara_correlation.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:tara_correlation:sub:nitrate}
