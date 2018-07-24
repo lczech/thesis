@@ -59,7 +59,7 @@ Lastly, we also report the run-time performance of our methods on these data.
 
 The analyses and figures presented here were conducted on distinct reference alignments and trees.
 Firstly, for the \ac{BV} dataset, we used the original set of reference sequences, and re-inferred a tree on them.
-Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Automatic Reference Tree (ART) method \cite{Czech2018}
+Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method \cite{Czech2018}
 to construct sets of suitable reference sequences from the \toolname{Silva} database \cite{Quast2013,Yilmaz2014}.
 We used the 90\% threshold consensus sequences;
 see \cite{Czech2018} for details.
@@ -107,8 +107,8 @@ which was provided by Sujatha Srinivasan.
 See Figure~\ref{fig:bv_comparison} for the respective results.
 This small dataset with a total of \num{426 612} query sequences, thereof \num{15 060} unique,
 was already analyzed with phylogenetic placement methods in the original publication.
-We used it as an example of a well-designed study to asses our results using an \ac{ART} as reference tree.
-In addition to the \taxonname{Bacteria} \ac{ART},
+We used it as an example of a well-designed study to asses our results using an \ac{PhAT} as reference tree.
+In addition to the \taxonname{Bacteria} \ac{PhAT},
 we re-inferred the reference tree of the original publication using their alignment,
 again using \toolname{RAxML~8.2.8} \citep{Stamatakis2014}.
 The query sequences of the dataset were then aligned to our reference tree and alignment,
@@ -138,7 +138,7 @@ We filtered out sequences below \SI{95}{bps} and above \SI{150}{bps}, to remove 
 No further preprocessing (such as chimera detection) was applied.
 This resulted in a total of \num{48 036 019} sequences, thereof \num{27 697 007} unique.
 The sequences were then used for phylogenetic placement as explained above.
-We placed the sequences on the unconstrained \taxonname{Eukaryota} reference tree obtained via our ART method \cite{Czech2018},
+We placed the sequences on the unconstrained \taxonname{Eukaryota} reference tree obtained via our \ac{PhAT} method \cite{Czech2018},
 which comprises \num{2 059} taxa, thereof \num{1 795} eukaryotic sequences.
 The remaining \num{264} taxa are \taxonname{Archaea} and \taxonname{Bacteria},
 and were included as a broad outgroup.
@@ -176,7 +176,7 @@ as well as sequences longer than \SI{540}{bps} were removed,
 as we considered them potentially erroneous.
 No further preprocessing (such as chimera detection) was applied.
 This resulted in a total of \num{116 520 289} sequences, of which \num{63 221 538} were unique.
-We then used the unconstrained \taxonname{Bacteria} tree of our ART method \cite{Czech2018} for phylogenetic placement.
+We then used the unconstrained \taxonname{Bacteria} tree of our \ac{PhAT} method \cite{Czech2018} for phylogenetic placement.
 The tree comprises \num{1 914} taxa, thereof \num{1 797} bacterial sequences.
 The remaining \num{117} taxa are \taxonname{Archaea} and \taxonname{Eukaryota},
 and were included as a broad outgroup.
@@ -270,7 +270,7 @@ but also has functions to work with sequences, taxonomies and many other data ty
 The methods described in this paper are implemented via four sub-commands:
 
 \begin{itemize}
-    \item \texttt{art}: Automatic Reference Tree method.
+    \item \texttt{phat}: Phylogenetic Automatic (Reference) Tree method.
           The command expects a taxonomy file and a sequence file of a sequence database,
           e.g., \toolname{Silva} \citep{Quast2013,Yilmaz2014},
           as well as the target number of consensus sequences to be generated for the intended phylogeny.
@@ -304,10 +304,21 @@ The methods described in this paper are implemented via four sub-commands:
           and generate a \texttt{jplace} for each original sequence file, including the correct abundances.
           This command is the second step of the \texttt{chunkify} command, and reverts its effect,
           so that the resulting \texttt{jplace} files are as if they were created using the original sequence files.
+    \item \texttt{assign}: Perform taxonomic assignment using phylogenetic placements.
+          While this is not the main focus of this work, we briefly introduce this method here.
+          The command uses a taxonomic labeling of the tips of the reference tree
+          to annotate all inner branches of the tree with the longest common taxonomic label
+          for the induced subtree of the inner branch, in analogy to \toolname{Sativa} \citep{Kozlov2016}.
+          Then, each query sequence in the provided \texttt{jplace} files
+          is taxonomically assigned according to the labels of the branches where it does have placement mass.
+          This can subsequently either be used for taxonomic assignment of the query sequences themselves,
+          or to obtain a taxonomic profile of one or more samples.
 \end{itemize}
 
 These are the commands of \toolname{gappa} relevant for this paper,
 but it also offers more commands that are useful when working with phylogenetic placements.
+For details on the commands, and additional potentially useful commands,
+see the \toolname{gappa} documentation at \url{https://github.com/lczech/gappa/wiki}.
 At the time of writing, it is under active development, and more functions are planned for the near future.
 Furthermore, we provide prototype implementations, scripts, data and other tools
 used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.

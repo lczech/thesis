@@ -295,6 +295,10 @@ Such methods are fast, but only attain satisfying accuracy levels
 if the query sequences (e.g., the environmental reads or amplicons) are sufficiently similar to the reference sequences.
 Furthermore, the best \toolname{Blast} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
 % \todo{Mention further methods here, for example Vervier 2015}
+This is particularly true for environments where available reference databases
+do not exhibit sufficient taxon coverage \citep{Mahe2017}.
+As insufficient taxon coverage cannot be detected by methods that are based on sequence similarity,
+they can potentially bias downstream analyses.
 
 Alternatively, so-called phylogenetic (or evolutionary) placement methods \cite{Matsen2010,Berger2011,Barbera2018}
 identify query sequences based on a phylogenetic tree of reference sequences.
@@ -351,7 +355,7 @@ kommt unten noch mal!
 \todo{pipeline diagram, data flow, etc, reference to chapters?!}
 
 In brief, phylogenetic placement calculates the most probable insertion branches for each given \acf{QS} on a \acf{RT}.
-The \acp{QS} are reads or amplicons from environmental samples.
+The \acp{QS} are reads or amplicons from environmental samples; most often barcoding regions or marker genes are used.
 The \ac{RT} and the reference sequences it represents are typically assembled by the user
 so that they capture the expected species diversity in the samples.
 Nonetheless, we recently presented an automated approach
@@ -415,6 +419,33 @@ In the following, we represent a sample by the placement locations of its metage
 including the respective per-branch \acp{LWR}.
 Furthermore, for a specific analysis, we assume the standard use case,
 that is, all placements were computed on the same fixed \acf{RT} and \acl{RA}.
+
+
+This mapping can be seen as an identification and classification of the \acp{QS} in terms of the \ac{RT},
+similar to a taxonomic assignment.
+However, phylogenetic placement also allows for more elaborate downstream analyses.
+Firstly, the reference tree usually offers a higher resolution than simple per-taxon abundance counts,
+and the amount of mapped \acp{QS} per branch can be directly visualized on the \ac{RT} \citep{Mahe2017}.
+Secondly, established methods such as Edge PCA and Squash Clustering \citep{Matsen2011a}
+allow for identifying subtle differences between distinct samples,
+thus enabling comparative studies directly based on phylogenetic placement.
+Lastly, we recently proposed novel methods for visualizing and clustering phylogenetic placement data \citep{Czech2018a},
+which, for example, can reveal correlations of per-sample meta-data features with sequence abundances.
+
+
+Furthermore, phylogenetic placement is used in a variety of derived tools,
+such as \toolname{(m)PTP} (species delimitation; \cite{Zhang2013,Kapli2017}),
+\toolname{SEPP} (boosting; \cite{Mirarab2012}),
+\toolname{PhyloSift} (metagenome analysis; \cite{Darling2014}),
+\toolname{Sativa} (identification and correction of taxonomically mislabeled sequences; \cite{Kozlov2016})
+and \toolname{TIPP} (taxonomic identification and phylogenetic profiling; \cite{Nguyen2014}).
+
+A phylogenetic placement can be carried out {\em if} the \acp{QS} can be aligned to the reference alignment.
+Often, barcoding regions such as 16S or 18S are used,
+but there also exist studies that use different, or even a set of, maker genes \citep{Sunagawa2013a}.
+Furthermore, other types of sequences such as $_{\text{mi}}$tags %\textsubscript{mi}tags
+\citep{Logares2014} can be used.
+
 
 % ######################################################################################################################
 %         Phylogenetic Placement Processing
