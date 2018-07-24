@@ -167,7 +167,7 @@ describing where each sample was taken from, c.f.~\figref{fig:hmp_kmeans_all_18}
 
 In each assignment step of the algorithm, distances from all samples to all centroids are calculated,
 which has a time complexity of $\mathcal{O}(n \cdot k)$.
-In order to accelerate this step, we can apply branch binning as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:EdgeMasses}.
+In order to accelerate this step, we can apply branch binning as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:EdgeMasses}.
 % It is both possible to bin all samples, or just the centroid masses,
 % but not the samples, as an intermediate approximation.
 For the \ac{BV} dataset, we found that even using just \num{2} bins per edge does not alter the cluster assignments.

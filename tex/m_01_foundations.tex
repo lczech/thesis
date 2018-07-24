@@ -27,14 +27,47 @@ In this chapter, we introduce\ldots
 % Evolution is a process of continuous branching and diversification from common trunks. This pattern of irreversible separation gives life's history its basic directionality. —Stephen Jay Gould
 % \url{https://www.merriam-webster.com/dictionary/evolution}
 
-Evolution is the continuous process of diversification of biological species and populations through successive generations
+Life on Earth has been around for about 3.5 billion years.
 
-this process was not understood for a long time. static species.
+Evolution is the continuous process of diversification of biological populations through successive generations \cite{Hall2008}.
 
+heredity, dna
 
-dna, sequencing, ngs
+% four processes of pop gen: selection genetic drift, Migration and Mutation
+% Non-Random Mating, Gene flow
 
-% https://en.wikipedia.org/wiki/On_the_Origin_of_Species
+this process was not understood for a long time. static species?!
+
+natural selection \cite{Darwin1859}
+
+genes and dna: unit of heredity, they are what is selected for in natural selection
+\cite{Dawkins1989}
+
+dna structure: double helix \cite{Watson1953}
+
+% alexey:
+% In particular, desoxyribonucleic acid (DNA)
+% was identified as the carrier of genetic information.
+% In the process of protein synthe-
+% sis, DNA is first transcribed into the ribonucleic acid (RNA) intermediate, which is
+% then translated into the actual protein. This information transmission chain (DNA
+% → RNA → protein) is known as the central dogma of molecular biology.
+
+using this information:
+dna rna, central dogma of molecular biology \cite{Crick1958,Crick1970}
+``DNA makes RNA and RNA makes protein''
+that's how cells work.
+
+acgt, encodes information.
+
+maybe move to trees:
+
+there is common functionality - the closer related two organisms are in evolutionary terms,
+the more similarities are to be expected in their dna.
+
+all related, all share dna as the base code.
+thus, by understanding the genetic code of life,
+one can understand the diversification patterns of evolution.
 
 % ======================================================================================================================
 %     Genome Sequencing
@@ -46,6 +79,15 @@ dna, sequencing, ngs
 there is sequencing \cite{Sanger1975}, also of the human genome \cite{Venter2001},
 which gets cheaper all the time \cite{Wetterstrand2018}
 
+sequencing
+
+% ======================================================================================================================
+%     Taxonomy and Nomenclature
+% ======================================================================================================================
+
+\subsection{Taxonomy and Nomenclature}
+\label{ch:Foundations:sec:EvolutionGenetics:sub:TaxonomyNomenclature}
+
 % ======================================================================================================================
 %     Metagenomics
 % ======================================================================================================================
@@ -53,8 +95,11 @@ which gets cheaper all the time \cite{Wetterstrand2018}
 \subsection{Metagenomics}
 \label{ch:Foundations:sec:EvolutionGenetics:sub:Metagenomics}
 
+ngs
+
 metagenomics, metagenetics, env studies, sampling etc
 samples from locations, points in time, etc \todo{find passage in paper/or wherever it is copied here}
+introduce ``sample''
 
 The availability of high-throughput DNA sequencing technologies has revolutionized biology by transforming it
 into an ever more data-driven and compute-intense discipline \cite{Escobar-Zepeda2015}.
@@ -75,54 +120,144 @@ directly extracted from their environment \citep{Morgan2010,Edwards2013,Sunagawa
 For each sample, these methods yield a set of short, anonymous DNA sequences, so-called reads.
 
 
+rna, 18s 16s
+
 challenges and bottlenecks in metag analysis \cite{Scholz2012}
 bottleneck is computational analysis. who is there, what are they doing \cite{Desai2012}
 (aka taxonomic and functional diversity)
 metag review and caveats. it brings its problems \cite{Temperton2012}
+
+% ######################################################################################################################
+%         Computational Methods for Molecular Evolution
+% ######################################################################################################################
+
+\section{Computational Methods for Molecular Evolution}
+\label{ch:Foundations:sec:ComputationalMolecularEvolution}
+
+introduce ``mol evol'' before... or rename
+
+Given that all life is related by its evolutionary history,
+a key question is how these relationtions are
+
+that is, comaring sequenes, finding tree of life
 
 % ======================================================================================================================
 %     Multiple Sequence Alignments
 % ======================================================================================================================
 
 \subsection{Multiple Sequence Alignments}
-\label{ch:Foundations:sec:EvolutionGenetics:sub:MSA}
+\label{ch:Foundations:sec:ComputationalMolecularEvolution:sub:MSA}
+
+
+review of msa software \cite{Thompson2011}
+
+show unaligned sequences and an alignment. maybe show consensus sequence, too, for next section.
+
+only makes sense when evlultionary related. thus, for distantly related species, often conserved regions are used,
+eg 16s 18s, or barcodes or stuff
+
+
+introduce ``indels''
+
+\figref{fig:msa} shows an example of the process and the resulting MSA.
+
+\begin{figure}[hpbt]
+    \centering
+%     \vspace*{0.5em}
+    \includegraphics[width=.9\linewidth]{msa.pdf}
+    \caption[Multiple Sequence Alignment]{
+        \textbf{Multiple Sequence Alignment.}
+        The left hand side shows a set of six sequences belonging to different taxa.
+        Using an alignment algorithm, gaps are inserted into these sequences at presumed \emph{indel} positions.
+        The right hand side shows the result of this process,
+        where homologous characters (or gaps) in the columns of the multiple sequence alignment (MSA) are aligned to each other.
+    }
+    \label{fig:msa}
+\end{figure}
 
 % ======================================================================================================================
 %     Consensus Sequences
 % ======================================================================================================================
 
 \subsection{Consensus Sequences}
-\label{ch:Foundations:sec:EvolutionGenetics:sub:ConsensusSequences}
+\label{ch:Foundations:sec:ComputationalMolecularEvolution:sub:ConsensusSequences}
+
+maybe move to PhAT, as this is not relevant for the other chapters,
+and not for the introduction in general.
 
 ambiguity chars \cite{IUPAC1971}
 
 cons methods: see art
 
-% ######################################################################################################################
-%         Phylogenetic Trees
-% ######################################################################################################################
+% ======================================================================================================================
+%         Phylogenetic Tree Inference
+% ======================================================================================================================
 
-\section{Phylogenetic Trees}
-\label{ch:Foundations:sec:PhylogeneticTrees}
+\subsection{Phylogenetic Tree Inference}
+\label{ch:Foundations:sec:ComputationalMolecularEvolution:sub:PhylogeneticTreeInference}
+
 
 phylogenetics is...
 
+in context of trees, the sequences are thought to represent species, or \emph{taxa} that one is interested in.
+introduce ``taxa''
+
+show a tree. maybe darwin?
+
 also, we can infer trees \cite{Felsenstein2004}
 
-% ======================================================================================================================
-%     Tree Inference
-% ======================================================================================================================
+\cite{Yang2006}
 
-\subsection{Tree Inference}
-\label{ch:Foundations:sec:PhylogeneticTrees:sub:TreeInference}
+
+inference can be interpreted as a search in the space of all possible trees for the tree that maximizes some optimality criterion.
+
+for a given number of taxa $n$, the number of distinct tree topologies N is given as
+$N(n) = \prod_{i=3}^{n} (2i - 5)$
+grows over-exponentially fast
+\cite{Felsenstein2004}
+
+space is large, so there are different approaches and heuristics to inferring trees.
+
+Distance based methods such as \emph{Unweighted Pair Group Method with Arithmetic Mean} (UPGMA) \cite{Sokal1958}
+and \emph{Neighbor Joining} \cite{Saitou1987}
+use a pairwise distance matrix between sequences, and thus do not necessarily need an alignment.
+\emph{Maximum Parsimony} \cite{Sankoff1975} uses an optimality criterion that is based on Occam's razor,
+that is, it yields the tree that explains the observed tip sequences (taxa)
+with the minimal number of substitutions (mutations).
+Furthermore, there is \emph{Bayesian Inference},
+in which Bayes' theorem is used to calculate the posterior distribution of the relevant evolutionary processes,
+and which thus can incorporate prior empirical knowledge into the process.
+
+Bayesian approaches, ...
+
+In the context of this work, we are mostly interested in Maximum Likelihood (ML) tree inference,
+which is introduced below.
+
+ML, baysian...
+
+we here focus on ML.
 
 subst models
-
-tree search
+% and thereafter evaluating the resulting likelihood score of the tree under a given model of nucleotide evolution,
+% such as the Generalized Time-Reversible (GTR) model \cite{Tavare1986}.
 
 ML grundidee
 
+\begin{equation}
+    L(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
+\end{equation}
+
+tree search, number of trees, more than exp. effort
+
+
+
 tree properties, BL, node names, etc
+
+BL opt
+
+introduce ``phylogenetic signal''
+
+explain visualizations, and that they are just a layout choice
 
 tree formats?
 
@@ -133,12 +268,22 @@ tree formats?
 \section{Phylogenetic Placement}
 \label{ch:Foundations:sec:PhylogeneticPlacement}
 
+introduce ``reference tree''. common use case: fixed tree, selected by experts to consist of know, described taxa
+to represent the diversity expected from an environment.
+
 % ======================================================================================================================
 %     Motivation
 % ======================================================================================================================
 
 \subsection{Motivation}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:Motivation}
+
+
+problem with ngs data:
+msa is NP-hard \cite{Just2001}.
+inferring tree for this many sequences is also NP-hard \cite{Chor2005} even harder (over exp.), plus
+short sequences (not phylo signal), so cannot resolve relationtips between sequences
+
 
 % although the methods generally are applicable to both.
 A typical task in metagenomic studies is to identify and classify these sequences with respect
@@ -184,6 +329,10 @@ taxonomic identification and phylogenetic profiling \cite{Nguyen2014}, and
 identification and correction of taxonomically mislabeled sequences \cite{Kozlov2016}.
 
 combine 1,010 more citations (as of 2018-07-01)
+see also recent art version
+
+there is also a recent approach that yields comparable results (also jplace), but uses an alignment-free, non ML approach \cite{Linard2018}.
+
 
 aligning
 
@@ -342,7 +491,7 @@ which is identical to the number of \acp{QS} in the sample.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.6\linewidth]{pppp/imbalance.pdf}
+    \includegraphics[width=0.8\linewidth]{imbalance.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:imbalance:sub:ReferenceTree}
