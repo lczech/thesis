@@ -377,7 +377,7 @@ Each \ac{CT} is associated with the set of branches of a specific \ac{BT} clade.
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=0.75\linewidth]{art/multilevel_placement.pdf}
-    \caption{
+    \caption[Multilevel Placement]{
         \textbf{Multilevel Placement.}
         The left shows a backbone tree (BT); the right shows two clade trees (CTs) in orange and green.
         Branches in the BT that are associated with a CT are marked in its color.
@@ -752,7 +752,7 @@ Therefore, our method yields reasonable accuracy for taxonomic assignment and pr
 Note that the resolution of the assignment is limited by the taxonomy used when running the \ac{PhAT} method,
 that is, we could not assign reads at \taxonname{Species} level.
 Details of the process and its results are provided in \secref{sec:Results:sub:TaxonomicAssignmentProfilingDetails};
-\figref{fig:cami_performance} and \tabref{tab:cami_rankings} show the most important evaluation results.
+\figref{fig:cami_performance}, \figref{fig:alpha_diversity}, and \tabref{tab:cami_rankings} show the most important evaluation results.
 
 % ======================================================================================================================
 %     Taxonomic Assignment
@@ -822,7 +822,7 @@ we find that the performance of our approach is ``middle of the field''.
 Note that this is a comparison to tools that are dedicated to taxonomic profiling,
 which also typically can assign more of the available reads.
 
-We show the most important OPAL results in \figref{fig:cami_performance}
+We show the most important OPAL results in \figref{fig:cami_performance}, \figref{fig:alpha_diversity},
 as well as in \tabref{tab:cami_rankings}.
 Furthermore, the full OPAL output can be accessed at \url{http://github.com/lczech/placement-methods-paper}.
 
@@ -1367,7 +1367,7 @@ The EDPL is the sum of the distances between the placements of a sequences weigh
 % }
 
 \begin{table}[htb]
-\caption{
+\caption[CAMI: Scores and Ranks]{
 \textbf{CAMI: Scores and Ranks.}
 The table shows the scores and ranks of different tools evaluated with data from, and following the protocol of,
 the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
@@ -2010,7 +2010,7 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
         \phantomcaption
         \label{fig:cami_performance:sub:absolute}
     \end{subfigure}
-    \caption{
+    \caption[CAMI: Profiling Results]{
         \textbf{CAMI: Profiling Results.}
         The figure shows the profiling results of different tools evaluated with data from, and following the protocol of,
         the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
@@ -2072,27 +2072,28 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
 %     CAMI Alpha Diversity
 % ======================================================================================================================
 
-% \begin{figure*}[hpbt]
-%     \centering
-%     \includegraphics[width=\linewidth]{img/alpha_diversity.pdf}
-%     \begin{subfigure}{0pt}
-%         \phantomcaption
-%         \label{fig:alpha_diversity:sub:total}
-%     \end{subfigure}
-%     \begin{subfigure}{0pt}
-%         \phantomcaption
-%         \label{fig:alpha_diversity:sub:difference}
-%     \end{subfigure}
-%     \caption{
-%         \textbf{CAMI: Alpha Diversity.}
-%         The figure shows the alpha diversity as estimated by different tools evaluated
-%         with data from, and following the protocol of, the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
-%         Here, we compare the taxonomic assignment and profiling conducted with our \texttt{assign} command
-%         to the tools that took part in the 2nd CAMI challenge.
-%         For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
-%         which are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=\linewidth]{art/alpha_diversity.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:alpha_diversity:sub:total}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:alpha_diversity:sub:difference}
+    \end{subfigure}
+    \caption[CAMI: Alpha Diversity]{
+        \textbf{CAMI: Alpha Diversity.}
+        The figure shows the alpha diversity as estimated by different tools evaluated
+        with data from, and following the protocol of, the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
+        Here, we compare the taxonomic assignment and profiling conducted with our \texttt{assign} command
+        to the tools that took part in the 2nd CAMI challenge.
+        For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
+        which are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
 %         See Supplementary Section~\ref{sec:TaxonomicAssignment} for details.
 %         \\
-%     }
-%     \label{fig:alpha_diversity}
-% \end{figure*}
+        \todo{add some more text here}
+    }
+    \label{fig:alpha_diversity}
+\end{figure}
