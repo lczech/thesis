@@ -458,6 +458,9 @@
 % https://tex.stackexchange.com/questions/3372/how-do-i-typeset-arbitrary-fractions-like-the-standard-symbol-for-5-%C2%BD
 \usepackage{xfrac}
 
+% https://tex.stackexchange.com/questions/31091/space-after-latex-commands/31092#31092
+\usepackage{xspace}
+
 % https://tex.stackexchange.com/a/163779
 %\usepackage{amsmath}
 %\usepackage{algorithm}

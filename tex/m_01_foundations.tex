@@ -27,78 +27,119 @@ In this chapter, we introduce\ldots
 % Evolution is a process of continuous branching and diversification from common trunks. This pattern of irreversible separation gives life's history its basic directionality. —Stephen Jay Gould
 % \url{https://www.merriam-webster.com/dictionary/evolution}
 
-Life on Earth has been around for about 3.5 billion years.
+% Evolution is the continuous process of diversification of biological populations through successive generations \cite{Hall2008}.
 
-Evolution is the continuous process of diversification of biological populations through successive generations \cite{Hall2008}.
+Life on Earth is at least 3.77 billion years old \cite{Dodd2017},
+and is continuously evolving due to \emph{natural selection} \cite{Darwin1859}.
+% Woah, I like that very first sentences. A very old and a very new publication, binding all of reasearch together...
+Driven by \emph{variation}, biological populations diversify through successive generations,
+leading to the origination of new species.
+This continuous process is called \emph{evolution} \cite{Hall2008}.
+Heritable characteristics are passed down from parent to offspring,
+with occasional random mutations leading to variation.
+Thus, some organisms are better adapted to their environment than others,
+and have more reproductive success.
+There is hence a natural selection for advantageous mutations,
+which can then spread through generations.
 
-heredity, dna
+% this process was not understood for a long time. static species?
+% four driving forces of pop gen?
 
-% four processes of pop gen: selection genetic drift, Migration and Mutation
-% Non-Random Mating, Gene flow
+The characteristics and traits of an organism are carried by, and inherited via, \emph{deoxyribonucleic acid} (DNA).
+DNA is the molecule that encodes the genetic information needed for the functioning of all living organisms.
+It is structured in form of a double helix \cite{Watson1953},
+and built from two strands of molecules called \emph{nucleotides}.
+The nucleotides build the backbone of the double helix,
+and connect the two strands via opposing pairs of \emph{nucleobases}.
+The redundant structure of pairs of nucleobases gives stability to the DNA molecule,
+and also serves as a mechanism of error correction when reading the genetic information.
+% both of which is important for the role of DNA for information storage.
+In DNA, there are four distinct nucleobases:
+adenine (\nba), cytosine (\nbc), guanine (\nbg), and thymine (\nbt),
+where \nba pairs with \nbt, and \nbc pairs with \nbg, respectively.
+The sequence of nucleobases along the strands of DNA is what encodes the genetic information.
 
-this process was not understood for a long time. static species?!
+A \emph{gene} is a sequence which codes for a molecule that has a particular function, such as a protein \cite{Gericke2007}.
+Proteins consist of long chains of amino acid residues, and
+perform a plethora of different functions within organisms.
+They are assembled in a process called protein (bio)synthesis,
+which is described by the central dogma of molecular biology \cite{Crick1958,Crick1970}:
+First, DNA is \emph{transcribed} into the intermediary ribonucleic acid (RNA),
+which is then \emph{translated} into the actual protein.
 
-natural selection \cite{Darwin1859}
+In each step of this process, the alphabet used to encode information differs.
+While DNA uses the four nucleobases as described above,
+in RNA, the nucleobase uracil (\nbu) is used instead of thymine (\nbt).
+Proteins on the other hand are (mostly) build from a set of \num{20} standard amino acids.
+The set of rules for translating nucleobases into amino acids is called the \emph{genetic code}:
+In a DNA sequence, three consecutive nucleobases are needed to encode one amino acid.
+% Thus, the amino acid sequence can also be seen as information storage.
 
-genes and dna: unit of heredity, they are what is selected for in natural selection
-\cite{Dawkins1989}
+DNA and genes are the basic units of heredity.
+They are what is varying across generations,
+and what is selected for in the process of natural selection \cite{Dawkins1989}.
+The study of genes, variation and heredity is called \emph{genetics} \cite{Griffiths2000}.
 
-dna structure: double helix \cite{Watson1953}
+It is remarkable that these basic principles and mechanisms -- DNA, amino acids, and the genetic code --
+are virtually identical for all living organisms.
+This strongly suggests that all life on this planet is related and descends from a common ancestor.
 
-% alexey:
-% In particular, desoxyribonucleic acid (DNA)
-% was identified as the carrier of genetic information.
-% In the process of protein synthe-
-% sis, DNA is first transcribed into the ribonucleic acid (RNA) intermediate, which is
-% then translated into the actual protein. This information transmission chain (DNA
-% → RNA → protein) is known as the central dogma of molecular biology.
+It further implies that by understanding the genetic information
 
-using this information:
-dna rna, central dogma of molecular biology \cite{Crick1958,Crick1970}
-``DNA makes RNA and RNA makes protein''
-that's how cells work.
-
-acgt, encodes information.
-
-maybe move to trees:
-
-there is common functionality - the closer related two organisms are in evolutionary terms,
-the more similarities are to be expected in their dna.
-
-all related, all share dna as the base code.
-thus, by understanding the genetic code of life,
+genetic code of life,
 one can understand the diversification patterns of evolution.
+
+% ######################################################################################################################
+%         Sequence Analysis
+% ######################################################################################################################
+
+\section{Sequence Analysis}
+\label{ch:Foundations:sec:SequenceAnalysis}
 
 % ======================================================================================================================
 %     Genome Sequencing
 % ======================================================================================================================
 
 \subsection{Genome Sequencing}
-\label{ch:Foundations:sec:EvolutionGenetics:sub:GenomeSequencing}
+\label{ch:Foundations:sec:SequenceAnalysis:sub:GenomeSequencing}
+
+put this and the following in section ``genome analysis'' or ``sequence analysis''?
+
+use section ``molecular biology'' for all of this? not really fitting, as we do not do 3d struct, proteins, pathsways etc...
+
+introduce ``genome''
+
+character representing acgt
+
+Because of this pairing,
+the length of a DNA sequence is measured in \emph{base pairs} (abbreviated \si{\basepair}):
+\SI{1}{\basepair} represents one character of either \nba, \nbc, \nbg, or \nbt along one strand of the DNA.
+The character on the opposing strand is then the respective
 
 there is sequencing \cite{Sanger1975}, also of the human genome \cite{Venter2001},
 which gets cheaper all the time \cite{Wetterstrand2018}
 
 sequencing
 
-% ======================================================================================================================
-%     Taxonomy and Nomenclature
-% ======================================================================================================================
-
-\subsection{Taxonomy and Nomenclature}
-\label{ch:Foundations:sec:EvolutionGenetics:sub:TaxonomyNomenclature}
+fasta files etc
 
 % ======================================================================================================================
 %     Metagenomics
 % ======================================================================================================================
 
 \subsection{Metagenomics}
-\label{ch:Foundations:sec:EvolutionGenetics:sub:Metagenomics}
+\label{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}
 
 ngs
 
+metagenomics vs metagenetics?
+
+pcr
+
+introduce ssu, 16s, 18s
+
 metagenomics, metagenetics, env studies, sampling etc
-samples from locations, points in time, etc \todo{find passage in paper/or wherever it is copied here}
+samples from locations, points in time, etc \todo{find passage in paper/or wherever it is copied here -- found it: it is later in this file!}
 introduce ``sample''
 
 The availability of high-throughput DNA sequencing technologies has revolutionized biology by transforming it
@@ -127,27 +168,14 @@ bottleneck is computational analysis. who is there, what are they doing \cite{De
 (aka taxonomic and functional diversity)
 metag review and caveats. it brings its problems \cite{Temperton2012}
 
-% ######################################################################################################################
-%         Computational Methods for Molecular Evolution
-% ######################################################################################################################
-
-\section{Computational Methods for Molecular Evolution}
-\label{ch:Foundations:sec:ComputationalMolecularEvolution}
-
-introduce ``mol evol'' before... or rename
-
-Given that all life is related by its evolutionary history,
-a key question is how these relationtions are
-
-that is, comaring sequenes, finding tree of life
-
 % ======================================================================================================================
-%     Multiple Sequence Alignments
+%     Sequence Alignments
 % ======================================================================================================================
 
-\subsection{Multiple Sequence Alignments}
-\label{ch:Foundations:sec:ComputationalMolecularEvolution:sub:MSA}
+\subsection{Sequence Alignment}
+\label{ch:Foundations:sec:SequenceAnalysis:sub:SequenceAlignment}
 
+pairwise alignment section
 
 review of msa software \cite{Thompson2011}
 
@@ -157,7 +185,7 @@ only makes sense when evlultionary related. thus, for distantly related species,
 eg 16s 18s, or barcodes or stuff
 
 
-introduce ``indels''
+introduce ``indels'' and homologous chars
 
 \figref{fig:msa} shows an example of the process and the resulting MSA.
 
@@ -180,7 +208,7 @@ introduce ``indels''
 % ======================================================================================================================
 
 \subsection{Consensus Sequences}
-\label{ch:Foundations:sec:ComputationalMolecularEvolution:sub:ConsensusSequences}
+\label{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}
 
 maybe move to PhAT, as this is not relevant for the other chapters,
 and not for the introduction in general.
@@ -189,34 +217,105 @@ ambiguity chars \cite{IUPAC1971}
 
 cons methods: see art
 
+% ######################################################################################################################
+%         Tree of Life
+% ######################################################################################################################
+
+\section{The Tree of Life}
+\label{ch:Foundations:sec:TreeOfLife}
+
+maybe move to trees:
+
+all use the same or very similar mechanisms, dna, genetic code etc are (almost) universal throughout life.
+this suggests that there is common decent.
+
+branching pattern, common decent, etc leads naturally to a tree structure
+(ignoring the messiness of biology)
+
+there is common functionality - the closer related two organisms are in evolutionary terms,
+the more similarities are to be expected in their dna.
+
+Given that all life is related by its evolutionary history,
+a key question is how these relationtions are
+
+that is, comaring sequenes, finding tree of life
+
+what is a species.
+
 % ======================================================================================================================
-%         Phylogenetic Tree Inference
+%     Taxonomy and Nomenclature
 % ======================================================================================================================
 
-\subsection{Phylogenetic Tree Inference}
-\label{ch:Foundations:sec:ComputationalMolecularEvolution:sub:PhylogeneticTreeInference}
+\subsection{Taxonomy and Nomenclature}
+\label{ch:Foundations:sec:TreeOfLife:sub:TaxonomyNomenclature}
+
+there is more than one species on Earth [citation needed]. also, evolution naturally gives rise to a branching pattern,
+which can be interpreted as a hierarchy. higher levels represent common ancestors
+
+this is called taxonomy.
+entries in a taxonomy have names, which follow a certain nomenclature, e.g. Lineaus
+introduce ``taxon'' (plural ``taxa'') as well here.
+
+highest level: three domains model.
+bact arch euks.
+
+the lower levels in the tax usually represent species or even strains (\eg of bacteria).
+
+
+historically: morphology based: how does stuff look?
+
+now: genes and dna used more and more to refine the taxonomy of life.
+
+% ======================================================================================================================
+%     Phylogenetics
+% ======================================================================================================================
+
+\subsection{Phylogenetics}
+\label{ch:Foundations:sec:TreeOfLife:sub:Phylogenetics}
+
+rename to ``phylogenetics''?
 
 
 phylogenetics is...
 
 in context of trees, the sequences are thought to represent species, or \emph{taxa} that one is interested in.
-introduce ``taxa''
+introduce ``taxa'', ref to tax intro above
 
 show a tree. maybe darwin?
+idea: trees show evol relationships. closer in the tree, closer in evol.
+branch lengths etc.
 
-also, we can infer trees \cite{Felsenstein2004}
+not considering lat gene tranfs,
+there is only one ``true'' tree of life.
 
-\cite{Yang2006}
+% ======================================================================================================================
+%         Tree Inference
+% ======================================================================================================================
+
+\subsection{Tree Inference}
+\label{ch:Foundations:sec:TreeOfLife:sub:TreeInference}
 
 
-inference can be interpreted as a search in the space of all possible trees for the tree that maximizes some optimality criterion.
+but, no time machine, fuzzy and missing data, etc. so we have to infer as well as possible from the given data.
+that is, methods to mathematically model evolution.
+in other words, from all possible trees, we want to find one that is good
 
 for a given number of taxa $n$, the number of distinct tree topologies N is given as
 $N(n) = \prod_{i=3}^{n} (2i - 5)$
 grows over-exponentially fast
 \cite{Felsenstein2004}
 
+tree search, number of trees, more than exp. effort
+
+inference can be interpreted as a search in the space of all possible trees for the tree that maximizes some optimality criterion.
+
+also, we can infer trees \cite{Felsenstein2004}
+
+\cite{Yang2006}
+
+
 space is large, so there are different approaches and heuristics to inferring trees.
+
 
 Distance based methods such as \emph{Unweighted Pair Group Method with Arithmetic Mean} (UPGMA) \cite{Sokal1958}
 and \emph{Neighbor Joining} \cite{Saitou1987}
@@ -247,8 +346,6 @@ ML grundidee
     L(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
 \end{equation}
 
-tree search, number of trees, more than exp. effort
-
 
 
 tree properties, BL, node names, etc
@@ -260,6 +357,7 @@ introduce ``phylogenetic signal''
 explain visualizations, and that they are just a layout choice
 
 tree formats?
+newick etc
 
 % ######################################################################################################################
 %         Phylogenetic Placement
@@ -445,6 +543,18 @@ Often, barcoding regions such as 16S or 18S are used,
 but there also exist studies that use different, or even a set of, maker genes \citep{Sunagawa2013a}.
 Furthermore, other types of sequences such as $_{\text{mi}}$tags %\textsubscript{mi}tags
 \citep{Logares2014} can be used.
+
+% ======================================================================================================================
+%     Placement Pipeline
+% ======================================================================================================================
+
+\subsection{Placement Pipeline}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementPipeline}
+
+
+alignting against given ref aln, papara, hmmer
+
+ML method, rappas (aln free)
 
 
 % ######################################################################################################################
