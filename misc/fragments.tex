@@ -264,34 +264,6 @@ now we take the cross product of this with the >12 data analyses that i already 
     \item Description of their metadata, maybe some examples.
 \end{itemize}
 
-\begin{table}[htb]
-\caption{
-Overview of the dataset dimensions.
-\textmd{
-The ``Samples'' columns show how many metagenomic samples there were in the originally downloaded data and
-how many of those we actually used for our experiments after filtering out spurious ones.
-The columns ``Filtered Sample Sizes'' show how many sequences each of the filtered samples has.
-The ``Sequence Count'' columns show the total number of sequences in the filtered samples, and how many of them are unique.
-The columns ``Sequence Length'' show statistics of the length of the sequences.
-Lastly, the ``Chunks'' column shows into how many chunks of size \num{50 000} the samples were distributed.
-}}
-\label{tab:MetagenomicDatasetsOverview}
-{
-    \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-    \begin{center}
-    \begin{tabular}{l|rr|rrr|rr|rrr|r}
-                        & \mc{2}{c|}{Samples}                      & \mc{3}{c|}{Filtered Sample Sizes}                 & \mc{2}{c|}{Filtered Sequence Count}   & \mc{3}{c|}{Filtered Sequence Length}              & \mc{1}{r}{} \\
-    Dataset             & \mc{1}{r}{Source} & \mc{1}{r|}{Filtered} & \mc{1}{r}{Min} & \mc{1}{r}{Max} & \mc{1}{r|}{Avg} & \mc{1}{r}{Total} & \mc{1}{r|}{Unique} & \mc{1}{r}{Min} & \mc{1}{r}{Max} & \mc{1}{r|}{Avg} & Chunks \\
-    \hline
-    Bacterial Vaginosis &                   &                  220 &                &                &                 &          426,612 &             15,060 &                &                &             226 &      1 \\
-    Neotropical Soils   &                   &                  154 &                &                &                 &       50,118,536 &         10,567,804 &                &                &             364 &    212 \\
-    Tara Oceans         &                   &                  370 &                &                &                 &       49,023,231 &         27,697,007 &                &                &             128 &    554 \\
-    Human Microbiome    &             9,815 &                9,194 &                &                &                 &      118,701,818 &         63,221,538 &                &                &             413 &  1,265 \\
-    \end{tabular}
-    \end{center}
-}
-\end{table}
-
 
 \todo{refer to the number of total sequences as amplicons in the supplement. they are already deduplicated!}
 
