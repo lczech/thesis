@@ -8,10 +8,12 @@
 \paperbox{
     This chapter is partially based on the peer-reviewed publications:
 }{\paperart \paperpppp}{
-    \textbf{Contributions:} Lucas Czech... Pierre Barbera... Alexandros Stamatakis... and...
+    \todo{
+        \textbf{Contributions:} Lucas Czech... Pierre Barbera... Alexandros Stamatakis... and...
+    }
 }
 
-In this chapter, we introduce\ldots
+\todo{In this chapter, we introduce\ldots}
 
 % ######################################################################################################################
 %         Evolution and Genetics
@@ -57,13 +59,14 @@ and also serves as a mechanism of error correction when reading the genetic info
 In DNA, there are four distinct nucleobases:
 adenine (\nba), cytosine (\nbc), guanine (\nbg), and thymine (\nbt),
 where \nba pairs with \nbt, and \nbc pairs with \nbg, respectively.
-The sequence of nucleobases along the strands of DNA is what encodes the genetic information.
 
-A \emph{gene} is a sequence which codes for a molecule that has a particular function, such as a protein \cite{Gericke2007}.
+The sequence of nucleobases along the strands of DNA is what encodes the genetic instructions
+used by all known living organisms.
+Parts of the DNA encode for proteins,
+which perform a plethora of different functions within organisms.
 Proteins consist of long chains of amino acid residues, and
-perform a plethora of different functions within organisms.
-They are assembled in a process called protein (bio)synthesis,
-which is described by the central dogma of molecular biology \cite{Crick1958,Crick1970}:
+are assembled in a process called protein (bio)synthesis.
+This is described by the central dogma of molecular biology \cite{Crick1958,Crick1970}:
 First, DNA is \emph{transcribed} into the intermediary ribonucleic acid (RNA),
 which is then \emph{translated} into the actual protein.
 
@@ -73,20 +76,18 @@ in RNA, the nucleobase uracil (\nbu) is used instead of thymine (\nbt).
 Proteins on the other hand are (mostly) build from a set of \num{20} standard amino acids.
 The set of rules for translating nucleobases into amino acids is called the \emph{genetic code}:
 In a DNA sequence, three consecutive nucleobases are needed to encode one amino acid.
-% Thus, the amino acid sequence can also be seen as information storage.
 
+The entirety of the genetic material of an organism, that is, its complete DNA sequence, is called its \emph{genome}.
+A \emph{gene} is a sequence which codes for a molecule that has a particular function, such as a protein \cite{Gericke2007}.
 DNA and genes are the basic units of heredity.
 They are what is varying across generations,
 and what is selected for in the process of natural selection \cite{Dawkins1989}.
 The study of genes, variation and heredity is called \emph{genetics} \cite{Griffiths2000}.
 
-It is remarkable that these basic principles and mechanisms -- DNA, amino acids, and the genetic code --
-are virtually identical for all living organisms.
-This strongly suggests that all life on this planet is related and descends from a common ancestor.
-
-It further implies that by understanding the genetic information
-
-genetic code of life,
+All life on this planet is related to each other and descends from a common ancestor.
+Still, it is remarkable that the basic molecular principles and mechanisms of life
+-- DNA, amino acids, and the genetic code -- are virtually identical for all living organisms.
+This implies that by understanding and comparing the genetic information encoded in the DNA of different organisms,
 one can understand the diversification patterns of evolution.
 
 % ######################################################################################################################
@@ -103,25 +104,47 @@ one can understand the diversification patterns of evolution.
 \subsection{Genome Sequencing}
 \label{ch:Foundations:sec:SequenceAnalysis:sub:GenomeSequencing}
 
-put this and the following in section ``genome analysis'' or ``sequence analysis''?
+Prior to analyzing the DNA of an organism, the physical order of nucleobases in the DNA molecule has to be determined.
+That is, the DNA has to be ``read'' and stored in a human-accessible text format, typically a computer file.
+This technical process is called DNA \emph{sequencing}.
+% which can be understood as putting biomass into a blender and converting it into text files ;-)
 
-use section ``molecular biology'' for all of this? not really fitting, as we do not do 3d struct, proteins, pathsways etc...
+For many decades, the main technique for this purpose was Sanger sequencing \cite{Sanger1975,Sanger1977}.
+It is labor- and time-intensive, but through improvement and automation, costs were constantly reduced.
+Eventually, this allowed for large-scale efforts, such as the Human Genome Project \cite{Venter2001},
+which sequenced the whole human genome of more than three billion nucleobases.
+Sanger sequencing allows to determine long parts of the sequence at once (> \num{500} nucleobases),
+which then have to be assembled to build the final sequence.
 
-introduce ``genome''
+In the last decades, a variety of novel high-throughput DNA sequencing technologies
+have been developed \cite{Pettersson2009,Reuter2015,Deiner2017b}.
+In particular, \emph{Next Generation Sequencing} (NGS) \cite{Logares2012,Mardis2013}
+has revolutionized biology by transforming it into a data-driven and compute-intense discipline \citep{Escobar-Zepeda2015}.
+The costs of these technologies are decreasing faster than Moore's law \cite{Wetterstrand2018}.
+This leads to a ``tsunami'' of sequence data,
+which poses a challenge for computational methods working with these data.
+Compared to Sanger sequencing, NGS technologies are generally cheaper and faster \cite{Voelkerding2009,Metzker2010},
+but come at the price of introducing more errors in the sequence output,
+or only being able to determine shorter parts of the sequence at once
+-- both of which constitute a challenge for the subsequent assembly of the final sequence.
 
-character representing acgt
-
-Because of this pairing,
+The result of DNA sequencing is a textual representation of the order of nucleobases.
+Each contiguous sequence coming from the sequencing machine is called a \emph{read}.
+Because of the pairing of nucleobases,
+both DNA strands can be sequenced, which provides a means of error correction.
+Such data are typically stored in the \fileformat{fastq} file format \citep{Cock2009}.
+These so-called paired-end reads are then merged to form a final sequence representation of one strand
+% cite \toolname{PEAR} \cite{Zhang2014} ?
+-- that is, a sequence of the characters \nba, \nbc, \nbg, and \nbt.
+These data are stored in formats such as the \fileformat{fasta} file format \citep{Pearson1988}.
+Due to the pairing of nucleobases,
 the length of a DNA sequence is measured in \emph{base pairs} (abbreviated \si{\basepair}):
-\SI{1}{\basepair} represents one character of either \nba, \nbc, \nbg, or \nbt along one strand of the DNA.
-The character on the opposing strand is then the respective
+\SI{1}{\basepair} represents one character in the file.
+These files are then the input for computational methods for working with DNA sequences.
 
-there is sequencing \cite{Sanger1975}, also of the human genome \cite{Venter2001},
-which gets cheaper all the time \cite{Wetterstrand2018}
-
-sequencing
-
-fasta files etc
+% Not needed right now:
+% Because of the universal genetic code of translating DNA to amino acids,
+% it is also possible to store the amino acid sequence instead of the nucleobase sequence.
 
 % ======================================================================================================================
 %     Metagenomics
@@ -130,43 +153,89 @@ fasta files etc
 \subsection{Metagenomics}
 \label{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}
 
-ngs
+Sanger sequencing requires careful preparation of the genetic material,
+and is thus best used for sequencing single organisms.
+There are however many (microbial) organisms that cannot be cultured in a Petri dish,
+and are hence hard to sequence with this technique.
+Apart from being cheaper, Next Generation Sequencing machines however ``digest'' all genetic material presented to them.
+They thus allow for studying microbial samples
+directly extracted from their environment \citep{Morgan2010,Edwards2013,Sunagawa2013a}.
+This enables to study environments such as
+water \cite{Karsenti2011,Giner2016,Gran-Stadniczenko2017},
+soil \cite{Dupont2016,Mahe2017},
+the human body \cite{Huttenhower2012,Methe2012,Srinivasan2012,Matsen2015},
+and many others.
+Each sample from such an environment then represents a geographical location, a body site, a point in time, etc.
+% These studies yield a large set of short anonymous DNA reads for each sample.
+% The DNA reads obtained from sequencing a sample represent all organisms present in the sample;
+The DNA of all organisms being present in a sample is sequenced,
+resulting in a large number of reads per sample.
+These reads are anonymous, as it is unclear to which organism they originally belonged.
 
-metagenomics vs metagenetics?
+The study of these data, that is, genetic material from environmental samples, is called \emph{metagenomics} \cite{Oulas2015}.
+% A first step is often to generate a genetic profile of the environment,
+% that is, to estimate the diversity of the organisms in the sample.
+A first step in such studies is often to characterize the reads obtained from an environment
+in terms of \emph{reference sequences} of known species.
+Reads that are similar to (parts of) reference sequences can be assigned to them,
+while reads with low similarity to known sequences might indicate novel, undescribed species \cite{Temperton2012}.
+Key tasks in metagenomic studies are the identification and classification of the anonymous reads (``Who is there?''),
+and their functional annotation (``What are they doing?'') \cite{Desai2012}.
+Both are introduced in the following.
 
-pcr
+% The following paragraph is not totally needed, as we are not doing functional analysis.
+% However, it introduces many other terms alongside, which might be used later on.
+Functional annotation \cite{Stein2001} is the prediction of gene functions of the reads,
+and the inference of metabolic capacity of microbial communities \cite{Brown2017}.
+As the proteins that are needed in the pathways of such functions can be encoded by genes across the genome,
+whole-genome sequencing is necessary to capture all genes of interest.
+For example, in shotgun sequencing \cite{Staden1979,Anderson1981},
+the DNA is fragmented into small pieces within the size range that the used sequencing technology can handle,
+typically a few hundred \si{\basepair} long.
+This allows to sequence all genetic material contained in a sample.
+Thus, the resulting reads originate from different parts of the genomes of their organisms,
+which can then be functionally annotated \cite{Glass2010}.
+This however necessitates to use whole genome reference sequences
+in order to be able to assign reads to known species and functions.
+Typical databases of reference sequences however
+lack many of the protein sequences from the microbial species present in a sample,
+mostly because of organisms that cannot be cultured \cite{Brown2017}.
 
-introduce ssu, 16s, 18s
+For the task of identification and classification of reads however, whole genome references are not needed.
+Instead, specific \emph{marker genes} can be used,
+which are regions of genes that are particularly suited for delineating between different species \cite{Ren2016}.
+% highly conserved, that is, slowly changing over evolutionary times.
+% but certain parts are radpidly evolung (hyper variable) withing the region, which is good for delineation.
+% typically, this is general basic cell functionen stuff, which is needed by many forms of live.
+% eg cell division, ssu... mitochondrial dna, etc
+The method of using marker genes to identify species is called \emph{DNA barcoding} \cite{Hebert2003,Savolainen2005}.
+The choice of genes to use as marker is important, and depends on the types of organisms to be studied.
+The used marker genes should be present in (most of) the organisms of interest,
+short enough to be sequenced with current technology,
+and have enough variation between species to distinguish between them,
+but have low variation within species \cite{Kress2008}.
 
-metagenomics, metagenetics, env studies, sampling etc
-samples from locations, points in time, etc \todo{find passage in paper/or wherever it is copied here -- found it: it is later in this file!}
-introduce ``sample''
+In many metagenomic studies of \taxonname{bacteria} and \taxonname{eukaryotes},
+the 16S and 18S rDNA regions are used as marker genes, respectively.
+These regions belong to the \todo{SSU, ribozome, ... which is responsible for ...,}
+and are thus present in virtually all \taxonname{bacteria} and \taxonname{eukaryotes}.
+Often, prior to sequencing, these regions are amplified using polymerase chain reaction (PCR)
+in order to produce more copies of them \todo{and thus help with error correction? citation}.
+The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}. \todo{citation?}
+While the PCR amplification process is known to introduce bias \cite{Logares2014},
+this method is commonly used, particularly for the 16S and 18S rDNA regions.
+Hence, many databases provide reference sequences for these regions.
+The amplicons can then be employed to estimate the microbial diversity of the organisms in a sample
+by comparison against known species.
 
-The availability of high-throughput DNA sequencing technologies has revolutionized biology by transforming it
-into an ever more data-driven and compute-intense discipline \cite{Escobar-Zepeda2015}.
-In particular, Next Generation Sequencing (NGS) \cite{Logares2012} has given rise to novel methods for studying
-microbial environments \cite{Morgan2010,Edwards2013,Sunagawa2013a,Matsen2015}.
-NGS techniques are often used in metagenomic studies to sequence organisms
-in water \cite{Karsenti2011,Giner2016,Gran-Stadniczenko2017} or soil \cite{Dupont2016,Mahe2017} samples,
-in the human microbiome \cite{Huttenhower2012,Methe2012,Srinivasan2012},
-and a plethora of other environments.
-These studies yield a large set of short anonymous DNA sequences, so-called reads, for each sample.
-Reads that are obtained from specific parts of the genome are called meta-barcoding reads;
-most often, reads are amplified before sequencing and later de-replicated again, resulting in so-called amplicons.
-
-High-throughput DNA sequencing technologies have revolutionized biology by transforming it
-into a data-driven computational discipline \citep{Escobar-Zepeda2015}.
-Next Generation Sequencing (NGS) methods now allow for studying microbial samples
-directly extracted from their environment \citep{Morgan2010,Edwards2013,Sunagawa2013a,Matsen2015,Oulas2015}
-For each sample, these methods yield a set of short, anonymous DNA sequences, so-called reads.
-
-
-rna, 18s 16s
-
-challenges and bottlenecks in metag analysis \cite{Scholz2012}
-bottleneck is computational analysis. who is there, what are they doing \cite{Desai2012}
-(aka taxonomic and functional diversity)
-metag review and caveats. it brings its problems \cite{Temperton2012}
+% from \cite{Brown2017}:
+% Measurement of  the taxonomic composition   of  metagenome samples  by  PCR and
+% amplicon     sequencing  of  the     16S     rDNA    marker  gene    is  inexpensive,    but     it  is subject to   bias    and     lacks
+% sensitivity below   the species level.
+% that is, single cellular strains cannot be resolved
+%
+% thus, a recent technique: mi tags \cite{Logares2014}
+% where specific sequences of a wgs approach are filtered to only contain reads from marker regions
 
 % ======================================================================================================================
 %     Sequence Alignments
@@ -185,7 +254,7 @@ only makes sense when evlultionary related. thus, for distantly related species,
 eg 16s 18s, or barcodes or stuff
 
 
-introduce ``indels'' and homologous chars
+introduce ``indels'' and homologous chars, orthologous genes, etc
 
 \figref{fig:msa} shows an example of the process and the resulting MSA.
 
@@ -195,10 +264,10 @@ introduce ``indels'' and homologous chars
     \includegraphics[width=.9\linewidth]{msa.pdf}
     \caption[Multiple Sequence Alignment]{
         \textbf{Multiple Sequence Alignment.}
-        The left hand side shows a set of six sequences belonging to different taxa.
+        The left hand side shows a set of six sequences.
         Using an alignment algorithm, gaps are inserted into these sequences at presumed \emph{indel} positions.
         The right hand side shows the result of this process,
-        where homologous characters (or gaps) in the columns of the multiple sequence alignment (MSA) are aligned to each other.
+        where homologous characters in the columns of the multiple sequence alignment (MSA) are aligned to each other.
     }
     \label{fig:msa}
 \end{figure}
@@ -252,6 +321,9 @@ what is a species.
 there is more than one species on Earth [citation needed]. also, evolution naturally gives rise to a branching pattern,
 which can be interpreted as a hierarchy. higher levels represent common ancestors
 
+sort organisms into categories, eg Aristotle
+historically: morphology based: how does stuff look?
+
 this is called taxonomy.
 entries in a taxonomy have names, which follow a certain nomenclature, e.g. Lineaus
 introduce ``taxon'' (plural ``taxa'') as well here.
@@ -261,9 +333,6 @@ bact arch euks.
 
 the lower levels in the tax usually represent species or even strains (\eg of bacteria).
 
-
-historically: morphology based: how does stuff look?
-
 now: genes and dna used more and more to refine the taxonomy of life.
 
 % ======================================================================================================================
@@ -272,9 +341,6 @@ now: genes and dna used more and more to refine the taxonomy of life.
 
 \subsection{Phylogenetics}
 \label{ch:Foundations:sec:TreeOfLife:sub:Phylogenetics}
-
-rename to ``phylogenetics''?
-
 
 phylogenetics is...
 
@@ -368,6 +434,11 @@ newick etc
 
 introduce ``reference tree''. common use case: fixed tree, selected by experts to consist of know, described taxa
 to represent the diversity expected from an environment.
+
+
+Since the amount of sequence data produced in metagenomic studies can be quite substantial,
+computational challenges and bottlenecks arise \cite{Scholz2012}.
+
 
 % ======================================================================================================================
 %     Motivation
@@ -512,7 +583,7 @@ Each such position, along with the corresponding \ac{LWR}, is called a placement
 \todo{besser unterbringen}
 The data is usually stored in so-called \fileformat{jplace} files \cite{Matsen2012}.
 
-Each such sample represents a geographical location, a body site, a point in time, etc.
+% Each such sample represents a geographical location, a body site, a point in time, etc.
 In the following, we represent a sample by the placement locations of its metagenomic \acp{QS},
 including the respective per-branch \acp{LWR}.
 Furthermore, for a specific analysis, we assume the standard use case,
