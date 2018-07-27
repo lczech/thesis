@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="95.642868mm"
-   height="26.305271mm"
+   width="94.544044mm"
+   height="26.336849mm"
    id="svg2"
    version="1.1"
    inkscape:version="0.92.3 (unknown)"
@@ -131,13 +131,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.656224"
-     inkscape:cx="92.774153"
-     inkscape:cy="63.546717"
+     inkscape:cx="132.66861"
+     inkscape:cy="63.546714"
      inkscape:document-units="px"
-     inkscape:current-layer="g1805"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1694"
-     inkscape:window-height="1080"
+     inkscape:window-height="1388"
      inkscape:window-x="51"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
@@ -157,7 +157,7 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="-155.66036"
+       originx="-159.81339"
        originy="-767.72467"
        spacingx="1"
        spacingy="1" />
@@ -170,7 +170,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -179,12 +179,12 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     transform="translate(-155.66036,-185.216)">
+     transform="translate(-159.81339,-185.09665)">
     <flowRoot
        xml:space="preserve"
        id="flowRoot3420"
        style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
-       transform="matrix(0.79701628,0,0,0.79701628,214.32383,241.11609)"><flowRegion
+       transform="matrix(0.79701628,0,0,0.79701628,218.32383,241.11609)"><flowRegion
          id="flowRegion3422"><rect
            id="rect3424"
            width="39.52121"
@@ -192,19 +192,19 @@
            x="231.93103"
            y="-67.818886"
            style="line-height:167.99999475%" /></flowRegion><flowPara
-         id="flowPara3426"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Taxon1</flowPara><flowPara
-         id="flowPara3428"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Taxon2</flowPara><flowPara
-         id="flowPara3430"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Taxon3</flowPara><flowPara
-         id="flowPara3432"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Taxon4</flowPara><flowPara
-         id="flowPara3434"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Taxon5</flowPara><flowPara
          id="flowPara3436"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Taxon6</flowPara></flowRoot>    <flowRoot
-       transform="matrix(0.79701628,0,0,0.79701628,-27.67617,241.11609)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'">Seq 1</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
+         id="flowPara1483">Seq 2</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
+         id="flowPara1485">Seq 3</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
+         id="flowPara1487">Seq 4</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
+         id="flowPara1489">Seq 5</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
+         id="flowPara1491">Seq 6</flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.79701628,0,0,0.79701628,-23.67617,241.11609)"
        style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
        id="flowRoot1752"
        xml:space="preserve"><flowRegion
@@ -216,17 +216,17 @@
            width="39.048855"
            id="rect1736" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-         id="flowPara1740">Taxon1</flowPara><flowPara
+         id="flowPara1740">Seq 1</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-         id="flowPara1742">Taxon2</flowPara><flowPara
+         id="flowPara1742">Seq 2</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-         id="flowPara1744">Taxon3</flowPara><flowPara
+         id="flowPara1744">Seq 3</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-         id="flowPara1746">Taxon4</flowPara><flowPara
+         id="flowPara1746">Seq 4</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-         id="flowPara1748">Taxon5</flowPara><flowPara
+         id="flowPara1748">Seq 5</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:166.99999571%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-         id="flowPara1750">Taxon6</flowPara></flowRoot>    <flowRoot
+         id="flowPara1750">Seq 6</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot1764"
        style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
@@ -270,9 +270,9 @@
                  width="55.472031"
                  id="rect2003"
                  style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
-               style="font-size:8.62487055px;line-height:1.25"
+               style="font-size:8.6248703px;line-height:1.25"
                id="flowPara2007">Alignment </flowPara><flowPara
-               style="font-size:8.62487055px;line-height:1.25"
+               style="font-size:8.6248703px;line-height:1.25"
                id="flowPara2945">Algorithm</flowPara></flowRoot>        </g>
         <path
            style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
@@ -292,7 +292,7 @@
      id="layer3"
      inkscape:label="orig_msa"
      style="display:none"
-     transform="translate(-5.2649733,-20.639293)">
+     transform="translate(-9.4180037,-20.519942)">
     <g
        id="g5041"
        style="display:inline;opacity:0.65727701"
@@ -939,7 +939,7 @@
      id="g2040"
      inkscape:groupmode="layer"
      style="display:inline"
-     transform="translate(-5.2649733,-20.639293)">
+     transform="translate(-9.4180037,-20.519942)">
     <g
        id="g2683"
        transform="translate(42)">
@@ -1530,7 +1530,7 @@
      id="layer5"
      inkscape:label="msa_text"
      style="display:inline"
-     transform="translate(-5.2649733,-20.639293)">
+     transform="translate(-9.4180037,-20.519942)">
     <g
        id="g2757"
        transform="translate(42)">
@@ -1989,7 +1989,7 @@
      id="layer2"
      inkscape:label="helpers"
      style="display:none"
-     transform="translate(-155.66036,-185.216)">
+     transform="translate(-159.81339,-185.09665)">
     <g
        id="g5335"
        transform="translate(164.5,-94.500001)">
