@@ -184,7 +184,7 @@ and their functional annotation (``What are they doing?'') \cite{Desai2012}.
 Both are introduced in the following.
 
 % The following paragraph is not totally needed, as we are not doing functional analysis.
-% However, it introduces many other terms alongside, which might be used later on.
+% However, it introduces many other terms alongside, which is useful later on.
 Functional annotation \cite{Stein2001} is the prediction of gene functions of the reads,
 and the inference of metabolic capacity of microbial communities \cite{Brown2017}.
 As the proteins that are needed in the pathways of such functions can be encoded by genes across the genome,
@@ -195,7 +195,7 @@ typically a few hundred \si{\basepair} long.
 This allows to sequence all genetic material contained in a sample.
 Thus, the resulting reads originate from different parts of the genomes of their organisms,
 which can then be functionally annotated \cite{Glass2010}.
-This however necessitates to use whole genome reference sequences
+This however necessitates to use whole-genome reference sequences
 in order to be able to assign reads to known species and functions.
 Typical databases of reference sequences however
 lack many of the protein sequences from the microbial species present in a sample,
@@ -210,29 +210,32 @@ which are regions of genes that are particularly suited for delineating between 
 % eg cell division, ssu... mitochondrial dna, etc
 The method of using marker genes to identify species is called \emph{DNA barcoding} \cite{Hebert2003,Savolainen2005}.
 The choice of genes to use as marker is important, and depends on the types of organisms to be studied.
-The used marker genes should be present in (most of) the organisms of interest,
+The used marker genes should ideally be present in (most of) the organisms of interest,
 short enough to be sequenced with current technology,
 and have enough variation between species to distinguish between them,
 but have low variation within species \cite{Kress2008}.
 
 In many metagenomic studies of \taxonname{bacteria} and \taxonname{eukaryotes},
-the 16S and 18S rDNA regions are used as marker genes, respectively.
-These regions belong to the \todo{SSU, ribozome, ... which is responsible for ...,}
-and are thus present in virtually all \taxonname{bacteria} and \taxonname{eukaryotes}.
-Often, prior to sequencing, these regions are amplified using polymerase chain reaction (PCR)
-in order to produce more copies of them \todo{and thus help with error correction? citation}.
-The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}. \todo{citation?}
+the 16S \cite{Weisburg1991} and 18S \cite{Meyer2010} rRNA regions are used as marker genes,
+respectively \cite{Woese1977,Woese1990}.
+These regions belong to the small subunit (SSU) of the ribosomal ribonucleic acid (rRNA),
+which is an essential component of the ribosome.
+The ribosome is a molecular machinery that is responsible for protein synthesis (translation) in all living organisms.
+% and are thus present in virtually all \taxonname{bacteria} and \taxonname{eukaryotes}.
+Often, prior to sequencing, these regions are amplified by many orders of magnitude,
+using polymerase chain reaction (PCR) to create copies of these regions \cite{Bartlett2003}.
+The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}.
 While the PCR amplification process is known to introduce bias \cite{Logares2014},
 this method is commonly used, particularly for the 16S and 18S rDNA regions.
 Hence, many databases provide reference sequences for these regions.
 The amplicons can then be employed to estimate the microbial diversity of the organisms in a sample
 by comparison against known species.
 
+% Not needed right now:
 % from \cite{Brown2017}:
-% Measurement of  the taxonomic composition   of  metagenome samples  by  PCR and
-% amplicon     sequencing  of  the     16S     rDNA    marker  gene    is  inexpensive,    but     it  is subject to   bias    and     lacks
-% sensitivity below   the species level.
-% that is, single cellular strains cannot be resolved
+% Measurement of the taxonomic composition of metagenome samples by PCR and
+% amplicon sequencing of the 16S rDNA marker gene is inexpensive, but it is subject to bias and lacks
+% sensitivity below the species level.
 %
 % thus, a recent technique: mi tags \cite{Logares2014}
 % where specific sequences of a wgs approach are filtered to only contain reads from marker regions
@@ -243,6 +246,10 @@ by comparison against known species.
 
 \subsection{Sequence Alignment}
 \label{ch:Foundations:sec:SequenceAnalysis:sub:SequenceAlignment}
+
+When comparing sequences to each other, it is important to know which characters are \emph{homologous},
+that is, evolved from the
+
 
 pairwise alignment section
 
@@ -432,7 +439,9 @@ newick etc
 \section{Phylogenetic Placement}
 \label{ch:Foundations:sec:PhylogeneticPlacement}
 
-introduce ``reference tree''. common use case: fixed tree, selected by experts to consist of know, described taxa
+introduce ``reference tree'', as a tree inferred from reference sequences.
+
+. common use case: fixed tree, selected by experts to consist of know, described taxa
 to represent the diversity expected from an environment.
 
 
