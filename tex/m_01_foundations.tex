@@ -129,6 +129,8 @@ or only being able to determine shorter parts of the sequence at once
 -- both of which constitute a challenge for the subsequent assembly of the final sequence.
 
 The result of DNA sequencing is a textual representation of the order of nucleobases.
+Although this representation ignores the physical and chemical properties of the respective molecules,
+it is helpful in many applications, and allows to leverage existing algorithms.
 Each contiguous sequence coming from the sequencing machine is called a \emph{read}.
 Because of the pairing of nucleobases,
 both DNA strands can be sequenced, which provides a means of error correction.
@@ -225,20 +227,17 @@ The ribosome is a molecular machinery that is responsible for protein synthesis 
 Often, prior to sequencing, these regions are amplified by many orders of magnitude,
 using polymerase chain reaction (PCR) to create copies of these regions \cite{Bartlett2003}.
 The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}.
-While the PCR amplification process is known to introduce bias \cite{Logares2014},
-this method is commonly used in practice, particularly for the 16S and 18S rDNA regions.
-Hence, many databases provide reference sequences for these regions.
-The amplicons obtained from an environmental sample can then be employed
-to estimate the microbial diversity of the organisms in the sample by comparison against known species.
+While the PCR amplification process is known to introduce bias \cite{Logares2014,Brown2017},
+this inexpensive method is commonly used in practice, particularly for the 16S and 18S rDNA regions.
+A recent alternative to using PCR for obtaining reads from these regions are $_{\text{mi}}$tags \citep{Logares2014}.
+In this approach, shotgun sequencing is used to get reads from the whole genomes of the organisms in a sample.
+These reads are then filtered to only contain reads from the 16S region (for \taxonname{bacteria}),
+which capture the diversity of the sample without bias.
 
-% Not needed right now:
-% from \cite{Brown2017}:
-% Measurement of the taxonomic composition of metagenome samples by PCR and
-% amplicon sequencing of the 16S rDNA marker gene is inexpensive, but it is subject to bias and lacks
-% sensitivity below the species level.
-%
-% thus, a recent technique: mi tags \cite{Logares2014}
-% where specific sequences of a wgs approach are filtered to only contain reads from marker regions
+Because of the ubiquity of the 16S and 18S rDNA regions in organisms and, consequently, in sequencing studies,
+many databases provide reference sequences for these marker regions.
+The reads or amplicons obtained from an environmental sample can then be employed
+to estimate the microbial diversity of the organisms in the sample by comparison against known species.
 
 % ======================================================================================================================
 %     Sequence Alignments
@@ -247,23 +246,25 @@ to estimate the microbial diversity of the organisms in the sample by comparison
 \subsection{Sequence Alignment}
 \label{ch:Foundations:sec:SequenceAnalysis:sub:SequenceAlignment}
 
-When comparing sequences to each other, it is important to know which characters are \emph{homologous},
-that is, evolved from the
+Organisms that evolved from a (not too distant) common ancestor share genetic information.
+Regions of their DNA that have a shared ancestry are called \emph{homologous} regions \cite{Koonin2005}.
+This homology is typically inferred from sequence similarity. %, that is, by comparison of the sequences.
+However, due to mutations, differences in the sequences can occur.
+There are three main types of sequence mutations that can occur in evolution:
+a \emph{substitution} is the exchange of a nucleobase for another;
+a \emph{insertion} adds one or more extra nucleotides into the sequence;
+a \emph{deletion} removes one or more nucleotides from the sequence.
+The latter two types of mutations change the length of the sequence;
+a mutation that is either one of them is called an \emph{indel}.
 
-
-pairwise alignment section
-
-review of msa software \cite{Thompson2011}
-
-show unaligned sequences and an alignment. maybe show consensus sequence, too, for next section.
-
-only makes sense when evlultionary related. thus, for distantly related species, often conserved regions are used,
-eg 16s 18s, or barcodes or stuff
-
-
-introduce ``indels'' and homologous chars, orthologous genes, etc
-
-\figref{fig:msa} shows an example of the process and the resulting MSA.
+Because of indels, sequences have to be aligned to each other in order to compare their homologous regions.
+That is, gap characters (\nbgap) have to be added to the sequences
+such that homologous characters in the sequence get aligned.
+This results in an $n \times m$ matrix,
+where $n$ is the number of sequences (rows),
+and $m$ is the number of homologous characters (columns), called \emph{sites}.
+This matrix is called a \emph{multiple sequence alignment} (MSA).
+\figref{fig:msa} shows an example of the alignment process and the resulting MSA.
 
 \begin{figure}[hpbt]
     \centering
@@ -272,12 +273,42 @@ introduce ``indels'' and homologous chars, orthologous genes, etc
     \caption[Multiple Sequence Alignment]{
         \textbf{Multiple Sequence Alignment.}
         The left hand side shows a set of six sequences.
-        Using an alignment algorithm, gaps are inserted into these sequences at presumed \emph{indel} positions.
+        Using an alignment algorithm, gaps are inserted into these sequences at presumed indel positions.
         The right hand side shows the result of this process,
         where homologous characters in the columns of the multiple sequence alignment (MSA) are aligned to each other.
     }
     \label{fig:msa}
 \end{figure}
+
+Sequence alignment can be understood as an optimization problem under a given optimality criterion.
+On the one hand, \emph{global alignments} attempt to align every character in every sequence,
+which is most useful for similar sequences of roughly equal size.
+For example, the Needleman-Wunsch algorithm \cite{Needleman1970} is a general global alignment technique
+based on dynamic programming.
+On the other hand, \emph{local alignments} are better suited for dissimilar sequences
+which might contain similar regions within a larger sequence context.
+The Smith-Waterman algorithm \cite{Smith1981} is a general local alignment technique
+using the same dynamic programming scheme,
+which additionally allows to start and end at any place in the sequence.
+As both algorithms have their particular use cases \cite{Polyanovsky2011},
+hybrid methods have also been developed \cite{Brudno2003}.
+Furthermore, heuristic approaches such as \toolname{BLAST} \cite{Altschul1990} and
+\toolname{USEARCH} \cite{Edgar2010} can calculate millions of near-optimal alignments in reasonable time.
+
+These algorithms are efficient for the pairwise alignment of two sequences.
+Calculating an MSA however has been shown to be NP-hard \cite{Wang1994,Just2001}.
+Thus, for most empirical data sets, other approaches and heuristics are needed \cite{Thompson2011}.
+Tools such as \toolname{CLUSTAL} \cite{Higgins1988}, \toolname{MUSCLE} \cite{Edgar2004}, and \toolname{MAFFT} \cite{Katoh2002}
+can calculate near-optimal multiple sequence alignments for many thousands of sequences.
+
+A special use case for aligning sequences arises in metagenomic studies,
+where environmental sequences are often compared to a set of known reference sequences.
+In these studies, one often first calculates an MSA of the reference sequences,
+and then successively aligns the environmental sequences against this MSA.
+This is because calculating an MSA for millions or billions of sequences from scratch is too expensive even for modern tools.
+Hence, specialized algorithms for this use case have been developed,
+such as \toolname{PaPaRa} \citep{Berger2011a,Berger2012} and
+\toolname{hmmalign}, which is a subprogram of the \toolname{HMMER} suite \citep{Eddy1998,Eddy2009}.
 
 % ======================================================================================================================
 %     Consensus Sequences
@@ -286,8 +317,8 @@ introduce ``indels'' and homologous chars, orthologous genes, etc
 \subsection{Consensus Sequences}
 \label{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}
 
-maybe move to PhAT, as this is not relevant for the other chapters,
-and not for the introduction in general.
+% maybe move to PhAT, as this is not relevant for the other chapters,
+% and not for the introduction in general.
 
 ambiguity chars \cite{IUPAC1971}
 
@@ -302,7 +333,7 @@ cons methods: see art
 
 maybe move to trees:
 
-all use the same or very similar mechanisms, dna, genetic code etc are (almost) universal throughout life.
+all organisms use the same or very similar mechanisms, dna, genetic code etc are (almost) universal throughout life.
 this suggests that there is common decent.
 
 branching pattern, common decent, etc leads naturally to a tree structure
@@ -313,8 +344,6 @@ the more similarities are to be expected in their dna.
 
 Given that all life is related by its evolutionary history,
 a key question is how these relationtions are
-
-that is, comaring sequenes, finding tree of life
 
 what is a species.
 
@@ -368,6 +397,10 @@ there is only one ``true'' tree of life.
 \subsection{Tree Inference}
 \label{ch:Foundations:sec:TreeOfLife:sub:TreeInference}
 
+
+that is, comaring sequenes, finding tree of life
+this is mostly done using aligned sequences, as they allow to compare homologous characters and thus
+allow to determine how closely related two species are
 
 but, no time machine, fuzzy and missing data, etc. so we have to infer as well as possible from the given data.
 that is, methods to mathematically model evolution.
