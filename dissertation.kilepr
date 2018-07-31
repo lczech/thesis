@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.1.3
-lastDocument=tex/m_02_art.tex
+lastDocument=tex/m_01_foundations.tex
 masterDocument=thesis.tex
 name=Dissertation
 pkg_extIsRegExp=false
@@ -58,7 +58,7 @@ Highlighting=LaTeX
 Indentation Mode=normal
 Mode=LaTeX
 
-[document-settings,item:tex/m_02_art.tex]
+[document-settings,item:tex/m_02_phat.tex]
 Bookmarks=
 Encoding=UTF-8
 Highlighting=LaTeX
@@ -139,20 +139,20 @@ order=-1
 
 [item:tex/f_02_declaration.tex]
 archive=true
-column=0
+column=254
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=25
 mode=LaTeX
 open=false
 order=-1
 
 [item:tex/f_03_preface.tex]
 archive=true
-column=83
+column=111
 encoding=UTF-8
 highlight=LaTeX
-line=13
+line=11
 mode=LaTeX
 open=false
 order=-1
@@ -169,30 +169,30 @@ order=-1
 
 [item:tex/m_01_foundations.tex]
 archive=true
-column=71
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=354
+line=273
+mode=LaTeX
+open=true
+order=1
+
+[item:tex/m_02_phat.tex]
+archive=true
+column=21
+encoding=UTF-8
+highlight=LaTeX
+line=181
 mode=LaTeX
 open=false
 order=-1
 
-[item:tex/m_02_art.tex]
-archive=true
-column=92
-encoding=UTF-8
-highlight=LaTeX
-line=10
-mode=LaTeX
-open=true
-order=2
-
 [item:tex/m_03_visualization.tex]
 archive=true
-column=88
+column=50
 encoding=UTF-8
 highlight=LaTeX
-line=383
+line=583
 mode=LaTeX
 open=false
 order=-1
@@ -219,32 +219,32 @@ order=-1
 
 [item:tex/s_00_appendix.tex]
 archive=true
-column=6
+column=113
 encoding=UTF-8
 highlight=LaTeX
-line=5
+line=420
 mode=LaTeX
 open=false
 order=-1
 
 [item:thesis.bib]
 archive=true
-column=156
+column=19
 encoding=UTF-8
 highlight=BibTeX
-line=1420
+line=1608
 mode=BibTeX
 open=true
-order=1
+order=0
 
 [item:thesis.tex]
 archive=true
-column=47
+column=14
 encoding=UTF-8
 highlight=LaTeX
-line=36
+line=147
 mode=LaTeX
-open=true
+open=false
 order=0
 
 [view-settings,view=0,item:tex/f_00_titlepage.tex]
@@ -260,16 +260,16 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:tex/f_02_declaration.tex]
-CursorColumn=0
-CursorLine=0
+CursorColumn=254
+CursorLine=25
 JumpList=
-ViMarks=
+ViMarks=.,19,0,[,19,0,],19,0
 
 [view-settings,view=0,item:tex/f_03_preface.tex]
-CursorColumn=83
-CursorLine=13
+CursorColumn=111
+CursorLine=11
 JumpList=
-ViMarks=.,16,104,[,17,0,],-1,-1
+ViMarks=.,22,55,[,22,13,],22,55
 
 [view-settings,view=0,item:tex/m_00_introduction.tex]
 CursorColumn=0
@@ -278,20 +278,20 @@ JumpList=
 ViMarks=.,23,47,[,23,46,],23,61
 
 [view-settings,view=0,item:tex/m_01_foundations.tex]
-CursorColumn=71
-CursorLine=354
+CursorColumn=0
+CursorLine=273
 JumpList=
-ViMarks=.,365,43,[,365,43,],365,43
+ViMarks=.,254,72,[,254,64,],254,72
 
-[view-settings,view=0,item:tex/m_02_art.tex]
-CursorColumn=92
-CursorLine=10
+[view-settings,view=0,item:tex/m_02_phat.tex]
+CursorColumn=21
+CursorLine=181
 JumpList=
-ViMarks=.,1086,55,[,1086,55,],1086,61
+ViMarks=.,2098,11,[,2098,11,],2098,11
 
 [view-settings,view=0,item:tex/m_03_visualization.tex]
-CursorColumn=88
-CursorLine=383
+CursorColumn=50
+CursorLine=583
 JumpList=
 ViMarks=.,391,20,[,391,18,],391,20
 
@@ -308,19 +308,19 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:tex/s_00_appendix.tex]
-CursorColumn=6
-CursorLine=5
+CursorColumn=113
+CursorLine=420
 JumpList=
-ViMarks=.,259,9,[,259,9,],259,9
+ViMarks=.,468,32,[,468,32,],468,32
 
 [view-settings,view=0,item:thesis.bib]
-CursorColumn=156
-CursorLine=1420
+CursorColumn=19
+CursorLine=1608
 JumpList=
-ViMarks=.,1475,0,[,1475,0,],1475,0
+ViMarks=.,1623,0,[,1623,0,],1623,3
 
 [view-settings,view=0,item:thesis.tex]
-CursorColumn=47
-CursorLine=36
+CursorColumn=14
+CursorLine=147
 JumpList=
-ViMarks=.,47,2,[,47,1,],47,2
+ViMarks=.,168,0,[,168,0,],168,0
