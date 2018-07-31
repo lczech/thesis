@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="734.88971"
+   width="703.29596"
    height="298.72845"
-   viewBox="0 0 194.43959 79.038567"
+   viewBox="0 0 186.08041 79.038567"
    version="1.1"
    id="svg8"
    sodipodi:docname="abundances_comparison.svg"
@@ -2054,15 +2054,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6629762"
-     inkscape:cx="363.491"
-     inkscape:cy="42.556333"
+     inkscape:cx="344.44567"
+     inkscape:cy="67.731443"
      inkscape:document-units="mm"
-     inkscape:current-layer="g13368"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1694"
-     inkscape:window-height="1388"
-     inkscape:window-x="51"
-     inkscape:window-y="24"
+     inkscape:window-height="1080"
+     inkscape:window-x="61"
+     inkscape:window-y="34"
      inkscape:window-maximized="0"
      fit-margin-top="2"
      fit-margin-left="2"
@@ -2085,11 +2085,11 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-8.2951612,-19.281805)"
+     transform="translate(-16.654353,-19.281805)"
      style="stroke-linecap:butt;stroke-linejoin:round">
     <g
        id="figure_1"
-       transform="matrix(0.22676285,0,0,0.22676285,-17.205445,14.381531)"
+       transform="matrix(0.21141548,0,0,0.21141548,-12.161245,17.363921)"
        style="stroke-linecap:butt;stroke-linejoin:round">
       <g
          id="axes_1"
@@ -2321,7 +2321,7 @@
         <g
            id="text_3"
            style="stroke-linecap:butt;stroke-linejoin:round"
-           transform="translate(11.747372,5.8736858)">
+           transform="translate(52.385475,57.800151)">
           <!-- Rhizaria -->
           <defs
              id="defs903" />
@@ -27846,7 +27846,7 @@
        xml:space="preserve"
        id="flowRoot13495"
        style="color:#000000;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
-       transform="matrix(0.26458333,0,0,0.26458333,4.5357126,10.205357)"><flowRegion
+       transform="matrix(0.26458333,0,0,0.26458333,12.473213,10.205357)"><flowRegion
          id="flowRegion13497"
          style="stroke-linecap:butt;stroke-linejoin:round"><rect
            id="rect13499"
