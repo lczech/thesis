@@ -79,15 +79,28 @@
 {\parskip 0pt\tableofcontents}
 \blankpage
 
-{\parskip 0pt\listoffigures}
+{
+\parskip 0pt
+\phantomsection
+\pdfbookmark{\listfigurename}{listoffigures}
+\listoffigures
+}
+% {\parskip 0pt\listoffigures}
 \blankpage
 
-{\parskip 0pt\listoftables}
+{
+\parskip 0pt
+\phantomsection
+\pdfbookmark{\listtablename}{listoftables}
+\listoftables
+}
+% {\parskip 0pt\listoftables}
 \blankpage
 
 % {\parskip 0pt\listofalgorithms}
 % \blankpage
 
+\pdfbookmark{List of Acronyms}{listofacronyms}
 \chapter*{List of Acronyms}
 \begin{acronym}
     \acro{RT}[RT]{reference tree}
