@@ -1,4 +1,57 @@
 % ######################################################################################################################
+%         Supporting Information
+% ######################################################################################################################
+
+\chapter{Supporting Information}
+\label{ch:SupportingInformation}
+
+\begin{table}[htb]
+\caption[IUPAC notation of nucleobases and ambiguity characters]{
+\textbf{IUPAC notation of nucleobases and ambiguity characters.}
+The table lists the character representations of nucleobases and their combinations
+(which are used to denote ambiguity) as suggested by the IUPAC Commission \cite{IUPAC1970}.
+The names and symbols for ambiguity characters are chosen based on bio-chemical properties of the nucleobases.
+See \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences} for more information.
+}
+\label{tab:AmbiguityCharacters}
+{
+    \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+    \newcommand{\rb}{\cellcolor{black!12}}
+    \begin{center}
+    \begin{tabular}{c|l|cccc|c|c}
+%     \toprule
+%     \hline
+    Symbol & Description & \mc{5}{c|}{Represented Bases} & Complement \\
+%     \midrule
+    \hline
+    A & \textbf{A}denine & \rb{} A &  &  &  & 1 & T \\
+    C & \textbf{C}ytosine &  & \rb{} C &  &  & 1 & G \\
+    G & \textbf{G}uanine &  &  & \rb{} G &  & 1 & C \\
+    T & \textbf{T}hymine &  &  &  & \rb{} T & 1 & A \\
+    U & \textbf{U}racil &  &  &  & \rb{} U & 1 & A \\
+    \hline
+    W & \textbf{W}eak & \rb{} A &  &  & \rb{} T & 2 & W \\
+    S & \textbf{S}trong &  & \rb{} C & \rb{} G &  & 2 & S \\
+    M & a\textbf{M}ino & \rb{} A & \rb{} C &  &  & 2 & K \\
+    K & \textbf{K}eto &  &  & \rb{} G & \rb{} T & 2 & M \\
+    R & pu\textbf{R}ine & \rb{} A &  & \rb{} G &  & 2 & Y \\
+    Y & p\textbf{Y}rimidine &  & \rb{} C &  & \rb{} T & 2 & R \\
+    \hline
+    B & not A (\textbf{B} comes after A) &  & \rb{} C & \rb{} G & \rb{} T & 3 & V \\
+    D & not C (\textbf{D} comes after C) & \rb{} A &  & \rb{} G & \rb{} T & 3 & H \\
+    H & not G (\textbf{H} comes after G) & \rb{} A & \rb{} C &  & \rb{} T & 3 & D \\
+    V & not T (\textbf{V} comes after T and U) & \rb{} A & \rb{} C & \rb{} G &  & 3 & B \\
+    \hline
+    N & any \textbf{N}ucleotide (not a gap) & \rb{} A & \rb{} C & \rb{} G & \rb{} T & 4 & N \\
+    Z & \textbf{Z}ero &  &  &  &  & 0 & Z
+%     \bottomrule
+%     \hline
+    \end{tabular}
+    \end{center}
+}
+\end{table}
+
+% ######################################################################################################################
 %         Empirical Datasets
 % ######################################################################################################################
 
@@ -83,16 +136,15 @@ Lastly, given the per-chunk placement files produced by \toolname{EPA-ng}, we ex
 to obtain per-sample placement files. These subsequently served as the input data for the methods presented here.
 
 \begin{table}[htb]
-\caption{
-Overview of the dataset dimensions.
-\textmd{
+\caption[Overview of the dataset dimensions]{
+\textbf{Overview of the dataset dimensions.}
 The ``Samples'' columns show how many metagenomic samples there were in the originally downloaded data and
 how many of those we actually used for our experiments after filtering out spurious ones.
 The columns ``Filtered Sample Sizes'' show how many sequences each of the filtered samples has.
 The ``Sequence Count'' columns show the total number of sequences in the filtered samples, and how many of them are unique.
 The columns ``Sequence Length'' show statistics of the length of the sequences.
 Lastly, the ``Chunks'' column shows into how many chunks of size \num{50 000} the samples were distributed.
-}}
+}
 \label{tab:MetagenomicDatasetsOverview}
 {
     \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}

@@ -31,7 +31,7 @@
 \usepackage{fancyhdr}         % definiere einfache Headings (mindestens V 1.99c
                               % notwendig)
 \usepackage{array}          % fuer aufwändigere Tabellen
-\usepackage{xcolor}	    % Farbunterstützung
+\usepackage[table]{xcolor}	    % Farbunterstützung
 \usepackage{colortbl}       % farbige Tabellen (v. D. Carlisle)
 \usepackage{longtable}      % seitenübergreifende Tabellen
 

@@ -57,8 +57,8 @@ The redundant structure of pairs of nucleobases gives stability to the DNA molec
 and also serves as a mechanism of error correction when reading the genetic information.
 % both of which is important for the role of DNA for information storage.
 In DNA, there are four distinct nucleobases:
-adenine (\nba), cytosine (\nbc), guanine (\nbg), and thymine (\nbt),
-where \nba pairs with \nbt, and \nbc pairs with \nbg, respectively.
+adenine (\nucleobase{A}), cytosine (\nucleobase{C}), guanine (\nucleobase{G}), and thymine (\nucleobase{T}),
+where \nucleobase{A} pairs with \nucleobase{T}, and \nucleobase{C} pairs with \nucleobase{G}, respectively.
 
 The sequence of nucleobases along the strands of DNA is what encodes the genetic instructions
 used by all known living organisms.
@@ -72,7 +72,7 @@ which is then \emph{translated} into the actual protein.
 
 In each step of this process, the alphabet used to encode information differs.
 While DNA uses the four nucleobases as described above,
-in RNA, the nucleobase uracil (\nbu) is used instead of thymine (\nbt).
+in RNA, the nucleobase uracil (\nucleobase{U}) is used instead of thymine (\nucleobase{T}).
 Proteins on the other hand are (mostly) build from a set of \num{20} standard amino acids.
 The set of rules for translating nucleobases into amino acids is called the \emph{genetic code}:
 In a DNA sequence, three consecutive nucleobases are needed to encode one amino acid.
@@ -137,7 +137,7 @@ both DNA strands can be sequenced, which provides a means of error correction.
 Such data are typically stored in the \fileformat{fastq} file format \citep{Cock2009}.
 These so-called paired-end reads are then merged to form a final sequence representation of one strand
 % cite \toolname{PEAR} \cite{Zhang2014} ?
--- that is, a sequence of the characters \nba, \nbc, \nbg, and \nbt.
+-- that is, a sequence of the characters \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
 These data are stored in formats such as the \fileformat{fasta} file format \citep{Pearson1988}.
 Due to the pairing of nucleobases,
 the length of a DNA sequence is measured in \emph{base pairs} (abbreviated \si{\basepair}):
@@ -258,7 +258,7 @@ The latter two types of mutations change the length of the sequence;
 a mutation that is either one of them is called an \emph{indel}.
 
 Because of indels, sequences have to be aligned to each other in order to compare their homologous regions.
-That is, gap characters (\nbgap) have to be added to the sequences
+That is, gap characters (\nucleobase{-}) have to be added to the sequences
 such that homologous characters in the sequence get aligned.
 This results in an $n \times m$ matrix,
 where $n$ is the number of sequences (rows),
@@ -275,7 +275,9 @@ This matrix is called a \emph{multiple sequence alignment} (MSA).
         The left hand side shows a set of six sequences.
         Using an alignment algorithm, gaps are inserted into these sequences at presumed indel positions.
         The right hand side shows the result of this process,
-        where homologous characters in the columns of the multiple sequence alignment (MSA) are aligned to each other.
+        where homologous characters at the sites of the multiple sequence alignment (MSA) are aligned to each other.
+        Below the MSA, the majority rule consensus sequence is shown,
+        see \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}.
     }
     \label{fig:msa}
 \end{figure}
@@ -317,12 +319,34 @@ such as \toolname{PaPaRa} \citep{Berger2011a,Berger2012} and
 \subsection{Consensus Sequences}
 \label{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}
 
-% maybe move to PhAT, as this is not relevant for the other chapters,
-% and not for the introduction in general.
+When working with a number of related but not identical sequences,
+it is often convenient to ``summarize'' homologous characters in form of a \emph{consensus sequence}.
+Such a sequence is typically calculated based on the relative frequencies of the characters per alignment site.
+It then represents typical features and motifs of the input set of sequences.
 
-ambiguity chars \cite{IUPAC1971}
+The most straight forward method is to construct \emph{majority rule consensus} sequences \citep{May1952,Day1992a},
+where each site is represented by the most frequent character at that site.
+\figref{fig:msa} shows an example below the MSA on the right hand side.
+In order to also include information from the less frequent characters at a site in the consensus sequence,
+\emph{ambiguity characters} can be used \cite{IUPAC1970}.
+They allow to denote multiple alternative nucleobases as a single character.
+For example, if the nucleobases \nucleobase{A} and \nucleobase{G} are similarly frequent at a site,
+this site is represented by the ambiguity character \nucleobase{R}.
+See \tabref{tab:AmbiguityCharacters} for the full list of character representations.
 
-cons methods: see art
+Using ambiguity characters allows for more involved consensus methods.
+For example, \emph{threshold consensus} sequences \citep{Day1992a,Day1992} include the most frequent characters
+that are needed to achieve some given frequency threshold (between \num{50}\% and \num{100}\%) per site,
+and represent these characters by their ambiguity character.
+Furthermore, many methods based on fixed thresholds have been proposed,
+such as Cavener's method \citep{Cavener1987,Cavener1991a};
+see \cite{Day1992a} for a critical comparison.
+
+Lastly, we note that it is theoretically also possible to directly use the relative frequencies of characters per site
+in the mathematical frameworks of many downstream analysis methods.
+This would allow to leverage all of the information contained in the input set of sequences.
+However, to our knowledge, there is no convention or file format to store such information,
+and consequently, no way of forwarding this information to the respective tools.
 
 % ######################################################################################################################
 %         Tree of Life
