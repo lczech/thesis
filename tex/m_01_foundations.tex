@@ -74,8 +74,9 @@ In each step of this process, the alphabet used to encode information differs.
 While DNA uses the four nucleobases as described above,
 in RNA, the nucleobase uracil (\nucleobase{U}) is used instead of thymine (\nucleobase{T}).
 Proteins on the other hand are (mostly) build from a set of \num{20} standard amino acids.
-The set of rules for translating nucleobases into amino acids is called the \emph{genetic code}:
-In a DNA sequence, three consecutive nucleobases are needed to encode one amino acid.
+The set of rules used by the molecular machinery for translating nucleobases into amino acids
+is called the \emph{genetic code}:
+In a DNA sequence, three consecutive nucleobases are needed to encode one amino acid \cite{Shu2017}.
 
 The entirety of the genetic material of an organism, that is, its complete DNA sequence, is called its \emph{genome}.
 A \emph{gene} is a sequence which codes for a molecule that has a particular function, such as a protein \cite{Gericke2007}.
@@ -217,13 +218,13 @@ short enough to be sequenced with current technology,
 and have enough variation between species to distinguish between them,
 but have low variation within species \cite{Kress2008}.
 
-In many metagenomic studies of \taxonname{bacteria} and \taxonname{eukaryotes},
+In many metagenomic studies of \taxonname{bacteria} and \taxonname{eukaryota},
 the 16S \cite{Weisburg1991} and 18S \cite{Meyer2010} rRNA regions are used as marker genes,
 respectively \cite{Woese1977,Woese1990}.
 These regions belong to the small subunit (SSU) of the ribosomal ribonucleic acid (rRNA),
 which is an essential component of the ribosome.
 The ribosome is a molecular machinery that is responsible for protein synthesis (translation) in all living organisms.
-% and are thus present in virtually all \taxonname{bacteria} and \taxonname{eukaryotes}.
+% and are thus present in virtually all \taxonname{bacteria} and \taxonname{eukaryota}.
 Often, prior to sequencing, these regions are amplified by many orders of magnitude,
 using polymerase chain reaction (PCR) to create copies of these regions \cite{Bartlett2003}.
 The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}.
@@ -342,7 +343,7 @@ Furthermore, many methods based on fixed thresholds have been proposed,
 such as Cavener's method \citep{Cavener1987,Cavener1991a};
 see \cite{Day1992a} for a critical comparison.
 
-Lastly, we note that it is theoretically also possible to directly use the relative frequencies of characters per site
+It is theoretically also possible to directly use the relative frequencies of characters per site
 in the mathematical frameworks of many downstream analysis methods.
 This would allow to leverage all of the information contained in the input set of sequences.
 However, to our knowledge, there is no convention or file format to store such information,
@@ -355,21 +356,25 @@ and consequently, no way of forwarding this information to the respective tools.
 \section{The Tree of Life}
 \label{ch:Foundations:sec:TreeOfLife}
 
-maybe move to trees:
+The shared evolutionary history of life gives rise to a branching pattern,
+where new \emph{lineages} split from a common ancestor.
+This branching pattern forms a tree-like structure,
+which classifies organisms in a hierarchy based on common decent.
 
-all organisms use the same or very similar mechanisms, dna, genetic code etc are (almost) universal throughout life.
-this suggests that there is common decent.
+While this \emph{tree of life} is an expedient and, hence, pervasive model \cite{Mindell2013},
+it ignores certain biological and evolutionary events.
+A strict hierarchy does not allow for reticulate events,
+such as hybridization \cite{Maddison1997a}, genetic recombination \cite{Hein1993},
+or horizontal gene transfer \cite{Ochman2000,DunningHotopp2011,Robinson2013}.
+Although approaches such as networks have been proposed to model these events \cite{Huson2011a},
+the simplicity of a hierarchy or tree structure still has proven
+to be useful in understanding many evolutionary relationships.
 
-branching pattern, common decent, etc leads naturally to a tree structure
-(ignoring the messiness of biology)
+% For the \taxonname{eukaryota}, the tree model is still considered valid.
+% However, \taxonname{bacteria} have the ability of horizontal gene transfer,
+% where genetic information is transferred between unrelated organisms.
 
-there is common functionality - the closer related two organisms are in evolutionary terms,
-the more similarities are to be expected in their dna.
-
-Given that all life is related by its evolutionary history,
-a key question is how these relationtions are
-
-what is a species.
+% biology is messy: https://www.ncbi.nlm.nih.gov/pubmed/20852602
 
 % ======================================================================================================================
 %     Taxonomy and Nomenclature
@@ -378,22 +383,62 @@ what is a species.
 \subsection{Taxonomy and Nomenclature}
 \label{ch:Foundations:sec:TreeOfLife:sub:TaxonomyNomenclature}
 
-there is more than one species on Earth [citation needed]. also, evolution naturally gives rise to a branching pattern,
-which can be interpreted as a hierarchy. higher levels represent common ancestors
+Early attempts at classifying organisms date back to the Greek philosopher Aristotle,
+who used observable attributes to divide living things into groups \cite{Leroi2014}.
+This approach as well as the efforts of later centuries were non-uniform and inconsistent.
+The basis for the modern system of classification was established
+by Swedish botanist Carl Linnaeus in the mid-18th century \cite{Donk1957}.
+He proposed a \emph{nomenclature}, that is, a naming system for organisms,
+as well as a \emph{taxonomy}, that is, a rank-based classification of organisms \cite{Linnaeus1735,Linnaeus1753}.
 
-sort organisms into categories, eg Aristotle
-historically: morphology based: how does stuff look?
+A taxonomic group of organisms is called a \emph{taxon}, plural \emph{taxa}.
+These taxa are associated with a \emph{taxonomic rank}, which can subsume other ranks,
+thus forming a hierarchy of higher and lower ranks.
+A taxonomic rank represents the relative level of a group of organisms in the taxonomy.
+The principal ranks in modern use are \taxonname{domain}, \taxonname{kingdom}, \taxonname{phylum}, \taxonname{class},
+\taxonname{order}, \taxonname{family}, \taxonname{genus}, and \taxonname{species},
+see \figref{fig:taxonomic_ranks}.
+If needed, further ranks can be included in between (such as \emph{sub-genus}),
+or more refined lower levels be added (such as \emph{strain}, which is a further distinction within a species).
 
-this is called taxonomy.
-entries in a taxonomy have names, which follow a certain nomenclature, e.g. Lineaus
-introduce ``taxon'' (plural ``taxa'') as well here.
+\begin{figure}[hpbt]
+    \centering
+%     \vspace*{0.5em}
+    \includegraphics[width=.85\linewidth]{taxonomic_ranks.pdf}
+    \caption[Biological classification into taxonomic ranks]{
+        \textbf{Biological classification into taxonomic ranks.}
+        The figure depicts a typical set of nested taxonomic ranks \cite{Woese1990},
+        which form a hierarchy with increasingly deeper levels towards the right.
+%         The taxonomic ranks shown here follow the three-domain system \cite{Woese1990}.
+%         which classifies cellular life into the domains \taxonname{archaea}, \taxonname{eukaryota}, and \taxonname{bacteria}.
+%         The deeper levels towards the right form a hierarchy of nested taxonomic ranks.
+        Source: Image derived from \cite{Halasz2007}.
+    }
+    \label{fig:taxonomic_ranks}
+\end{figure}
 
-highest level: three domains model.
-bact arch euks.
+In order to scientifically name the groups of organisms (taxa) in a taxonomy,
+the \emph{binomial nomenclature} as introduced by Linnaeus is still prevalent to this day.
+It uses two terms, often of Latin origin,
+which respectively specify the taxonomic ranks \emph{genus} and \emph{species} that an organism belongs to,
+for example \taxonname{Homo sapiens}.
 
-the lower levels in the tax usually represent species or even strains (\eg of bacteria).
+While early classifications used phenotypes, that is, observable characteristics or traits of organisms,
+modern approaches to taxonomy take genetic information into account.
+For example, the three-domain system \cite{Woese1977,Woese1990} resolves the oldest evolutionary relationships,
+that is, the highest taxonomic levels, based on 16S rRNA data.
+Although this classification has been challenged \cite{Gupta1998,Mayr1998,Cavalier-Smith2002}, it is widely used.
+It divides cellular life forms into the three domains \taxonname{bacteria}, \taxonname{archaea}, and \taxonname{eukaryota};
+the latter is further separated into kingdoms,
+which include the kingdoms \taxonname{fungi}, \taxonname{plants}, and \taxonname{animals}.
 
-now: genes and dna used more and more to refine the taxonomy of life.
+% Archaea, Domain (and Kingdom)
+% Eukarya, Domain
+% Protista, Kingdom
+% Fungi, Kingdom
+% Animalia, Kingdom
+% Plantae, Kingdom
+% Bacteria, Domain (and Kingdom)
 
 % ======================================================================================================================
 %     Phylogenetics
@@ -402,17 +447,79 @@ now: genes and dna used more and more to refine the taxonomy of life.
 \subsection{Phylogenetics}
 \label{ch:Foundations:sec:TreeOfLife:sub:Phylogenetics}
 
+now: genes and dna used more and more to refine the taxonomy of life.
+
+there might be incongruence.
+
+then, classification refined by dna data, resolve ``multifurcations'' and get a strictly bifurcating branching pattern,
+where a common ancestor splits into two lineages
+
 phylogenetics is...
+
+
+
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=\linewidth]{tree_of_life.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:tree_of_life:sub:darwin}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:tree_of_life:sub:woese}
+    \end{subfigure}
+    \caption[Exemplary phylogenetic trees]{
+        \textbf{Exemplary phylogenetic trees.}
+        \subref{fig:tree_of_life:sub:darwin}
+        In 1837, Charles Darwin sketched his first evolutionary tree below the words ``I think''
+        in his notebook on ``Transmutation of Species''.
+        Source: Image derived from \cite{DarwinTreeOfLife1837}.
+%         \\
+        \subref{fig:tree_of_life:sub:woese}
+        A modern phylogenetic tree showing the three-domain system \cite{Woese1977,Woese1990},
+        which emphasizes the separation of \taxonname{bacteria}, \taxonname{archaea}, and \taxonname{eukaryota}
+        based on 16S rRNA genes.
+        The black branch at the bottom represents the speculative last universal common ancestor of all living organisms.
+        Source: Image derived from \cite{WoeseTreeOfLife2006}.
+    }
+    \label{fig:tree_of_life}
+\end{figure}
+
+see \figref{fig:tree_of_life} for examples of phylogenetic trees.
+
+wiki:
+The exact relationships of the three domains are still being debated, as is the position of the root of the tree.
+% https://en.wikipedia.org/wiki/File:Phylogenetic_tree.svg
+
+tree tips represent differnt things:
+
+from alexey:
+Please note, that tips of a phylogenetic tree can represent species, strains, individuals, or even
+cells of a multicellular organism. Throughout this thesis, we will use an generic term taxon (plural:
+taxa) to refer to all of the above.
+
+but also consensus sequences.
+in the end, a tree can be calcualted from any set of sequences.
+
 
 in context of trees, the sequences are thought to represent species, or \emph{taxa} that one is interested in.
 introduce ``taxa'', ref to tax intro above
 
-show a tree. maybe darwin?
 idea: trees show evol relationships. closer in the tree, closer in evol.
 branch lengths etc.
 
+there is common functionality - the closer related two organisms are in evolutionary terms,
+the more similarities are to be expected in their dna.
+
 not considering lat gene tranfs,
 there is only one ``true'' tree of life.
+
+visualization and drawing options: circular, rectangular etc
+
+introduce ``monophyletic'': common ancestor, and all part of the group.
+paraphyletic
+%  see https://en.wikipedia.org/wiki/Evolutionary_taxonomy
 
 % ======================================================================================================================
 %         Tree Inference
