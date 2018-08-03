@@ -86,8 +86,8 @@ and what is selected for in the process of natural selection \cite{Dawkins1989}.
 The study of genes, variation and heredity is called \emph{genetics} \cite{Griffiths2000}.
 
 All life on this planet is related to each other and descends from a common ancestor.
-Still, it is remarkable that the basic molecular principles and mechanisms of life
--- DNA, amino acids, and the genetic code -- are virtually identical for all living organisms.
+Still, it is remarkable that the basic molecular principles and mechanisms of life---%
+DNA, amino acids, and the genetic code---are virtually identical for all living organisms.
 This implies that by understanding and comparing the genetic information encoded in the DNA of different organisms,
 one can understand the diversification patterns of evolution.
 
@@ -97,6 +97,8 @@ one can understand the diversification patterns of evolution.
 
 \section{Sequence Analysis}
 \label{ch:Foundations:sec:SequenceAnalysis}
+
+\todo{maybe move the paragraph above to here, and make a transition}
 
 % ======================================================================================================================
 %     Genome Sequencing
@@ -359,7 +361,7 @@ and consequently, no way of forwarding this information to the respective tools.
 The shared evolutionary history of life gives rise to a branching pattern,
 where new \emph{lineages} split from a common ancestor.
 This branching pattern forms a tree-like structure,
-which classifies organisms in a hierarchy based on common decent.
+which classifies organisms in a hierarchy based on common descent.
 
 While this \emph{tree of life} is an expedient and, hence, pervasive model \cite{Mindell2013},
 it ignores certain biological and evolutionary events.
@@ -368,7 +370,9 @@ such as hybridization \cite{Maddison1997a}, genetic recombination \cite{Hein1993
 or horizontal gene transfer \cite{Ochman2000,DunningHotopp2011,Robinson2013}.
 Although approaches such as networks have been proposed to model these events \cite{Huson2011a},
 the simplicity of a hierarchy or tree structure still has proven
-to be useful in understanding many evolutionary relationships.
+to be useful in classifying and naming organisms, and understanding their evolutionary relationships.
+
+% not considering lat gene tranfs, there is only one ``true'' tree of life.
 
 % For the \taxonname{eukaryota}, the tree model is still considered valid.
 % However, \taxonname{bacteria} have the ability of horizontal gene transfer,
@@ -391,10 +395,10 @@ by Swedish botanist Carl Linnaeus in the mid-18th century \cite{Donk1957}.
 He proposed a \emph{nomenclature}, that is, a naming system for organisms,
 as well as a \emph{taxonomy}, that is, a rank-based classification of organisms \cite{Linnaeus1735,Linnaeus1753}.
 
-A taxonomic group of organisms is called a \emph{taxon}, plural \emph{taxa}.
-These taxa are associated with a \emph{taxonomic rank}, which can subsume other ranks,
+A taxonomic group of organisms is called a \emph{taxon} (plural: \emph{taxa}).
+Each taxon is associated with a \emph{taxonomic rank}, which can subsume other ranks,
 thus forming a hierarchy of higher and lower ranks.
-A taxonomic rank represents the relative level of a group of organisms in the taxonomy.
+The taxonomic rank represents the relative level of a group of organisms in the taxonomy.
 The principal ranks in modern use are \taxonname{domain}, \taxonname{kingdom}, \taxonname{phylum}, \taxonname{class},
 \taxonname{order}, \taxonname{family}, \taxonname{genus}, and \taxonname{species},
 see \figref{fig:taxonomic_ranks}.
@@ -423,8 +427,8 @@ It uses two terms, often of Latin origin,
 which respectively specify the taxonomic ranks \emph{genus} and \emph{species} that an organism belongs to,
 for example \taxonname{Homo sapiens}.
 
-While early classifications used phenotypes, that is, observable characteristics or traits of organisms,
-modern approaches to taxonomy take genetic information into account.
+While early classifications used \emph{phenotypes}, that is, observable characteristics or traits of organisms,
+modern approaches to taxonomy take genetic information into account \cite{Mayr2002}.
 For example, the three-domain system \cite{Woese1977,Woese1990} resolves the oldest evolutionary relationships,
 that is, the highest taxonomic levels, based on 16S rRNA data.
 Although this classification has been challenged \cite{Gupta1998,Mayr1998,Cavalier-Smith2002}, it is widely used.
@@ -441,22 +445,25 @@ which include the kingdoms \taxonname{fungi}, \taxonname{plants}, and \taxonname
 % Bacteria, Domain (and Kingdom)
 
 % ======================================================================================================================
-%     Phylogenetics
+%     Phylogenetic Trees
 % ======================================================================================================================
 
-\subsection{Phylogenetics}
-\label{ch:Foundations:sec:TreeOfLife:sub:Phylogenetics}
+\subsection{Phylogenetic Trees}
+\label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees}
 
-now: genes and dna used more and more to refine the taxonomy of life.
+The classification of organisms into a taxonomy is based on (subjective) dissimilarity and thus arbitrary:
+The number of organisms that are grouped into a taxon at a given rank can vary,
+and the separation into discrete ranks does not reflect the gradual nature of evolution \cite{Gingerich1987}.
+A more involved approach that can resolve these issues is \emph{phylogenetics},
+which is the study of the evolutionary history and relationships of biological entities (individuals, species, populations).
 
-there might be incongruence.
-
-then, classification refined by dna data, resolve ``multifurcations'' and get a strictly bifurcating branching pattern,
-where a common ancestor splits into two lineages
-
-phylogenetics is...
-
-
+The evolutionary relationships of such entities are called their \emph{phylogeny}.
+A phylogenetic analysis uses inference methods that evaluate observed heritable traits
+in order to resolve the phylogeny under a given model of evolution of these traits.
+While phenotypes can be used, modern phylogenetic inference is mostly based on DNA data.
+The result of a phylogenetic analysis is a \emph{phylogenetic tree},
+also called an \emph{evolutionary tree}, or---synonymously---a \emph{phylogeny}.
+\figref{fig:tree_of_life} shows two examples of phylogenetic trees.
 
 \begin{figure}[hpbt]
     \centering
@@ -486,40 +493,107 @@ phylogenetics is...
     \label{fig:tree_of_life}
 \end{figure}
 
-see \figref{fig:tree_of_life} for examples of phylogenetic trees.
+The leaf nodes, or \emph{tips}, of the tree represent living (\emph{extant}) biological entities
+such as species, strains, individual organisms, or even cells of a multicellular organism.
+Thus, the tips are often referred to as the \emph{taxa} of the tree,
+which is meant as a generic term that includes all the above entities.
+The tips are often named according to the entities they represent (e.\,g., species names);
+such a tree is called a \emph{labeled} tree.
+The inner nodes on the other hand are usually anonymous and
+represent speciation events, where two novel lineages arose from a putative common ancestor.
+The branching pattern of a phylogenetic tree thus reveals the evolutionary history of its taxa.
 
-wiki:
-The exact relationships of the three domains are still being debated, as is the position of the root of the tree.
-% https://en.wikipedia.org/wiki/File:Phylogenetic_tree.svg
+A phylogenetic tree is \emph{rooted}
+if it is a directed tree that has a unique \emph{root node},
+which corresponds to the putative common ancestor of the other nodes in the tree.
+See \figref{fig:tree_of_life:sub:woese} for an example.
+As evolution is a processes that happens over time,
+from a biological point of view, every tree has a root.
+However, some models of DNA evolution are time-reversible,
+meaning that the direction of change in the sequences cannot be inferred from the data,
+see \secref{ch:Foundations:sec:TreeOfLife:sub:TreeInference} for details.
+Thus, there are also \emph{unrooted} trees without direction and without a root node.
+These can be rooted a posteriori, for example by using an \emph{outgroup} of taxa
+that are closely related to the group of taxa of interest (the \emph{ingroup}), but not part of it.
+Then, a root node can be placed on the branch that separates the outgroup from the ingroup.
 
-tree tips represent differnt things:
+The edges of the tree, also called its \emph{branches}, can have associated \emph{branch lengths},
+which represent the evolutionary time between the two adjacent nodes,
+for example, measured as the average change in nucleobases between their respective sequences.
+The unique path between any two nodes thus can be interpreted
+as a measure of evolutionary relatedness of the taxa represented by the nodes.
 
-from alexey:
-Please note, that tips of a phylogenetic tree can represent species, strains, individuals, or even
-cells of a multicellular organism. Throughout this thesis, we will use an generic term taxon (plural:
-taxa) to refer to all of the above.
+An inner node that has exactly three neighboring nodes is called a \emph{bifurcation} or a \emph{bifurcating} node.
+In rooted trees, these neighbors are the the parent and the two children of a node, hence the name.
+An inner node with more neighbors is called a \emph{multifurcation} or a \emph{multifurcating} node.
+This naming also applies to the whole tree:
+A tree, where each inner node (with the exception of the root node in a rooted tree) is bifurcating,
+is also called a bifurcating tree.
+Otherwise (if there is at least one multifurcating node), it is a multifurcating tree.
+Note that in evolution, an actual multifurcation event is highly unlikely,
+as it corresponds to the simultaneous formation of more than two new lineages.
+Unrooted trees are for example used when relationships cannot be properly resolved from the existing data,
+or to summarize a set of otherwise contradicting trees.
 
-but also consensus sequences.
-in the end, a tree can be calcualted from any set of sequences.
+Each edge of the tree induces a \emph{bipartition} or \emph{split} of the taxa of the tree into two groups,
+one on each side of the edge.
+A set of taxa is \emph{monophyletic},
+if there is a bipartition of the tree where all taxa in the set are on one side of corresponding edge.
+In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
+Furthermore, a monophyletic set of taxa is called a \emph{clade} of the tree;
+in other words, a clade is a part of the tree that is separated from the rest of the tree by one edge.
+For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
+that is, they form a clade of the tree.
+Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
 
+While the topology of the tree is what models the evolutionary relationships,
+there are several ways of visualizing or drawing that information.
+\figref{fig:tree_vis_options} shows some examples, which all visualize the same topology (except for the rooting).
+The figure also summarizes some of the terms and concepts introduced above.
+Different styles each have their advantages.
+For example, in a rectangular tree (\figref{fig:tree_vis_options:sub:rectangular}),
+branch lengths are easier to read and compare,
+while a circular tree (\figref{fig:tree_vis_options:sub:circular}) can fit more taxa in the same drawing area.
 
-in context of trees, the sequences are thought to represent species, or \emph{taxa} that one is interested in.
-introduce ``taxa'', ref to tax intro above
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=\linewidth]{tree_vis_options.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:tree_vis_options:sub:unrooted}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:tree_vis_options:sub:rectangular}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:tree_vis_options:sub:circular}
+    \end{subfigure}
+    \caption[Types of phylogenetic trees]{
+        \textbf{Types of phylogenetic trees.}
+        Here, we show three different types of labeled, bifurcating trees.
+        Tip nodes are marked with black dots, inner nodes with white dots, and the root node (if present) with a green dot.
+        \subref{fig:tree_vis_options:sub:unrooted} An unrooted tree with five taxa.
+        \subref{fig:tree_vis_options:sub:rectangular} The same tree topology,
+        but rooted on the inner branch that splits the taxa {\sffamily D} and {\sffamily E} from the other taxa.
+        The tree is drawn in rectangular style.
+        \subref{fig:tree_vis_options:sub:circular} The same tree again, but this time drawn in circular style.
+    }
+    \label{fig:tree_vis_options}
+\end{figure}
 
-idea: trees show evol relationships. closer in the tree, closer in evol.
-branch lengths etc.
+Taxonomy and phylogeny serve a related, but different purpose:
+While the former is a system of classification,
+the latter reveals evolutionary history.
+However, there is a correspondence between a taxonomy and rooted phylogeny:
+Inner nodes of the tree constitute older evolutionary relationships,
+which are represented by the higher ranks of the taxonomy.
+\figref{fig:tree_of_life:sub:woese} shows such a correspondence for the three domains of life.
+It is however possible that the taxa at one rank of the taxonomy are not monophyletic in the tree.
+In this case, the two are \emph{incongruent}.
 
-there is common functionality - the closer related two organisms are in evolutionary terms,
-the more similarities are to be expected in their dna.
-
-not considering lat gene tranfs,
-there is only one ``true'' tree of life.
-
-visualization and drawing options: circular, rectangular etc
-
-introduce ``monophyletic'': common ancestor, and all part of the group.
-paraphyletic
-%  see https://en.wikipedia.org/wiki/Evolutionary_taxonomy
+% particularly considering that the genes might evolve differently from the species or from what the taxonomy says
 
 % ======================================================================================================================
 %         Tree Inference
@@ -583,7 +657,8 @@ ML grundidee
     L(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
 \end{equation}
 
-
+time reversibility!
+constrained trees
 
 tree properties, BL, node names, etc
 
