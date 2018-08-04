@@ -458,6 +458,8 @@ A more involved approach that can resolve these issues is \emph{phylogenetics},
 which is the study of the evolutionary history and relationships of biological entities (individuals, species, populations).
 
 The evolutionary relationships of such entities are called their \emph{phylogeny}.
+As the true phylogeny of a set of taxa is unknowable,
+it has to be inferred from data that is available.
 A phylogenetic analysis uses inference methods that evaluate observed heritable traits
 in order to resolve the phylogeny under a given model of evolution of these traits.
 While phenotypes can be used, modern phylogenetic inference is mostly based on DNA data.
@@ -503,6 +505,12 @@ The inner nodes on the other hand are usually anonymous and
 represent speciation events, where two novel lineages arose from a putative common ancestor.
 The branching pattern of a phylogenetic tree thus reveals the evolutionary history of its taxa.
 
+The edges of the tree, also called its \emph{branches}, can have associated \emph{branch lengths},
+which represent the evolutionary time between the two adjacent nodes,
+for example, measured as the average change in nucleobases between their respective sequences.
+The unique path between any two nodes thus can be interpreted
+as a measure of evolutionary relatedness of the taxa represented by the nodes.
+
 A phylogenetic tree is \emph{rooted}
 if it is a directed tree that has a unique \emph{root node},
 which corresponds to the putative common ancestor of the other nodes in the tree.
@@ -512,16 +520,10 @@ from a biological point of view, every tree has a root.
 However, some models of DNA evolution are time-reversible,
 meaning that the direction of change in the sequences cannot be inferred from the data,
 see \secref{ch:Foundations:sec:TreeOfLife:sub:TreeInference} for details.
-Thus, there are also \emph{unrooted} trees without direction and without a root node.
+Thus, tree inference methods can also yield \emph{unrooted} trees without direction and without a root node.
 These can be rooted a posteriori, for example by using an \emph{outgroup} of taxa
 that are closely related to the group of taxa of interest (the \emph{ingroup}), but not part of it.
 Then, a root node can be placed on the branch that separates the outgroup from the ingroup.
-
-The edges of the tree, also called its \emph{branches}, can have associated \emph{branch lengths},
-which represent the evolutionary time between the two adjacent nodes,
-for example, measured as the average change in nucleobases between their respective sequences.
-The unique path between any two nodes thus can be interpreted
-as a measure of evolutionary relatedness of the taxa represented by the nodes.
 
 An inner node that has exactly three neighboring nodes is called a \emph{bifurcation} or a \emph{bifurcating} node.
 In rooted trees, these neighbors are the the parent and the two children of a node, hence the name.
@@ -538,10 +540,10 @@ or to summarize a set of otherwise contradicting trees.
 Each edge of the tree induces a \emph{bipartition} or \emph{split} of the taxa of the tree into two groups,
 one on each side of the edge.
 A set of taxa is \emph{monophyletic},
-if there is a bipartition of the tree where all taxa in the set are on one side of corresponding edge.
+if there is a bipartition of the tree that splits these taxa from all other taxa of the tree.
 In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
 Furthermore, a monophyletic set of taxa is called a \emph{clade} of the tree;
-in other words, a clade is a part of the tree that is separated from the rest of the tree by one edge.
+in other words, a clade is a subtree that is separated from the rest of the tree by one edge.
 For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
 that is, they form a clade of the tree.
 Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
@@ -550,7 +552,7 @@ While the topology of the tree is what models the evolutionary relationships,
 there are several ways of visualizing or drawing that information.
 \figref{fig:tree_vis_options} shows some examples, which all visualize the same topology (except for the rooting).
 The figure also summarizes some of the terms and concepts introduced above.
-Different styles each have their advantages.
+Different drawing styles each have their advantages.
 For example, in a rectangular tree (\figref{fig:tree_vis_options:sub:rectangular}),
 branch lengths are easier to read and compare,
 while a circular tree (\figref{fig:tree_vis_options:sub:circular}) can fit more taxa in the same drawing area.
@@ -602,74 +604,95 @@ In this case, the two are \emph{incongruent}.
 \subsection{Tree Inference}
 \label{ch:Foundations:sec:TreeOfLife:sub:TreeInference}
 
+A phylogeny can be inferred from data that has per-taxon traits which are homologous,
+that is, which have evolved from the same traits in the common ancestor and are thus comparable \cite{Felsenstein2004,Yang2006}.
+While historically these traits were mostly phenotypes (bone shapes and sizes, metabolism, etc.),
+the focus has since shifted towards molecular data such as DNA and amino acid sequences,
+as their \emph{phylogenetic signal} is generally more abundant and less biased \cite{Hillis2000}.
+Most often, a multiple sequence alignment is used,
+whose homologous sites represent the traits of the taxa.
+To determine the degree of relatedness between taxa, mathematical models of trait evolution are employed.
 
-that is, comaring sequenes, finding tree of life
-this is mostly done using aligned sequences, as they allow to compare homologous characters and thus
-allow to determine how closely related two species are
+% Searching the tree space
+The general concept of tree inference is then to put closely related taxa close to each other in the phylogeny.
+Hence, a tree inference can be thought of as an optimization problem,
+which searches for the best tree given an optimality criterion.
+However, the space of all possible tree topologies is too large for an exhaustive brute-force search
+for virtually all empirical datasets.
+For a given number of taxa $n$, the number of distinct tree topologies N is given as
+$N(n) = \prod_{\,i=3}^{\,n} ~(2i - 5)$,
+which grows over-exponentially fast \cite{Felsenstein2004}.
+There are thus different approaches and heuristics to conduct tree search.
 
-but, no time machine, fuzzy and missing data, etc. so we have to infer as well as possible from the given data.
-that is, methods to mathematically model evolution.
-in other words, from all possible trees, we want to find one that is good
-
-for a given number of taxa $n$, the number of distinct tree topologies N is given as
-$N(n) = \prod_{i=3}^{n} (2i - 5)$
-grows over-exponentially fast
-\cite{Felsenstein2004}
-
-tree search, number of trees, more than exp. effort
-
-inference can be interpreted as a search in the space of all possible trees for the tree that maximizes some optimality criterion.
-
-also, we can infer trees \cite{Felsenstein2004}
-
-\cite{Yang2006}
-
-
-space is large, so there are different approaches and heuristics to inferring trees.
-
-
+% Methods overview
 Distance based methods such as \emph{Unweighted Pair Group Method with Arithmetic Mean} (UPGMA) \cite{Sokal1958}
 and \emph{Neighbor Joining} \cite{Saitou1987}
 use a pairwise distance matrix between sequences, and thus do not necessarily need an alignment.
 \emph{Maximum Parsimony} \cite{Sankoff1975} uses an optimality criterion that is based on Occam's razor,
 that is, it yields the tree that explains the observed tip sequences (taxa)
 with the minimal number of substitutions (mutations).
-Furthermore, there is \emph{Bayesian Inference},
-in which Bayes' theorem is used to calculate the posterior distribution of the relevant evolutionary processes,
-and which thus can incorporate prior empirical knowledge into the process.
+The \emph{Maximum Likelihood} (ML) method \cite{Felsenstein1981} employs statistical techniques
+in order to evaluate the probability of a given phylogenetic tree with respect to a given alignment,
+and successively search the tree space for the most likely tree.
+Furthermore, \emph{Bayesian Inference} also relies on the evaluation of tree probability \cite{Yang2006},
+and uses Bayes' theorem to calculate the posterior distribution of the relevant evolutionary processes;
+it thus can incorporate prior empirical knowledge into the process.
 
-Bayesian approaches, ...
+% Maximum Likelihood
+In the context of this work, we are mostly interested in Maximum Likelihood (ML) tree inference.
+It uses a probabilistic framework in which the (phylogenetic) likelihood
 
-In the context of this work, we are mostly interested in Maximum Likelihood (ML) tree inference,
-which is introduced below.
+\begin{equation*}
+    L(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
+\end{equation*}
 
-ML, baysian...
+is evaluated that an observed MSA is the outcome of an evolutionary history described by a phylogenetic tree
+with topology $T$ and branch lengths $\bar{b}$, under a given model of trait evolution $M$ with parameters $\bar{\theta}$.
+For a fixed model $M$ (see below), the likelihood can be expressed as a function of $T$, $\bar{b}$ and $\bar{\theta}$,
+which is known as the \emph{phylogenetic likelihood function} (PLF).
+By maximizing the PLF using maximum likelihood estimation,
+the parameter values (including tree topology) are found which best explain the observed data.
 
-we here focus on ML.
+% Optimizing the topology:
+Finding the most likely tree topology is a discrete optimization problem,
+which has been shown to be NP-hard under the ML criterion \cite{Chor2005}.
+Furthermore, the evaluation of the PLF is computationally expensive,
+as it involves many floating point operations.
+A general heuristic for the tree search that avoids an exhaustive evaluation of the tree space is thus as follows.
+First, a reasonable starting tree is generated using methods such as Neighbor Joining or Maximum Parsimony.
+Then, the likelihood of the tree is successively improved
+by applying topological rearrangements (\emph{moves}) of its taxa and clades.
+For instance, in \emph{greedy hill-climbing} \cite{Stamatakis2014}, only those moves are applied (\emph(accepted))
+that immediately improve the PLF, until a (potentially local) optimum is found.
+
+%Optimizing branch lengths and model parameters:
+For a fixed tree topology $T$, the maximum likelihood estimates
+of the branch lengths $\bar{b}$ and the model parameters $\bar{\theta}$
+are usually obtained with general-purpose numerical optimization methods.
+Since the derivatives of the PLF can be easily computed,
+the Newton-Raphson method \cite{Ypma1995} is often used for optimizing the branch lengths.
+Model parameters are commonly optimized with Brent's method \cite{Brent1971}
+or with the Broyden-Fletcher-Goldfarb-Shanno algorithm \cite{Fletcher1987}.
+
+% Models of molecular sequence evolution
+
 
 subst models
 % and thereafter evaluating the resulting likelihood score of the tree under a given model of nucleotide evolution,
 % such as the Generalized Time-Reversible (GTR) model \cite{Tavare1986}.
 
-ML grundidee
-
-\begin{equation}
-    L(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
-\end{equation}
-
 time reversibility!
 constrained trees
 
-tree properties, BL, node names, etc
+from alexey:
+For instance, it does not allow multiple substitutions to occur
+along the same branch (A → T → C). Modelling sequence evolution as a stochastic
+process can thus better represent the biological reality (see Section 2.5).
 
-BL opt
-
-introduce ``phylogenetic signal''
-
-explain visualizations, and that they are just a layout choice
-
-tree formats?
-newick etc
+tree formats
+newick \cite{Archie1986}
+NEXUS \cite{Maddison1997}
+phyloXML \cite{Han2009}
 
 % ######################################################################################################################
 %         Phylogenetic Placement
