@@ -600,6 +600,15 @@ In this case, the two are \emph{incongruent}.
 
 % particularly considering that the genes might evolve differently from the species or from what the taxonomy says
 
+The most common file format for storing phylogenetic trees is the \fileformat{Newick} format \cite{Archie1986},
+which uses parentheses and commas to specify the nesting structure of the tree,
+and allows to store node labels and branch lengths.
+The \fileformat{NEXUS} format \cite{Maddison1997} is a container format for biological data,
+and internally also relies on the \fileformat{Newick} format for storing trees.
+Furthermore, the \fileformat{phyloXML} format \cite{Han2009} is an \fileformat{XML} based format
+that allows to store arbitrary data at the nodes and edges of the tree.
+% This is particularly useful for annotating the tree with additional data.
+
 % ======================================================================================================================
 %         Tree Inference
 % ======================================================================================================================
@@ -691,30 +700,66 @@ So far, we assumed a fixed model $M$ for describing the evolution of the traits 
 For sequence data, such a model yields an estimate of the evolutionary distance between the sequences of different taxa.
 Most commonly, a continuous-time Markov chain (MC) is used to describe
 the evolution of a single site within a set of aligned sequences \cite{Gagniuc2017}.
-While he MC model ignores aspects such as natural selection and the molecular mechanisms of evolution,
+For DNA data, the MC has four states \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T},
+which correspond to the nucleobases, and transitions between the states correspond to their substitutions,
+see \figref{fig:mc_state_transitions}.
+While the MC model ignores aspects such as natural selection and the molecular mechanisms of evolution,
 it describes the relative rate of changes in a way that allows multiple substitutions to occur
 along the same branch (\nucleobase{T} $\rightarrow$ \nucleobase{A} $\rightarrow$ \nucleobase{G}).
-
-For DNA data, the MC has four states \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T},
-which correspond to the nucleobases,
-and transitions between the states correspond to substitutions of the nucleobases,
-see \figref{fig:mc_state_transitions:sub:mc_chain}.
 \todo{if transition vs transversion is explained above, we need to clarify here:
 note that transition is used in two different meanings here...}
-The process is defined by the instantaneous transition rate matrix $Q$,
-where the element $q_{ij}$ is the \emph{rate} of transition from state $i$ to state $j$,
-see \figref{fig:mc_state_transitions:sub:matrix}.
-The rows of the matrix have the requirement to sum to $0$,
-which defines the diagonal elements $q_{ii}$.
 
 \begin{figure}[hpbt]
- \begin{subfigure}[c]{.5\textwidth}
     \centering
-    \includegraphics[width=.7\linewidth]{mc_state_transitions.pdf}
-    \caption{}
-    \label{fig:mc_state_transitions:sub:mc_chain}
- \end{subfigure}
- \begin{subfigure}[c]{.5\textwidth}
+    \includegraphics[width=.35\linewidth]{mc_state_transitions.pdf}
+    \caption[Markov chain model of nucleotide substitutions]{
+        \textbf{Markov chain Model of Nucleotide Substitutions.}
+        The evolution of characters at a site in an alignment can be modeled as a Markov chain (MC).
+        The states of the MC for DNA data are the four nucleobases
+        \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
+        The model allows transitions with rates $q_{ij}$ with $i,j \in \left\{~ A, C, G, T ~\right\}, i \neq j$ between all states,
+        which correspond to substitutions of the nucleobases.
+    }
+    \label{fig:mc_state_transitions}
+\end{figure}
+
+% \begin{figure}[hpbt]
+%  \begin{subfigure}[c]{.5\textwidth}
+%     \centering
+%     \includegraphics[width=.7\linewidth]{mc_state_transitions.pdf}
+%     \caption{}
+%     \label{fig:mc_state_transitions:sub:mc_chain}
+%  \end{subfigure}
+%  \begin{subfigure}[c]{.5\textwidth}
+%     \begin{align*}
+%         Q ~&=~
+%          \begin{pmatrix}
+%          ~-q_{A}   &   q_{AC}   &   q_{AG}   &   q_{AT}~~ \\
+%          ~q_{CA}   &  -q_{C}    &   q_{CG}   &   q_{CT}~~ \\
+%          ~q_{GA}   &   q_{GC}   &  -q_{G}    &   q_{GT}~~ \\
+%          ~q_{TA}   &   q_{TC}   &   q_{TG}   &  -q_{T}~~
+%          \end{pmatrix}
+%         \\ \\
+%         - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i = \left\{~ A, C, G, T ~\right\}
+%     \end{align*}
+%     \caption{}
+%     \label{fig:mc_state_transitions:sub:matrix}
+%   \end{subfigure}
+%     \caption[Markov chain model of nucleotide substitutions]{
+%         \textbf{Markov chain Model of Nucleotide Substitutions.}
+%         The evolution of characters at a site in an alignment can be modeled as a Markov chain (MC).
+%         \subref{fig:mc_state_transitions:sub:mc_chain} The states of the MC for DNA data are
+%         the four nucleobases \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
+%         The model allows transitions between all states, which correspond to substitutions between the nucleobases.
+%         \subref{fig:mc_state_transitions:sub:matrix} The instantaneous transition rates between states are given
+%         by the substitution rate matrix (Q-matrix), where the rows must sum to $0$.
+%     }
+%     \label{fig:mc_state_transitions}
+% \end{figure}
+
+The process of state transitions is defined by the substitution rate matrix %$Q$
+
+\begin{equation}
     \begin{align*}
         Q ~&=~
          \begin{pmatrix}
@@ -726,26 +771,19 @@ which defines the diagonal elements $q_{ii}$.
         \\ \\
         - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i = \left\{~ A, C, G, T ~\right\}
     \end{align*}
-    \caption{}
-    \label{fig:mc_state_transitions:sub:matrix}
-  \end{subfigure}
-    \caption[Markov chain model of nucleotide substitutions]{
-        \textbf{Markov chain Model of Nucleotide Substitutions.}
-        The evolution of characters at a site in an alignment can be modeled as a Markov chain (MC).
-        \subref{fig:mc_state_transitions:sub:mc_chain} The states of the MC for DNA data are
-        the four nucleobases \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
-        The model allows transitions between all states, which correspond to substitutions between the nucleobases.
-        \subref{fig:mc_state_transitions:sub:matrix} The instantaneous transition rates between states are given
-        by the substitution rate matrix (Q-matrix), where the rows must sum to $0$.
-    }
-    \label{fig:mc_state_transitions}
-\end{figure}
+\end{equation}
+
+% The instantaneous transition rates between states are given
+% by the substitution rate matrix (Q-matrix), where the rows must sum to $0$.
+where the elements $q_{ij}$ are the \emph{instantaneous transition rates} from state $i$ to state $j$.
+The rows of the matrix have the requirement to sum to $0$,
+by which the diagonal elements $q_{i}$ are defined.
 
 The branch lengths of a phylogeny express the evolutionary time between two nodes,
 which can be interpreted as the expected number of substitutions between the respective alignment sites.
 Then, for a given time $t$, the \emph{transition probabilities} $p_{ij}(t)$ between states in a stationary process
 are obtained by exponentiating the $Q$ matrix \cite{Yang2006}.
-These probabilities are called the $P$ matrix
+These probabilities are specified by the matrix
 
 \begin{equation}
     P(t) = e^{Qt}
@@ -760,7 +798,7 @@ In that case, $\Pi$ is the \emph{equilibrium base composition} of the MSA,
 and $\pi_i$ are the \emph{equilibrium} or \emph{stationary base frequencies} of the MSA.
 
 As mentioned before, most models of DNA evolution assume a \emph{time-reversible} Markov process,
-which means that $\pi_{i} q_{ij} = \pi_{j} q_{ji}, \forall i \neq j$.
+which means that $\pi_{i} q_{ij} = \pi_{j} q_{ji} ~ \forall \, i \neq j$.
 This assumption is biologically not meaningful, as evolution is a process in time, and thus does have a direction.
 It however allows for simplified calculations:
 The $Q$ matrix of a time-reversible model can be formulated as the product of
@@ -771,10 +809,10 @@ a diagonal matrix with the stationary base frequencies:
     \newcommand{\lra}{\leftrightarrow}
     Q = R \cdot diag(\pi_i) =
     \begin{pmatrix}
-        -q_A                       &   r_{A \lra C} \cdot \pi_C   &   r_{A \lra G} \cdot \pi_G   &   r_{A \lra T} \cdot \pi_T  \\
-        r_{A \lra C} \cdot \pi_A   &   -q_C                       &   r_{C \lra G} \cdot \pi_G   &   r_{C \lra T} \cdot \pi_T  \\
-        r_{A \lra G} \cdot \pi_A   &   r_{C \lra G} \cdot \pi_C   &   -q_G                       &   r_{G \lra T} \cdot \pi_T  \\
-        r_{A \lra T} \cdot \pi_A   &   r_{C \lra T} \cdot \pi_C   &   r_{G \lra T} \cdot \pi_G   &   -q_T
+         -q_A                       &   r_{A \lra C} \cdot \pi_C   &   r_{A \lra G} \cdot \pi_G   &   r_{A \lra T} \cdot \pi_T~~  \\
+        ~r_{A \lra C} \cdot \pi_A   &   -q_C                       &   r_{C \lra G} \cdot \pi_G   &   r_{C \lra T} \cdot \pi_T~~  \\
+        ~r_{A \lra G} \cdot \pi_A   &   r_{C \lra G} \cdot \pi_C   &   -q_G                       &   r_{G \lra T} \cdot \pi_T~~  \\
+        ~r_{A \lra T} \cdot \pi_A   &   r_{C \lra T} \cdot \pi_C   &   r_{G \lra T} \cdot \pi_G   &   -q_T
     \end{pmatrix}
 \end{align}
 
@@ -790,12 +828,12 @@ the \toolname{GTR} model has a total of \num{8} free parameters
 There are also more restrictive models, which have fewer free parameters,
 and are thus more robust if data for estimating them is sparse.
 The Jukes-Cantor model (\toolname{JC69}) \cite{Jukes1969} has no free parameter and assumes
-equal substitution rates $r_{i \leftrightarrow j} = 1, i \neq j$ and equal base frequencies $\pi_i = \sfrac{1}{4}$.
+equal substitution rates $r_{i \leftrightarrow j} = 1$, $i \neq j$ and equal base frequencies $\pi_i = \sfrac{1}{4}$.
 The \toolname{K80} model \cite{Kimura1980} adds a free parameter $\kappa$,
 which describes the ratio between two types of substitutions that are not equally likely to occur in evolution:
 $r_{A \leftrightarrow C} = r_{G \leftrightarrow T} = \kappa \cdot r_{A \leftrightarrow G} =
 \kappa \cdot r_{A \leftrightarrow T} = \kappa \cdot r_{C \leftrightarrow G} = \kappa \cdot r_{C \leftrightarrow T}$.
-\todo{if transition vs transversion was added earlier, add it here, too!}
+\todo{if transition vs transversion was added earlier, add it here, too!}einhalten
 The \toolname{HKY85} model \cite{Hasegawa1985} further adds parameters for the base frequencies,
 and hence has \num{4} free parameters.
 Further models have also been proposed, which offer compromises
@@ -804,9 +842,9 @@ between the number of free parameters and the expressiveness of the model \cite{
 The state space of the Markov process becomes significantly larger for protein data,
 as it needs to comprise \num{20} standard amino acids instead of \num{4} nucleobases.
 Hence, the \toolname{GTR} model for protein data has $(400 - 20) / 2 - 1 + 19 = 208$ free parameters.
-Typical alignments do not contain enough data to reliably estimate these parameters,
+Typical amino acid alignments do not contain enough data to reliably estimate these parameters,
 and thus easily lead to over-fitting.
-Thus, so-called \emph{empirical} protein models are commonly used,
+Thus, so-called \emph{empirical} amino acid models are commonly used,
 which have substitution rates and equilibrium base frequencies
 that were pre-estimated on large collections of reference alignments.
 Among others, some popular models include \toolname{DAYHOFF} \cite{Dayhoff1978},
@@ -815,16 +853,47 @@ Among others, some popular models include \toolname{DAYHOFF} \cite{Dayhoff1978},
 \paragraph{Further Aspects of Tree Inference}
 \label{ch:Foundations:sec:TreeOfLife:sub:TreeInference:par:FurtherAspects}
 
-constrained trees
-Models of Rate Heterogeneity among Sites
+Evolution is an incredibly complex process with intricate details.
+Many more models and methods have thus been proposed to refine tree inference \cite{Yang2006},
+of which we here briefly introduce a few.
+% For understanding the methods described in this work, the above introduction should suffice.
+% For the distinguished reader, we here still mention a few other aspects that are related to the topic.
+% While a detailed description of these models and methods is not necessary for understanding the main chapters of this work,
+% we here still mention a few other related aspects.
 
-MC models single site evol ...
+The models of sequence evolution described above make the simplifying assumption
+that the alignment sites evolve independently and are identically distributed.
+However, certain regions of DNA or amino acid sequences are under higher evolutionary pressure then others,
+for example if they describe important molecular functions.
+It is thus expected that some alignment sites evolve faster than others.
+In the context of phylogenetic inference,
+several models of \emph{rate heterogeneity among sites} have been proposed to account for this,
+some of which are described in the following.
+\\
+A simple model is the \emph{proportion of invariable sites},
+where the likelihood of an alignment site is influenced by a parameter $p \in [0,1]$
+that describes the proportion of sites that are assumed to be identical (\emph{invariable}) across all taxa.
+The more elaborate $\Gamma$ model \cite{Yang1994a} postulates a shape parameter $\alpha$
+which models the rate heterogeneity as a gamma function $\Gamma(\alpha)$.
+The distribution shape ranges from exponential-like ($\alpha < 1$, high rate heterogeneity)
+to normal-like ($\alpha > 10$, low rate heterogeneity).
+Thus, by optimizing the single free parameter $\alpha$, different rate heterogeneity profiles can be approximated.
+Lastly, the \toolname{CAT} or \emph{per-site rates} model \cite{Stamatakis2006a}
+is a compute- and memory-efficient approximation of the $\Gamma$ model,
+which explicitly assigns one of $K$ rate categories to each alignment site instead of using a distribution of rates.
 
-wiki
-by making the simplifying assumption that different sites evolve independently and are identically distributed.
-. This assumption may be justifiable if the sites can be assumed to be evolving neutrally. If the primary effect of natural selection on the evolution of the sequences is to constrain some sites, then models of among-site rate-heterogeneity can be used. This approach allows one to estimate only one matrix of relative rates of substitution, and another set of parameters describing the variance in the total rate of substitution across sites.
+The tree search as described before can (theoretically) yield any topology from the vast space of possible trees.
+It is however often serviceable to run a \emph{constrained} tree search,
+for example to include prior knowledge about the taxa,
+to maintain congruence with a given taxonomy, or because some other constraints are required.
+Such a constraint can for example be specified by enforcing certain bipartitions to be retained in the tree,
+that is, splits of the taxa that must be separated from each other in the tree.
+As a bipartition is induced by a branch in the tree,
+this is equivalent to starting the tree search with a multifurcating tree,
+and then resolving these multifurcations without changing the other parts of the tree.
+A constrained search yields a \emph{constrained tree}.
 
-
+\todo{
 Alignment Partitioning
 Computation of Phylogenetic Likelihood Func-
 tion and its Derivatives
@@ -832,15 +901,8 @@ tion and its Derivatives
     Conditional Likelihood Vectors
     Likelihood Evaluation at the Root
     6.4
-Likelihood Derivatives with respect to the Branch Length
-Parameter
-
-move to phylo trees section:
-
-tree formats
-newick \cite{Archie1986}
-NEXUS \cite{Maddison1997}
-phyloXML \cite{Han2009}
+Likelihood Derivatives with respect to the Branch Length Parameter
+}
 
 % ######################################################################################################################
 %         Phylogenetic Placement
@@ -858,6 +920,9 @@ to represent the diversity expected from an environment.
 Since the amount of sequence data produced in metagenomic studies can be quite substantial,
 computational challenges and bottlenecks arise \cite{Scholz2012}.
 
+
+mention that epa ng can use all the model stuff explaine above: subst models, rate hetero, etc
+allows gtr and always uses gamma
 
 % ======================================================================================================================
 %     Motivation
