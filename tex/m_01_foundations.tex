@@ -522,9 +522,12 @@ As evolution is a processes that happens over time,
 from a biological point of view, every tree has a root.
 However, most models of DNA evolution are time-reversible,
 meaning that the direction of change in the sequences cannot be inferred from the data,
-see \secref{ch:Foundations:sec:TreeOfLife:sub:TreeInference:par:ModelsOfSeqEvol} for details.
+see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol} for details.
 Thus, tree inference methods can also yield \emph{unrooted} trees without direction and without a root node.
-These can be rooted a posteriori, for example by using an \emph{outgroup} of taxa
+For computational reasons, but also in order to store a tree in a file,
+unrooted trees usually have a distinguished, but arbitrary, node called \emph{virtual root},
+for example in form of a so-called \emph{top-level trifurcation}.
+An unrooted tree can be rooted a posteriori, for example by using an \emph{outgroup} of taxa
 that are closely related to the group of taxa of interest (the \emph{ingroup}), but not part of it.
 Then, a root node can be placed on the branch that separates the outgroup from the ingroup.
 
@@ -650,10 +653,13 @@ Furthermore, \emph{Bayesian Inference} also relies on the evaluation of tree pro
 and uses Bayes' theorem to calculate the posterior distribution of the relevant evolutionary processes;
 it thus can incorporate prior empirical knowledge into the process.
 
-\paragraph{Maximum Likelihood Tree Inference}
-\label{ch:Foundations:sec:TreeOfLife:sub:TreeInference:par:MLTreeInference}
+% ######################################################################################################################
+%     Maximum Likelihood Tree Inference
+% ######################################################################################################################
 
-% Maximum Likelihood
+\section{Maximum Likelihood Tree Inference}
+\label{ch:Foundations:sec:MLTreeInference}
+
 In the context of this work, we are mostly interested in Maximum Likelihood (ML) tree inference.
 It uses a probabilistic framework in which the (phylogenetic) likelihood
 
@@ -692,10 +698,13 @@ the Newton-Raphson method \cite{Ypma1995} is often used for optimizing the branc
 Model parameters are commonly optimized with Brent's method \cite{Brent1971}
 or with the Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm \cite{Fletcher1987}.
 
-\paragraph{Models of Molecular Sequence Evolution}
-\label{ch:Foundations:sec:TreeOfLife:sub:TreeInference:par:ModelsOfSeqEvol}
+% ======================================================================================================================
+%     Models of Molecular Sequence Evolution
+% ======================================================================================================================
 
-% Models of molecular sequence evolution
+\subsection{Models of Molecular Sequence Evolution}
+\label{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}
+
 So far, we assumed a fixed model $M$ for describing the evolution of the traits that are used for inferring the tree.
 For sequence data, such a model yields an estimate of the evolutionary distance between the sequences of different taxa.
 Most commonly, a continuous-time Markov chain (MC) is used to describe
@@ -833,7 +842,7 @@ The \toolname{K80} model \cite{Kimura1980} adds a free parameter $\kappa$,
 which describes the ratio between two types of substitutions that are not equally likely to occur in evolution:
 $r_{A \leftrightarrow C} = r_{G \leftrightarrow T} = \kappa \cdot r_{A \leftrightarrow G} =
 \kappa \cdot r_{A \leftrightarrow T} = \kappa \cdot r_{C \leftrightarrow G} = \kappa \cdot r_{C \leftrightarrow T}$.
-\todo{if transition vs transversion was added earlier, add it here, too!}einhalten
+\todo{if transition vs transversion was added earlier, add it here, too!}
 The \toolname{HKY85} model \cite{Hasegawa1985} further adds parameters for the base frequencies,
 and hence has \num{4} free parameters.
 Further models have also been proposed, which offer compromises
@@ -850,8 +859,12 @@ that were pre-estimated on large collections of reference alignments.
 Among others, some popular models include \toolname{DAYHOFF} \cite{Dayhoff1978},
 \toolname{WAG} \cite{Whelan2001}, and \toolname{LG} \cite{Le2008}.
 
-\paragraph{Further Aspects of Tree Inference}
-\label{ch:Foundations:sec:TreeOfLife:sub:TreeInference:par:FurtherAspects}
+% ======================================================================================================================
+%     Further Aspects of Tree Inference
+% ======================================================================================================================
+
+\subsection{Further Aspects of Tree Inference}
+\label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects}
 
 Evolution is an incredibly complex process with intricate details.
 Many more models and methods have thus been proposed to refine tree inference \cite{Yang2006},
@@ -861,6 +874,7 @@ of which we here briefly introduce a few.
 % While a detailed description of these models and methods is not necessary for understanding the main chapters of this work,
 % we here still mention a few other related aspects.
 
+% Rate Heterogeneity
 The models of sequence evolution described above make the simplifying assumption
 that the alignment sites evolve independently and are identically distributed.
 However, certain regions of DNA or amino acid sequences are under higher evolutionary pressure then others,
@@ -882,6 +896,7 @@ Lastly, the \toolname{CAT} or \emph{per-site rates} model \cite{Stamatakis2006a}
 is a compute- and memory-efficient approximation of the $\Gamma$ model,
 which explicitly assigns one of $K$ rate categories to each alignment site instead of using a distribution of rates.
 
+% Constrained Trees
 The tree search as described before can (theoretically) yield any topology from the vast space of possible trees.
 It is however often serviceable to run a \emph{constrained} tree search,
 for example to include prior knowledge about the taxa,
@@ -893,17 +908,24 @@ this is equivalent to starting the tree search with a multifurcating tree,
 and then resolving these multifurcations without changing the other parts of the tree.
 A constrained search yields a \emph{constrained tree}.
 
+% Not needed:
+% Alignment Partitioning
+
+% ======================================================================================================================
+%     Further Aspects of Tree Inference
+% ======================================================================================================================
+
+\subsection{Computation of the Phylogenetic Likelihood Function}
+\label{ch:Foundations:sec:MLTreeInference:sub:Computation}
+
 \todo{
-Alignment Partitioning
-Computation of Phylogenetic Likelihood Func-
-tion and its Derivatives
+Computation of Phylogenetic Likelihood Function and its Derivatives
     P-matrix
     Conditional Likelihood Vectors
     Likelihood Evaluation at the Root
     6.4
 Likelihood Derivatives with respect to the Branch Length Parameter
 }
-
 % ######################################################################################################################
 %         Phylogenetic Placement
 % ######################################################################################################################
