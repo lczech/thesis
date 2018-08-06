@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="45.833149mm"
+   height="44.085125mm"
+   viewBox="0 0 45.833149 44.085125"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="mc_state_transitions.svg"
+   inkscape:version="0.92.3 (unknown)">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4127"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4125"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4015"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4013"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3909"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3907"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3809"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3807"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3715"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3713"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3627"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3625"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3545"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3543"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3469"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3467"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3399"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3397"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3335"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3333"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3277"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3275"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker3045"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#5c5c5c;fill-opacity:1;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3043"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1725"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path1723"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker1601"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1599"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path924"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker1601-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1599-8" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2443"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2441" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2447"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2445"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="19.766087"
+     inkscape:cy="62.181472"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer4"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:window-width="1869"
+     inkscape:window-height="1056"
+     inkscape:window-x="51"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       originx="-38.180078"
+       originy="-197.58027" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="arrows"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-38.180074,-55.334623)">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4015)"
+       d="m 44.945757,63.902084 c 0,0 1.322917,9.525001 1.322917,13.493751 0,3.96875 -1.058334,11.906249 -1.058334,11.906249"
+       id="path919"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path1367"
+       d="m 42.333332,90.792046 c 0,0 -1.322917,-9.525001 -1.322917,-13.493751 0,-3.96875 1.058334,-11.906249 1.058334,-11.906249"
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3909)" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path1575"
+       d="m 79.377685,63.902084 c 0,0 1.322917,9.525001 1.322917,13.493751 0,3.96875 -1.058334,11.906249 -1.058334,11.906249"
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3809)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3715)"
+       d="m 76.76526,90.792046 c 0,0 -1.322917,-9.525001 -1.322917,-13.493751 0,-3.96875 1.058334,-11.906249 1.058334,-11.906249"
+       id="path1577"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3627)"
+       d="m 74.180869,61.487426 c 0,0 -9.525001,1.322917 -13.493751,1.322917 -3.96875,0 -11.906249,-1.058334 -11.906249,-1.058334"
+       id="path1581"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path1583"
+       d="m 47.290907,58.875001 c 0,0 9.525001,-1.322917 13.493751,-1.322917 3.96875,0 11.906249,1.058334 11.906249,1.058334"
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3545)" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path1587"
+       d="m 74.180869,96.014206 c 0,0 -9.525001,1.322917 -13.493751,1.322917 -3.96875,0 -11.906249,-1.058334 -11.906249,-1.058334"
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3469)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3399)"
+       d="m 47.290907,93.401781 c 0,0 9.525001,-1.322917 13.493751,-1.322917 3.96875,0 11.906249,1.058334 11.906249,1.058334"
+       id="path1589"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path1593"
+       d="m 76.199997,63.637507 c 0,0 -10.53757,12.985783 -13.3439,15.792113 -2.80633,2.80633 -14.172767,11.989138 -14.172767,11.989138"
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3335)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3277)"
+       d="m 45.772914,91.154174 c 0,0 9.937868,-13.158917 12.744198,-15.965247 2.80633,-2.80633 14.507886,-12.080587 14.507886,-12.080587"
+       id="path1595"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3045)"
+       d="m 74.612498,92.477084 c 0,0 -12.985782,-10.537569 -15.792112,-13.343899 -2.80633,-2.80633 -11.989138,-14.172767 -11.989138,-14.172767"
+       id="path2309"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path2311"
+       d="m 47.095832,62.050002 c 0,0 13.158917,9.937867 15.965247,12.744197 2.80633,2.80633 12.080586,14.507886 12.080586,14.507886"
+       style="fill:none;fill-rule:evenodd;stroke:#5c5c5c;stroke-width:0.24699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4127)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="qs white"
+     transform="translate(-38.180074,-55.334623)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2718-9"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,26.421358,1.0583742)"><flowRegion
+         id="flowRegion2720-1"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2722-0"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2724-3"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2726-5">AG</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,21.458408,5.0271242)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2736-9"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2730-4"><rect
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2728-8" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2734-4">q<flowSpan
+   id="flowSpan2732-6"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">GA</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,60.817191,1.0583742)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2746-9"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2740-2"><rect
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2738-9" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2744-0">q<flowSpan
+   id="flowSpan2742-3"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">CT</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2756-0"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,55.667268,5.0271242)"><flowRegion
+         id="flowRegion2750-3"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2748-3"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2754-7"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2752-9">TC</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2766-4"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,37.361434,-15.55284)"><flowRegion
+         id="flowRegion2760-9"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2758-9"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2764-1"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2762-9">AC</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,44.217932,-10.716929)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2776-4"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2770-2"><rect
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2768-0" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2774-6">q<flowSpan
+   id="flowSpan2772-5"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">CA</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,36.996284,18.988596)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2786-9"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2780-5"><rect
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2778-6" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2784-1">q<flowSpan
+   id="flowSpan2782-1"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">GT</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2796-4"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,44.176801,23.763782)"><flowRegion
+         id="flowRegion2790-3"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2788-7"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2794-2"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2792-7">TG</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2806-3"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,37.177276,-4.7570858)"><flowRegion
+         id="flowRegion2800-3"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2798-9"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2804-2"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2802-4">AT</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,46.398074,11.880441)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2816-4"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2810-4"><rect
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2808-9" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2814-9">q<flowSpan
+   id="flowSpan2812-3"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">TA</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2826-8"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,50.006213,-1.4162188)"><flowRegion
+         id="flowRegion2820-3"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2818-2"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2824-9"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2822-5">CG</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,33.702773,7.6041282)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:5.33333349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2836-4"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2830-3"><rect
+           style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2828-9" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2834-4">q<flowSpan
+   id="flowSpan2832-9"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5.33333349;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">GC</flowSpan></flowPara></flowRoot>  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="qs"
+     transform="translate(-38.180074,-55.334623)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2718"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,26.421358,1.058375)"><flowRegion
+         id="flowRegion2720"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2722"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2724"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2726">AG</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,21.458408,5.027125)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2736"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2730"><rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2728" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2734">q<flowSpan
+   id="flowSpan2732"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">GA</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,60.817192,1.058375)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2746"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2740"><rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2738" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2744">q<flowSpan
+   id="flowSpan2742"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">CT</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2756"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,55.667267,5.027125)"><flowRegion
+         id="flowRegion2750"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2748"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2754"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2752">TC</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2766"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,37.361433,-15.55284)"><flowRegion
+         id="flowRegion2760"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2758"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2764"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2762">AC</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,44.217932,-10.716928)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2776"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2770"><rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2768" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2774">q<flowSpan
+   id="flowSpan2772"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">CA</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,36.996283,18.988597)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2786"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2780"><rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2778" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2784">q<flowSpan
+   id="flowSpan2782"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">GT</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2796"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,44.176801,23.763784)"><flowRegion
+         id="flowRegion2790"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2788"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2794"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2792">TG</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2806"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,37.177276,-4.7570858)"><flowRegion
+         id="flowRegion2800"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2798"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2804"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2802">AT</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,46.398075,11.880442)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2816"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2810"><rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2808" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2814">q<flowSpan
+   id="flowSpan2812"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">TA</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2826"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="matrix(0.26458333,0,0,0.26458333,50.006214,-1.416217)"><flowRegion
+         id="flowRegion2820"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><rect
+           id="rect2818"
+           width="40"
+           height="30"
+           x="65"
+           y="267.51968"
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara2824"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">q<flowSpan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="flowSpan2822">CG</flowSpan></flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,33.702773,7.6041296)"
+       style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="flowRoot2836"
+       xml:space="preserve"><flowRegion
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowRegion2830"><rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="267.51968"
+           x="65"
+           height="30"
+           width="40"
+           id="rect2828" /></flowRegion><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="flowPara2834">q<flowSpan
+   id="flowSpan2832"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum Italic';baseline-shift:sub;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">GC</flowSpan></flowPara></flowRoot>  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="acgt"
+     style="display:inline"
+     transform="translate(-38.180074,-55.334623)">
+    <g
+       transform="translate(-1.1521155e-6)"
+       id="g832">
+      <circle
+         r="3.96875"
+         cy="60.197914"
+         cx="43.65625"
+         id="path825"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ff5789;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.35277778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+      <flowRoot
+         transform="matrix(0.30849078,0,0,0.30849078,-19.987138,1.1828932)"
+         style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="flowRoot817"
+         xml:space="preserve"><flowRegion
+           id="flowRegion819"><rect
+             y="182.51968"
+             x="200"
+             height="80"
+             width="80"
+             id="rect821" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'"
+           id="flowPara823">A</flowPara></flowRoot>    </g>
+    <g
+       id="g844"
+       transform="translate(34.295832,-0.09999761)">
+      <circle
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#58a2ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.35277778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="circle842"
+         cx="43.65625"
+         cy="60.197914"
+         r="3.96875" />
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot840"
+         style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+         transform="matrix(0.30849078,0,0,0.30849078,-20.120772,1.3718812)"><flowRegion
+           id="flowRegion836"><rect
+             id="rect834"
+             width="80"
+             height="80"
+             x="200"
+             y="182.51968" /></flowRegion><flowPara
+           id="flowPara838"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'">C</flowPara></flowRoot>    </g>
+    <g
+       id="g883"
+       transform="translate(-0.10000015,23.7125)">
+      <circle
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#94d87b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.35277778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="circle854"
+         cx="43.65625"
+         cy="70.78125"
+         r="3.96875" />
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot852"
+         style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+         transform="matrix(0.30849078,0,0,0.30849078,-20.187589,11.899861)"><flowRegion
+           id="flowRegion848"><rect
+             id="rect846"
+             width="80"
+             height="80"
+             x="200"
+             y="182.51968" /></flowRegion><flowPara
+           id="flowPara850"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'">G</flowPara></flowRoot>    </g>
+    <g
+       id="g890"
+       transform="translate(13.129161,23.7125)">
+      <circle
+         r="3.96875"
+         cy="70.78125"
+         cx="64.822922"
+         id="circle866"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffe558;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.35277778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+      <flowRoot
+         transform="matrix(0.30849078,0,0,0.30849078,1.1127129,11.966678)"
+         style="color:#000000;font-size:13.33333302px;line-height:125%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="flowRoot864"
+         xml:space="preserve"><flowRegion
+           id="flowRegion860"><rect
+             y="182.51968"
+             x="200"
+             height="80"
+             width="80"
+             id="rect858" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'"
+           id="flowPara862">T</flowPara></flowRoot>    </g>
+  </g>
+</svg>
