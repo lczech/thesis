@@ -708,7 +708,7 @@ or with the Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm \cite{Fletcher1987
 \subsection{Models of Molecular Sequence Evolution}
 \label{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}
 
-So far, we assumed a fixed model $M$ for describing the evolution of the traits that are used for inferring the tree.
+So far, we assumed to have a model $M$ for describing the evolution of the traits that are used for inferring the tree.
 For sequence data, such a model yields an estimate of the evolutionary distance between the sequences of different taxa.
 Most commonly, a continuous-time Markov chain (MC) is used to describe
 the evolution of a single site within a set of aligned sequences \cite{Gagniuc2017}.
@@ -725,7 +725,7 @@ note that transition is used in two different meanings here...}
     \centering
     \includegraphics[width=.35\linewidth]{mc_state_transitions.pdf}
     \caption[Markov chain model of nucleotide substitutions]{
-        \textbf{Markov chain Model of Nucleotide Substitutions.}
+        \textbf{Markov chain model of nucleotide substitutions.}
         The evolution of characters at a site in an alignment can be modeled as a Markov chain (MC).
         The states of the MC for DNA data are the four nucleobases
         \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
@@ -792,9 +792,10 @@ The rows of the matrix have the requirement to sum to $0$,
 by which the diagonal elements $q_{i}$ are defined.
 
 The branch lengths of a phylogeny express the evolutionary time between two nodes,
-which can be interpreted as the expected number of substitutions between the respective alignment sites.
+which in case of sequence data can be measured as
+the expected number of substitutions between the respective alignment sites.
 Then, for a given time $t$, the \emph{transition probabilities} $p_{ij}(t)$ between states in a stationary process
-are obtained by exponentiating the $Q$ matrix \cite{Yang2006}.
+are obtained by exponentiating the $Q$ matrix \cite{Yang2014}.
 These probabilities are specified by the matrix
 
 \begin{equation}
@@ -814,7 +815,7 @@ which means that $\pi_{i} q_{ij} = \pi_{j} q_{ji} ~ \forall \, i \neq j$.
 This assumption is biologically not meaningful, as evolution is a process in time, and thus does have a direction.
 It however allows for simplified calculations:
 The $Q$ matrix of a time-reversible model can be formulated as the product of
-a \emph{symmetric} rate matrix $R = \left\{ r_{i \leftrightarrow j} \right\}$ and
+a symmetric rate matrix $R = \left\{ r_{i \leftrightarrow j} \right\}$ and
 a diagonal matrix with the stationary base frequencies:
 
 \begin{align}
@@ -838,7 +839,7 @@ the \toolname{GTR} model has a total of \num{8} free parameters
 (that is, \num{3} base frequencies, and \num{5} substitution rates).
 
 There are also more restrictive models, which have fewer free parameters,
-and are thus more robust if data for estimating them is sparse.
+and are thus more robust if data for estimating them is sparse, at the expense of descriptiveness.
 The Jukes-Cantor model (\toolname{JC69}) \cite{Jukes1969} has no free parameter and assumes
 equal substitution rates $r_{i \leftrightarrow j} = 1$, $i \neq j$ and equal base frequencies $\pi_i = \sfrac{1}{4}$.
 The \toolname{K80} model \cite{Kimura1980} adds a free parameter $\kappa$,
@@ -849,7 +850,7 @@ $r_{A \leftrightarrow C} = r_{G \leftrightarrow T} = \kappa \cdot r_{A \leftrigh
 The \toolname{HKY85} model \cite{Hasegawa1985} further adds parameters for the base frequencies,
 and hence has \num{4} free parameters.
 Further models have also been proposed, which offer compromises
-between the number of free parameters and the expressiveness of the model \cite{Yang2006}.
+between the number of free parameters and the expressiveness of the model \cite{Yang2014}.
 
 The state space of the Markov process becomes significantly larger for protein data,
 as it needs to comprise \num{20} standard amino acids instead of \num{4} nucleobases.
@@ -870,7 +871,7 @@ Among others, some popular models include \toolname{DAYHOFF} \cite{Dayhoff1978},
 \label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects}
 
 Evolution is an incredibly complex process with intricate details.
-Many more models and methods have thus been proposed to refine tree inference \cite{Yang2006},
+Many more models and methods have thus been proposed to refine tree inference \cite{Yang2014},
 of which we here briefly introduce a few.
 % For understanding the methods described in this work, the above introduction should suffice.
 % For the distinguished reader, we here still mention a few other aspects that are related to the topic.
@@ -890,14 +891,18 @@ some of which are described in the following.
 A simple model is the \emph{proportion of invariable sites},
 where the likelihood of an alignment site is influenced by a parameter $p \in [0,1]$
 that describes the proportion of sites that are assumed to be identical (\emph{invariable}) across all taxa.
-The more elaborate $\Gamma$ model \cite{Yang1994a} postulates a shape parameter $\alpha$
-which models the rate heterogeneity as a gamma function $\Gamma(\alpha)$.
+The more elaborate $\Gamma$ model \cite{Yang1994a} postulates a shape parameter $\alpha > 0$
+which models the rate heterogeneity as a gamma distribution $\Gamma(\alpha)$.
 The distribution shape ranges from exponential-like ($\alpha < 1$, high rate heterogeneity)
 to normal-like ($\alpha > 10$, low rate heterogeneity).
-Thus, by optimizing the single free parameter $\alpha$, different rate heterogeneity profiles can be approximated.
-Lastly, the \toolname{CAT} or \emph{per-site rates} model \cite{Stamatakis2006a}
+Thus, by optimizing the single free parameter $\alpha$,
+different unimodal rate heterogeneity profiles can be approximated.
+The \toolname{CAT} or \emph{per-site rates} model \cite{Stamatakis2006a}
 is a compute- and memory-efficient approximation of the $\Gamma$ model,
 which explicitly assigns one of $K$ rate categories to each alignment site instead of using a distribution of rates.
+Lastly, the \toolname{FreeRate} model \cite{Yang1995} allows for multimodal distributions
+by using $K$ rate categories and respective weights,
+which can approximate any distribution at the cost of having to estimate these free parameters.
 
 % Constrained Trees
 The tree search as described before can (theoretically) yield any topology from the vast space of possible trees.
@@ -915,7 +920,7 @@ A constrained search yields a \emph{constrained tree}.
 % Alignment Partitioning
 
 % ======================================================================================================================
-%     Further Aspects of Tree Inference
+%     Computation of the Phylogenetic Likelihood Function
 % ======================================================================================================================
 
 \subsection{Computation of the Phylogenetic Likelihood Function}
@@ -929,6 +934,7 @@ Computation of Phylogenetic Likelihood Function and its Derivatives
     6.4
 Likelihood Derivatives with respect to the Branch Length Parameter
 }
+
 % ######################################################################################################################
 %         Phylogenetic Placement
 % ######################################################################################################################
