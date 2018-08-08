@@ -699,7 +699,10 @@ Furthermore, \emph{Bayesian Inference} also relies on the evaluation of tree pro
 and uses Bayes' theorem to calculate the posterior distribution of the relevant evolutionary processes;
 it thus can incorporate prior empirical knowledge into the process.
 
-\todo{tree inference software}
+Typical software tools for inferring ML trees include \toolname{IQ-TREE} \cite{Nguyen2015a},
+\toolname{FastTree} \cite{Price2010}, and \toolname{RAxML} \cite{Stamatakis2014},
+while Bayesian inference can for example be conduced using tools such as \toolname{BEAST} \cite{Suchard2018}
+or \toolname{MrBayes} \cite{Ronquist2003}.
 
 % ######################################################################################################################
 %     Maximum Likelihood Tree Inference
@@ -978,7 +981,14 @@ which can approximate any distribution at the cost of having to estimate these f
 \paragraph{Alignment Partitioning}
 \label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects:par:AlignmentPartitioning}
 
-\todo{write something short}
+Apart from the evolutionary rate $r$, also the substitution patterns among the sites of an MSA can differ.
+In order to account for this, the MSA can be split into different \emph{partitions},
+where each such partition is assigned its own model of evolution.
+For example, as three nucleobases code for one amino acid in regions that encode for proteins
+(see \secref{ch:Foundations:sec:EvolutionGenetics}),
+three partition can be used, each modeling the evolution of the first, second, and third nucleobase of each amino acid.
+Furthermore, large multi-gene MSAs can be split into partitions corresponding to individual genes,
+which might be under different evolutionary pressure each.
 
 \paragraph{Constrained Trees}
 \label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects:par:ConstrainedTrees}
@@ -1024,7 +1034,7 @@ it describes the \emph{conditional likelihood} of the node to be in that state a
 given the subtree topology and its branch lengths, for the respective subset of the alignment (tip sequences).
 We here assume a set $N$ of states, that is, the sequences consist of characters $c \in N$,
 for example $N = \left\{~ \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, \nucleobase{T} ~\right\}$.
-Furthermore, for simplicity, we do not consider rate heterogeneity among sites here.
+Furthermore, for simplicity, we do not consider alignment partitioning or rate heterogeneity among sites here.
 \todo{and thus use a fixed evolutionary rate $r$}
 Then, a CLV contains $|N|$ elements per alignment site,
 each describing the conditional likelihood of being in the corresponding state.
@@ -1062,7 +1072,7 @@ CL(\nucleobase{A}) $= 1$, and CL(\nucleobase{C}) $=$ CL(\nucleobase{G}) $=$ CL(\
 \end{figure}
 
 After the tip CLVs have been initialized, the algorithm traverses up the tree, see \figref{fig:clv_fpa}.
-This can be thought of as moving along the branches towards the parent nodes,
+This can be thought of as moving along the branches towards a parent node,
 which induces mutations in form of state transitions.
 This step is thus where the model $M$ is employed (see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}).
 As we assumed a fix evolutionary rate $r$,
