@@ -498,6 +498,9 @@ also called an \emph{evolutionary tree}, or---synonymously---a \emph{phylogeny}.
     \label{fig:tree_of_life}
 \end{figure}
 
+\paragraph{Properties of Trees}
+\label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:TreeProperties}
+
 The leaf nodes, or \emph{tips}, of the tree represent living (\emph{extant}) biological entities
 such as species, strains, individual organisms, or even cells of a multicellular organism.
 Thus, the tips are often referred to as the \emph{taxa} of the tree,
@@ -553,6 +556,9 @@ in other words, a clade is a subtree that is separated from the rest of the tree
 For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
 that is, they form a clade of the tree.
 Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
+
+\paragraph{Practical Aspects of Trees}
+\label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:PracticalAspects}
 
 While the topology of the tree is what models the evolutionary relationships,
 there are several ways of visualizing or drawing that information.
@@ -651,10 +657,12 @@ that is, it yields the tree that explains the observed tip sequences (taxa)
 with the minimal number of substitutions (mutations).
 The \emph{Maximum Likelihood} (ML) method \cite{Felsenstein1981} employs statistical techniques
 in order to evaluate the probability of a given phylogenetic tree with respect to a given alignment,
-and successively search the tree space for the most likely tree.
+and successively search the tree space for the most likely tree, see \secref{ch:Foundations:sec:MLTreeInference}.
 Furthermore, \emph{Bayesian Inference} also relies on the evaluation of tree probability \cite{Yang2006},
 and uses Bayes' theorem to calculate the posterior distribution of the relevant evolutionary processes;
 it thus can incorporate prior empirical knowledge into the process.
+
+\todo{tree inference software}
 
 % ######################################################################################################################
 %     Maximum Likelihood Tree Inference
@@ -667,30 +675,45 @@ In the context of this work, we are mostly interested in Maximum Likelihood (ML)
 It uses a probabilistic framework in which the (phylogenetic) likelihood
 
 \begin{equation}
-    L(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
+    \label{ch:Foundations:sec:MLTreeInference:eq:likelihood}
+    \mathcal{L}(~ \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} ~)
 \end{equation}
 
 is evaluated that an observed MSA is the outcome of an evolutionary history described by a phylogenetic tree
 with topology $T$ and branch lengths $\bar{b}$, under a given model of trait evolution $M$ with parameters $\bar{\theta}$.
-For a fixed model $M$ (see below), the likelihood can be expressed as a function of $T$, $\bar{b}$ and $\bar{\theta}$,
+For a fixed model $M$ (see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}),
+the likelihood can be expressed as a function of $T$, $\bar{b}$ and $\bar{\theta}$,
 which is known as the \emph{phylogenetic likelihood function} (PLF).
+
+% ======================================================================================================================
+%     Tree Search
+% ======================================================================================================================
+
+\subsection{Tree Search}
+\label{ch:Foundations:sec:MLTreeInference:sub:TreeSearch}
+
 By maximizing the PLF using maximum likelihood estimation,
 the parameter values (including tree topology) are found which best explain the observed data.
-These estimates are typically obtained by iteratively and independently optimizing
-the tree topology and the branch lengths and model parameters,
-which is introduced in the following.
+This process is called \emph{tree search}.
+Typically, the estimates are obtained in an iterative process,
+which alternates between two phases until a (potentially local) optimum is found:
+
+\begin{enumerate}
+    \item Optimizing the tree topology $T$, given the branch lengths $\bar{b}$ and the model parameters $\bar{\theta}$.
+    \item Optimizing the branch lengths of the given tree topology, as well as the model parameters.
+\end{enumerate}
 
 % Optimizing the topology:
 Finding the most likely tree topology is a discrete optimization problem,
 which has been shown to be NP-hard under the ML criterion \cite{Chor2005}.
 Furthermore, the evaluation of the PLF is computationally expensive,
-as it involves many floating point operations.
+as it involves many floating point operations, see \secref{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputation}.
 A general heuristic for the tree search that avoids an exhaustive evaluation of the tree space is thus as follows.
 First, a starting tree is generated, either randomly, or using methods such as Neighbor Joining or Maximum Parsimony.
 Then, the likelihood of the tree is successively improved
 by applying topological rearrangements (\emph{moves}) of its taxa and clades.
 For instance, in \emph{greedy hill-climbing} \cite{Stamatakis2014}, only those moves are applied (\emph{accepted})
-that immediately improve the PLF, until a (potentially local) optimum is found.
+that immediately improve the PLF.
 
 %Optimizing branch lengths and model parameters:
 For a fixed tree topology $T$, the maximum likelihood estimates
@@ -781,24 +804,26 @@ The process of state transitions is defined by the substitution rate matrix %$Q$
          ~q_{TA}   &   q_{TC}   &   q_{TG}   &  -q_{T}~~
          \end{pmatrix}
         \\ \\
-        - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i = \left\{~ A, C, G, T ~\right\}
+        - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i \in \left\{~ A, C, G, T ~\right\}
     \end{align*}
 \end{equation}
 
 % The instantaneous transition rates between states are given
 % by the substitution rate matrix (Q-matrix), where the rows must sum to $0$.
 where the elements $q_{ij}$ are the \emph{instantaneous transition rates} from state $i$ to state $j$.
-The rows of the matrix have the requirement to sum to $0$,
+The rows of the $Q$-matrix have the requirement to sum to $0$,
 by which the diagonal elements $q_{i}$ are defined.
 
-The branch lengths of a phylogeny express the evolutionary time between two nodes,
-which in case of sequence data can be measured as
-the expected number of substitutions between the respective alignment sites.
+The expected number of substitutions at an alignment site between two nodes of the tree
+is expressed as the branch length $b$ between the nodes, and is a measure of evolutionary time $t$ between them.
+Under the MC model, evolutionary time and branch length are proportional to each other
+with the \emph{evolutionary rate} $r$ being their proportionality factor: $t = r \cdot b$.
 Then, for a given time $t$, the \emph{transition probabilities} $p_{ij}(t)$ between states in a stationary process
-are obtained by exponentiating the $Q$ matrix \cite{Yang2014}.
+are obtained by exponentiating the $Q$-matrix \cite{Yang2014}.
 These probabilities are specified by the matrix
 
 \begin{equation}
+    \label{ch:Foundations:sec:MLTreeInference:eq:P_matrix}
     P(t) = e^{Qt}
 \end{equation}
 
@@ -806,15 +831,16 @@ For positive transition rates $q_{ij} > 0, \forall i \neq j$, if the process run
 the Markov chain eventually reaches the unique \emph{stationary} distribution $\Pi = (\pi_A$, $\pi_C$, $\pi_G$, $\pi_T )$,
 with $\pi_i$ being the proportion of time spent in state $i$.
 If the Markov process reached equilibrium after running long enough,
-it can be interpreted as generating the sequences of the MSA.
+it can be interpreted as having generated the sequences of the MSA.
 In that case, $\Pi$ is the \emph{equilibrium base composition} of the MSA,
 and $\pi_i$ are the \emph{equilibrium} or \emph{stationary base frequencies} of the MSA.
+which can be estimated from the character frequencies in the MSA.
 
 As mentioned before, most models of DNA evolution assume a \emph{time-reversible} Markov process,
 which means that $\pi_{i} q_{ij} = \pi_{j} q_{ji} ~ \forall \, i \neq j$.
 This assumption is biologically not meaningful, as evolution is a process in time, and thus does have a direction.
 It however allows for simplified calculations:
-The $Q$ matrix of a time-reversible model can be formulated as the product of
+The $Q$-matrix of a time-reversible model can be formulated as the product of
 a symmetric rate matrix $R = \left\{ r_{i \leftrightarrow j} \right\}$ and
 a diagonal matrix with the stationary base frequencies:
 
@@ -837,6 +863,8 @@ As the sum of the base frequencies must be $1$,
 and as the substitution rates are usually normalized by requiring that $r_{G \leftrightarrow T} = 1.0$,
 the \toolname{GTR} model has a total of \num{8} free parameters
 (that is, \num{3} base frequencies, and \num{5} substitution rates).
+The base frequencies can also be estimated from the given MSA,
+in which case they are called the \emph{empirical} base frequencies.
 
 There are also more restrictive models, which have fewer free parameters,
 and are thus more robust if data for estimating them is sparse, at the expense of descriptiveness.
@@ -880,16 +908,20 @@ of which we here briefly introduce a few.
 % While a detailed description of these models and methods is not necessary for understanding the main chapters of this work,
 % we here still mention a few other related aspects.
 
-% Rate Heterogeneity
+\paragraph{Rate Heterogeneity}
+\label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects:par:RateHeterogeneity}
+
 The models of sequence evolution described above make the simplifying assumption
 that the alignment sites evolve independently and are identically distributed.
-However, certain regions of DNA or amino acid sequences are under higher evolutionary pressure then others,
-for example if they describe important molecular functions.
+However, certain regions of DNA or amino acid sequences are under higher evolutionary pressure than others,
+for example if they describe important molecular functions that are conserved in their evolutionary history.
 It is thus expected that some alignment sites evolve faster than others.
+\todo{is that actually what this expresses?}
+That is, the evolutionary rate $r$ of these sites is not constant across the alignment.
 In the context of phylogenetic inference,
 several models of \emph{rate heterogeneity among sites} have been proposed to account for this,
 some of which are described in the following.
-\\
+
 A simple model is the \emph{proportion of invariable sites},
 where the likelihood of an alignment site is influenced by a parameter $p \in [0,1]$
 that describes the proportion of sites that are assumed to be identical (\emph{invariable}) across all taxa.
@@ -906,8 +938,16 @@ Lastly, the \toolname{FreeRate} model \cite{Yang1995} allows for multimodal dist
 by using $K$ rate categories and respective weights,
 which can approximate any distribution at the cost of having to estimate these free parameters.
 
-% Constrained Trees
-The tree search as described before can (theoretically) yield any topology from the vast space of possible trees.
+\paragraph{Alignment Partitioning}
+\label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects:par:AlignmentPartitioning}
+
+\todo{write something short}
+
+\paragraph{Constrained Trees}
+\label{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects:par:ConstrainedTrees}
+
+The tree search (see \secref{ch:Foundations:sec:MLTreeInference:sub:TreeSearch})
+can (theoretically) yield any topology from the vast space of possible trees.
 It is however often serviceable to run a \emph{constrained} tree search,
 for example to include prior knowledge about the taxa,
 to maintain congruence with a given taxonomy, or because some other constraints are required.
@@ -922,20 +962,164 @@ A constrained search yields a \emph{constrained tree}.
 % Alignment Partitioning
 
 % ======================================================================================================================
-%     Computation of the Phylogenetic Likelihood Function
+%     Likelihood Computation
 % ======================================================================================================================
 
-\subsection{Computation of the Phylogenetic Likelihood Function}
-\label{ch:Foundations:sec:MLTreeInference:sub:Computation}
+\subsection{Likelihood Computation}
+\label{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputation}
 
-\todo{
-Computation of Phylogenetic Likelihood Function and its Derivatives
-    P-matrix
-    Conditional Likelihood Vectors
-    Likelihood Evaluation at the Root
-    6.4
-Likelihood Derivatives with respect to the Branch Length Parameter
-}
+We here introduce the basic computational aspects of the Maximum Likelihood method.
+For a more exhaustive description of the topic, see \cite{Yang2014}.
+We assume a fixed tree topology $T$, fix branch lengths $\bar{b}$,
+as well as a given model of sequence evolution $M$ with parameters $\bar{\theta}$.
+That is, we do not cover the tree search itself here, but describe how to compute the likelihood $\mathcal{L}$
+(\eqnref{ch:Foundations:sec:MLTreeInference:eq:likelihood}) for a given MSA under these conditions.
+
+A central point of the ML method is to account for the unknown states at the inner nodes of the tree.
+That is, the total likelihood is obtained by summing over the probabilities of every possible state of the inner nodes,
+which can be efficiently computed by the \emph{Felsenstein pruning algorithm} (FPA) \cite{Felsenstein1981}.
+It traverses the tree in post-order fashion, that is from the tips towards the (virtual) root,
+and recursively calculates a so-called \emph{conditional likelihood vector} (CLV) at each inner node.
+
+In a sense, a CLV summarizes the subtree below its corresponding node.
+For every alignment site and every state,
+it describes the \emph{conditional likelihood} of the node to be in that state at that site,
+given the subtree topology and its branch lengths, for the respective subset of the alignment (tip sequences).
+We here assume a set $N$ of states, that is, the sequences consist of characters $c \in N$,
+for example $N = \left\{~ \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, \nucleobase{T} ~\right\}$.
+Furthermore, for simplicity, we do not consider rate heterogeneity among sites here.
+\todo{and thus use a fixed evolutionary rate $r$}
+Then, a CLV contains $|N|$ elements per alignment site,
+each describing the conditional likelihood of being in the corresponding state.
+For DNA data, these are CL(\nucleobase{A}), CL(\nucleobase{C}), CL(\nucleobase{G}), and CL(\nucleobase{T}).
+
+\paragraph{Felsenstein Pruning Algorithm}
+\label{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputations:par:FPA}
+
+In order to start the recursion of the FPA, first, the CLVs at the tip nodes have to be initialized.
+In principle, these can be the actual likelihoods of observing the characters $c \in N$ at the corresponding site.
+However, this uncertainty is rarely available in empirical data.
+Thus, tip nodes are usually initialized with ``pseudo-CLVs'',
+where for instance a nucleobase \nucleobase{A} in the alignment yields
+CL(\nucleobase{A}) $= 1$, and CL(\nucleobase{C}) $=$ CL(\nucleobase{G}) $=$ CL(\nucleobase{T}) $= 0$.
+
+\begin{figure}[pthb]
+    \centering
+    \includegraphics[width=.85\linewidth]{clv_fpa.pdf}
+    \caption[Felsenstein pruning algorithm]{
+        \textbf{Felsenstein pruning algorithm.}
+        An exemplary tree topology with a (virtual) root node {\sffamily R}, an inner node {\sffamily V},
+        and three other nodes {\sffamily U}, {\sffamily L}, and {\sffamily M}
+        (which can be either tips or inner nodes), and branch lengths between the nodes.
+%         For the recursive computation during Felsenstein's pruning,
+%         it is irrelevant whether the last three nodes are tips or inner nodes.
+        \\
+        Each node has a CLV assigned to it, which ``summarizes'' the subtree below it.
+        A CLV stores a conditional likelihood for every alignment site and for every state.
+        Here, for simplicity, we show the CLVs for one site and for four states,
+        which for instance represent the likelihood of that site to be in either state of the four nucleobases.
+        %\nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
+%         Lastly, the branches of the tree have branch lengths assigned to them.
+    }
+    \label{fig:clv_fpa}
+\end{figure}
+
+After the tip CLVs have been initialized, the algorithm traverses up the tree, see \figref{fig:clv_fpa}.
+This can be thought of as moving along the branches towards the parent nodes,
+which induces mutations in form of state transitions.
+This step is thus where the model $M$ is employed (see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}).
+As we assumed a fix evolutionary rate $r$,
+we can infer the time $t$ between two nodes from the branch length $b$ between them: $t = r \cdot b$.
+% Then, in order to compute the likelihood of state changes while moving from a child node to its parent,
+% the model $M$ is employed, as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}.
+% In particular,
+Then, for a given branch, we can compute the probability $p_{ij}(t)$ of a transition
+from state $i$ to state $j$ after moving along the branch, see \eqnref{ch:Foundations:sec:MLTreeInference:eq:P_matrix}.
+Note that the probability $p_{ij}$ depends on the branch length,
+meaning that for every branch (and every update in its branch length during optimization),
+a separate $P$-matrix has to be computed from the $Q$-matrix of the model.
+
+At a parent node whose children have been computed, we can now apply the recursion step of the algorithm.
+For instance, in the topology shown in \figref{fig:clv_fpa}, the CLV of an inner node {\sffamily V}
+can be computed given its children {\sffamily L} and {\sffamily M}.
+For the computation, the CLVs of the two child nodes,
+and the branch lengths $b$ and the $P$-matrices of the branches towards the parent are needed.
+% and the respective branch lengths $b_{LV}$ and $b_{MV}$.
+Then, a single entry of the CLV, that is,
+the conditional likelihood of node {\sffamily V} to be in state $c$ at site $s$, is
+
+\begin{equation}
+    \label{ch:Foundations:sec:MLTreeInference:eq:CLV}
+%     \mbox{CLV} =
+    \mbox{CLV}^{(V)}_{s,c} =
+    \left(~ \sum_{j \in N} p_{cj}(r \cdot b_{LV}) \cdot \mbox{CLV}^{(L)}_{s,j} \right)
+    \left(~ \sum_{k \in N} p_{ck}(r \cdot b_{MV}) \cdot \mbox{CLV}^{(M)}_{s,k} \right)
+\end{equation}
+
+The equation can be interpreted as follows:
+The product of transition probability and conditional likelihood represents a change from state $c$ to another state in $N$.
+By summing this product for all states, all possible inner states are accounted for.
+Finally, the product of the two sums is the new conditional likelihood of the node being in state $c$ at site $s$,
+given the evolutionary history of its children and their subtrees.
+
+By repeating the computation for every state $c \in N$ and every site $s$ of the alignment,
+the complete CLV for node {\sffamily V} is computed.
+The recursion is then applied to all nodes upwards the tree, until all CLVs are computed.
+
+\paragraph{Likelihood Evaluation at the Root}
+\label{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputations:par:RootLikelihood}
+
+Once all CLVs are computed, the overall likelihood $\mathcal{L}$ can be computed from the CLV of the root node.
+Given the root node {\sffamily R} as shown in \figref{fig:clv_fpa},
+the total \emph{per-site likelihood} $\mathcal{L}_s$ of an alignment site $s$ is
+accumulated from the conditional likelihoods of all states, taking their respective base frequencies into account:
+
+\begin{equation}
+    \label{ch:Foundations:sec:MLTreeInference:eq:root_site_likelihood}
+    \mathcal{L}_{s} = \sum_{i \in N} \pi_i \cdot \mbox{CLV}^{(R)}_{s,i}
+\end{equation}
+
+Due to the time reversibility of the model, for unrooted trees, a \emph{virtual} root can be used, that is,
+some arbitrary node is selected as the top node towards which the recursive algorithm is applied.
+
+% For the same reason, a virtual root can also be thought of as an additional node added on a branch of the tree.
+% The calculation is invariant to the exact position of this node along the branch.
+% which might coincide with an actual node of the tree
+% Then, the CLVs of the adjacent nodes as well as the branch length can be used
+% to compute the \emph{edge likelihood}, which is identical to the per-site likelihood.
+% For a virtual root on the branch between nodes {\sffamily R} and {\sffamily V}, as shown in \figref{fig:clv_fpa},
+% the edge likelihood of an alignment site $s$ is
+
+An alternative way of computing the per-site likelihood is what we here call the \emph{edge likelihood}.
+Again due to time reversibility, instead of using the CLV at the root node,
+one can use the CLVs of two adjacent nodes and the corresponding branch length for the computation.
+In that case, state transitions along the branch have to be additionally accounted for in the computation.
+For the branch between nodes {\sffamily R} and {\sffamily V}, as shown in \figref{fig:clv_fpa},
+the edge likelihood of an alignment site $s$ is
+
+\begin{equation}
+    \label{ch:Foundations:sec:MLTreeInference:eq:edge_likelihood}
+    \mathcal{L}_{s} = \sum_{i \in N} \sum_{j \in N} \pi_i \cdot \mbox{CLV}^{(R)}_{s,i} \cdot
+    p_{ij}(r \cdot b_{RV}) \cdot \mbox{CLV}^{(V)}_{s,j}
+\end{equation}
+
+Finally, the overall likelihood $\mathcal{L}( \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} )$
+for the entire MSA can be computed.
+Generally, the sites are assumed to evolve independently,
+so that for an alignment with $m$ sites, it is simply the product of the per-site or edge likelihoods:
+
+\begin{equation}
+    \label{ch:Foundations:sec:MLTreeInference:eq:root_likelihood}
+    \mathcal{L} = \prod_{s=1}^{m} \mathcal{L}_s
+\end{equation}
+
+For computational reasons, and to avoid numerical underflow, in practice,
+the logarithm of the likelihood (\emph{log-likelihood}) is used.
+Furthermore, as identical sites yield exactly the same likelihood,
+such sites are often compressed and the respective likelihood is multiplied with an according \emph{weight}.
+Lastly, we note that the derivatives of the above likelihood functions can be obtained analytically \cite{Yang2014},
+which is needed for optimizing the branch lengths,
+as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:TreeSearch}.
 
 % ######################################################################################################################
 %         Phylogenetic Placement
