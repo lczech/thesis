@@ -760,7 +760,8 @@ For a fixed tree topology $T$, the maximum likelihood estimates
 of the branch lengths $\bar{b}$ and the model parameters $\bar{\theta}$
 are usually obtained with general-purpose numerical optimization methods.
 Since the derivatives of the PLF can be easily computed,
-the Newton-Raphson method \cite{Ypma1995} is often used for optimizing the branch lengths.
+the Newton-Raphson method \cite{Ypma1995} is often used for optimizing the branch lengths,
+see \secref{ch:Foundations:sec:MLTreeInference:sub:BLO}.
 Model parameters are commonly optimized with Brent's method \cite{Brent1971}
 or with the Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm \cite{Fletcher1987}.
 
@@ -1019,7 +1020,9 @@ We here introduce the basic computational aspects of the Maximum Likelihood meth
 For a more exhaustive description of the topic, see \cite{Yang2014}.
 We assume a fixed tree topology $T$, fix branch lengths $\bar{b}$,
 as well as a given model of sequence evolution $M$ with parameters $\bar{\theta}$.
-That is, we do not cover the tree search itself here, but describe how to compute the likelihood $\mathcal{L}$
+That is, we do not cover the tree search itself here,
+% \secref{ch:Foundations:sec:MLTreeInference:sub:TreeSearch}
+but describe how to compute the likelihood $\mathcal{L}$
 (\eqnref{ch:Foundations:sec:MLTreeInference:eq:likelihood}) for a given MSA under these conditions.
 
 A central point of the ML method is to account for the unknown states at the inner nodes of the tree.
@@ -1164,9 +1167,40 @@ For computational reasons, and to avoid numerical underflow, in practice,
 the logarithm of the likelihood (\emph{log-likelihood}) is used.
 Furthermore, as identical sites yield exactly the same likelihood,
 such sites are often compressed and the respective likelihood is multiplied with an according \emph{weight}.
-Lastly, we note that the derivatives of the above likelihood functions can be obtained analytically \cite{Yang2014},
-which is needed for optimizing the branch lengths,
-as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:TreeSearch}.
+% Lastly, we note that the derivatives of the above likelihood functions can be obtained analytically \cite{Yang2014},
+% which is needed for optimizing the branch lengths,
+% as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:TreeSearch}.
+
+% ======================================================================================================================
+%     Branch Length Optimization
+% ======================================================================================================================
+
+\subsection{Branch Length Optimization}
+\label{ch:Foundations:sec:MLTreeInference:sub:BLO}
+
+Another important aspect of the tree search
+is the optimization of the branch lengths of the tree.
+That is, for a given tree topology $T$, and a fixed model $M$ with parameters $\bar{\theta}$,
+we want to compute the branch lengths $\bar{b}$
+that maximize the likelihood $\mathcal{L}( \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} )$.
+This procedure is called \emph{branch length optimization} (BLO),
+and typically uses the Newton-Raphson method \cite{Ypma1995},
+as mentioned in \secref{ch:Foundations:sec:MLTreeInference:sub:TreeSearch}.
+
+We consider to optimize a single branch length $b$.
+In order to maximize $\mathcal{L}$, we need to find the root of the first derivative $\mathcal{L}'$.
+The Newton-Raphson method takes an initial value for $b$ and then
+iteratively approximates values that lead closer to the root:
+
+\begin{equation}
+    \label{ch:Foundations:sec:MLTreeInference:eq:BLO}
+    b_{n+1} = b_n - \frac{ \mathcal{L}' }{ \mathcal{L}'' }
+\end{equation}
+
+The algorithm stops when the change in $b$ between two iterations is below a threshold,
+that is, when then optimization \emph{converges}.
+This procedure is repeated for all branch lengths $\bar{b}$ in the tree.
+Note that the derivatives $\mathcal{L}'$ and $\mathcal{L}''$ can be obtained analytically \cite{Yang2014}.
 
 % ######################################################################################################################
 %         Phylogenetic Placement

@@ -169,20 +169,20 @@ order=-1
 
 [item:tex/m_01_foundations.tex]
 archive=true
-column=12
+column=53
 encoding=UTF-8
 highlight=LaTeX
-line=984
+line=1194
 mode=LaTeX
 open=true
 order=1
 
 [item:tex/m_02_phat.tex]
 archive=true
-column=86
+column=24
 encoding=UTF-8
 highlight=LaTeX
-line=340
+line=384
 mode=LaTeX
 open=false
 order=-1
@@ -229,22 +229,22 @@ order=-1
 
 [item:thesis.bib]
 archive=true
-column=24
+column=25
 encoding=UTF-8
 highlight=BibTeX
-line=2030
+line=2861
 mode=BibTeX
 open=true
 order=0
 
 [item:thesis.tex]
 archive=true
-column=27
+column=45
 encoding=UTF-8
 highlight=LaTeX
-line=65
+line=173
 mode=LaTeX
-open=true
+open=false
 order=2
 
 [view-settings,view=0,item:tex/f_00_titlepage.tex]
@@ -278,14 +278,14 @@ JumpList=
 ViMarks=.,9,145,[,9,137,],9,145
 
 [view-settings,view=0,item:tex/m_01_foundations.tex]
-CursorColumn=12
-CursorLine=984
+CursorColumn=53
+CursorLine=1194
 JumpList=
-ViMarks=.,974,29,[,974,28,],974,29
+ViMarks=.,1195,55,[,1195,54,],1195,55
 
 [view-settings,view=0,item:tex/m_02_phat.tex]
-CursorColumn=86
-CursorLine=340
+CursorColumn=24
+CursorLine=384
 JumpList=
 ViMarks=.,2098,11,[,2098,11,],2098,11
 
@@ -314,13 +314,13 @@ JumpList=
 ViMarks=.,357,49,[,357,35,],357,49
 
 [view-settings,view=0,item:thesis.bib]
-CursorColumn=24
-CursorLine=2030
+CursorColumn=25
+CursorLine=2861
 JumpList=
-ViMarks=.,2066,0,[,2066,0,],2066,0
+ViMarks=.,2866,0,[,2866,0,],2866,3
 
 [view-settings,view=0,item:thesis.tex]
-CursorColumn=27
-CursorLine=65
+CursorColumn=45
+CursorLine=173
 JumpList=
-ViMarks=.,105,0,[,105,0,],105,1
+ViMarks=.,179,0,[,179,0,],179,1
