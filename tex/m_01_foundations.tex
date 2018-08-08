@@ -52,16 +52,54 @@ DNA is the molecule that encodes the genetic information needed for the function
 It is structured in form of a double helix \cite{Watson1953},
 and built from two strands of molecules called \emph{nucleotides}.
 The nucleotides build the backbone of the double helix,
-and connect the two strands via opposing pairs of \emph{nucleobases}.
+and connect the two strands via opposing pairs of \emph{nucleobases}, see \figref{fig:dna_nucleobases:sub:dna_helix}.
 The redundant structure of pairs of nucleobases gives stability to the DNA molecule,
-and also serves as a mechanism of error correction when reading the genetic information.
+and also serves as a mechanism of error correction when reading the genetic information during cellular processes.
 % both of which is important for the role of DNA for information storage.
 In DNA, there are four distinct nucleobases:
 adenine (\nucleobase{A}), cytosine (\nucleobase{C}), guanine (\nucleobase{G}), and thymine (\nucleobase{T}),
-where \nucleobase{A} pairs with \nucleobase{T}, and \nucleobase{C} pairs with \nucleobase{G}, respectively.
+where \nucleobase{A} pairs with \nucleobase{T}, and \nucleobase{C} pairs with \nucleobase{G}, respectively,
+as shown in \figref{fig:dna_nucleobases:sub:nucleobases}.
 
-\todo{explain transition vs transversion?}
-\todo{picture of dna and the bases?}
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=.7\linewidth]{dna_nucleobases.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:dna_nucleobases:sub:dna_helix}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:dna_nucleobases:sub:nucleobases}
+    \end{subfigure}
+%     \begin{subfigure}{0pt}
+%         \phantomcaption
+%         \label{fig:dna_nucleobases:sub:transition_transversion}
+%     \end{subfigure}
+    \caption[DNA double helix and nucleobases]{
+        \textbf{DNA double helix and nucleobases.}
+        \subref{fig:dna_nucleobases:sub:dna_helix}
+        The double helix structure of DNA, with the backbone in gray,
+        connected by pairs of nucleobases.
+        Source: Image derived from \cite{Sponk2010}.
+        \subref{fig:dna_nucleobases:sub:nucleobases}
+        The atomic structure of the four nucleobases, and their connection to each other.
+%         Note that the diameter of the helix is about \SI{2}{\nano\meter}.
+        Source: Image derived from \cite{Yikrazuul2008a,Yikrazuul2008b}.
+%         \subref{fig:dna_nucleobases:sub:transition_transversion}
+%         Each nucleobase can mutate into any other in the course of evolution.
+%         The two different types of mutation (transitions vs. transversions) are not equally likely,
+%         due to physical properties of the nucleobases.
+    }
+    \label{fig:dna_nucleobases}
+\end{figure}
+
+% Transitions vs Transversions - not needed
+% Over the course of evolutionary times, mutations in the DNA occur, mainly due to errors in the replication process.
+% These mutations manifest in form of changed nucleobases.
+% There are two types of mutations, \emph{transition} \emph{transversions}, which are not equally likely.
+% \cite{Futuyma2013}
+% \figref{fig:dna_nucleobases:sub:transition_transversion}
 
 The sequence of nucleobases along the strands of DNA is what encodes the genetic instructions
 used by all known living organisms.
@@ -88,12 +126,6 @@ They are what is varying across generations,
 and what is selected for in the process of natural selection \cite{Dawkins1989}.
 The study of genes, variation and heredity is called \emph{genetics} \cite{Griffiths2000}.
 
-All life on this planet is related to each other and descends from a common ancestor.
-Still, it is remarkable that the basic molecular principles and mechanisms of life---%
-DNA, amino acids, and the genetic code---are virtually identical for all living organisms.
-This implies that by understanding and comparing the genetic information encoded in the DNA of different organisms,
-one can understand the diversification patterns of evolution.
-
 % ######################################################################################################################
 %         Sequence Analysis
 % ######################################################################################################################
@@ -101,7 +133,12 @@ one can understand the diversification patterns of evolution.
 \section{Sequence Analysis}
 \label{ch:Foundations:sec:SequenceAnalysis}
 
-\todo{maybe move the paragraph above to here, and make a transition}
+All life on this planet is related to each other and descends from a common ancestor.
+Still, it is remarkable that the basic molecular principles and mechanisms of life---%
+DNA, amino acids, and the genetic code---are virtually identical for all living organisms.
+This implies that by understanding and comparing the genetic information
+encoded in the genetic sequences of different organisms,
+one can understand the diversification patterns of evolution.
 
 % ======================================================================================================================
 %     Genome Sequencing
@@ -741,8 +778,8 @@ see \figref{fig:mc_state_transitions}.
 While the MC model ignores aspects such as natural selection and the molecular mechanisms of evolution,
 it describes the relative rate of changes in a way that allows multiple substitutions to occur
 along the same branch (\nucleobase{T} $\rightarrow$ \nucleobase{A} $\rightarrow$ \nucleobase{G}).
-\todo{if transition vs transversion is explained above, we need to clarify here:
-note that transition is used in two different meanings here...}
+% \todo{if transition vs transversion is explained above, we need to clarify here:
+% note that transition is used in two different meanings here...}
 
 \begin{figure}[hpbt]
     \centering
@@ -874,7 +911,7 @@ The \toolname{K80} model \cite{Kimura1980} adds a free parameter $\kappa$,
 which describes the ratio between two types of substitutions that are not equally likely to occur in evolution:
 $r_{A \leftrightarrow C} = r_{G \leftrightarrow T} = \kappa \cdot r_{A \leftrightarrow G} =
 \kappa \cdot r_{A \leftrightarrow T} = \kappa \cdot r_{C \leftrightarrow G} = \kappa \cdot r_{C \leftrightarrow T}$.
-\todo{if transition vs transversion was added earlier, add it here, too!}
+% \todo{if transition vs transversion was added earlier, add it here, too!}
 The \toolname{F81} model \cite{Felsenstein1981} instead extends the JC69
 by allowing different base frequencies: $\pi_A \neq \pi_C \neq \pi_G \neq \pi_T$.
 The \toolname{HKY85} model \cite{Hasegawa1985} combines the \toolname{K80} model and the \toolname{F81} model,
