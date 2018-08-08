@@ -1073,7 +1073,7 @@ CL(\nucleobase{A}) $= 1$, and CL(\nucleobase{C}) $=$ CL(\nucleobase{G}) $=$ CL(\
 
 After the tip CLVs have been initialized, the algorithm traverses up the tree, see \figref{fig:clv_fpa}.
 This can be thought of as moving along the branches towards a parent node,
-which induces mutations in form of state transitions.
+which induces the possibility of state transitions.
 This step is thus where the model $M$ is employed (see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}).
 As we assumed a fix evolutionary rate $r$,
 we can infer the time $t$ between two nodes from the branch length $b$ between them: $t = r \cdot b$.
@@ -1090,7 +1090,7 @@ At a parent node whose children have been computed, we can now apply the recursi
 For instance, in the topology shown in \figref{fig:clv_fpa}, the CLV of an inner node {\sffamily V}
 can be computed given its children {\sffamily L} and {\sffamily M}.
 For the computation, the CLVs of the two child nodes,
-and the branch lengths $b$ and the $P$-matrices of the branches towards the parent are needed.
+as well as the branch lengths $b$ and the $P$-matrices of the branches towards the parent are needed.
 % and the respective branch lengths $b_{LV}$ and $b_{MV}$.
 Then, a single entry of the CLV, that is,
 the conditional likelihood of node {\sffamily V} to be in state $c$ at site $s$, is
