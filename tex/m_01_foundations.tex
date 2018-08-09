@@ -908,7 +908,7 @@ in which case they are called the \emph{empirical} base frequencies.
 
 There are also more restrictive models, which have fewer free parameters,
 and are thus more robust if data for estimating them is sparse, at the expense of descriptiveness.
-The Jukes-Cantor model (\toolname{JC69}) \cite{Jukes1969} has no free parameter \todo{it does have one according to wikipedia!}
+The Jukes-Cantor model (\toolname{JC69}) \cite{Jukes1969} has no free parameter
 and assumes equal substitution rates $r_{i \leftrightarrow j} = 1$, $i \neq j$
 and equal base frequencies $\pi_i = \sfrac{1}{4}$.
 The \toolname{K80} model \cite{Kimura1980} adds a free parameter $\kappa$,
@@ -957,7 +957,6 @@ that the alignment sites evolve independently and are identically distributed.
 However, certain regions of DNA or amino acid sequences are under higher evolutionary pressure than others,
 for example if they describe important molecular functions that are conserved in their evolutionary history.
 It is thus expected that some alignment sites evolve faster than others.
-\todo{is that actually what this expresses?}
 That is, the evolutionary rate $r$ of these sites is not constant across the alignment.
 In the context of phylogenetic inference,
 several models of \emph{rate heterogeneity among sites} have been proposed to account for this,
@@ -1037,8 +1036,8 @@ it describes the \emph{conditional likelihood} of the node to be in that state a
 given the subtree topology and its branch lengths, for the respective subset of the alignment (tip sequences).
 We here assume a set $N$ of states, that is, the sequences consist of characters $c \in N$,
 for example $N = \left\{~ \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, \nucleobase{T} ~\right\}$.
-Furthermore, for simplicity, we do not consider alignment partitioning or rate heterogeneity among sites here.
-\todo{and thus use a fixed evolutionary rate $r$}
+Furthermore, for simplicity, we do not consider alignment partitioning or rate heterogeneity among sites here,
+and thus use a fixed evolutionary rate $r$.
 Then, a CLV contains $|N|$ elements per alignment site,
 each describing the conditional likelihood of being in the corresponding state.
 For DNA data, these are CL(\nucleobase{A}), CL(\nucleobase{C}), CL(\nucleobase{G}), and CL(\nucleobase{T}).
@@ -1078,7 +1077,7 @@ After the tip CLVs have been initialized, the algorithm traverses up the tree, s
 This can be thought of as moving along the branches towards a parent node,
 which induces the possibility of state transitions.
 This step is thus where the model $M$ is employed (see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}).
-As we assumed a fix evolutionary rate $r$,
+As we assumed a fixed evolutionary rate $r$,
 we can infer the time $t$ between two nodes from the branch length $b$ between them: $t = r \cdot b$.
 % Then, in order to compute the likelihood of state changes while moving from a child node to its parent,
 % the model $M$ is employed, as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}.
@@ -1200,8 +1199,8 @@ iteratively approximates values that lead closer to the root:
     b_{n+1} = b_n - \frac{ \mathcal{L}' }{ \mathcal{L}'' }
 \end{equation}
 
-Note that the derivatives $\mathcal{L}'$ and $\mathcal{L}''$ can be obtained analytically \cite{Yang2014}.
-\todo{In every iteration, L and its derivatives have to be computed, expensive etc!}
+Note that the derivatives $\mathcal{L}'$ and $\mathcal{L}''$ can be obtained analytically \cite{Yang2014},
+and have to be computed in every iteration.
 The algorithm stops when the change in $b$ between two iterations is below a threshold,
 that is, when then optimization \emph{converges}.
 This procedure is repeated for all branch lengths $\bar{b}$ in the tree.
