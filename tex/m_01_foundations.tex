@@ -875,7 +875,6 @@ If the Markov process reached equilibrium after running long enough,
 it can be interpreted as having generated the sequences of the MSA.
 In that case, $\Pi$ is the \emph{equilibrium base composition} of the MSA,
 and $\pi_i$ are the \emph{equilibrium} or \emph{stationary base frequencies} of the MSA.
-which can be estimated from the character frequencies in the MSA.
 
 As mentioned before, most models of DNA evolution assume a \emph{time-reversible} Markov process,
 which means that $\pi_{i} q_{ij} = \pi_{j} q_{ji} ~ \forall \, i \neq j$.
@@ -904,13 +903,14 @@ As the sum of the base frequencies must be $1$,
 and as the substitution rates are usually normalized by requiring that $r_{G \leftrightarrow T} = 1.0$,
 the \toolname{GTR} model has a total of \num{8} free parameters
 (that is, \num{3} base frequencies, and \num{5} substitution rates).
-The base frequencies can also be estimated from the given MSA,
+The base frequencies can also be estimated from the character frequencies in the given MSA,
 in which case they are called the \emph{empirical} base frequencies.
 
 There are also more restrictive models, which have fewer free parameters,
 and are thus more robust if data for estimating them is sparse, at the expense of descriptiveness.
-The Jukes-Cantor model (\toolname{JC69}) \cite{Jukes1969} has no free parameter and assumes
-equal substitution rates $r_{i \leftrightarrow j} = 1$, $i \neq j$ and equal base frequencies $\pi_i = \sfrac{1}{4}$.
+The Jukes-Cantor model (\toolname{JC69}) \cite{Jukes1969} has no free parameter \todo{it does have one according to wikipedia!}
+and assumes equal substitution rates $r_{i \leftrightarrow j} = 1$, $i \neq j$
+and equal base frequencies $\pi_i = \sfrac{1}{4}$.
 The \toolname{K80} model \cite{Kimura1980} adds a free parameter $\kappa$,
 which describes the ratio between two types of substitutions that are not equally likely to occur in evolution:
 $r_{A \leftrightarrow C} = r_{G \leftrightarrow T} = \kappa \cdot r_{A \leftrightarrow G} =
@@ -1086,14 +1086,16 @@ we can infer the time $t$ between two nodes from the branch length $b$ between t
 Then, for a given branch, we can compute the probability $p_{ij}(t)$ of a transition
 from state $i$ to state $j$ after moving along the branch, see \eqnref{ch:Foundations:sec:MLTreeInference:eq:P_matrix}.
 Note that the probability $p_{ij}$ depends on the branch length,
-meaning that for every branch (and every update in its branch length during optimization),
+meaning that for every branch (and every update in its branch length during optimization,
+see \secref{ch:Foundations:sec:MLTreeInference:sub:BLO}),
 a separate $P$-matrix has to be computed from the $Q$-matrix of the model.
 
 At a parent node whose children have been computed, we can now apply the recursion step of the algorithm.
 For instance, in the topology shown in \figref{fig:clv_fpa}, the CLV of an inner node {\sffamily V}
 can be computed given its children {\sffamily L} and {\sffamily M}.
 For the computation, the CLVs of the two child nodes,
-as well as the branch lengths $b$ and the $P$-matrices of the branches towards the parent are needed.
+as well as the transition probabilities $p_{ij}$ for the branch lengths $b_{LV}$ and $b_{MV}$
+of the branches towards the parent are needed.
 % and the respective branch lengths $b_{LV}$ and $b_{MV}$.
 Then, a single entry of the CLV, that is,
 the conditional likelihood of node {\sffamily V} to be in state $c$ at site $s$, is
@@ -1140,12 +1142,13 @@ some arbitrary node is selected as the top node towards which the recursive algo
 % For a virtual root on the branch between nodes {\sffamily R} and {\sffamily V}, as shown in \figref{fig:clv_fpa},
 % the edge likelihood of an alignment site $s$ is
 
-An alternative way of computing the per-site likelihood is what we here call the \emph{edge likelihood}.
-Again due to time reversibility, instead of using the CLV at the root node,
-one can use the CLVs of two adjacent nodes and the corresponding branch length for the computation.
+An alternative way of computing the per-site likelihood is what we here call the \emph{per-site edge likelihood}.
+Instead of using the CLV at the root node,
+one can use the CLVs of two adjacent nodes and the corresponding branch length for the computation,
+again due to time reversibility.
 In that case, state transitions along the branch have to be additionally accounted for in the computation.
-For the branch between nodes {\sffamily R} and {\sffamily V}, as shown in \figref{fig:clv_fpa},
-the edge likelihood of an alignment site $s$ is
+For the branch between nodes {\sffamily R} and {\sffamily V} with branch length $b_{RV}$,
+as shown in \figref{fig:clv_fpa}, the per-site edge likelihood of an alignment site $s$ is
 
 \begin{equation}
     \label{ch:Foundations:sec:MLTreeInference:eq:edge_likelihood}
@@ -1197,10 +1200,11 @@ iteratively approximates values that lead closer to the root:
     b_{n+1} = b_n - \frac{ \mathcal{L}' }{ \mathcal{L}'' }
 \end{equation}
 
+Note that the derivatives $\mathcal{L}'$ and $\mathcal{L}''$ can be obtained analytically \cite{Yang2014}.
+\todo{In every iteration, L and its derivatives have to be computed, expensive etc!}
 The algorithm stops when the change in $b$ between two iterations is below a threshold,
 that is, when then optimization \emph{converges}.
 This procedure is repeated for all branch lengths $\bar{b}$ in the tree.
-Note that the derivatives $\mathcal{L}'$ and $\mathcal{L}''$ can be obtained analytically \cite{Yang2014}.
 
 % ######################################################################################################################
 %         Phylogenetic Placement
@@ -1208,6 +1212,8 @@ Note that the derivatives $\mathcal{L}'$ and $\mathcal{L}''$ can be obtained ana
 
 \section{Phylogenetic Placement}
 \label{ch:Foundations:sec:PhylogeneticPlacement}
+
+evol placement, phylo placement \cite{Matsen2010,Berger2011,Barbera2018}
 
 introduce ``reference tree'', as a tree inferred from reference sequences.
 
@@ -1416,6 +1422,13 @@ ML method, rappas (aln free)
 
 \section{Phylogenetic Placement Processing}
 \label{ch:Foundations:sec:PhylogeneticPlacementProcessing}
+
+% ======================================================================================================================
+%     Normalization
+% ======================================================================================================================
+
+\subsection{Normalization}
+\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:Normalization}
 
 % thus, wehn dealing with many samples, an imporatn question is how to make them comparable when differing numbres o sequences
 % the problem arises because different samples zies. can span many order sof magnitude.
