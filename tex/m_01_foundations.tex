@@ -1134,7 +1134,8 @@ The recursion is then applied to all nodes upwards the tree, until all CLVs are 
 Once all CLVs are computed, the overall likelihood $\mathcal{L}$ can be computed from the CLV of the root node.
 Given the root node {\sffamily R} as shown in \figref{fig:clv_fpa},
 the total \emph{per-site likelihood} $\mathcal{L}_s$ of an alignment site $s$ is
-accumulated from the conditional likelihoods of all states, taking their respective base frequencies into account:
+accumulated from the conditional likelihoods of all states,
+taking their respective base frequencies $\pi_i$ into account:
 
 \begin{equation}
     \label{ch:Foundations:sec:MLTreeInference:eq:root_site_likelihood}
@@ -1154,7 +1155,7 @@ some arbitrary node is selected as the top node towards which the recursive algo
 
 An alternative way of computing the per-site likelihood is what we here call the \emph{per-site edge likelihood}.
 Instead of using the CLV at the root node,
-one can use the CLVs of two adjacent nodes and the corresponding branch length for the computation,
+one can use the CLVs of any two adjacent nodes and the corresponding branch length for the computation,
 again due to time reversibility.
 In that case, state transitions along the branch have to be additionally accounted for in the computation.
 For the branch between nodes {\sffamily R} and {\sffamily V} with branch length $b_{RV}$,
@@ -1168,8 +1169,9 @@ as shown in \figref{fig:clv_fpa}, the per-site edge likelihood of an alignment s
 
 Finally, the overall likelihood $\mathcal{L}( \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} )$
 for the entire MSA can be computed.
-Generally, the sites are assumed to evolve independently,
-so that for an alignment with $m$ sites, it is simply the product of the per-site or edge likelihoods:
+For mathematical simplicity, the sites are generally assumed to evolve independently,
+although this is not the case from a biological perspective.
+Then, for an alignment with $m$ sites, the overall likelihood is simply the product of the per-site or edge likelihoods:
 
 \begin{equation}
     \label{ch:Foundations:sec:MLTreeInference:eq:root_likelihood}
@@ -1177,7 +1179,7 @@ so that for an alignment with $m$ sites, it is simply the product of the per-sit
 \end{equation}
 
 For computational reasons, and to avoid numerical underflow, in practice,
-the logarithm of the likelihood (\emph{log-likelihood}) is used.
+the logarithm of the likelihood (\emph{log-likelihood}) is typically used.
 Furthermore, as identical sites yield exactly the same likelihood,
 such sites are often compressed and the respective likelihood is multiplied with an according \emph{weight}.
 % Lastly, we note that the derivatives of the above likelihood functions can be obtained analytically \cite{Yang2014},
