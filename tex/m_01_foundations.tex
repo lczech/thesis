@@ -774,6 +774,14 @@ or with the Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm \cite{Fletcher1987
 
 So far, we assumed to have a model $M$ for describing the evolution of the traits that are used for inferring the tree.
 For sequence data, such a model yields an estimate of the evolutionary distance between the sequences of different taxa.
+Because the inference assumes homologous traits,
+the only mutations that are typically considered in aligned sequences are substitutions.
+% Gap characters in the MSA (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:SequenceAlignment}),
+% which account for indels, can then be thought of as another type of substitution.
+
+\paragraph{Markov Chain Model}
+\label{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol:par:MCModel}
+
 Most commonly, a continuous-time Markov chain (MC) is used to describe
 the evolution of a single site within a set of aligned sequences \cite{Gagniuc2017}.
 For DNA data, the MC has four states \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T},
@@ -875,6 +883,9 @@ If the Markov process reached equilibrium after running long enough,
 it can be interpreted as having generated the sequences of the MSA.
 In that case, $\Pi$ is the \emph{equilibrium base composition} of the MSA,
 and $\pi_i$ are the \emph{equilibrium} or \emph{stationary base frequencies} of the MSA.
+
+\paragraph{Time-Reversible Models}
+\label{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol:par:TimeReversibleModels}
 
 As mentioned before, most models of DNA evolution assume a \emph{time-reversible} Markov process,
 which means that $\pi_{i} q_{ij} = \pi_{j} q_{ji} ~ \forall \, i \neq j$.
