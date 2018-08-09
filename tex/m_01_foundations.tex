@@ -561,12 +561,13 @@ See \figref{fig:tree_of_life:sub:woese} for an example.
 As evolution is a processes that happens over time,
 from a biological point of view, every tree has a root.
 However, most models of DNA evolution are time-reversible,
-meaning that the direction of change in the sequences cannot be inferred from the data,
+meaning that the direction of change in the sequences cannot be inferred from the data under such models,
 see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol} for details.
 Thus, tree inference methods can also yield \emph{unrooted} trees without direction and without a root node.
-For computational reasons, but also in order to store a tree in a file,
-unrooted trees usually have a distinguished, but arbitrary, node called \emph{virtual root},
-for example in form of a so-called \emph{top-level trifurcation}.
+In these methods, for computational reasons, often a \emph{virtual root} is used,
+which is a hypothetical additional node placed on a branch of the tree.
+For tasks such as traversing a tree, but also in order to store a tree in a file,
+unrooted trees usually have a distinguished, but arbitrary, ``starting'' node called a \emph{top-level trifurcation}.
 An unrooted tree can be rooted a posteriori, for example by using an \emph{outgroup} of taxa
 that are closely related to the group of taxa of interest (the \emph{ingroup}), but not part of it.
 Then, a root node can be placed on the branch that separates the outgroup from the ingroup.
@@ -624,14 +625,18 @@ while a circular tree (\figref{fig:tree_vis_options:sub:circular}) can fit more 
     \caption[Types of phylogenetic trees]{
         \textbf{Types of phylogenetic trees.}
         Here, we show three different types of labeled, bifurcating trees.
-        Tip nodes are marked with black dots, inner nodes with white dots, and the root node (if present) with a green dot.
-        \subref{fig:tree_vis_options:sub:unrooted} An unrooted tree with five taxa.
-        \subref{fig:tree_vis_options:sub:rectangular} The same tree topology,
+        Tip nodes are marked with black dots, inner nodes with white dots,
+        and the top-level trifurcation or root node with a larger green dot.
+        \subref{fig:tree_vis_options:sub:unrooted}
+        An unrooted tree with five taxa. One node is arbitrarily selected as top-level trifurcation.
+        \subref{fig:tree_vis_options:sub:rectangular}
+        The same tree topology,
         but rooted on the inner branch that splits the taxa {\sffamily D} and {\sffamily E} from the other taxa.
         The tree is drawn in rectangular style,
         where vertical lines correspond to branch lengths.
         The horizontal lines are simply used to distribute the taxa, and have no biological interpretation.
-        \subref{fig:tree_vis_options:sub:circular} The same tree again, but this time drawn in circular style.
+        \subref{fig:tree_vis_options:sub:circular}
+        The same tree again, but this time drawn in circular style.
         Here, radial lines correspond to branch lengths, while arcs only serve drawing purposes.
     }
     \label{fig:tree_vis_options}
@@ -1068,11 +1073,14 @@ CL(\nucleobase{A}) $= 1$, and CL(\nucleobase{C}) $=$ CL(\nucleobase{G}) $=$ CL(\
     \includegraphics[width=.85\linewidth]{clv_fpa.pdf}
     \caption[Felsenstein pruning algorithm]{
         \textbf{Felsenstein pruning algorithm.}
-        An exemplary tree topology with a (virtual) root node {\sffamily R}, an inner node {\sffamily V},
-        and three other nodes {\sffamily U}, {\sffamily L}, and {\sffamily M}
-        (which can be either tips or inner nodes), and branch lengths between the nodes.
+        An exemplary tree topology with a (virtual) root {\sffamily R}, an inner node {\sffamily V},
+        and three other nodes {\sffamily U}, {\sffamily L}, and {\sffamily M},
+%         (which can be either tips or inner nodes),
+        and branch lengths between nodes.
+        Potential subtrees are marked by triangles below nodes.
 %         For the recursive computation during Felsenstein's pruning,
-%         it is irrelevant whether the last three nodes are tips or inner nodes.
+%         Because of the recursive nature of the algorithm,
+%         it is irrelevant whether the last three nodes are tips or have subtrees (marked here by triangles below them).
         \\
         Each node has a CLV assigned to it, which ``summarizes'' the subtree below it.
         A CLV stores a conditional likelihood for every alignment site and for every state.
@@ -1142,35 +1150,29 @@ taking their respective base frequencies $\pi_i$ into account:
     \mathcal{L}_{s} = \sum_{i \in N} \pi_i \cdot \mbox{CLV}^{(R)}_{s,i}
 \end{equation}
 
-Due to the time reversibility of the model, for unrooted trees, a \emph{virtual} root can be used, that is,
-some arbitrary node is selected as the top node towards which the recursive algorithm is applied.
-
-% For the same reason, a virtual root can also be thought of as an additional node added on a branch of the tree.
+Due to the time reversibility of the model, for unrooted trees, a \emph{virtual} root can be used,
+that is, an additional node that is presumed to be present on a branch of the tree.
 % The calculation is invariant to the exact position of this node along the branch.
 % which might coincide with an actual node of the tree
-% Then, the CLVs of the adjacent nodes as well as the branch length can be used
-% to compute the \emph{edge likelihood}, which is identical to the per-site likelihood.
-% For a virtual root on the branch between nodes {\sffamily R} and {\sffamily V}, as shown in \figref{fig:clv_fpa},
-% the edge likelihood of an alignment site $s$ is
-
-An alternative way of computing the per-site likelihood is what we here call the \emph{per-site edge likelihood}.
-Instead of using the CLV at the root node,
-one can use the CLVs of any two adjacent nodes and the corresponding branch length for the computation,
-again due to time reversibility.
+If for example the node {\sffamily R} in \figref{fig:clv_fpa} represents a virtual root,
+the two branches between nodes {\sffamily U} and {\sffamily V}
+are actually one branch with branch length $b_{UV} = b_{UR} + b_{VR}$.
+Then, an alternative way of computing the per-site likelihood is what we here call the (per-site) \emph{edge likelihood}.
+Instead of using the CLV at the virtual root {\sffamily R}, we can use the CLVs of {\sffamily U} and {\sffamily V},
+and the corresponding branch length $b_{UV}$ for the computation.
 In that case, state transitions along the branch have to be additionally accounted for in the computation.
-For the branch between nodes {\sffamily R} and {\sffamily V} with branch length $b_{RV}$,
-as shown in \figref{fig:clv_fpa}, the per-site edge likelihood of an alignment site $s$ is
+The per-site edge likelihood of an alignment site $s$ can then be computed as
 
 \begin{equation}
     \label{ch:Foundations:sec:MLTreeInference:eq:edge_likelihood}
-    \mathcal{L}_{s} = \sum_{i \in N} \sum_{j \in N} \pi_i \cdot \mbox{CLV}^{(R)}_{s,i} \cdot
-    p_{ij}(r \cdot b_{RV}) \cdot \mbox{CLV}^{(V)}_{s,j}
+    \mathcal{L}_{s} = \sum_{i \in N} \sum_{j \in N} \pi_i \cdot \mbox{CLV}^{(U)}_{s,i} \cdot
+    p_{ij}(r \cdot b_{UV}) \cdot \mbox{CLV}^{(V)}_{s,j}
 \end{equation}
 
 Finally, the overall likelihood $\mathcal{L}( \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} )$
 for the entire MSA can be computed.
 For mathematical simplicity, the sites are generally assumed to evolve independently,
-although this is not the case from a biological perspective.
+although this is not expected to be the case from a biological perspective.
 Then, for an alignment with $m$ sites, the overall likelihood is simply the product of the per-site or edge likelihoods:
 
 \begin{equation}
