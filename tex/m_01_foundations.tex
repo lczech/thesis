@@ -114,7 +114,7 @@ This is described by the central dogma of molecular biology \cite{Crick1958,Cric
 First, DNA is \emph{transcribed} into the intermediary ribonucleic acid (RNA),
 which is then \emph{translated} into the actual protein.
 
-In each step of this process, the alphabet used to encode information differs.
+In each step of this process, the molecular alphabet used to encode information differs.
 While DNA uses the four nucleobases as described above,
 in RNA, the nucleobase uracil (\nucleobase{U}) is used instead of thymine (\nucleobase{T}).
 Proteins on the other hand are (mostly) build from a set of \num{20} standard amino acids.
@@ -219,11 +219,14 @@ Each sample from such an environment then represents a geographical location, a 
 The DNA of all organisms being present in a sample is sequenced,
 resulting in a large number of reads per sample.
 These reads are anonymous, as it is unclear to which organism they originally belonged.
-
 The study of these data, that is, genetic material from environmental samples, is called \emph{metagenomics} \cite{Oulas2015}.
+
+% \paragraph{Key Tasks}
+% \label{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics:par:KeyTasks}
+
 % A first step is often to generate a genetic profile of the environment,
 % that is, to estimate the diversity of the organisms in the sample.
-A first step in such studies is often to characterize the reads obtained from an environment
+A first step in metagenomic studies is often to characterize the reads obtained from an environment
 in terms of \emph{reference sequences} of known species.
 Reads that are similar to (parts of) reference sequences can be assigned to them,
 while reads with low similarity to known sequences might indicate novel, undescribed species \cite{Temperton2012}.
@@ -263,6 +266,9 @@ short enough to be sequenced with current technology,
 and have enough variation between species to distinguish between them,
 but have low variation within species \cite{Kress2008}.
 
+% \paragraph{Typical Processing}
+% \label{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics:par:TypicalProcessing}
+
 In many metagenomic studies of \taxonname{bacteria} and \taxonname{eukaryota},
 the 16S \cite{Weisburg1991} and 18S \cite{Meyer2010} rRNA regions are used as marker genes,
 respectively \cite{Woese1977,Woese1990}.
@@ -279,6 +285,8 @@ A recent alternative to using PCR for obtaining reads from these regions are $_{
 In this approach, shotgun sequencing is used to get reads from the whole genomes of the organisms in a sample.
 These reads are then filtered to only contain reads from the 16S region (for \taxonname{bacteria}),
 which capture the diversity of the sample without bias.
+
+\todo{OTU clustering?}
 
 Because of the ubiquity of the 16S and 18S rDNA regions in organisms and, consequently, in sequencing studies,
 many databases provide reference sequences for these marker regions.
@@ -1172,6 +1180,9 @@ The per-site edge likelihood of an alignment site $s$ can then be computed as
     p_{ij}(r \cdot b_{UV}) \cdot \mbox{CLV}^{(V)}_{s,j}
 \end{equation}
 
+This way of calculating the edge likelihood $\mathcal{L}_s$ works for any two adjacent nodes,
+if their respective CLVs have been computed to represent the two subtrees induced by the branch between the nodes.
+
 Finally, the overall likelihood $\mathcal{L}( \mbox{MSA} ~|~ T, \bar{b}, M, \bar{\theta} )$
 for the entire MSA can be computed.
 For mathematical simplicity, the sites are generally assumed to evolve independently,
@@ -1230,73 +1241,245 @@ This procedure is repeated for all branch lengths $\bar{b}$ in the tree.
 \section{Phylogenetic Placement}
 \label{ch:Foundations:sec:PhylogeneticPlacement}
 
-evol placement, phylo placement \cite{Matsen2010,Berger2011,Barbera2018}
-
-introduce ``reference tree'', as a tree inferred from reference sequences.
-
-. common use case: fixed tree, selected by experts to consist of know, described taxa
-to represent the diversity expected from an environment.
-
-
-Since the amount of sequence data produced in metagenomic studies can be quite substantial,
+In studies of sequence data, one of the most common tasks is a phylogenetic analysis of the data,
+that is, to infer the evolutionary context of the sequences.
+However, since the amount of sequence data produced in typical metagenomic studies can be quite substantial,
 computational challenges and bottlenecks arise \cite{Scholz2012}.
+In particular, both calculating an MSA and inferring a phylogeny are NP-hard \cite{Just2001,Chor2005},
+and thus impractical or infeasible for large datasets.
+Furthermore, metagenomic reads are often short, and hence lack phylogenetic signal
+to robustly infer a tree and to properly resolve their relationships.
 
+Thus, \emph{phylogenetic placement}, also called \emph{evolutionary placement},
+has been developed for conducting phylogenetic analyses of such data,
+as implemented in tools such as
+\toolname{pplacer} \cite{Matsen2010}, \toolname{RAxML-EPA} \cite{Berger2011}, and \toolname{EPA-ng} \cite{Barbera2018}.
+% cited more than 630 times (as of 2018-07-01)
+Instead of resolving the phylogeny of a set of metagenomic sequences,
+phylogenetic placement treats each sequence, called a \emph{\acl{QS}}\acused{QS} (\acs{QS}), separately.
+It evaluates how these \acp{QS} relate to an existing \emph{\acl{RT}}\acused{RT} (\acs{RT}) based on known reference sequences.
+For each \ac{QS}, it computes the probabilities of \emph{placing} the sequence on the branches of the \ac{RT},
+% In other words, it maps the \acp{QS} of interest onto the branches of an \ac{RT},
+thereby classifying them into a phylogenetic context of related sequences,
+without the need to resolve relationships between the \acp{QS}.
 
-mention that epa ng can use all the model stuff explaine above: subst models, rate hetero, etc
-allows gtr and always uses gamma
+In the most common use case, the \acp{QS} are reads or amplicons from environmental samples;
+most often barcoding regions or marker genes are used (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}).
+The \ac{RT} and the reference sequences it represents are typically assembled by the user
+so that they capture the expected species diversity in the samples.
+We however here propose an automated approach for assembling suitable sets of reference sequences,
+see \secref{ch:AutomaticTrees}.
+\todo{this should be Chapter instead of Section...}
+Distinct samples from one study are typically placed on the same underlying \ac{RT}
+in order to facilitate comparisons between the samples, see \secref{ch:Foundations:sec:PhylogeneticPlacementAnalysis}.
+% Such a mapping also elucidates the evolutionary distance between the query and the reference sequences,
+% see \secref{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:Distances}.
+
+% The result of phylogenetic placement is a mapping of the query sequences to the branches of the reference tree.
+% In brief, phylogenetic placement calculates the most probable insertion branches for each given \acf{QS} on a \acf{RT}.
+
+% In short, for a given \acf{QS}, phylogenetic placement computes a mapping of the \ac{QS}
+% to the most closely related branches of a fixed \acf{RT} based on known reference sequences.
+% Phylogenetic placement uses a fixed \acf{RT} based on known reference sequences to compute a mapping
+% of \acfp{QS} to the branches of the tree that are most closely related to the \ac{QS}.
+% This mapping classifies the \acp{QS} (e.g., sequences from a metagenomic study) into a phylogenetic context
 
 % ======================================================================================================================
-%     Motivation
+%     Pipeline and Computation
 % ======================================================================================================================
 
-\subsection{Motivation}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Motivation}
+\subsection{Pipeline and Computation}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PipelineAndComputation}
+
+% \todo{pipeline diagram, data flow, etc, reference to chapters?!}
+
+% \paragraph{Preparation}
+% \label{ch:Foundations:sec:PhylogeneticPlacement:sub::par:Preparation}
+
+We here assume to have given a set of suitable reference sequences, their alignment, and an \ac{RT} inferred from them.
+As phylogenetic placement used a maximum likelihood criterion, the \ac{RT} has to be strictly bifurcating.
+Prior to the placement, the \acp{QS} need to be aligned against the reference alignment of the \ac{RT}
+by programs such as \toolname{PaPaRa} \cite{Berger2011a,Berger2012} or \toolname{hmmalign} \cite{Eddy1998,Eddy2009},
+see also \secref{ch:Foundations:sec:SequenceAnalysis:sub:SequenceAlignment}.
+The input to phylogenetic placement are then the \acf{RT}, its underlying alignment, and the aligned \acfp{QS}.
+
+\paragraph{Computation for one Query Sequence}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PipelineAndComputation:par:ComputingQuerySequence}
+
+% The placement is then conducted for each \ac{QS} separately
+% by initially inserting a \ac{QS} as a new tip into a branch of the tree,
+% then re-optimizing the branch lengths that are most affected by the insertion,
+% and thereafter evaluating the resulting likelihood score of the tree.
+% The \ac{QS} is then removed from the current branch and subsequently placed into all other branches of the \ac{RT}.
+
+The placement is conducted for each \ac{QS} separately, always using the same fixed \ac{RT} as a starting point.
+Each branch of the tree is evaluated as a potential \emph{placement location} of the \ac{QS},
+which indicates how likely the branch is to be the ancestor of the \ac{QS}.
+In \figref{fig:tiny_tree},
+the procedure for one \ac{QS} and one branch (between nodes {\sffamily D} and {\sffamily P}) is shown:
+The sequence is inserted as a new tip node {\sffamily Q} on the branch,
+connected to it by a new \emph{pendant} branch and a new node {\sffamily C}.
+This splits the original branch into two parts, called the \emph{distal} and the \emph{proximal} branch, respectively,
+which are named according to the direction of the root of the tree.
+Note that the tree can also be unrooted, in which case a top-level trifurcation is typically used as root.
+
+\begin{figure}[pthb]
+    \centering
+    \includegraphics[width=.7\linewidth]{tiny_tree.pdf}
+    \caption[Terminology of a phylogenetic placement]{
+        \textbf{Terminology of a phylogenetic placement.}
+        The nodes {\sffamily D} and {\sffamily P} belong to the reference tree (RT).
+        When placing a query sequence (QS), the branch between them %{\sffamily D} and {\sffamily P}
+        is split into two parts by a new node {\sffamily C},
+        which serves as the attachment point for another new node {\sffamily Q} that represents the QS.
+        The \emph{pendant} branch leads to {\sffamily Q}.
+        The original branch is split into the \emph{proximal} branch, which leads towards the root of the RT,
+        and the \emph{distal} branch, which leads away from the root.
+    }
+    \label{fig:tiny_tree}
+\end{figure}
+
+In the next step, the branch lengths of the tree are optimized,
+as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:BLO}.
+After the optimization, the sum of the lengths of the distal and proximal branches is not necessarily equal
+to the original branch length between {\sffamily D} and {\sffamily P}.
+Thus, typically, the two lengths are proportionally rescaled to maintain this equality.
+
+Lastly, the likelihood of the tree with the newly attached sequence is evaluated
+as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputation}.
+Note that the likelihood computation uses the MSA (extended by the query sequence),
+the tree topology and branch lengths, as well as the model and its parameters as before,
+which are however omitted in the following, for simplicity of notation.
+The model of nucleotide evolution should be the same that was used when inferring the tree,
+see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}.
+% mention that epa ng can use all the model stuff explaine above: subst models, rate hetero, etc
+After this, the newly created nodes on the branch are removed again, thus restoring the original reference tree.
+
+The above procedure is repeated for every branch $i$ of the tree $T$,
+yielding a set of likelihood scores $\mathcal{L}(i)$ for each possible placement location.
+Thus, for each branch of the tree, the process yields a so-called \emph{placement} of the \ac{QS},
+that is, an optimized position on the branch, along with a likelihood score for the whole tree.
+The likelihood scores for a \ac{QS} are then transformed into probabilities,
+which quantify the uncertainty of placing the sequence on the respective branch \cite{Strimmer2002,VonMering2007}.
+The probability of placing a \ac{QS} on a branch $q$ is called the \emph{\acl{LWR}}\acused{LWR} (\acs{LWR}),
+and is calculated relative to the other branches $i$ of the tree $T$ as
+
+\begin{equation}
+    \label{ch:Foundations:sec:PhylogeneticPlacement:eq:LWR}
+    \mbox{LWR}(q) =  \frac{ \mathcal{L}( q )}{ \sum_{i \in T} \mathcal{L}( i )}
+\end{equation}
+
+By construction, the sum of the \acp{LWR} of all branches for a single \ac{QS} is $1.0$.
+It can thus be interpreted as a probability distribution over the branches of the tree,
+as shown in \figref{fig:tree_epa}.
+For most use cases, the \acp{LWR} and the respective placement on the branches are the most important values,
+while pendant lengths are rarely used in downstream analyses.
+However, long pendant lengths can indicate that the \ac{RT} is missing sequences that are closely related to the \ac{QS}.
+
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=.6\linewidth]{pppp/tree_epa.pdf}
+    \caption[Phylogenetic Placement of a Query Sequence]{
+        \textbf{Phylogenetic Placement of a Query Sequence.}
+        Each branch of the reference tree is tested as a potential insertion position, called a \emph{placement}
+        (blue dots; pendant lengths are ignored here).
+        Note that placements have a specific position on their branch, due to the branch length optimization process.
+        A probability of how likely it is that the sequence belongs to a specific branch is computed
+        (numbers next to dots),
+        which is called the \emph{likelihood weight ratio} (LWR).
+%         based on the maximum likelihood score of the whole tree. %(that is, including the query sequence)
+        The bold number (0.7) denotes the most probable placement of the sequence.
+    }
+    \label{fig:tree_epa}
+\end{figure}
+
+\paragraph{Accelerations}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PipelineAndComputation:par:Accelerations}
+
+The most expensive part of the placement computation are the branch lengths optimizations.
+Thus, several techniques have been developed to accelerate the placement process \cite{Barbera2018}.
+
+Firstly, above, all branches of the tree were optimized when evaluation a placement location,
+which gives the most accurate results.
+In practice however, it suffices to only optimize the three branches of the placement location
+without losing too much accuracy.
+
+Secondly, because the reference tree is fixed (except for the newly created nodes),
+the CLVs of all possible subtrees can be precomputed,
+which drastically accelerates the likelihood evaluation.
+Using \figref{fig:tiny_tree} as an example,
+with two CLVs of the nodes {\sffamily D} and {\sffamily P}, and one application of the Felsenstein Pruning Algorithm
+(see \secref{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputations:par:FPA}),
+the CLV of node {\sffamily C} can be computed.
+Then, the final likelihood can be evaluated as the edge likelihood of the pendant edge,
+using this CLV as well as the pseudo-CLV of node {\sffamily Q}.
+
+Thirdly, further acceleration can be achieved with a \emph{pre-placement} heuristic:
+A first approximate evaluation of a placement location can be conducted by using
+distal and proximal lengths based on the respective original branch length of the tree, and a fixed default pendant length.
+Then, only the most likely fraction of locations is thoroughly evaluated, that is, including branch length optimizations.
+This way, millions or even billions of sequences can be placed within acceptable time \cite{Barbera2018}.
+This is however a heuristic that might lead to suboptimal results by ignoring placement locations
+whose \ac{LWR} is significantly improved by the branch length optimization process.
+If the \ac{RT} is however well suited for the \acp{QS}, this situation is generally not expected to occur.
+
+\paragraph{Placement Result}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PipelineAndComputation:par:PlacementResults}
+
+The placement process is repeated independently for every \ac{QS}.
+That is, for each \ac{QS}, the algorithm starts calculating placements from scratch on the original \ac{RT}.
+The result thus classifies each \ac{QS} in the phylogenetic context of the \ac{RT},
+without resolving the evolutionary relationships between the \acp{QS}.
+
+The data is usually stored in so-called \fileformat{jplace} files \cite{Matsen2012},
+which is a standard based on the \fileformat{JSON} format \cite{JsonMemo,JsonStandard}.
+It stores the \ac{RT} in \fileformat{Newick} format, including tip names and branch lengths,
+and extended by a post-order numbering of the edges to be referenced by the placements.
+The main part of the file is a list of lists:
+For each \ac{QS}, its list of placements is stored.
+A placement is described by its edge number (referencing the \ac{RT}),
+the \ac{LWR}, the pendant length, and the distal length.
+The proximal length is usually omitted, as it can be inferred from the branch length of the tree.
+Furthermore, the format can summarize multiple identical \acp{QS}
+by allowing several names for each list of placements,
+where each name can also have a weight (called its \emph{multiplicity}).
+Lastly, usually not all placement locations are stored in the file,
+as the ones with low \ac{LWR} do not contribute much to post-analysis methods anyway.
+
+% In summary, the result of a phylogenetic placement analysis is a mapping of the \acp{QS} in a sample
+% to positions on the branches of the \ac{RT}.
+% Each such position, along with the corresponding \ac{LWR}, is called a placement of the \ac{QS}.
+% The result of phylogenetic placement is a mapping of each \ac{QS} (e.g., environmental reads)
+% to positions on the branches of the \ac{RT}, amended by probabilities in form of their likelihood weight ratios.
+% Each \ac{QS} is thus represented by its placement positions, which are also called its placements.
+% along with the respective likelihood weight ratios.f
+
+% Each such sample represents a geographical location, a body site, a point in time, etc.
+% In the following, we represent a sample by the placement locations of its metagenomic \acp{QS},
+% including the respective per-branch \acp{LWR}.
+% Furthermore, for a specific analysis, we assume the standard use case,
+% that is, all placements were computed on the same fixed \acf{RT} and \acl{RA}.
+
+% ######################################################################################################################
+%         Phylogenetic Placement Analysis
+% ######################################################################################################################
+
+\section{Phylogenetic Placement Analysis}
+\label{ch:Foundations:sec:PhylogeneticPlacementAnalysis}
+
+A phylogenetic placement can be carried out {\em if} the \acp{QS} can be aligned to the reference alignment.
+Often, barcoding regions such as 16S or 18S are used,
+but there also exist studies that use different, or even a set of, maker genes \citep{Sunagawa2013a}.
+Furthermore, other types of sequences such as $_{\text{mi}}$tags %\textsubscript{mi}tags
+\citep{Logares2014} can be used.
 
 
-problem with ngs data:
-msa is NP-hard \cite{Just2001}.
-inferring tree for this many sequences is also NP-hard \cite{Chor2005} even harder (over exp.), plus
-short sequences (not phylo signal), so cannot resolve relationtips between sequences
+\paragraph{Variants and Derived Tools}
+% \label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub::par:}
 
-
-% although the methods generally are applicable to both.
-A typical task in metagenomic studies is to identify and classify these sequences with respect
-to known reference sequences, either in a taxonomic or phylogenetic context.
-% another typical task: to discover novel diversity. not here.
-
-Conventional methods like \toolname{Blast} \cite{Altschul1990} are based on sequence similarity.
-Such methods are fast, but only attain satisfying accuracy levels
-if the query sequences (e.g., the environmental reads or amplicons) are sufficiently similar to the reference sequences.
-Furthermore, the best \toolname{Blast} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
-% \todo{Mention further methods here, for example Vervier 2015}
-This is particularly true for environments where available reference databases
-do not exhibit sufficient taxon coverage \citep{Mahe2017}.
-As insufficient taxon coverage cannot be detected by methods that are based on sequence similarity,
-they can potentially bias downstream analyses.
-
-maybe cite Tanaseichuk2014 ``Phylogeny-based classification of microbial communities'', if fitting.
-
-Alternatively, so-called phylogenetic (or evolutionary) placement methods \cite{Matsen2010,Berger2011,Barbera2018}
-identify query sequences based on a phylogenetic tree of reference sequences.
-Thereby, they incorporate information about the evolutionary history of the species under study
-and hence provide a more accurate means for read identification.
-The result of phylogenetic placement is a mapping of the query sequences to the branches of the reference tree.
-Such a mapping also elucidates the evolutionary distance between the query and the reference sequences.
-
-This information represents useful biological knowledge \emph{per se}.
-For example, the classification of query sequences can be summarized by means of sequence abundances \cite{Pace1997,Hugenholtz1998},
-or to obtain taxonomic annotations \cite{Kozlov2016}.
-The data can also be utilized to derive further knowledge or hypotheses.
-Existing methods such as Edge PCA and Squash Clustering \cite{Matsen2011a} are, for instance, able
-to visualize differences between sets of metagenomic samples,
-or to cluster samples based on placement similarity.
-Note that distinct samples from one study are typically mapped to the same underlying reference tree,
-thus facilitating such comparisons.
-
-
-
-phylogenetic placement \cite{Matsen2010,Berger2011,Barbera2018}, cited more than 630 times (as of 2018-07-01)
-considered an established method
+there is also a recent approach that yields comparable results (also jplace),
+but uses an alignment-free, non ML approach \cite{Linard2018}.
+rappas (aln free)
 
 There also exist variants of phylogenetic placement that use maximum parsimony \cite{Berger2011}
 and minimum evolution \cite{Filipski2015} instead of maximum likelihood,
@@ -1308,94 +1491,47 @@ genome and metagenome analysis \cite{Darling2014},
 taxonomic identification and phylogenetic profiling \cite{Nguyen2014}, and
 identification and correction of taxonomically mislabeled sequences \cite{Kozlov2016}.
 
+Furthermore, phylogenetic placement is used in a variety of derived tools,
+such as \toolname{(m)PTP} (species delimitation; \cite{Zhang2013,Kapli2017}),
+\toolname{SEPP} (boosting; \cite{Mirarab2012}),
+\toolname{PhyloSift} (metagenome analysis; \cite{Darling2014}),
+\toolname{Sativa} (identification and correction of taxonomically mislabeled sequences; \cite{Kozlov2016})
+and \toolname{TIPP} (taxonomic identification and phylogenetic profiling; \cite{Nguyen2014}).
+
 combine 1,010 more citations (as of 2018-07-01)
 see also recent art version
 
-there is also a recent approach that yields comparable results (also jplace), but uses an alignment-free, non ML approach \cite{Linard2018}.
+
+\paragraph{Use Cases and Downstream}
+% \label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub::par:}
+
+The information of phylo placement represents useful biological knowledge \emph{per se}.
+For example, the classification of query sequences can be summarized by means of sequence abundances \cite{Pace1997,Hugenholtz1998},
+or to obtain taxonomic annotations \cite{Kozlov2016}.
+The data can also be utilized to derive further knowledge or hypotheses.
+Existing methods such as Edge PCA and Squash Clustering \cite{Matsen2011a} are, for instance, able
+to visualize differences between sets of metagenomic samples,
+or to cluster samples based on placement similarity.
 
 
-aligning
+% although the methods generally are applicable to both.
+A typical task in metagenomic studies is to identify and classify these sequences with respect
+to known reference sequences, either in a taxonomic or phylogenetic context.
+another typical task: to discover novel diversity. not here.
 
-kommt unten noch mal!
+Conventional methods like \toolname{Blast} \cite{Altschul1990} are based on sequence similarity.
+Such methods are fast, but only attain satisfying accuracy levels
+if the query sequences (e.g., the environmental reads or amplicons) are sufficiently similar to the reference sequences.
+Furthermore, the best \toolname{Blast} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
+\todo{Mention further methods here, for example Vervier 2015}
+This is particularly true for environments where available reference databases
+do not exhibit sufficient taxon coverage \citep{Mahe2017}.
+As insufficient taxon coverage cannot be detected by methods that are based on sequence similarity,
+they can potentially bias downstream analyses.
 
-, using programs such as \toolname{PaPaRa} \citep{Berger2011a,Berger2012} or
-\toolname{hmmalign}, which is a subprogram of the \toolname{HMMER} suite \citep{Eddy1998,Eddy2009}.
-
-% ======================================================================================================================
-%     Introduction
-% ======================================================================================================================
-
-\subsection{Introduction}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Introduction}
-
-\todo{pipeline diagram, data flow, etc, reference to chapters?!}
-
-In brief, phylogenetic placement calculates the most probable insertion branches for each given \acf{QS} on a \acf{RT}.
-The \acp{QS} are reads or amplicons from environmental samples; most often barcoding regions or marker genes are used.
-The \ac{RT} and the reference sequences it represents are typically assembled by the user
-so that they capture the expected species diversity in the samples.
-Nonetheless, we recently presented an automated approach
-for selecting and constructing appropriate reference sequences from large sequence databases \cite{Czech2018}.
-As phylogenetic placement used a maximum likelihood criterion, the \ac{RT} has to be strictly bifurcating.
-Prior to the placement, the \acp{QS} need to be aligned against the reference alignment of the \ac{RT} by programs such as
-\toolname{PaPaRa} \cite{Berger2011a,Berger2012} or
-\toolname{hmmalign}, which is part of the \toolname{HMMER} suite \cite{Eddy1998,Eddy2009}.
-The placement is then conducted by initially inserting one \ac{QS} as a new tip into a branch of the tree,
-then re-optimizing the branch lengths that are most affected by the insertion,
-and thereafter evaluating the resulting likelihood score of the tree under a given model of nucleotide evolution,
-such as the Generalized Time-Reversible (GTR) model \cite{Tavare1986}.
-The \ac{QS} is then removed from the current branch and subsequently placed into all other branches of the \ac{RT}.
-
-Thus, for each branch of the tree, the process yields a so-called \emph{placement} of the \ac{QS},
-that is, an optimized position on the branch, along with a likelihood score for the whole tree.
-The likelihood scores for a \ac{QS} are then transformed into probabilities,
-which quantify the uncertainty of placing the sequence on the respective branch \cite{Strimmer2002,VonMering2007}.
-Those probabilities are called \acp{LWR}.
-The accumulated \ac{LWR} sum over all branches for a single \ac{QS} is $1.0$.
-\figref{fig:tree_epa} shows an example depicting the placements of one \ac{QS}, including the respective \acp{LWR}.
-
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=.6\linewidth]{pppp/tree_epa.pdf}
-    \caption[Phylogenetic Placement of a Query Sequence]{
-        \textbf{Phylogenetic Placement of a Query Sequence.}
-        Each branch of the reference tree is tested as a potential insertion position, called a ``placement'' (blue dots).
-        Note that placements have a specific position on their branch, due to the branch length optimization process.
-        A probability of how likely it is that the sequence belongs to a specific branch is computed
-        (numbers next to dots),
-        which is called the \emph{likelihood weight ratio} (LWR).
-%         based on the maximum likelihood score of the whole tree. %(that is, including the query sequence)
-        The bold number (0.7) denotes the most probable placement of the sequence.
-    }
-    \label{fig:tree_epa}
-\end{figure}
-
-This process is repeated for every \ac{QS}.
-Note that the placement process is conducted {\em independently} for each \ac{QS}.
-% Shorter: This placement process is conducted independently for each sequence.
-That is, for each \ac{QS}, the algorithm starts calculating placements from scratch on the original \ac{RT}.
-%This enables parallelization,
-%and avoids unstable trees, which might result from adding too many sequences of short length to the tree.
-
-In summary, the result of a phylogenetic placement analysis is a mapping of the \acp{QS} in a sample
-to positions on the branches of the \ac{RT}.
-Each such position, along with the corresponding \ac{LWR}, is called a placement of the \ac{QS}.
-% The result of phylogenetic placement is a mapping of each \ac{QS} (e.g., environmental reads)
-% to positions on the branches of the \ac{RT}, amended by probabilities in form of their likelihood weight ratios.
-% Each \ac{QS} is thus represented by its placement positions, which are also called its placements.
-% along with the respective likelihood weight ratios.f
-% total: sum up. placement profile. imbalance. explain in later chapter.
-% Here, we use these sample profiles to discover: clusters, correlation with meta-data.
-
-\todo{besser unterbringen}
-The data is usually stored in so-called \fileformat{jplace} files \cite{Matsen2012}.
-
-% Each such sample represents a geographical location, a body site, a point in time, etc.
-In the following, we represent a sample by the placement locations of its metagenomic \acp{QS},
-including the respective per-branch \acp{LWR}.
-Furthermore, for a specific analysis, we assume the standard use case,
-that is, all placements were computed on the same fixed \acf{RT} and \acl{RA}.
-
+identify query sequences based on a phylogenetic tree of reference sequences.
+Thereby, they incorporate information about the evolutionary history of the species under study
+and hence provide a more accurate means for read identification.
 
 This mapping can be seen as an identification and classification of the \acp{QS} in terms of the \ac{RT},
 similar to a taxonomic assignment.
@@ -1408,46 +1544,14 @@ thus enabling comparative studies directly based on phylogenetic placement.
 Lastly, we recently proposed novel methods for visualizing and clustering phylogenetic placement data \citep{Czech2018a},
 which, for example, can reveal correlations of per-sample meta-data features with sequence abundances.
 
-
-Furthermore, phylogenetic placement is used in a variety of derived tools,
-such as \toolname{(m)PTP} (species delimitation; \cite{Zhang2013,Kapli2017}),
-\toolname{SEPP} (boosting; \cite{Mirarab2012}),
-\toolname{PhyloSift} (metagenome analysis; \cite{Darling2014}),
-\toolname{Sativa} (identification and correction of taxonomically mislabeled sequences; \cite{Kozlov2016})
-and \toolname{TIPP} (taxonomic identification and phylogenetic profiling; \cite{Nguyen2014}).
-
-A phylogenetic placement can be carried out {\em if} the \acp{QS} can be aligned to the reference alignment.
-Often, barcoding regions such as 16S or 18S are used,
-but there also exist studies that use different, or even a set of, maker genes \citep{Sunagawa2013a}.
-Furthermore, other types of sequences such as $_{\text{mi}}$tags %\textsubscript{mi}tags
-\citep{Logares2014} can be used.
-
-% ======================================================================================================================
-%     Placement Pipeline
-% ======================================================================================================================
-
-\subsection{Placement Pipeline}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementPipeline}
-
-
-alignting against given ref aln, papara, hmmer
-
-ML method, rappas (aln free)
-
-
-% ######################################################################################################################
-%         Phylogenetic Placement Processing
-% ######################################################################################################################
-
-\section{Phylogenetic Placement Processing}
-\label{ch:Foundations:sec:PhylogeneticPlacementProcessing}
+maybe cite Tanaseichuk2014 ``Phylogeny-based classification of microbial communities'', if fitting.
 
 % ======================================================================================================================
 %     Normalization
 % ======================================================================================================================
 
 \subsection{Normalization}
-\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:Normalization}
+\label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:Normalization}
 
 % thus, wehn dealing with many samples, an imporatn question is how to make them comparable when differing numbres o sequences
 % the problem arises because different samples zies. can span many order sof magnitude.
@@ -1489,7 +1593,7 @@ for methods like Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}. \t
 % ======================================================================================================================
 
 \subsection{Edge Masses}
-\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:EdgeMasses}
+\label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:EdgeMasses}
 
 Methods that compare samples directly based on their sequences,
 such as the UniFrac distance \cite{Lozupone2005,Lozupone2007a},
@@ -1582,7 +1686,7 @@ This normalized tree thereby summarizes the (sub-)set of samples it represents.
 % ======================================================================================================================
 
 \subsection{Edge Imbalances}
-\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:EdgeImbalances}
+\label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:EdgeImbalances}
 
 So far, we have only considered the per-edge masses.
 Often, however, it is also of interest to ``summarize'' the mass of an entire clade. %, that is, to consider per-clade masses.
@@ -1648,7 +1752,9 @@ In the following, we propose several new techniques to analyze placement data an
 % ======================================================================================================================
 
 \subsection{Distance between Samples}
-\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:Distances}
+\label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:Distances}
+
+motivate: moving along the branches means distance between things.
 
 kr distance. ref to nh distance?!
 \cite{Evans2012}
@@ -1658,7 +1764,7 @@ kr distance. ref to nh distance?!
 % ======================================================================================================================
 
 \subsection{Existing Analysis Methods}
-\label{ch:Foundations:sec:PhylogeneticPlacementProcessing:sub:ExistingMethods}
+\label{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:ExistingMethods}
 
 squash clustering
 edge pca

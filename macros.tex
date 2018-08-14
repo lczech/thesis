@@ -40,6 +40,19 @@
 
 \DeclareSIUnit\basepair{bp}
 
+% Remove hyperlink color boxes from acronyms.
+% https://tex.stackexchange.com/questions/73063/acronym-hyperlink-without-special-color/73068
+\makeatletter
+\AtBeginDocument{%
+  \renewcommand*{\AC@hyperlink}[2]{%
+    \begingroup
+      \hypersetup{hidelinks}%
+      \hyperlink{#1}{#2}%
+    \endgroup
+  }%
+}
+\makeatother
+
 % ------------------------------------------
 %  Math operators
 % ------------------------------------------
