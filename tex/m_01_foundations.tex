@@ -1261,23 +1261,6 @@ For each \ac{QS}, it computes the probabilities of \emph{placing} the sequence o
 thereby classifying them into a phylogenetic context of related sequences,
 without the need to resolve relationships between the \acp{QS}.
 
-Phylogenetic placement can be carried out if the \acp{QS} can be aligned to the alignment of the reference sequences.
-In the most common use case, the \acp{QS} are reads or amplicons from environmental samples.
-Most often barcoding regions or marker genes such as 16S or 18S are used
-(see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}),
-but there also exist studies that use different, or even a set of, maker genes \citep{Sunagawa2013a}.
-Furthermore, other types of sequences such as \textsubscript{mi}tags \citep{Logares2014} can be used.
-
-The \ac{RT} and the reference sequences it represents are typically assembled by the user
-so that they capture the expected species diversity in the samples.
-We however proposed an automated approach for assembling suitable sets of reference sequences \cite{Czech2018},
-which we describe in \chpref{ch:AutomaticTrees}.
-Distinct samples from one study are typically placed on the same underlying \ac{RT}
-in order to facilitate comparisons between the samples,
-see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}.
-% Such a mapping also elucidates the evolutionary distance between the query and the reference sequences,
-% see \secref{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:Distances}.
-
 % The result of phylogenetic placement is a mapping of the query sequences to the branches of the reference tree.
 % In brief, phylogenetic placement calculates the most probable insertion branches for each given \acf{QS} on a \acf{RT}.
 
@@ -1298,6 +1281,23 @@ see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}.
 
 % \paragraph{Preparation}
 % \label{ch:Foundations:sec:PhylogeneticPlacement:sub::par:Preparation}
+
+% Phylogenetic placement can be carried out if the \acp{QS} can be aligned to the alignment of the reference sequences.
+In the most common use case, the \acp{QS} are reads or amplicons from environmental samples.
+Most often barcoding regions or marker genes such as 16S or 18S are used
+(see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}),
+but there also exist studies that use different, or even a set of, maker genes \citep{Sunagawa2013a}.
+Furthermore, other types of sequences such as \textsubscript{mi}tags \citep{Logares2014} can be used.
+
+The \ac{RT} and the reference sequences it represents are typically assembled by the user
+so that they capture the expected species diversity in the samples.
+We however proposed an automated approach for assembling suitable sets of reference sequences \cite{Czech2018},
+which we describe in \chpref{ch:AutomaticTrees}.
+Distinct samples from one study are typically placed on the same underlying \ac{RT}
+in order to facilitate comparisons between the samples,
+see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}.
+% Such a mapping also elucidates the evolutionary distance between the query and the reference sequences,
+% see \secref{ch:Foundations:sec:PhylogeneticPlacementAnalysis:sub:Distances}.
 
 We here assume to have given a set of suitable reference sequences, their alignment, and an \ac{RT} inferred from them.
 As phylogenetic placement used a maximum likelihood criterion, the \ac{RT} has to be strictly bifurcating.
@@ -1359,7 +1359,7 @@ After this, the newly created nodes on the branch are removed again, thus restor
 
 The above procedure is repeated for every branch $i$ of the tree $T$,
 yielding a set of likelihood scores $\mathcal{L}(i)$ for each possible placement location.
-Thus, for each branch of the tree, the process yields a so-called \emph{placement} of the \ac{QS},
+In other words, for each branch of the tree, the process yields a so-called \emph{placement} of the \ac{QS},
 that is, an optimized position on the branch, along with a likelihood score for the whole tree.
 The likelihood scores for a \ac{QS} are then transformed into probabilities,
 which quantify the uncertainty of placing the sequence on the respective branch \cite{Strimmer2002,VonMering2007}.
@@ -1417,7 +1417,7 @@ Then, the final likelihood can be evaluated as the edge likelihood of the pendan
 using this CLV as well as the pseudo-CLV of node {\sffamily Q}.
 
 Thirdly, further acceleration can be achieved with a \emph{pre-placement} heuristic:
-A first approximate evaluation of a placement location can be conducted by using
+A first approximate evaluation of a placement location can be conducted without branch length optimization by using
 distal and proximal lengths based on the respective original branch length of the tree, and a fixed default pendant length.
 Then, only the most likely fraction of locations is thoroughly evaluated, that is, including branch length optimizations.
 This way, millions or even billions of sequences can be placed within acceptable time \cite{Barbera2018}.
@@ -1499,7 +1499,7 @@ For example, the classification of query sequences
 can be summarized by means of sequence abundances \cite{Pace1997,Hugenholtz1998},
 or to obtain taxonomic assignments \cite{Kozlov2016}.
 
-However, phylogenetic placement also allows for more elaborate downstream analyses.
+Furthermore, phylogenetic placement also allows for more elaborate downstream analyses.
 Firstly, the reference tree usually offers a higher resolution than simple per-taxon abundance counts,
 and the amount of mapped \acp{QS} per branch can be directly visualized on the \ac{RT} \citep{Mahe2017},
 as shown in \secref{ch:Visualization:sec:Motivation}.
@@ -1515,10 +1515,11 @@ which can be conducted using phylogenetic placement, as outlined in \chpref{ch:C
 \paragraph{Variants and Derived Tools}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:UseCasesApplications:par:DerivedTools}
 
+The placement algorithm presented above uses the standard ML framework for evaluating placement locations on the tree.
 There also exist variants of phylogenetic placement that use maximum parsimony \cite{Berger2011}
 and minimum evolution \cite{Filipski2015} instead of maximum likelihood,
 and variants that calculate Bayesian posterior probabilities \cite{Matsen2010}.
-The boosting method \toolname{SEPP} has been proposed to improve the accuracy of the placements \cite{Mirarab2012}.
+Moreover, the boosting method \toolname{SEPP} has been proposed to improve the accuracy of the placements \cite{Mirarab2012}.
 The recently proposed tool \toolname{RAPPAS} \cite{Linard2018} is an alignment-free approach
 that is not based on ML, but yields comparable results to standard phylogenetic placement implementations.
 
@@ -1544,8 +1545,8 @@ When placing multiple environmental samples, for instance, from different geogra
 typically, the same \ac{RT} is used, in order to allow for comparisons of the phylogenetic composition of these samples.
 In this context, it is important to consider how to properly normalize the samples.
 Normalization is required as the sample size (often also called library size),
-that is, the number of sequences per sample, can vary by several orders of magnitude,
-due to efficiency variations in the sequencing process or biases introduced by the amplification process,
+that is, the number of sequences per sample, can vary by several orders of magnitude.
+This is due to efficiency variations in the sequencing process or biases introduced by the amplification process,
 as explained in \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}.
 
 Selecting an appropriate normalization strategy hence constitutes a common problem in many metagenomic studies.
@@ -1632,8 +1633,9 @@ by scaling the total sample mass to unit mass $1.0$.
 In other words, absolute abundances are converted into relative abundances.
 This way, rare species, which might have been removed by rarefaction, can be kept,
 as they only contribute a negligible mass to the branches into which they have been placed.
-This approach is analogous to using proportional values for methods based on OTU count tables,
-that is, scaling each sample/column of the table by its sum of OTU counts \cite{Weiss2017}.
+This approach is analogous to using proportional values for methods based on OTU count tables.
+For each OTU, such tables store a count of how often it appeared in each sample,
+which can be made proportional by scaling each sample/column of the table by its sum of OTU counts \cite{Weiss2017}.
 Most of the methods presented here use normalized samples, that is, they use relative abundances.
 As relative abundances are compositional data, certain caveats occur \cite{Aitchison1986,Lovell2015,Gloor2016},
 which we discuss where appropriate.
@@ -1685,7 +1687,7 @@ as any re-rooting changes the sign of edge imbalance values consistently across 
 An example of the imbalance calculation is shown in \figref{fig:imbalance:sub:ReferenceTree}.
 The edge imbalance relates the masses on the two sides of an edge to each other.
 This implicitly captures the \ac{RT} topology and reveals information about its clades.
-Furthermore, this transformation can also reveal differences in the placement mass distribution
+Furthermore, this transformation can reveal differences in the placement mass distribution
 of nearby branches of the tree.
 This is in contrast to the KR distance
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:Distances}),
@@ -1708,7 +1710,8 @@ for instance, the pH value or temperature of the samples' environment.
 Such meta-data features can also be summarized in a per-sample matrix, where each column corresponds to one feature.
 The three matrices are shown in \figref{fig:imbalance:sub:Matrices}.
 Quantitative meta-data features are the most suitable for computational purposes,
-as they can be used to detect correlations with the placement mass distributions of samples.
+as they can be used for calculations such as detecting correlations with the placement mass distributions of samples,
+see for instance \secref{ch:Visualization:sec:EdgeCorrelation}.
 
 % ======================================================================================================================
 %     Existing Analysis Methods
