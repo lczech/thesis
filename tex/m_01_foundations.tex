@@ -1249,7 +1249,7 @@ Furthermore, metagenomic reads are often short, and hence lack phylogenetic sign
 to robustly infer a tree and to properly resolve their relationships.
 
 Thus, \emph{phylogenetic placement}, also called \emph{evolutionary placement},
-has been developed for conducting phylogenetic analyses of such data,
+has been developed for conducting phylogenetic analyses of such data \cite{VonMering2007,Monier2008},
 as implemented in tools such as
 \toolname{pplacer} \cite{Matsen2010}, \toolname{RAxML-EPA} \cite{Berger2011}, and \toolname{EPA-ng} \cite{Barbera2018}.
 % cited more than 630 times (as of 2018-07-01)
@@ -1406,7 +1406,7 @@ which gives the most accurate results.
 In practice however, it suffices to only optimize the three branches of the placement location
 without losing too much accuracy.
 
-Secondly, because the reference tree is fixed (except for the newly created nodes),
+Secondly, because the reference tree is fixed (except for the temporarily created nodes during the computation),
 the CLVs of all possible subtrees can be precomputed,
 which drastically accelerates the likelihood evaluation.
 Using \figref{fig:tiny_tree} as an example,
@@ -1489,7 +1489,7 @@ they can potentially bias downstream analyses.
 
 More recent methods can alleviate some of these issues, for instance by
 using machine learning techniques to obtain a taxonomic classification of metagenomic sequences \cite{Vervier2015},
-or by utilizing a phylogeny inferred from metagenomic OTUs to classify microbial communities \cite{Tanaseichuk2014}.
+or by utilizing a phylogeny inferred from metagenomic sequence clusters to classify microbial communities \cite{Tanaseichuk2014}.
 However, the common shortcoming of these methods is
 that they lack a way of incorporating phylogenetic information of known sequences.
 
@@ -1559,7 +1559,9 @@ Furthermore, the specific type of input sequence data has to be taken into accou
 Biases induced by the amplification process can potentially be avoided if, instead of amplicons,
 data based on shotgun sequencing are used, such as \textsubscript{mi}tags \cite{Logares2014}.
 Moreover, similar sequences can be clustered prior to phylogenetic placement analysis, for instance,
-by constructing so-called \emph{operational taxonomic units} (OTUs) \cite{Edgar2010,Mahe2014,Mahe2015,Rognes2016}.
+by constructing so-called \emph{operational taxonomic units} (OTUs) \cite{Sokal1963,Blaxter2005},
+using programs such as \toolname{UCLUST} \cite{Edgar2010},
+\toolname{VSEARCH} \cite{Rognes2016}, or \toolname{swarm} \cite{Mahe2014,Mahe2015}.
 Analyses using OTUs focus on species diversity instead of simple abundances.
 OTU clustering substantially reduces the number of sequences,
 and hence greatly decreases the computational cost for placement analyses.
@@ -1580,7 +1582,8 @@ that are necessary for the analysis methods explained and introduced later.
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}
 
 Methods that compare samples directly based on their sequences,
-such as the UniFrac distance \cite{Lozupone2005,Lozupone2007a},
+such as the UniFrac distance \cite{Lozupone2005,Lozupone2007a}
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:GeneralMeasures}),
 can benefit from rarefaction \cite{Weiss2017}.
 However, in the context of phylogenetic placement, rarefaction is not necessary.
 Thus, more valid data can be kept.
@@ -1689,8 +1692,7 @@ The edge imbalance relates the masses on the two sides of an edge to each other.
 This implicitly captures the \ac{RT} topology and reveals information about its clades.
 Furthermore, this transformation can reveal differences in the placement mass distribution
 of nearby branches of the tree.
-This is in contrast to the KR distance
-(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:Distances}),
+This is in contrast to the KR distance (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR} below),
 which yields low values for masses that are close to each other on the tree.
 Note that for normalized samples with unit total mass,
 the imbalance of a leaf edge is simply the total mass of the tree minus the mass of the edge.
@@ -1714,19 +1716,133 @@ as they can be used for calculations such as detecting correlations with the pla
 see for instance \secref{ch:Visualization:sec:EdgeCorrelation}.
 
 % ======================================================================================================================
+%     Distances between Samples
+% ======================================================================================================================
+
+\subsection{Distances between Samples}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances}
+
+Given a set of metagenomic samples, one key question is how much they differ from each other.
+Pairwise distances are valuable for downstream tasks, for instance,
+clustering algorithms such as \mbox{UPGMA} \cite{Michener1957,Sokal1958,Legendre1998} and
+ordination methods such as \emph{principal component analysis} (PCA) \cite{Pearson1901,Jolliffe2002},
+or to discover gradients in microbial communities with respect to meta-data features.
+
+\paragraph{General Metagenomic Distance Measures}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:GeneralMeasures}
+
+In many comparative ecology studies, commonly used methods for assessing sample (dis-)similarity are based on
+sequence abundances, or OTU count tables
+(as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}).
+For example, the Jaccard index \cite{Jaccard1901} and the related S\o{}rensen-Dice coefficient \cite{Sorensen1948,Dice1945}
+use the presence/absence of species in two samples to measure their similarity and diversity.
+% wiki: The Jaccard coefficient [...] is defined as the size of the intersection divided by the size of the union of the sample sets.
+The Bray-Curtis dissimilarity \cite{Bray1957,Legendre1998} furthermore uses abundances,
+that is, counts of species, in order to measure compositional dissimilarity between samples.
+Note that working with such similarity indices entails certain pitfalls \cite{Bloom1981}.
+
+These indices do however not take the evolutionary history of the sequences into account.
+One method that uses the relatedness of the species under study is the UniFrac distance \cite{Lozupone2005,Lozupone2007a}.
+To compare two metagenomic samples, a phylogenetic tree is employed,
+either by inference from all sequences of the two samples,
+or by assigning the sequences to the tips of an existing tree.
+Then, the branches of the tree are marked as either shared or unique,
+depending on whether they lead to taxa that appear in both or only one of the samples.
+The distance is computed as the fraction of total branch lengths that is unique,
+which satisfies the requirements of a distance metric.
+The UniFrac distance can be calculated quantitatively (weighted UniFrac), or qualitatively (unweighted UniFrac),
+depending on whether sequence abundances are considered, or only their presence and absence is used.
+% As mentioned in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing},
+% rarefaction is often used to get normalized results,
+% and OTUs can be used instead of sequences to reduce computational load.
+
+\paragraph{The Phylogenetic Kantorovich-Rubinstein Distance}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR}
+
+% UniFrac has been generalized and adapted to phylogenetic placements
+The idea of using phylogenetic distances on a tree to assess sample similarity
+has been extended and generalized to the context of phylogenetic placement
+in form of the \emph{phylogenetic Kantorovich-Rubinstein} (KR) distance \cite{Matsen2011a,Evans2012}.
+In other contexts, the KR distance is also called Wasserstein distance, Mallows distance, or Earth Mover's distance
+\cite{Mallows1972,Rachev1985,Levina2001,Villani2008}.
+% For phylogenetic placements, we need to quantify how much the distribution of masses
+% differs across the \ac{RT} between two or more samples.
+The KR distance between two metagenomic samples is a metric that describes
+by at least how much the normalized mass distribution of one sample has to be moved across the \ac{RT}
+to obtain the distribution of the other sample.
+In other words, it is the minimum work needed to solve the transportation problem between the two distributions.
+The distance is symmetrical, and increases the more mass needs to be moved,
+and the larger the respective displacement (moving distance) is.
+
+The linear case of moving the mass of one distribution to transform it into another distribution
+is shown in \figref{fig:kr_linear}.
+This linear case corresponds to the path between two locations on a tree,
+and is thus a measure of evolutionary distance between these locations.
+It can be extended to a tree via post-order traversal,
+by starting at the tips and moving the mass differences towards the (arbitrary) root.
+As the two samples being compared need to have equal masses in order to enable the transformation,
+the KR distance operates on normalized samples; that is, it compares relative abundances.
+
+\begin{figure}[!hptb]
+    \centering
+    \includegraphics[width=\linewidth]{kr_linear.pdf}
+    \caption[Linear KR Distance]{
+        \textbf{Linear KR Distance.}
+        Distribution A is transformed into distribution B by moving mass along the axis,
+        while keeping track of the moved distances.
+        For simplicity, masses are discretized here; the continuous case works accordingly.
+    }
+    \label{fig:kr_linear}
+\end{figure}
+
+As the tree needs to be traversed once per pairwise distance calculation,
+the computation of the phylogenetic KR distance is linear in the tree size, and in the number of placements.
+It is hence suitable for the large datasets of typical metagenomic studies,
+and results in a pairwise distance matrix between the samples.
+% As the \ac{RT} is fixed, it does not require the expensive inference of trees,
+In the special case of assigning mass only to the tips of the tree
+(for example, by ``placing'' the \acp{QS} via similarity based methods such as \toolname{BLAST}),
+the KR distance is equivalent to the weighted UniFrac distance \cite{Evans2012}.
+
+The mathematics of the phylogenetic KR distance have been thoroughly examined by \citeauthor{Evans2012} \cite{Evans2012}.
+In summary, the KR distance can be formulated as an integral over distances $\lambda$ along the branches of the tree $T$.
+% Let $T$ the space of points along the
+Let $\tau(x)$ denote the subtree below point $x$ on $T$ for an arbitrary rooting,
+and let $P$ and $Q$ the probability distributions of the two samples on the branches of $T$.
+Then, the KR distance can be expressed in closed form as
+
+\begin{equation}
+    \label{ch:Foundations:sec:PhylogeneticPlacement:eq:KR1}
+    \mbox{KR}(P,Q) = \int_T \, \big| P(\tau(x)) - Q(\tau(x)) \big| ~ \lambda(dx)
+\end{equation}
+
+This notation treats the placements as a continuous distribution over the branches of the tree
+instead of a collection of point masses, and hence describes a more general form of the KR distance.
+This allows a further generalization by introducing an additional parameter $p$,
+where $0 < p < \infty$ controls the impact of mass relative to transport \cite{Rachev1991,Rachev1998}:
+
+\begin{equation}
+    \label{ch:Foundations:sec:PhylogeneticPlacement:eq:KR2}
+        \mbox{KR}_p(P,Q) = \left[ ~ \int_T \, \big| P(\tau(x)) - Q(\tau(x)) \big|^p ~ \lambda(dx) ~ \right]^{ \min \left( \sfrac{1}{p}, 1 \right)}
+\end{equation}
+
+Large $p>1$ emphasize the impact of mass differences, while small $p<1$ increase the influence of the distance traveled.
+In typical applications however, the default of $p=1$ is used,
+which is equal to \eqnref{ch:Foundations:sec:PhylogeneticPlacement:eq:KR1} and
+corresponds to the physical interpretation of mass movements.
+
+\todo{mention NH distance here if we use it later!}
+
+% ======================================================================================================================
 %     Existing Analysis Methods
 % ======================================================================================================================
 
 \subsection{Existing Analysis Methods}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}
 
-\paragraph{Distance between Samples}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:Distances}
-
-motivate: moving along the branches means distance between things.
-
-kr distance. ref to nh distance?!
-\cite{Evans2012}
+Before presenting our novel methods for analyzing phylogenetic placement data
+in \chpref{ch:Visualization} and \chpref{ch:Clustering},
+we here introduce existing approaches from the literature.
 
 \paragraph{Squash Clustering}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}

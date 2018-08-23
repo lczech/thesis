@@ -21,29 +21,7 @@
 \label{ch:Clustering:sec:Motivation}
 
 Given a set of metagenomic samples, one key question is how much they differ from each other.
-% Using the phylogenetic placement of the sequences in the samples,
-% this question can be answered by...
-% For this, we need to devise distance measures between samples.
-% For phylogenetic placements, we need to quantify how much the distribution of masses
-% differs across the \ac{RT} between two or more samples.
-A common distance metric between microbial communities
-is the (weighted) UniFrac distance \cite{Lozupone2005,Lozupone2007a}.
-It uses the fraction of unique and shared branch lengths between phylogenetic trees to determine their difference.
-UniFrac has been generalized and adapted to phylogenetic placements
-in form of the phylogenetic Kantorovich-Rubinstein (KR) distance \cite{Matsen2011a,Evans2012}.
-In other contexts, the KR distance is also called Wasserstein distance, Mallows distance, or Earth Mover's distance
-\cite{Mallows1972,Rachev1985,Levina2001,Villani2008}.
-The KR distance between two metagenomic samples is a metric that describes
-by at least how much the normalized mass distribution of one sample has to be moved across the \ac{RT}
-to obtain the distribution of the other sample.
-%In other words, it is the minimum work needed to solve the transportation problem between the two distributions.
-% The distance increases with the amount and the displacement of moved mass.
-The distance is symmetrical, and becomes larger the more mass needs to be moved,
-and the larger the respective displacement (moving distance) is.
-% It is thus a natural way of comparing mass distributions.
-As the two samples being compared need to have equal masses,
-the KR distance operates on normalized samples;
-that is, it compares relative abundances.
+\todo{see} \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances}
 
 Given such a distance measure between samples,
 % e.g. Earth Mover's Distance or Node Histogram Distance as described above,

@@ -1,0 +1,1808 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="607.86505"
+   height="133.62947"
+   id="svg6471"
+   version="1.1"
+   inkscape:version="0.92.3 (unknown)"
+   sodipodi:docname="kr.svg"
+   inkscape:export-filename="/home/lucas/Dropbox/HITS/presentations/2017-08-07 HPI Potsdam/pics/matrix_correlation.png"
+   inkscape:export-xdpi="468.76001"
+   inkscape:export-ydpi="468.76001">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.291953"
+     inkscape:cx="348.7621"
+     inkscape:cy="-6.5358165"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer5"
+     showgrid="false"
+     fit-margin-left="1.5"
+     fit-margin-top="1.5"
+     fit-margin-right="1.5"
+     fit-margin-bottom="1.5"
+     inkscape:window-width="1869"
+     inkscape:window-height="1056"
+     inkscape:window-x="51"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     units="px"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4107"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       originx="-5.2641035"
+       originy="-367.30196"
+       spacingx="1"
+       spacingy="1" />
+  </sodipodi:namedview>
+  <defs
+     id="defs6473">
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4538"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6491"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6493"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6495"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6497"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6499"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6501"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6503"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6505"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6507"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6509"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6511"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6513"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6515"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6517"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-4"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4538-9"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4227"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4229-7"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4231"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4233"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4235"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4237"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4239"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4241"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4243"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4245"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4247"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4249"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4251"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4253"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend7"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend7"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4104"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2MendV"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2MendV"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4107"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2MendA"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2MendA"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4562"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mendy"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mendy"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4565"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mendr"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mendr"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5026"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend6"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend6"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5029"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend1"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5498"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2MendX"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2MendX"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5501"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend6"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend6-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5029-6"
+         style="fill:#404040;fill-rule:evenodd;stroke:#404040;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3770"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1189"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1187"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1193"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1191"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1197"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1195"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1201"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1199-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1205"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1203"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1209"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1207"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1213"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1211"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1217"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1215"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1221"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1219"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-6"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3770-7"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3293"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3291"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3297"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3295"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3301"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3299"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3305"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3303"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3309"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3307"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3313"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3311"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3317"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3315"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3321"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3319"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3325"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3323"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata6476">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="matrices"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-158.70327,20.878834)"
+     style="display:inline">
+    <g
+       id="g4492"
+       transform="translate(0,24)" />
+  </g>
+  <g
+     transform="translate(-158.70327,20.878834)"
+     id="g3866"
+     inkscape:groupmode="layer"
+     inkscape:label="correlation"
+     style="display:none">
+    <flowRoot
+       style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+       id="flowRoot3868"
+       xml:space="preserve"
+       transform="translate(59.966,218.0165)"><flowRegion
+         id="flowRegion3870"><rect
+           y="45.330235"
+           x="111.11678"
+           height="215.66757"
+           width="262.13458"
+           id="rect3872" /></flowRegion><flowPara
+         style="font-size:144px;line-height:1.25;fill:#9f53aa;fill-opacity:1"
+         id="flowPara3874">[ ]</flowPara></flowRoot>    <g
+       style="opacity:0.61032864"
+       id="g3884"
+       transform="translate(59.966,218.0165)">
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot3886"
+         style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+         transform="translate(44,-2)"><flowRegion
+           id="flowRegion3888"><rect
+             id="rect3890"
+             width="191.42392"
+             height="67.17514"
+             x="125.25892"
+             y="49.875923" /></flowRegion><flowPara
+           id="flowPara3892"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz'">Edges</flowPara></flowRoot>      <path
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+         d="M 157.96449,62.462218 H 125.13453"
+         id="path3894"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3896"
+         d="m 219.48578,62.500651 h 32.82996"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)" />
+    </g>
+    <g
+       style="opacity:0.61032864"
+       transform="translate(321.966,218.0165)"
+       id="g3898">
+      <flowRoot
+         transform="translate(32,-2)"
+         style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+         id="flowRoot3900"
+         xml:space="preserve"><flowRegion
+           id="flowRegion3902"><rect
+             y="49.875923"
+             x="125.25892"
+             height="67.17514"
+             width="191.42392"
+             id="rect3904" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz'"
+           id="flowPara3906">Variables</flowPara></flowRoot>      <path
+         inkscape:connector-curvature="0"
+         id="path3908"
+         d="M 153.86075,62.462218 H 125.13453"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+         d="m 223.65266,62.500651 h 28.66308"
+         id="path3910"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <flowRoot
+       transform="translate(145.164,98.53678)"
+       style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+       id="flowRoot3912"
+       xml:space="preserve"><flowRegion
+         id="flowRegion3914"><rect
+           y="227.1577"
+           x="41.416256"
+           height="72.73098"
+           width="126.77415"
+           id="rect3916" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz';text-align:center;text-anchor:middle"
+         id="flowPara3918">Weights or</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz';text-align:center;text-anchor:middle"
+         id="flowPara3972">Imbalance</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3920"
+       style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+       transform="translate(427.164,114.53678)"><flowRegion
+         id="flowRegion3922"><rect
+           style="font-size:28px"
+           id="rect3924"
+           width="126.77415"
+           height="72.73098"
+           x="41.416256"
+           y="227.1577" /></flowRegion><flowPara
+         id="flowPara3926"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz'">Metadata</flowPara></flowRoot>    <g
+       style="opacity:0.61032864"
+       transform="rotate(-90,324.71638,224.89892)"
+       id="g3928">
+      <flowRoot
+         transform="translate(36,-2)"
+         style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+         id="flowRoot3930"
+         xml:space="preserve"><flowRegion
+           id="flowRegion3932"><rect
+             y="49.875923"
+             x="125.25892"
+             height="67.17514"
+             width="191.42392"
+             id="rect3934" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz'"
+           id="flowPara3936">Samples</flowPara></flowRoot>      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3938"
+         d="M 156.7018,62.462218 H 125.89214"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)" />
+      <path
+         sodipodi:nodetypes="cc"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+         d="m 222.01116,62.500651 h 27.27412"
+         id="path3940"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       style="opacity:0.61032864"
+       id="g3942"
+       transform="rotate(-90,453.71639,95.898915)">
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot3944"
+         style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
+         transform="translate(36,-2)"><flowRegion
+           id="flowRegion3946"><rect
+             id="rect3948"
+             width="191.42392"
+             height="67.17514"
+             x="125.25892"
+             y="49.875923" /></flowRegion><flowPara
+           id="flowPara3950"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22px;line-height:1.25;font-family:'Yanone Kaffeesatz';-inkscape-font-specification:'Yanone Kaffeesatz'">Samples</flowPara></flowRoot>      <path
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+         d="M 156.7018,62.462218 H 125.89214"
+         id="path3952"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3954"
+         d="m 222.01116,62.500651 h 27.27412"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="tree"
+     transform="translate(-5.2641035,292.51699)"
+     style="display:none">
+    <g
+       id="g1550"
+       transform="matrix(1.0505933,0,0,1.0505933,29.469652,18.824695)">
+      <g
+         id="g1827"
+         transform="translate(4.6360242,3.2737593)"
+         style="stroke-width:2.37960768;stroke-miterlimit:4;stroke-dasharray:none">
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           id="path4223"
+           d="M 4.6978057,103.10673 V 22.186737 H 120.29781 V 126.22673"
+           style="display:inline;fill:none;stroke:#404040;stroke-width:2.37960768;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           id="path4225"
+           d="M 224.33781,103.10673 V -70.293264 H 62.497802 v 92.480001"
+           style="display:inline;fill:none;stroke:#404040;stroke-width:2.37960768;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           id="path4227"
+           d="M 374.61779,137.78673 V -24.053256 h 115.6 V 114.66673"
+           style="display:inline;fill:none;stroke:#404040;stroke-width:2.37960768;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4229"
+           d="M 432.4178,-24.053256 V -128.09325 H 143.41781 v 57.799986"
+           style="display:inline;fill:none;stroke:#404040;stroke-width:2.37960768;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           sodipodi:nodetypes="cccc" />
+        <path
+           style="fill:none;stroke:#404040;stroke-width:2.37960768;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 305.2578,-128.09325 v 69.359988"
+           id="path4165"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <circle
+           r="8.2843533"
+           cy="-128.13452"
+           cx="305.27512"
+           id="path1199"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#828282;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.37960768;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+        <rect
+           y="103.10674"
+           x="120.29781"
+           height="11.56"
+           width="11.56"
+           id="rect1285"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#4aadff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.37960768;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+        <rect
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#18d911;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.37960768;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+           id="rect1287"
+           width="11.56"
+           height="11.56"
+           x="108.73781"
+           y="68.426727" />
+        <rect
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#4aadff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.37960768;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+           id="rect1289"
+           width="23.120007"
+           height="11.560001"
+           x="120.29779"
+           y="45.306736" />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="emd"
+     style="display:inline"
+     transform="translate(-3.061132,5.543723)">
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 146.24002,106.32959 V 18.632342"
+       id="path5135-0-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 162.26527,106.25314 V 18.555906"
+       id="path5135-8-80-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 178.2442,105.98377 V 18.28655"
+       id="path5135-8-8-87-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 194.29765,105.85 V 18.152745"
+       id="path5135-5-1-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 210.3229,105.77356 V 18.076292"
+       id="path5135-8-4-8-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76365805;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 226.30183,105.50417 V 17.80692"
+       id="path5135-8-8-8-3-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 131.12166,90.336146 h 103.0043"
+       id="path5219-2-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 131.12166,74.360038 h 103.0043"
+       id="path5219-8-6-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 131.12166,58.383931 h 103.0043"
+       id="path5219-0-3-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 131.12166,42.407823 h 103.0043"
+       id="path5219-9-8-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 131.12166,26.431715 h 103.0043"
+       id="path5219-1-1-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       transform="matrix(2.3005598,0,0,2.3005598,75.388298,-572.34153)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522"
+         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+           id="rect5524"
+           width="13.129433"
+           height="11.10173"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
+         id="flowPara5526"
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;">+3</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 131.16926,106.35678 V 8.2076392"
+       id="path4945-9-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 268.98155,106.32958 V 18.632333"
+       id="path5135-0-8-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 285.0068,106.25315 V 18.555897"
+       id="path5135-8-80-8-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 300.98573,105.98377 V 18.286541"
+       id="path5135-8-8-87-9-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 317.03918,105.84999 V 18.152735"
+       id="path5135-5-1-8-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 333.06443,105.77355 V 18.076283"
+       id="path5135-8-4-8-3-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76365805;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 349.04336,105.50416 V 17.80691"
+       id="path5135-8-8-8-3-2-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 253.02278,74.360029 H 356.86749"
+       id="path5219-8-6-6-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 253.02278,58.383921 H 356.86749"
+       id="path5219-0-3-2-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 253.02278,42.407813 H 356.86749"
+       id="path5219-9-8-8-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 253.02278,26.431705 H 356.86749"
+       id="path5219-1-1-9-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-6"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       transform="matrix(2.3005598,0,0,2.3005598,214.58444,-572.31168)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522-6-5"
+         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+           id="rect5524-6-1"
+           width="13.129433"
+           height="11.10173"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;"
+         id="flowPara5705">+2</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 391.72308,106.32958 V 18.63235"
+       id="path5135-0-8-2-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 407.74834,106.25315 V 18.555897"
+       id="path5135-8-80-8-4-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 423.72726,105.98377 V 18.286541"
+       id="path5135-8-8-87-9-4-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 439.78071,105.84999 V 18.152736"
+       id="path5135-5-1-8-9-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 455.80597,105.77355 V 18.0763"
+       id="path5135-8-4-8-3-2-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76365805;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 471.78489,105.50416 V 17.806927"
+       id="path5135-8-8-8-3-2-6-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 376.48467,90.336137 H 479.60902"
+       id="path5219-2-5-9-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 376.72478,74.360029 H 479.60902"
+       id="path5219-8-6-6-3-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 376.72478,58.383921 H 479.60902"
+       id="path5219-0-3-2-4-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 376.72478,42.407813 H 479.60902"
+       id="path5219-9-8-8-3-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 376.72478,26.431705 H 479.60902"
+       id="path5219-1-1-9-0-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-6-9-9"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       transform="matrix(2.3005598,0,0,2.3005598,353.2094,-572.33948)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522-6-5-0-8"
+         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+           id="rect5524-6-1-4-3"
+           width="19.548134"
+           height="7.8112926"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;"
+         id="flowPara5705-4-5">+4</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 376.65232,106.35677 V 8.2076466"
+       id="path4945-9-6-0-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 23.498494,106.32959 V 18.632346"
+       id="path5135-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 39.523746,106.25314 V 18.55591"
+       id="path5135-8-80"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 55.502674,105.98376 V 18.286554"
+       id="path5135-8-8-87"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 71.556108,105.84999 V 18.152749"
+       id="path5135-5-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 87.58136,105.77355 V 18.076296"
+       id="path5135-8-4-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76365805;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 103.56029,105.50417 V 17.806923"
+       id="path5135-8-8-8-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 8.5001942,90.336142 H 111.38443"
+       id="path5219-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 8.5001942,74.360034 H 111.38443"
+       id="path5219-8-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 8.5001942,58.383926 H 111.38443"
+       id="path5219-0-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 8.5001942,42.407826 H 111.38443"
+       id="path5219-9-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 8.5001942,26.431718 H 111.38443"
+       id="path5219-1-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-8"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:none"
+       transform="matrix(1.597611,0,0,1.597611,-18.57352,-393.09987)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522-5"
+         style="font-family:sans-serif"><rect
+           id="rect5524-1"
+           width="13.129433"
+           height="11.10173"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:none" /></flowRegion><flowPara
+         id="flowPara5526-2"
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:none">+3</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 8.427736,106.35678 V 8.207643"
+       id="path4945-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 514.4646,106.3296 V 18.632353"
+       id="path5135-0-8-2-6-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 530.48986,106.25317 V 18.555917"
+       id="path5135-8-80-8-4-7-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 546.46878,105.98379 V 18.286561"
+       id="path5135-8-8-87-9-4-7-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 562.52223,105.85001 V 18.152756"
+       id="path5135-5-1-8-9-3-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 578.54749,105.77357 V 18.07632"
+       id="path5135-8-4-8-3-2-6-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.76365805;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 594.52641,105.50418 V 17.806947"
+       id="path5135-8-8-8-3-2-6-3-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 499.34624,90.336157 h 103.0043"
+       id="path5219-2-5-9-0-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 499.34624,74.360049 h 103.0043"
+       id="path5219-8-6-6-3-9-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 499.34624,58.383941 h 103.0043"
+       id="path5219-0-3-2-4-8-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 499.34624,42.407833 h 103.0043"
+       id="path5219-9-8-8-3-9-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 499.34624,26.431726 h 103.0043"
+       id="path5219-1-1-9-0-8-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"
+       sodipodi:nodetypes="cc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-6-9-9-0"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.597611,0,0,1.597611,503.77424,-393.03714)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"><flowRegion
+         id="flowRegion5522-6-5-0-8-5"
+         style="font-family:sans-serif"><rect
+           id="rect5524-6-1-4-3-8"
+           width="50.004433"
+           height="10.97004"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif"
+         id="flowPara5705-4-5-8" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-6-9-9-0-4"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       transform="matrix(2.3005598,0,0,2.3005598,433.89299,-572.30446)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"><flowRegion
+         id="flowRegion5522-6-5-0-8-5-8"
+         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+           id="rect5524-6-1-4-3-8-6"
+           width="50.004433"
+           height="10.97004"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;"
+         id="flowPara5705-4-5-8-2">Distance: 9</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 499.39384,106.35679 V 8.2076669"
+       id="path4945-9-6-0-9-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-4"
+       width="15.97611"
+       height="47.748405"
+       x="23.614435"
+       y="58.344845"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5291-6"
+       width="15.97611"
+       height="31.728689"
+       x="55.608456"
+       y="74.381874"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="opacity:0.99299999;fill:#94d87b;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-4-0"
+       width="15.97611"
+       height="47.748405"
+       x="162.17932"
+       y="58.059597"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5291-6-6"
+       width="15.97611"
+       height="31.728689"
+       x="178.34998"
+       y="74.381866"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <path
+       style="fill:none;stroke:#b2b2b2;stroke-width:0.79880536;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 253.02278,90.336137 H 356.86749"
+       id="path5219-2-5-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5291-6-6-3"
+       width="16.008459"
+       height="31.728693"
+       x="301.05917"
+       y="74.381821"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-6-8-2"
+       width="16.145903"
+       height="15.636534"
+       x="284.97672"
+       y="90.456642"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#94d87b;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-4-0-0"
+       width="16.008459"
+       height="32.057152"
+       x="301.05917"
+       y="42.324673"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#94d87b;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-4-0-0-0"
+       width="15.97611"
+       height="63.68499"
+       x="439.53552"
+       y="42.324715"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-6-8-2-2"
+       width="15.97611"
+       height="15.97611"
+       x="407.88803"
+       y="90.117058"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5133-6-8-2-2-1"
+       width="15.97611"
+       height="15.97611"
+       x="530.62958"
+       y="90.117096"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <rect
+       style="fill:#58a2ff;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       id="rect5291-4-6-9-0-5"
+       width="15.976112"
+       height="63.18409"
+       x="562.52472"
+       y="42.426224"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 498.59118,106.31227 H 607.31033"
+       id="path4387-0-0-1-1-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="m 253.11538,106.31226 h 108.7119"
+       id="path4387-0-0-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 375.85105,106.31226 H 484.85534"
+       id="path4387-0-0-1-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 130.36799,106.31225 H 239.08575"
+       id="path4387-0-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 7.6158413,106.31225 H 116.34422"
+       id="path4387-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_0.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       sodipodi:nodetypes="cc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-6-9-9-0-4-3"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(2.3005598,0,0,2.3005598,-72.920127,-452.35776)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-ydpi="599.66003"><flowRegion
+         id="flowRegion5522-6-5-0-8-5-8-6"
+         style="font-family:sans-serif"><rect
+           id="rect5524-6-1-4-3-8-6-7"
+           width="50.004433"
+           height="10.97004"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif"
+         id="flowPara5705-4-5-8-2-5">Distribution A</flowPara></flowRoot>    <flowRoot
+       inkscape:export-ydpi="599.66003"
+       inkscape:export-xdpi="599.66003"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
+       transform="matrix(2.3005598,0,0,2.3005598,421.07987,-452.35776)"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+       id="flowRoot1942"
+       xml:space="preserve"><flowRegion
+         style="font-family:sans-serif"
+         id="flowRegion1938"><rect
+           style="font-family:sans-serif"
+           y="246.26045"
+           x="36.870567"
+           height="10.97004"
+           width="50.004433"
+           id="rect1936" /></flowRegion><flowPara
+         id="flowPara1940"
+         style="font-size:6px;line-height:1.25;font-family:sans-serif">Distribution B</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.59800005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="M 253.91079,106.35677 V 8.2076295"
+       id="path4945-9-6-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="text2"
+     style="display:none"
+     transform="translate(-0.1899258,5.6321014)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ff5789;fill-opacity:1;stroke:none"
+       transform="matrix(1.9171332,0,0,1.9171332,210.24878,-472.80934)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522-6"
+         style="font-family:sans-serif;fill:#ff5789;fill-opacity:1"><rect
+           id="rect5524-6"
+           width="13.129433"
+           height="11.10173"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#ff5789;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara5526-7"
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#ff5789;fill-opacity:1">+3</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-8"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ff5789;fill-opacity:1;stroke:none"
+       transform="matrix(1.9171332,0,0,1.9171332,332.11771,-472.80934)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522-6-1"
+         style="font-family:sans-serif;fill:#ff5789;fill-opacity:1"><rect
+           id="rect5524-6-8"
+           width="13.129433"
+           height="11.10173"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#ff5789;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara5526-7-2"
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#ff5789;fill-opacity:1">+3</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5520-4-6-9"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ff5789;fill-opacity:1;stroke:none"
+       transform="matrix(1.9171332,0,0,1.9171332,349.20376,-472.79577)"
+       inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"><flowRegion
+         id="flowRegion5522-6-5-0"
+         style="font-family:sans-serif;fill:#ff5789;fill-opacity:1"><rect
+           id="rect5524-6-1-4"
+           width="10.577724"
+           height="8.5105371"
+           x="36.870567"
+           y="246.26045"
+           style="font-family:sans-serif;fill:#ff5789;fill-opacity:1" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#ff5789;fill-opacity:1"
+         id="flowPara5705-4">+2</flowPara></flowRoot>  </g>
+</svg>
