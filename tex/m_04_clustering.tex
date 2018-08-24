@@ -23,31 +23,33 @@
 Given a set of metagenomic samples, one key question is how much they differ from each other.
 \todo{see} \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances}
 
-Given such a distance measure between samples,
-% e.g. Earth Mover's Distance or Node Histogram Distance as described above,
-a fundamental task consists in clustering samples that are similar to each other.
-Standard linkage-based clustering methods like \mbox{UPGMA} % mbox avoids hyphenation
-\cite{Michener1957,Sokal1958,Legendre1998} are solely based on the distances between samples,
-that is, they calculate the distances of clusters as a function of pairwise sample distances.
-Squash Clustering \cite{Matsen2011a,Srinivasan2012} is a method that
-also takes into account the intrinsic structure of phylogenetic placement data.
-It uses the KR distance to perform agglomerative hierarchical clustering of samples.
-Instead of using pairwise sample distances, however,
-it merges (\emph{squashes}) clusters of samples by calculating their average per-edge placement mass.
-Thus, in each step, it operates on the same type of data, that is, on mass distributions on the \ac{RT}.
-This results in a hierarchical clustering tree that has meaningful, and hence interpretable, branch lengths.
-
-Remark:
-Squash clustering uses the KR distance, which is based on mass distributions on the edges of the \ac{RT}.
-It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead.
-For instance, Figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
-on a dataset of Bacterial Vaginosis, a disease of the vagina.
-On the left hand side of the figure, the blue data points, representing healthy women, cluster close together,
-while the red data points, which belong to sick patients, spread over the rest of the graph.
-The result of Squash Clustering on this dataset is presented in Figure 1 of \cite{Srinivasan2012}.
-The bottom half of the clustering tree, containing mainly healthy samples, has short branches,
-while the top half, with mostly samples from sick patients, has many long branches.
-Thus, Squash Clustering and normal PCA represent almost equivalent information in this case.
+%  All below is moved to foundations chapter now!
+% Given such a distance measure between samples,
+% % e.g. Earth Mover's Distance or Node Histogram Distance as described above,
+% a fundamental task consists in clustering samples that are similar to each other.
+% Standard linkage-based clustering methods like \mbox{UPGMA} % mbox avoids hyphenation
+% \cite{Michener1957,Sokal1958,Legendre1998} are solely based on the distances between samples,
+% that is, they calculate the distances of clusters as a function of pairwise sample distances.
+% Squash Clustering \cite{Matsen2011a,Srinivasan2012} is a method that
+% also takes into account the intrinsic structure of phylogenetic placement data.
+% It uses the KR distance to perform agglomerative hierarchical clustering of samples.
+% Instead of using pairwise sample distances, however,
+% it merges (\emph{squashes}) clusters of samples by calculating their average per-edge placement mass.
+% Thus, in each step, it operates on the same type of data, that is, on mass distributions on the \ac{RT}.
+% This results in a hierarchical clustering tree that has meaningful, and hence interpretable, branch lengths.
+%
+% Remark:
+% Squash clustering uses the KR distance, which is based on mass distributions on the edges of the \ac{RT}.
+% It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead.
+% For instance, Figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
+% on a dataset of Bacterial Vaginosis, a disease of the vagina.
+% On the left hand side of the figure, the blue data points, representing healthy women, cluster close together,
+% while the red data points, which belong to sick patients, spread over the rest of the graph.
+% The result of Squash Clustering on this dataset is presented in Figure 1 of \cite{Srinivasan2012}.
+% The bottom half of the clustering tree, containing mainly healthy samples, has short branches,
+% while the top half, with mostly samples from sick patients, has many long branches.
+% Thus, Squash Clustering and normal PCA represent almost equivalent information in this case.
+% ---
 
 % ######################################################################################################################
 %         Phylogenetic k-means

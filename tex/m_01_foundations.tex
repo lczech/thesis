@@ -1780,8 +1780,8 @@ This linear case corresponds to the path between two locations on a tree,
 and is thus a measure of evolutionary distance between these locations.
 It can be extended to a tree via post-order traversal,
 by starting at the tips and moving the mass differences towards the (arbitrary) root.
-As the two samples being compared need to have equal masses in order to enable the transformation,
-the KR distance operates on normalized samples; that is, it compares relative abundances.
+In order to enable the transformation, the two samples being compared need to have equal masses.
+Hence, the KR distance operates on normalized samples; that is, it compares relative abundances.
 
 \begin{figure}[!hptb]
     \centering
@@ -1797,8 +1797,8 @@ the KR distance operates on normalized samples; that is, it compares relative ab
 
 As the tree needs to be traversed once per pairwise distance calculation,
 the computation of the phylogenetic KR distance is linear in the tree size, and in the number of placements.
-It is hence suitable for the large datasets of typical metagenomic studies,
-and results in a pairwise distance matrix between the samples.
+It is hence suitable for the large datasets of typical metagenomic studies.
+Note however that the computation of a pairwise distance matrix between the samples is quadratic in the number of samples.
 % As the \ac{RT} is fixed, it does not require the expensive inference of trees,
 In the special case of assigning mass only to the tips of the tree
 (for example, by ``placing'' the \acp{QS} via similarity based methods such as \toolname{BLAST}),
@@ -1840,27 +1840,85 @@ corresponds to the physical interpretation of mass movements.
 \subsection{Existing Analysis Methods}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}
 
-Before presenting our novel methods for analyzing phylogenetic placement data
-in \chpref{ch:Visualization} and \chpref{ch:Clustering},
-we here introduce existing approaches from the literature.
+The pairwise KR distance matrices between metagenomic samples as introduced
+in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances} above can be used for general-purpose methods,
+such as PCA \cite{Pearson1901,Jolliffe2002} and UPGMA \cite{Michener1957,Sokal1958,Legendre1998}.
+Although appropriate to apply, such methods do not use the fact that the distances were calculated on a phylogenetic tree.
+Taking this information into account however allows for greater interpretability and visualizability.
+To this end, the ordination method \emph{Edge PCA},
+as well as the clustering method \emph{Squash Clustering} have been developed \cite{Matsen2011a}.
+As we later compare our novel methods to these existing ones, we introduce them here.
 
-\paragraph{Squash Clustering}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}
-
-squash clustering
-\cite{Matsen2011a,Evans2012}
-
+% Before presenting our novel methods for analyzing phylogenetic placement data
+% in \chpref{ch:Visualization} and \chpref{ch:Clustering},
+% we here introduce existing approaches from the literature.
 
 \paragraph{Edge PCA}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}
 
-For example, Edge principal components analysis (Edge PCA) \cite{Matsen2011a}
+% Edge PCA \citep{Matsen2011a} is a dimensionality reduction method for phylogenetic placement data,
+% which can visualize differences between samples.
+
+The \emph{edge principal components analysis} (Edge PCA) \cite{Matsen2011a}
 is a method that utilizes the imbalance matrix to detect and visualize edges
 with a high heterogeneity of mass difference between samples.
-Edge PCA further allows to annotate its plots with meta-data variables, for instance, by coloring,
+In particular, it computes the principal components of the imbalance matrix, using standard PCA.
+The result can be interpreted as a weighted sum of variables that maximizes variance between samples.
+
+Similar to standard PCA on other types of input matrices, such as count tables or pairwise distances,
+the principal components can then be visualized in form of a scatter plot of samples.
+Samples are separated from each depending on their placement mass distribution,
+where each principal axis in the plot explains additional variance between the samples.
+These plots can further be annotated with meta-data features, for instance, by coloring,
 thus establishing a connection between differences in samples and differences in their meta-data \cite{Srinivasan2012}.
+Examples of this are shown later in \figref{fig:hmp_mds_epca} and \figref{fig:kmeans_all}.
+% more examples: \figref{fig:cluster_kmeans:sub:edgepca} and \figref{fig:bv_comparison}
 
-edge pca
-\cite{Matsen2011a,Evans2012}
+In contrast to standard PCA, using the imbalance matrix allows for further visualizations.
+As the columns of the imbalance matrix correspond to edges of the tree
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}),
+the resulting eigenvectors (principal components) can be projected back onto to tree.
+Hence, while the scatter plots show \emph{how} samples separate from each other,
+these visualizations on the tree explains \emph{why} they separate.
+Each principal component results in a tree visualization,
+where edges are highlighted that are responsible for the observed differences
+in the corresponding principal axis of the plot.
+An example of this is shown later in \figref{fig:epca}.
 
-we use these methods repeatedly to compare our novel methods to.
+\paragraph{Squash Clustering}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}
+
+% \emph{Squash Clustering} \citep{Matsen2011a} is a hierarchical clustering method for phylogenetic placement data.
+
+A fundamental task for a set of metagenomic samples consists in
+finding clusters of samples that are similar to each other according to some distance measure, such as the KR distance.
+Standard linkage-based clustering methods like \mbox{UPGMA} % mbox avoids hyphenation
+are solely based on the distances between samples,
+that is, they calculate the distances of clusters as a function of pairwise sample distances.
+
+In contrast, \emph{Squash Clustering} \cite{Matsen2011a} is a method that
+also takes into account the intrinsic structure of phylogenetic placement data.
+It uses the KR distance (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR})
+to perform agglomerative hierarchical clustering of samples.
+Instead of using pairwise sample distances, however,
+it merges (\emph{squashes}, see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses})
+clusters of samples by calculating their weighted average per-edge placement mass.
+
+Thus, in each step, Squash Clustering operates on the same type of data, namely, mass distributions on the \ac{RT}.
+This results in a hierarchical clustering tree of samples that has meaningful, and hence interpretable, branch lengths:
+The distances in the cluster tree correspond to the KR distance between merged samples.
+Examples of such cluster trees are shown later in \figref{fig:bv_comparison} and \figref{fig:cluster_kmeans}.
+Furthermore, as the inner nodes of the cluster tree are again mass distributions,
+they can be visualized, and thus allow to interpret the features of each set of merged samples.
+
+% Remark:
+% Squash clustering uses the KR distance, which is based on mass distributions on the edges of the \ac{RT}.
+% It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead.
+% For instance, Figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
+% on a dataset of Bacterial Vaginosis, a disease of the vagina.
+% On the left hand side of the figure, the blue data points, representing healthy women, cluster close together,
+% while the red data points, which belong to sick patients, spread over the rest of the graph.
+% The result of Squash Clustering on this dataset is presented in Figure 1 of \cite{Srinivasan2012}.
+% The bottom half of the clustering tree, containing mainly healthy samples, has short branches,
+% while the top half, with mostly samples from sick patients, has many long branches.
+% Thus, Squash Clustering and normal PCA represent almost equivalent information in this case.
