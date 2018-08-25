@@ -53,7 +53,9 @@ to infer an \ac{RT} \cite{Tedersoo2014,DeVargas2015,Mahe2017,Thompson2017}. % re
 % \cite{Stoeck2010,Srinivasan2012,Dunthorn2014,Mahe2017}.
 %as a frame in which their data are analyzed and interpreted.
 Creating and maintaining databases of such reference sequences constitutes a labor-intensive and potentially error-prone process.
-Moreover, this approach is impractical for samples that contain diverse sequences from many clades of the taxonomy,
+Moreover, this approach is impractical for
+highly diverse samples that comprise sequences from a plethora of taxonomic clades,
+% samples that contain diverse sequences from many clades of the taxonomy,
 or samples obtained from unexplored environments.
 %, where it is yet unknown which reference sequences are necessary.
 Lastly, even if a large \ac{RT} is available,
@@ -367,7 +369,7 @@ and a set of refined \acp{CT} for the final, more accurate placements (second le
 These \acp{CT} comprise the reference sequences that are of interest for a particular study.
 For example, if a study is concerned with \taxonname{Apicomplexa} and \taxonname{Cercozoa},
 a broad \taxonname{Eukaryotes} \ac{BT} can be used for the first level,
-and two respective \acp{CT} for the second level, similar to \citep{Mahe2017}.
+and two respective \acp{CT} for the second level, in analogy to \citep{Mahe2017}.
 % The decisions about which \acp{CT} are needed to represent the \acp{QS} of a study,
 % which reference sequences to use for the \ac{BT} and \acp{CT},
 % and which branches of the \ac{BT} represent a \ac{CT}
@@ -402,11 +404,12 @@ The method then works in three steps:
 While this approach requires some additional bookkeeping,
 the total computational cost is reduced,
 because the \acp{QS} do not have to be placed on all branches of all \acp{CT}.
-The gain in speed depends on the sizes of the \ac{BT} and \acp{CT}
-relative to the size of the (potentially imaginary) large comprehensive tree.
+The speed gain depends on the sizes of the \ac{BT} \emph{and} the \acp{CT}
+with respect to the size of the substantially larger (often one order of magnitude or more) comprehensive tree.
 For example, by splitting a tree with \num{10 000} taxa into a \ac{BT} and \num{10} \acp{CT} with 1000 taxa each,
-computational cost is reduced to 20\% of the original cost (two placement levels with 10\% of the cost each).
-Furthermore, in each level, the amount of computer memory is limited to 10\% of what is necessary for the large tree.
+the computational cost decreases by a factor of 5 (two placement levels with 10\% of the cost each).
+Furthermore, at each level,
+the amount of required computer memory is reduced by a factor of \num{10} compared to the large tree.
 Lastly, this method allows for fine-grained control over the clades of interest at both placement levels:
 
 Firstly, the \ac{BT} provides a means for phylogenetically informed sequence filtering --
@@ -502,7 +505,7 @@ The resulting per-chunk placement result files in combination with the per-sampl
 can then be parsed and analyzed by \toolname{gappa} to generate final per-sample placement files,
 containing a placement for each sequence in the original sample.
 
-The speedup that can be gained via this preprocessing is proportional to the ratio of total versus unique sequences;
+The speedup induced by this preprocessing is proportional to the ratio of total versus unique sequences;
 the gain in parallel efficiency depends on the ratio of smallest to larges sample (in number of sequences).
 This approach allows to analyze datasets that are orders of magnitude larger than in previous published studies.
 For example, in 2012, an analysis of \acf{BV} data
@@ -707,7 +710,7 @@ We found that this approach yields trees that are less accurate for phylogenetic
 \subsection{Empirical Datasets}
 \label{sec:Results:sub:EmpiricalDatasets}
 
-\acp{PhAT} are intended for obtaining phylogenetic placements of environmental sequences.
+\acp{PhAT} are intended for conducting phylogenetic placement of environmental sequences.
 As the true evolutionary history of such sequences is unknown,
 we can not repeat the previous accuracy tests on empirical environmental datasets.
 Instead, we assess if the \acp{PhAT} yield meaningful quantitative results for typical post-analysis methods.
@@ -1074,7 +1077,7 @@ in conjunction with phylogenetic placement.
 To capture clade diversity with finer resolution, for example for a second placement level,
 clade-specific \acp{PhAT} can be inferred.
 If species-level resolution is required, we recommend that the sequences are inspected by an expert,
-in order to make sure that the tree is suitable for the dataset to be placed on it.
+in order to confirm that the tree is appropriate for the dataset to be placed on it.
 Furthermore, as our automated approach inevitably suffers from errors in the database it is based on,
 we recommend using \toolname{Sativa} \citep{Kozlov2016}
 to identify potentially mislabeled sequences in the database.
