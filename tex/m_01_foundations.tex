@@ -604,6 +604,20 @@ For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref
 that is, they form a clade of the tree.
 Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
 
+For two trees $T_1$ and $T_2$ with the same taxa, but differing topologies,
+their sets of bipartitions $B_1$ and $B_2$ can be used to define distance metrics between them.
+The \emph{Robinson-Foulds} (RF) distance \cite{Robinson1981}, or symmetric difference metric,
+for instance is defined as the number of bipartitions that are unique to either of the trees:
+
+\begin{equation}
+    \label{ch:Foundations:sec:TreeOfLife:eq:RF-Distance}
+    \mbox{RF}(T_1, T_2) = \sfrac{1}{2} \,\cdot\, (\, | B_1 \cup B_2 | - | B_1 \cap B_2 | \,)
+\end{equation}
+
+This unweighted, absolute distance is often used when comparing phylogenies.
+There also exists weighted and relative variants, as well as a variant called \emph{branch score} \cite{Kuhner1994},
+which further takes the branch lengths of the trees into account.
+
 \paragraph{Practical Aspects of Trees}
 \label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:PracticalAspects}
 
@@ -867,7 +881,7 @@ The process of state transitions is defined by the substitution rate matrix %$Q$
          ~q_{TA}   &   q_{TC}   &   q_{TG}   &  -q_{T}~~
          \end{pmatrix}
         \\ \\
-        - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i \in \left\{~ A, C, G, T ~\right\}
+        - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i,j \in \left\{~ A, C, G, T ~\right\}
     \end{align*}
 \end{equation}
 
