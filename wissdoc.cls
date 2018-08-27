@@ -432,6 +432,10 @@
 % \usepackage{bbding}
 % \usepackage{todonotes}
 
+\usepackage{afterpage}
+\usepackage{pdflscape}
+\usepackage{rotating}
+
 \usepackage{framed}
 
 %make captions bf
