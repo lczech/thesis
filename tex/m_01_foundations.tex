@@ -595,14 +595,12 @@ or to summarize a set of otherwise contradicting trees.
 
 Each edge of the tree induces a \emph{bipartition} or \emph{split} of the taxa of the tree into two groups,
 one on each side of the edge.
-A set of taxa is \emph{monophyletic},
-if there is a bipartition of the tree that splits these taxa from all other taxa of the tree.
-In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
-Furthermore, a monophyletic set of taxa is called a \emph{clade} of the tree;
-in other words, a clade is a subtree that is separated from the rest of the tree by one edge.
-For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
-that is, they form a clade of the tree.
-Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
+Splits of edges that are adjacent to tip nodes are \emph{trivial},
+as they appear in every possible topology of a given set of taxa.
+Therefore, the \emph{non-trivial} splits are mostly of interest.
+The set of bipartitions induced by the edges of a tree uniquely defines the tree topology;
+for example, the tree in \figref{fig:tree_vis_options:sub:unrooted} is described by the set of bipartitions
+$B = \{ (\, \mbox{\sffamily ABC|DE} \,), (\, \mbox{\sffamily AB|CDE}\, ) \}$.
 
 For two trees $T_1$ and $T_2$ with the same taxa, but differing topologies,
 their sets of bipartitions $B_1$ and $B_2$ can be used to define distance metrics between them.
@@ -614,23 +612,22 @@ for instance is defined as the number of bipartitions that are unique to either 
     \mbox{RF}(T_1, T_2) = \sfrac{1}{2} \,\cdot\, (\, | B_1 \cup B_2 | - | B_1 \cap B_2 | \,)
 \end{equation}
 
+The factor of $\sfrac{1}{2}$ is derived from the fact that we use all bipartitions here,
+instead of only the non-trivial ones.
 This unweighted, absolute distance is often used when comparing phylogenies.
 There also exists weighted and relative variants, as well as a variant called \emph{branch score} \cite{Kuhner1994},
 which further takes the branch lengths of the trees into account.
 
-\paragraph{Practical Aspects of Trees}
-\label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:PracticalAspects}
+A set of taxa is \emph{monophyletic},
+if there is a bipartition of the tree that splits these taxa from all other taxa of the tree.
+In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
+Furthermore, a monophyletic set of taxa is called a \emph{clade} of the tree;
+in other words, a clade is a subtree that is separated from the rest of the tree by one edge.
+For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
+that is, they form a clade of the tree.
+Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
 
-While the topology of the tree is what models the evolutionary relationships,
-there are several ways of visualizing or drawing that information.
-\figref{fig:tree_vis_options} shows some examples, which all visualize the same topology (except for the rooting).
-The figure also summarizes some of the terms and concepts introduced above.
-Different drawing styles each have their advantages.
-For example, in a rectangular tree (\figref{fig:tree_vis_options:sub:rectangular}),
-branch lengths are easier to read and compare,
-while a circular tree (\figref{fig:tree_vis_options:sub:circular}) can fit more taxa in the same drawing area.
-
-\begin{figure}[hpbt]
+\begin{figure}[thpb]
     \centering
     \includegraphics[width=\linewidth]{tree_vis_options.pdf}
     \begin{subfigure}{0pt}
@@ -664,6 +661,18 @@ while a circular tree (\figref{fig:tree_vis_options:sub:circular}) can fit more 
     }
     \label{fig:tree_vis_options}
 \end{figure}
+
+\paragraph{Practical Aspects of Trees}
+\label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:PracticalAspects}
+
+While the topology of the tree is what models the evolutionary relationships,
+there are several ways of visualizing or drawing that information.
+\figref{fig:tree_vis_options} shows some examples, which all visualize the same topology (except for the rooting).
+The figure also summarizes some of the terms and concepts introduced above.
+Different drawing styles each have their advantages.
+For example, in a rectangular tree (\figref{fig:tree_vis_options:sub:rectangular}),
+branch lengths are easier to read and compare,
+while a circular tree (\figref{fig:tree_vis_options:sub:circular}) can fit more taxa in the same drawing area.
 
 Taxonomy and phylogeny serve a related, but different purpose:
 While the former is a system of classification,
