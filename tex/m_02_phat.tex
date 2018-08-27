@@ -2,7 +2,10 @@
 %         PhAT
 % ######################################################################################################################
 
-\chapter{Phylogenetic Automatic (Reference) Trees}
+% \chapter{Phylogenetic Automatic (Reference) Trees}
+%Preparatory and
+
+\chapter{Ancillary Methods for Phylogenetic Placement}
 \label{ch:AutomaticTrees}
 
 \paperbox{
@@ -18,38 +21,72 @@
 \section{Motivation}
 \label{ch:AutomaticTrees:sec:Motivation}
 
-Phylogenetic placement is particularly helpful for studying new, unexplored environments,
-for which no closely related sequences exist in reference databases (e.g., \citealp{Mahe2017}).
-However, the selection of suitable reference sequences for inferring the \ac{RT} constitutes
-a challenge for studying such environments, as this typically is a manual process.
-Furthermore, conducting phylogenetic placement requires a higher computational effort
-with respect to the placement algorithms \emph{per se}, but also the pre- and post-processing,
-than, for instance, similarity based methods.
-Due to the continuous advances in molecular sequencing, existing placement methods
-as well as respective pre- and post-processing tools have already reached their scalability limits.
-% Another limitation is the selection process of reference sequences.
+Molecular sequencing costs are decreasing exponentially, leading to unprecedented amounts of genetic sequence data,
+as explained in \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}.
+In most metagenomic studies, an initial analysis step consists in assessing the evolutionary provenance of the sequences.
+Phylogenetic placement, as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement},
+can be employed to determine the evolutionary position of sequences with respect to a given reference phylogeny.
 
-% Evolutionary Placement can be used for taxonomic assignment.
-% In studies that specifically look for certain kinds of organisms,
-% e.g, protists \citep{Mahe2017},
-% it usually suffices to use a taxonomy covering the organisms of interest,
-% potentially including outgroups from more distance species.
-% As metagenomic analyses get cheaper,
-% it is however to be expected that researchers want to target more than one group of organisms within one study.
-% Thus, this limitation needs to be overcome.
+This is particularly helpful for studying new, unexplored environments,
+for which no closely related sequences exist in reference databases \cite{Mahe2017}.
+However, the selection process of suitable reference sequences
+for inferring a reference tree is typically conducted manually.
+This constitutes a major challenge and hindrance for studying such environments with placement methods.
+
+This limitation also concerns the use of phylogenetic placement for taxonomic assignment.
+In studies that specifically look for certain kinds of organisms, e.g, protists \citep{Mahe2017},
+it usually suffices to use a taxonomy covering the organisms of interest,
+potentially including outgroups from more distance species.
+As metagenomic analyses get cheaper,
+it is however to be expected that researchers want to target more than one group of organisms within one study.
+Particularly in cases where the environment contains a yet unknown diversity of organisms,
+this hence necessitates to use a broad reference that covers many taxonomic clades.
+At the same time however, the number of taxa in the reference phylogeny
+should be small enough to allow for visually inspecting the results.
+
+Lastly, phylogenetic placement methods have generally already reached their scalability limits:
+They require a higher computational effort with respect to the placement algorithms \emph{per se},
+but also the pre- and post-processing, than, for instance, similarity-based methods such as \toolname{BLAST}.
+
+% Due to the continuous advances in molecular sequencing, existing placement methods
+% as well as respective pre- and post-processing tools have already reached their scalability limits.
+
+% ######################################################################################################################
+%     Methods
+% ######################################################################################################################
+
+\section{Methods}
+\label{ch:AutomaticTrees:sec:Methods}
+
+% First, we introduce a method to automatically construct representative sequences from databases to infer reference phylogenies.
+% Second, we present an approach for conducting large-scale phylogenetic placements on nested phylogenies.
+% Third, we describe a preprocessing pipeline that allows for handling huge sequence data sets.
+% Our experiments on empirical data show that our methods substantially accelerate the workflow and
+% yield highly accurate placement results.
 
 Here, we introduce methods to overcome the aforementioned limitations, that is, to
-(1) automatically obtain a high quality reference tree for phylogenetic placement,
+(1) automatically obtain a high-quality reference tree for conducting phylogenetic placement,
 (2) split up the placement process into two steps using smaller phylogenies,
 and (3) accelerate the computation of placements via appropriate data pre-processing approaches.
 % The implementation of these methods is available freely at gappa... no need to mention that here again!
-All methods are implemented as part of our \toolname{gappa} tool,
-which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}.
+All methods are implemented as part of our \toolname{gappa} tool;
+% which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}.
+see \appref{ch:PipelineImplementation} for implementation details.
+
+% ======================================================================================================================
+%     Phylogenetic Automatic (Reference) Trees
+% ======================================================================================================================
+
+\subsection{Phylogenetic Automatic (Reference) Trees}
+\label{ch:AutomaticTrees:sec:Methods:sub:PhAT}
+
+\paragraph{Motivation}
+\label{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:Motivation}
 
 Molecular environmental sequencing studies, particularly those that aim to conduct phylogenetic placement,
 % Meta-barcoding studies
 often rely on a set of manually selected and aligned reference sequences
-to infer an \ac{RT} \cite{Tedersoo2014,DeVargas2015,Mahe2017,Thompson2017}. % references thanks to Micah!
+to infer a \acf{RT} \cite{Tedersoo2014,DeVargas2015,Mahe2017,Thompson2017}. % references thanks to Micah!
 % \cite{Stoeck2010,Srinivasan2012,Dunthorn2014,Mahe2017}.
 %as a frame in which their data are analyzed and interpreted.
 Creating and maintaining databases of such reference sequences constitutes a labor-intensive and potentially error-prone process.
@@ -103,19 +140,15 @@ It subsequently reduces the sequences in these sets to a predefined number of co
 This set of sequences is the output of our method.
 It represents the taxonomic clades and is then used to infer the \ac{RT}.
 
-% ######################################################################################################################
-%     Method
-% ######################################################################################################################
-
-\section{Method}
-\label{ch:AutomaticTrees:sec:Method}
-
 % ======================================================================================================================
 %     Sequence Entropy
 % ======================================================================================================================
 
-\subsection{Sequence Entropy}
-\label{ch:AutomaticTrees:sec:Method:sub:SequenceSimilarity}
+% \subsection{Sequence Entropy}
+% \label{ch:AutomaticTrees:sec:Method:sub:SequenceEntropy}
+
+\paragraph{Sequence Entropy}
+\label{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:SequenceEntropy}
 
 Conventional methods for sequence similarity are often based on edit distance
 and other pairwise comparison methods \cite{Needleman1970,Smith1981,Altschul1990}.
@@ -170,8 +203,11 @@ This can be regarded as an information content estimate of the sequences.
 %     Sequence Grouping
 % ======================================================================================================================
 
-\subsection{Sequence Grouping}
-\label{ch:AutomaticTrees:sec:Method:sub:SequenceGrouping}
+% \subsection{Sequence Grouping}
+% \label{ch:AutomaticTrees:sec:Method:sub:SequenceGrouping}
+
+\paragraph{Sequence Grouping}
+\label{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:SequenceGrouping}
 
 The goal of this step is to group the sequences of a database into a given target number of groups/sets,
 such that the groups reflect the diversity of the sequences in the database.
@@ -301,8 +337,11 @@ The above process yields a set of consensus reference sequences which capture th
 %     Inferring Reference Trees
 % ======================================================================================================================
 
-\subsection{Inferring a Reference Tree}
-\label{ch:AutomaticTrees:sec:Method:sub:ReferenceTrees}
+% \subsection{Inferring a Reference Tree}
+% \label{ch:AutomaticTrees:sec:Method:sub:ReferenceTrees}
+
+\paragraph{Inferring a Reference Tree}
+\label{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:InferringReferenceTree}
 
 %Once the sequence grouping is completed, the taxonomy is not longer needed.
 Once we have identified the consensus sequences, which are already aligned to each other,
@@ -328,12 +367,12 @@ We present a method to address both issues (tree resolution and obscured diversi
 % The usage of these trees however has limitations.
 % For a discussion, see Section~\ref{sec:DiscussionConclusion}.
 
-% ######################################################################################################################
+% ======================================================================================================================
 %         Multilevel Placement
-% ######################################################################################################################
+% ======================================================================================================================
 
-\section{Multilevel Placement}
-\label{ch:AutomaticTrees:sec:MultilevelPlacement}
+\subsection{Multilevel Placement}
+\label{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement}
 
 When conducting phylogenetic placement, the computationally limiting factors are
 (i) the number of \acp{QS} to be placed (addressed in the next section) and
@@ -452,19 +491,19 @@ We recommend to ensure that the branches of the \ac{BT} that are associated with
 meaning that there is one split that separates these branches from the rest of the \ac{BT}.
 This can be achieved by inferring the \ac{BT} with a high-level constraint that maintains the monophyly of the \acp{CT}.
 It ensures phylogenetic consistency between the \ac{BT} and the \acp{CT},
-and improves the accuracy of the first placement level, as shown in \secref{sec:Results:sub:MultilevelPlacement}.
+and improves the accuracy of the first placement level, as shown in \secref{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement}.
 % It can be achieved by inferring the \ac{BT} with a high-level constraint.
 % that is, constraining the reference sequences that map to a \ac{CT} to be monophyletic.
 % This constraint is however not necessary.
 Lastly, it is also possible to use more than two levels,
 which might become necessary when working with \acp{RT} and datasets even larger than what is currently available.
 
-% ######################################################################################################################
+% ======================================================================================================================
 %         Data Preprocessing for Phylogenetic Placement
-% ######################################################################################################################
+% ======================================================================================================================
 
-\section{Data Preprocessing for Phylogenetic Placement}
-\label{ch:AutomaticTrees:sec:DataPreprocessing}
+\subsection{Data Preprocessing for Phylogenetic Placement}
+\label{ch:AutomaticTrees:sec:Methods:sub:DataPreprocessing}
 
 Apart from the \ac{RT} size, handling the sheer number of \acp{QS}
 also induces computational limitations for conducting phylogenetic placements.
@@ -525,18 +564,18 @@ a computational effort that is four orders of magnitude greater than for the \ac
 % See Section \nameref{sec:Evaluation} for details.
 
 % ######################################################################################################################
-%         Evaluation
+%         Evaluation and Results
 % ######################################################################################################################
 
-\section{Evaluation}
+\section{Evaluation and Results}
 \label{ch:AutomaticTrees:sec:Evaluation}
 
 % ======================================================================================================================
 %     Automatic Trees
 % ======================================================================================================================
 
-% \subsection{Phylogenetic Automatic (Reference) Trees}
-% \label{sec:Results:sub:AutomaticTrees}
+\subsection{Phylogenetic Automatic (Reference) Trees}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:AutomaticTrees}
 
 To test the \acf{PhAT} method,
 we used the ``SSU Ref NR 99'' sequences of the \toolname{Silva} database \citep{Quast2013} version 123.1
@@ -572,7 +611,7 @@ The constrained trees comply with the \toolname{Silva} taxonomy,
 and are used to assess how taxonomic constraints affect the phylogenetic placement and the subsequent analyses.
 % Details on the data, tools, and processing are provided
 Details are provided
-in Supplementary \secref{sec:DetailsEvaluationReferenceTrees},
+in Supplementary \secref{ch:AutomaticTrees:sec:Evaluation:sub:DetailsEvaluationReferenceTrees},
 which also discusses differences between the constrained and unconstrained trees.
 Details of the trees are shown in \tabref{tab:ReferenceTreesOverview};
 \figref{fig:clades} shows the unconstrained \taxonname{Bacteria} tree as an example.
@@ -585,7 +624,7 @@ the \taxonname{General} tree, the three domain trees, and the respective taxonom
 % ======================================================================================================================
 
 \subsection{Accuracy}
-\label{sec:Results:sub:Accuracy}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy}
 
 Here, we assess how using our \ac{PhAT} affects phylogenetic placement accuracy.
 Each terminal branch of our \acp{RT} represents a consensus sequence,
@@ -693,7 +732,7 @@ The constrained trees (\figref{fig:constraints_backbone}) exhibit similar placem
 Particularly when using Multilevel Placement with overlapping \acp{RT},
 placement differences of a few branches on the first level tree are acceptable,
 as they do not change the second level tree on which the sequence is placed.
-See Section~\todo{sec:Results:sub:MultilevelPlacement} for details.
+See Section~\todo{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement} for details.
 
 As outlined in the method description, we represent clade diversity via majority rule consensus sequences.
 To assess the impact of the consensus method, we repeated the above evaluation, using two alternative consensus methods,
@@ -708,7 +747,7 @@ We found that this approach yields trees that are less accurate for phylogenetic
 % ======================================================================================================================
 
 \subsection{Empirical Datasets}
-\label{sec:Results:sub:EmpiricalDatasets}
+\label{ch:AutomaticTrees:sec:Evaluationsub:EmpiricalDatasets}
 
 \acp{PhAT} are intended for conducting phylogenetic placement of environmental sequences.
 As the true evolutionary history of such sequences is unknown,
@@ -729,112 +768,11 @@ In order to obtain finer taxonomic resolution, it is thus necessary to either us
 or to use our multilevel approach instead (see next Section).
 
 % ======================================================================================================================
-%     Taxonomic Assignment and Profiling
-% ======================================================================================================================
-
-\subsection{Taxonomic Assignment and Profiling}
-\label{sec:Results:sub:TaxonomicAssignmentProfiling}
-
-Here, we assess how \acp{PhAT} perform when used for obtaining a taxonomic profile of a set of samples in conjunction with placement.
-We emphasize though that taxonomic assignment and profiling are neither the focus of \acp{PhAT},
-nor the intended standard applications of phylogenetic placement.
-To perform the evaluation,
-we used the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \citep{Sczyrba2017,Bremges2018},
-and phylogenetically placed the reads of the  16S locus (\num{\approx 0.08}\% of the total data)
-on our constrained and unconstrained \taxonname{Bacteria} trees.
-We then used this placement data to taxonomically assign the reads
-based on the underlying \toolname{Silva} taxonomy of the trees,
-in analogy to the method used by \toolname{Sativa} \citep{Kozlov2016}.
-Unfortunately, the \toolname{CAMI} Challenge uses the \toolname{NCBI} taxonomy for the respective evaluation.
-We thus had to compute a mapping between the two taxonomies, which introduces some incongruities \citep{Balvociute2017}.
-The resulting per-read assignment was then used to generate a taxonomic profile of the data.
-
-Despite only using a small fraction of the reads and despite having to use incongruent taxonomies,
-our PhAT-based taxonomic profiling is in the mid-range of the tools evaluated by \toolname{CAMI}.
-Therefore, our method yields reasonable accuracy for taxonomic assignment and profiling.
-Note that the resolution of the assignment is limited by the taxonomy used when running the \ac{PhAT} method,
-that is, we could not assign reads at \taxonname{Species} level.
-Details of the process and its results are provided in \secref{sec:Results:sub:TaxonomicAssignmentProfilingDetails};
-\figref{fig:cami_performance}, \figref{fig:alpha_diversity}, and \tabref{tab:cami_rankings} show the most important evaluation results.
-
-% ======================================================================================================================
-%     Taxonomic Assignment
-% ======================================================================================================================
-
-\section{Taxonomic Assignment and Profiling}
-\label{sec:Results:sub:TaxonomicAssignmentProfilingDetails}
-
-Taxonomic profiling is one potential application of phylogenetic placement.
-Thus, we also tested how well our \acp{PhAT} are suited for this purpose.
-% To this end, we conducted CAMI Challenge \citep{Sczyrba2017}
-The CAMI Challenge \citep{Sczyrba2017} is a community-driven effort to assess taxonomic profiling methods
-using a common set of benchmark data sets.
-To assess the feasibility of using trees generated with \ac{PhAT} to perform taxonomic profiling of microbiome data,
-we utilized the \taxonname{mouse gut} data set of the 2nd CAMI Challenge \citep{Bremges2018}.
-For this data set, we performed read preprocessing, phylogenetic placement
-against our constrained and unconstrained \taxonname{Bacterial} trees,
-and subsequent taxonomic assignment.
-
-More specifically, we used the unpaired HiSeq reads of the mouse gut data set from CAMI,
-which comprises \num{64} samples of simulated reads.
-The preprocessing involved read de-interleaving following \cite{DeinterleaveFastq},
-paired-end read merging using \toolname{PEAR} \citep{Zhang2014},
-as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \citep{Rognes2016}.
-This yielded a total of \num{800 341 409} reads.
-As our trees are based on small ribosomal subunit sequences,
-we also performed read filtering to obtain reads from the 16S rDNA locus.
-This filtering was performed using the protocol of \cite{Logares2014},
-which relies on \toolname{HMMER} \citep{Eddy1998,Eddy2009}, and respective profiles for the 16S rDNA locus.
-We performed a global identity based de-replication step on the resulting reads that yielded \num{616 405} query sequences.
-We aligned these query sequences to our \taxonname{Bacteria} reference alignment
-using \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012}.
-We then performed phylogenetic placement of the aligned query sequences onto the unconstrained and constrained reference trees,
-respectively, using \toolname{EPA-ng} \citep{Barbera2018}.
-We performed de-de-replication to obtain per-sample data again, %on the \texttt{jplace} file,
-resulting in \num{64} \texttt{jplace} files (one per original sample) with placements of the 16S rDNA sequences,
-for each of the two trees.
-
-Finally, we performed taxonomic assignment and taxonomic profiling of the per-sample results
-using the \texttt{assign} command implemented in \toolname{gappa},
-which works analogously to the method used in \toolname{Sativa} \citep{Kozlov2016}.
-Its basic steps are described in \secref{ch:PipelineImplementation}.
-The CAMI challenge requires taxonomic assignments
-that conform with the \toolname{NCBI} taxonomy \citep{Sayers2009,Benson2009}.
-As our reference tree is however based on the \toolname{Silva} taxonomy \citep{Yilmaz2014},
-we developed a dedicated mapping procedure to, in a best effort approach,
-map our results to \toolname{NCBI} taxonomic names and IDs.
-The mapping is based on the \textit{loose mapping} procedure by \cite{Balvociute2017}.
-More specifically, we try to map taxonomic paths to their name, rank, and ID in the \toolname{NCBI} taxonomy,
-if we find a name-based match between the two.
-When this fails, the phylogenetic placement mass assigned to a taxonomic path by our approach
-is instead added to the last successful mapping further up in the taxonomic hierarchy.
-By initiating this procedure for each taxonomic path from its root downwards,
-we ensure that all placement masses are taken into account.
-
-This mapping is a major disadvantage of our approach when using a \toolname{Silva}-based reference,
-as the \toolname{Silva} and \toolname{NCBI} taxonomies are far from being congruent \citep{Balvociute2017}.
-Also note that our reference is limited to 16S rDNA locus. This substantially reduces the volume of data we can evaluate.
-In this particular test, only \num{\approx 0.08}\% of the total data was identified as belonging to 16S.
-This means that our taxonomic profiling only uses a small fraction of the available data.
-% that is, for estimating relative fractions of the taxa present in the data.
-
-Finally, we used the CAMI evaluation tool for taxonomic profilers, OPAL \citep{Sczyrba2017},
-to compare our approach to competing software and the ``gold standard'' result for the data set.
-Despite the aforementioned caveats of taxonomic profiling using phylogenetic placements in the CAMI setting,
-we find that the performance of our approach is ``middle of the field''.
-Note that this is a comparison to tools that are dedicated to taxonomic profiling,
-which also typically can assign more of the available reads.
-
-We show the most important OPAL results in \figref{fig:cami_performance}, \figref{fig:alpha_diversity},
-as well as in \tabref{tab:cami_rankings}.
-Furthermore, the full OPAL output can be accessed at \url{http://github.com/lczech/placement-methods-paper}.
-
-% ======================================================================================================================
 %     PhAT Details
 % ======================================================================================================================
 
 \subsection{Details about the Phylogenetic Automatic (Reference) Tree Evaluation}
-\label{sec:DetailsEvaluationReferenceTrees}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:DetailsEvaluationReferenceTrees}
 
 To test the \acf{PhAT} method,
 we used the ``SSU Ref NR 99'' sequences of the \toolname{Silva} database \citep{Quast2013} version 123.1
@@ -973,11 +911,112 @@ Therefore, we decided to only report the unfiltered results.
 % but report the unfiltered results here.
 
 % ======================================================================================================================
+%     Taxonomic Assignment and Profiling
+% ======================================================================================================================
+
+\subsection{Taxonomic Assignment and Profiling}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}
+
+Here, we assess how \acp{PhAT} perform when used for obtaining a taxonomic profile of a set of samples in conjunction with placement.
+We emphasize though that taxonomic assignment and profiling are neither the focus of \acp{PhAT},
+nor the intended standard applications of phylogenetic placement.
+To perform the evaluation,
+we used the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \citep{Sczyrba2017,Bremges2018},
+and phylogenetically placed the reads of the  16S locus (\num{\approx 0.08}\% of the total data)
+on our constrained and unconstrained \taxonname{Bacteria} trees.
+We then used this placement data to taxonomically assign the reads
+based on the underlying \toolname{Silva} taxonomy of the trees,
+in analogy to the method used by \toolname{Sativa} \citep{Kozlov2016}.
+Unfortunately, the \toolname{CAMI} Challenge uses the \toolname{NCBI} taxonomy for the respective evaluation.
+We thus had to compute a mapping between the two taxonomies, which introduces some incongruities \citep{Balvociute2017}.
+The resulting per-read assignment was then used to generate a taxonomic profile of the data.
+
+Despite only using a small fraction of the reads and despite having to use incongruent taxonomies,
+our PhAT-based taxonomic profiling is in the mid-range of the tools evaluated by \toolname{CAMI}.
+Therefore, our method yields reasonable accuracy for taxonomic assignment and profiling.
+Note that the resolution of the assignment is limited by the taxonomy used when running the \ac{PhAT} method,
+that is, we could not assign reads at \taxonname{Species} level.
+Details of the process and its results are provided in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfilingDetails};
+\figref{fig:cami_performance}, \figref{fig:alpha_diversity}, and \tabref{tab:cami_rankings} show the most important evaluation results.
+
+% ======================================================================================================================
+%     Taxonomic Assignment and Profiling
+% ======================================================================================================================
+
+\subsection{Taxonomic Assignment and Profiling}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfilingDetails}
+
+Taxonomic profiling is one potential application of phylogenetic placement.
+Thus, we also tested how well our \acp{PhAT} are suited for this purpose.
+% To this end, we conducted CAMI Challenge \citep{Sczyrba2017}
+The CAMI Challenge \citep{Sczyrba2017} is a community-driven effort to assess taxonomic profiling methods
+using a common set of benchmark data sets.
+To assess the feasibility of using trees generated with \ac{PhAT} to perform taxonomic profiling of microbiome data,
+we utilized the \taxonname{mouse gut} data set of the 2nd CAMI Challenge \citep{Bremges2018}.
+For this data set, we performed read preprocessing, phylogenetic placement
+against our constrained and unconstrained \taxonname{Bacterial} trees,
+and subsequent taxonomic assignment.
+
+More specifically, we used the unpaired HiSeq reads of the mouse gut data set from CAMI,
+which comprises \num{64} samples of simulated reads.
+The preprocessing involved read de-interleaving following \cite{DeinterleaveFastq},
+paired-end read merging using \toolname{PEAR} \citep{Zhang2014},
+as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \citep{Rognes2016}.
+This yielded a total of \num{800 341 409} reads.
+As our trees are based on small ribosomal subunit sequences,
+we also performed read filtering to obtain reads from the 16S rDNA locus.
+This filtering was performed using the protocol of \cite{Logares2014},
+which relies on \toolname{HMMER} \citep{Eddy1998,Eddy2009}, and respective profiles for the 16S rDNA locus.
+We performed a global identity based de-replication step on the resulting reads that yielded \num{616 405} query sequences.
+We aligned these query sequences to our \taxonname{Bacteria} reference alignment
+using \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012}.
+We then performed phylogenetic placement of the aligned query sequences onto the unconstrained and constrained reference trees,
+respectively, using \toolname{EPA-ng} \citep{Barbera2018}.
+We performed de-de-replication to obtain per-sample data again, %on the \texttt{jplace} file,
+resulting in \num{64} \texttt{jplace} files (one per original sample) with placements of the 16S rDNA sequences,
+for each of the two trees.
+
+Finally, we performed taxonomic assignment and taxonomic profiling of the per-sample results
+using the \texttt{assign} command implemented in \toolname{gappa},
+which works analogously to the method used in \toolname{Sativa} \citep{Kozlov2016}.
+Its basic steps are described in \secref{ch:PipelineImplementation}.
+The CAMI challenge requires taxonomic assignments
+that conform with the \toolname{NCBI} taxonomy \citep{Sayers2009,Benson2009}.
+As our reference tree is however based on the \toolname{Silva} taxonomy \citep{Yilmaz2014},
+we developed a dedicated mapping procedure to, in a best effort approach,
+map our results to \toolname{NCBI} taxonomic names and IDs.
+The mapping is based on the \textit{loose mapping} procedure by \cite{Balvociute2017}.
+More specifically, we try to map taxonomic paths to their name, rank, and ID in the \toolname{NCBI} taxonomy,
+if we find a name-based match between the two.
+When this fails, the phylogenetic placement mass assigned to a taxonomic path by our approach
+is instead added to the last successful mapping further up in the taxonomic hierarchy.
+By initiating this procedure for each taxonomic path from its root downwards,
+we ensure that all placement masses are taken into account.
+
+This mapping is a major disadvantage of our approach when using a \toolname{Silva}-based reference,
+as the \toolname{Silva} and \toolname{NCBI} taxonomies are far from being congruent \citep{Balvociute2017}.
+Also note that our reference is limited to 16S rDNA locus. This substantially reduces the volume of data we can evaluate.
+In this particular test, only \num{\approx 0.08}\% of the total data was identified as belonging to 16S.
+This means that our taxonomic profiling only uses a small fraction of the available data.
+% that is, for estimating relative fractions of the taxa present in the data.
+
+Finally, we used the CAMI evaluation tool for taxonomic profilers, OPAL \citep{Sczyrba2017},
+to compare our approach to competing software and the ``gold standard'' result for the data set.
+Despite the aforementioned caveats of taxonomic profiling using phylogenetic placements in the CAMI setting,
+we find that the performance of our approach is ``middle of the field''.
+Note that this is a comparison to tools that are dedicated to taxonomic profiling,
+which also typically can assign more of the available reads.
+
+We show the most important OPAL results in \figref{fig:cami_performance}, \figref{fig:alpha_diversity},
+as well as in \tabref{tab:cami_rankings}.
+Furthermore, the full OPAL output can be accessed at \url{http://github.com/lczech/placement-methods-paper}.
+
+% ======================================================================================================================
 %     Multilevel Placement
 % ======================================================================================================================
 
 \subsection{Sub-clades and Multilevel Placement}
-\label{sec:Results:sub:MultilevelPlacement}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement}
 
 We selected five bacterial clades to evaluate \ac{PhAT} accuracy on smaller clades,
 as well as to assess some properties of the Multilevel Placement approach.
@@ -1378,7 +1417,7 @@ Here, we compare the taxonomic assignment and profiling conducted with our \text
 to the tools that took part in the 2nd CAMI challenge.
 For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
 which are abbreviated in the table as ``PhAT (U)'' and ``PhAT (C)'', respectively.
-See \secref{sec:Results:sub:TaxonomicAssignmentProfilingDetails} for details.
+See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfilingDetails} for details.
 \\
 Four metrics are used in CAMI for evaluating tools:
 Recall (completeness), precision (purity), L1 norm error (abbreviated here as L1 NE),
@@ -1387,7 +1426,7 @@ For each metric, the comparative scores of the tools are shown, as well as their
 Also, the total sum of scores and the total rank are shown, which add up the values of the four metrics.
 The procedure of the scoring and ranking is explained in detail in the Online Supplement of \cite{Sczyrba2017}.
 \\
-Despite the caveats and limitations that are explained in \secref{sec:Results:sub:TaxonomicAssignmentProfilingDetails},
+Despite the caveats and limitations that are explained in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfilingDetails},
 using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the middle of the field for all metrics.
 }
 \label{tab:cami_rankings}
@@ -1493,7 +1532,7 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
         The differences probably occur because our trees span diverse clades,
         whose ancient branches are hard to resolve. % instead of ``branches'': evolutionary relationships?
         Also, single gene data might not be sufficient to resolve these clades.
-        See \secref{sec:DetailsEvaluationReferenceTrees} and \tabref{tab:TreeTopologyTests}
+        See \secref{ch:AutomaticTrees:sec:Evaluation:sub:DetailsEvaluationReferenceTrees} and \tabref{tab:TreeTopologyTests}
         for a more detailed comparison of the constrained and unconstrained trees.
         However, the differences mostly concern inner branches.
         Most of the placements are however expected to be near the terminal branches,
@@ -2025,7 +2064,7 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
         to the tools that took part in the 2nd CAMI challenge.
         For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
         which are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
-        See \secref{sec:Results:sub:TaxonomicAssignmentProfilingDetails} for details on our evaluation,
+        See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfilingDetails} for details on our evaluation,
         and see \cite{Sczyrba2017} for details on CAMI and their metrics.
         \\
         Subfigure \subref{fig:cami_performance:sub:relative} shows the relative performance of the tools
