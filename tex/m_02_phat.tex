@@ -360,7 +360,7 @@ A \ac{PhAT} satisfies all criteria we listed above:
 (b) By using consensus sequences, potential sequencing errors can be alleviated.
 (c) The size of the tree can be specified by the user.
 However, the resolution of the trees is limited by the underlying taxonomy,
-see \secref{ch:AutomaticTrees:sec:Evaluationsub:EmpiricalDatasets}
+see \secref{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets}
 and \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling} for details.
 Thus, one needs to verify that the resulting tree is appropriate for the dataset to be placed on it.
 This however also holds for manually selected reference sequences,
@@ -1275,88 +1275,44 @@ Therefore, we decided to only report the unfiltered results in the above evaluat
 % ======================================================================================================================
 
 \subsection{Empirical Datasets}
-\label{ch:AutomaticTrees:sec:Evaluationsub:EmpiricalDatasets}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets}
 
 \acp{PhAT} are intended for conducting phylogenetic placement of environmental sequences.
 As the true evolutionary history of such sequences is unknown,
 we can not repeat the previous accuracy tests on empirical environmental datasets.
 Instead, we assess if the \acp{PhAT} yield meaningful quantitative results for typical post-analysis methods.
-To this end, we placed two empirical metagenomic amplicon barcoding datasets on our unconstrained \taxonname{Bacteria} tree.
+To this end, we placed two empirical metagenomic amplicon barcoding datasets
+(see \appref{ch:EmpiricalDatasets} for their details) on our unconstrained \taxonname{Bacteria} tree.
 To asses the placement results obtained from the \ac{PhAT},
-we performed Squash Clustering and Edge PCA \citep{Matsen2011a} post-analyses on the placement results
-(see \secref{ch:EmpiricalDatasets} and
-\figref{fig:bv_squash}, \figref{fig:bv_edgepca} and \figref{fig:hmp_mds_epca} for details).
-The results reveal that the \ac{PhAT} reproduces results of previous studies
-based on custom \acp{RT} with manually selected reference sequences.
-Furthermore, the \ac{PhAT} is able to classify samples (e.g., healthy vs sick patients),
-at least to the extend that is expected from its phylogenetic resolution.
-That is, samples that only differ in placements at the species level
-cannot be classified using a broad, high-level tree such as our \taxonname{Bacteria} tree.
-In order to obtain finer taxonomic resolution, it is thus necessary to either use a \ac{PhAT} that contains more taxa,
-or to use our multilevel approach instead (see next Section).
+we performed Squash Clustering and Edge PCA \citep{Matsen2011a} post-analyses
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}) on the placement results.
 
+% First, we test the behavior of the unconstrained \taxonname{Bacteria} tree obtained via our \ac{PhAT} method
+% when used for standard post-analyses of phylogenetic placement results.
 
-Here, we test the behavior of the unconstrained \taxonname{Bacteria} tree obtained via our \ac{PhAT} method
-when used for standard post-analyses of phylogenetic placement results.
-For this, we used a sequence dataset of the vaginal microbiome of 220 women \citep{Srinivasan2012}.
-For details on the processing, see \secref{ch:EmpiricalDatasets}.
-% containing a total of \num{426 612} sequences.
+\paragraph{Bacterial Vaginosis Dataset}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:BV}
+
+We used an empirical sequence dataset of the vaginal microbiome of 220 women
+with a total of \num{426 612} sequences \citep{Srinivasan2012} for this evaluation.
+For details on the dataset and its processing, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV}.
 The original study showed associations between the presence of certain bacterial species
 and the diagnosis of \acf{BV}, a condition caused by changes in the vaginal microbiome.
 In the study, the Nugent score \citep{Nugent1991} was used as a clinical diagnostic criterion for \ac{BV},
 which ranges from \num{0} (healthy) to \num{10} (severe illness).
-We placed the sequences of the dataset on their original tree and on our \ac{PhAT},
+We placed the sequences of the dataset on their original tree and on our unconstrained \taxonname{Bacteria} tree,
 and reproduce some of the results from the original study
 % by performing Squash Clustering and Edge PCA on the data
 to assess differences induced by using distinct references trees.
 % Each colored dot in the figure represents one sample.
+The results reveal that the \ac{PhAT} reproduces certain aspects of the results of previous studies
+based on custom \acp{RT} with manually selected reference sequences,
+at least to the extend that is expected from its phylogenetic resolution.
 
-%         moved to intro:
-        Squash Clustering is a hierarchical clustering method for phylogenetic placement data \citep{Matsen2011a} % and Srinivasan2012
-%         It is a generalization of the UniFrac distance \citep{Lozupone2005,Lozupone2007a},
-%         and yields meaningful branch lengths of the cluster tree.
-%         To this end, it
-        that uses the phylogenetic Kantorovich-Rubinstein (KR) distance \citep{Evans2012} % and Matsen2011a
-%         also known as the Wasserstein distance, Mallows distance,
-%         or Earth Mover's distance \citep{Mallows1972,Rachev1985,Levina2001,Villani2008},
-        to measure cluster similarity.
-        The result of Squash Clustering is a cluster tree of samples,
-        where samples that are similar according to the KR distance are closer to each other,
-        with branch lengths according to that distance.
-
-
-
-The general features of the two cluster trees are comparable,
-indicating that our tree is able to distinguish between healthy and sick patients.
-However, there is a major difference in the lower half of the trees:
-While \subref{fig:bv_squash:sub:squash_orig} shows some small branch lengths and even a separated sub-clade
-of samples with low Nugent score,
-these branches have a length of virtually zero in \subref{fig:bv_squash:sub:squash_art}.
-As shown in \citep{Srinivasan2012}, the healthy patients are divided into two classes,
-based on the presence of two species of \taxonname{Lactobacillus}.
-The original reference tree contains sequences of those species, and can thus distinguish between them.
-Our broad \taxonname{Bacteria} tree however
-does not have this degree of species-level resolution and thus treats them the same,
-yielding a negligible KR distance between the samples.
-Although this finding is expected, it serves as an example for the limits of our method.
-
-    moved to intro:
-    Edge PCA \citep{Matsen2011a} is a dimensionality reduction method for phylogenetic placement data,
-    which can visualize differences between samples.
-       ---
-
-While our tree is able to separate samples by Nugent score,
-it does not exhibit the further separation of the two \taxonname{Lactobacillus} species
-that is apparent when using the original tree.
-Thus, the samples with low Nugent score form one blob in \figref{fig:bv_edgepca:sub:edgepca_art}.
-
-This limitation can be overcome by either resolving the \ac{PhAT} down to species level,
-or by using multilevel placement with a refined tree
-that for example contains species sequences of the relevant \taxonname{Lactobacillus} clades.
-We however generally note that similar issues of deficient resolution or missing species
-can potentially also arise when hand-selecting reference sequences.
-In the end, it is the responsibility of the researcher to make sure that the selection of reference sequences
-is suitable for the dataset to be placed.
+First, we conducted Squash Clustering \citep{Matsen2011a}
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering})
+of the samples placed on the two trees.
+The resulting hierarchical cluster trees of the samples are shown in \figref{fig:bv_squash}.
 
 \begin{figure}[hpbt]
     \centering
@@ -1384,6 +1340,26 @@ is suitable for the dataset to be placed.
     \label{fig:bv_squash}
 \end{figure}
 
+The general features of the two cluster trees are comparable,
+indicating that our tree is able to distinguish between healthy and sick patients.
+However, there is a major difference in the lower half of the trees:
+While \subref{fig:bv_squash:sub:squash_orig} shows some small branch lengths and even a separated sub-clade
+of samples with low Nugent score,
+these branches have a length of virtually zero in \subref{fig:bv_squash:sub:squash_art}.
+As shown in \citep{Srinivasan2012}, the healthy patients are divided into two classes,
+based on the presence of two species of \taxonname{Lactobacillus}.
+The original reference tree contains sequences of those species, and can thus distinguish between them.
+Our broad \taxonname{Bacteria} tree however
+does not have this degree of species-level resolution and thus treats them the same,
+yielding a negligible KR distance (\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR})
+between the samples.
+Although this finding is expected, it serves as an example for the limits of our method.
+
+Second, we conducted an Edge PCA \citep{Matsen2011a}
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA})
+of the samples.
+The resulting scatter plots are shown in \figref{fig:bv_edgepca}.
+
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=\linewidth]{bv_edgepca.pdf}
@@ -1408,6 +1384,39 @@ is suitable for the dataset to be placed.
     \label{fig:bv_edgepca}
 \end{figure}
 
+The scatter plots show the \ac{PhAT} is able to separate samples by Nugent score, that is, to classify them
+into healthy (left, blue items) and sick patients (right, red items).
+However, as with Squash Clustering, samples that only differ in placements at the species level
+are not separated from each other in the Edge PCA plot.
+Hence, the two classes of healthy patients do again not exhibit
+the separation based on the two \taxonname{Lactobacillus} species that is apparent when using the original tree.
+Thus, the samples with low Nugent score form one blob in \figref{fig:bv_edgepca:sub:edgepca_art}.
+% cannot be classified using a broad, high-level tree such as our \taxonname{Bacteria} tree.
+
+This limitation can be overcome in two ways:
+On the one hand, one can use a \ac{PhAT} with finer taxonomic resolution,
+that is, with more taxa that resolve down to species level.
+On the other hand, our multilevel placement approach (see \secref{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement})
+can be used with a refined second level tree
+that for example contains species sequences of the relevant \taxonname{Lactobacillus} clades.
+
+We however generally note that similar issues of deficient resolution or missing species
+can potentially also arise when hand-selecting reference sequences,
+and are thus not an inherent disadvantage of our method.
+In the end, it is the responsibility of the researcher to make sure that the selected reference sequences
+are suitable for the dataset to be placed.
+
+\paragraph{Human Microbiome Project Dataset}
+\label{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:HMP}
+
+Next, we tested the unconstrained \taxonname{Bacteria} tree generated by our \ac{PhAT} method
+for placing and analyzing a large sequence dataset.
+For this, we use the Human Microbiome Project (HMP) \citep{Huttenhower2012,Methe2012} data,
+and selected \num{9192} samples from different body sites with a total of 117 million sequences.
+For details on the dataset and its processing, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:HMP}.
+The sequences were placed on the tree, and subsequently analyzed with two different methods,
+as shown in \figref{fig:hmp_mds_epca}.
+
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=\linewidth]{art/mds_epca.pdf}
@@ -1421,38 +1430,40 @@ is suitable for the dataset to be placed.
     \end{subfigure}
     \caption[Assessment of a \acs{PhAT} for large dataset analyses]{
         \textbf{Assessment of a \acs{PhAT} for large dataset analyses.}
-        Here, we test the unconstrained \taxonname{Bacteria} tree generated by our \ac{PhAT} method
-        for placing and analyzing a large sequence dataset.
-        For this, we use the Human Microbiome Project (HMP) \citep{Huttenhower2012,Methe2012} data,
-        and selected \num{9192} samples from different body sites with a total of 117 million sequences.
-        For details on the processing, see \secref{ch:EmpiricalDatasets}.
-        We categorized the 19 original body site labels into 8 regions, in order to make the plot more readable.
+        Sequences from the HMP dataset \citep{Huttenhower2012,Methe2012} were placed
+        on our unconstrained \taxonname{Bacteria} tree, and analyzed with two analysis methods.
+        In subfigure \subref{fig:hmp_mds_epca:sub:mds}, we visualized the pairwise KR distances between all samples,
+        using a two-dimensional \acf{MDS}.
+        In subfigure \subref{fig:hmp_mds_epca:sub:edge_pca}, we performed Edge PCA
+        (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}) on the samples.
+        For both plots, we categorized the 19 original body site labels into 8 regions,
+        in order to make the plot more readable.
         See \tabref{tab:hmp_data_overview} for the mapping between the original labels and the ones used here.
-        The sequences were placed on the tree, and subsequently analyzed with two different methods.
-        Both subfigures show that the tree, despite only representing higher taxonomic levels,
-        suffices to separate different body site regions from each other.
-%         Even different oral regions are mostly separated, although there seems to be quite some overlap.
-        \\
-        In subfigure \subref{fig:hmp_mds_epca:sub:mds}, we visualized the pairwise KR distances between all samples.
-        The phylogenetic Kantorovich-Rubinstein (KR) distance \citep{Matsen2011a,Evans2012} between two samples,
-        also known as the Earth Mover's distance,
-        measures how much placement ``mass'' has to be moved by how much along the branches of the tree
-        in order to transform one sample into the other.
-        It is a generalization of the UniFrac distance \citep{Lozupone2005,Lozupone2007a}.
-        The high-dimensional pairwise KR distance matrix was then embedded into the plot by performing \acf{MDS}.
-        \ac{MDS} \citep{Mardia1978,Krzanowski1994,Everitt2010} is a dimensionality reduction technique that
-        finds an embedding of a distance matrix into lower dimensions (in this case, \num{2} dimensions)
-        preserving higher dimensional distances as well as possible.
-        \\
-        In subfigure \subref{fig:hmp_mds_epca:sub:edge_pca}, we also perform Edge PCA \citep{Matsen2011a}
-        on the samples.
-        The grouping of body sites is again clearly visible with this method.
-%         See \figref{fig:bv_comparison} for a short explanation of this method.
-        Similar to \figref{fig:bv_edgepca:sub:edgepca_orig}, the plot forms a triangle of samples,
-        roughly separated by body site regions.
     }
     \label{fig:hmp_mds_epca}
 \end{figure}
+
+% The phylogenetic Kantorovich-Rubinstein (KR) distance \citep{Matsen2011a,Evans2012} between two samples,
+% also known as the Earth Mover's distance,
+% measures how much placement ``mass'' has to be moved by how much along the branches of the tree
+% in order to transform one sample into the other.
+% It is a generalization of the UniFrac distance \citep{Lozupone2005,Lozupone2007a}.
+
+First, we computed the pairwise KR distance matrix
+(see (\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR})) between all samples.
+This high-dimensional matrix was then embedded into the plot by performing \acf{MDS}.
+\ac{MDS} \citep{Mardia1978,Krzanowski1994,Everitt2010} is a dimensionality reduction technique that
+finds an embedding of a distance matrix into lower dimensions (in this case, \num{2} dimensions)
+preserving higher dimensional distances as well as possible.
+Second, we again performed Edge PCA \citep{Matsen2011a}
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}) on the samples.
+
+Both subfigures show that the tree, despite only representing higher taxonomic levels,
+suffices to separate different body site regions from each other.
+Even different oral regions are mostly separated, although there seems to be quite some overlap.
+% Similar to \figref{fig:bv_edgepca:sub:edgepca_orig}, the plot forms a triangle of samples,
+% roughly separated by body site regions.
+We hence conclude that our \ac{PhAT} is capable of analyzing such datasets and yields useful results.
 
 % ======================================================================================================================
 %     Taxonomic Assignment and Profiling
