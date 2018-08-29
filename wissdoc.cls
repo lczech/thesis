@@ -477,6 +477,9 @@
 % dont start footnote numbering per chapter
 \counterwithout{footnote}{chapter}
 
+% https://latex.org/forum/viewtopic.php?t=16383
+%\usepackage{placeins}
+
 % allow short french parts by inputing \fr{...}
 % \newcommand{\fr}[1]{\foreignlanguage{frenchb}{#1}}
 

@@ -59,7 +59,7 @@ See \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences} for more
 \label{ch:EmpiricalDatasets}
 
 \paperbox{
-    This chapter is based on the peer-reviewed publications:
+    This chapter is partially based on the peer-reviewed publications:
 }{\paperart \paperpppp}{
     \textbf{Contributions:} Lucas Czech... Alexandros Stamatakis...
 }
@@ -91,6 +91,7 @@ real world datasets to evaluate our methods:
             It contains \num{9192} samples from different body sites with a total of \num{63 221 538} unique sequences.
             There is additional meta-data such as age and medical history, which is available upon special request.
             We only used the publicly available meta-data.
+    \item   \todo{mouse gut}
 \end{itemize}
 
 Details of the datasets (download links, data statistics, data preprocessing, etc.)
@@ -340,6 +341,46 @@ The last column lists how many samples from each body site were used in our eval
     \end{center}
 }
 \end{table}
+
+\section{Mouse Gut}
+\label{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}
+
+This dataset was used for the eval of tax assign in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}
+
+CAMI Challenge \citep{Sczyrba2017}.
+The CAMI Challenge is a community-driven effort to assess taxonomic profiling methods
+using a common set of benchmark data sets.
+
+
+we utilized the \taxonname{mouse gut} data set of the 2nd CAMI Challenge \citep{Bremges2018}.
+
+
+More specifically, we used the unpaired HiSeq reads of the mouse gut data set from CAMI,
+which comprises \num{64} samples of simulated reads.
+The preprocessing involved read de-interleaving following \cite{DeinterleaveFastq},
+paired-end read merging using \toolname{PEAR} \citep{Zhang2014},
+as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \citep{Rognes2016}.
+This yielded a total of \num{800 341 409} reads.
+As our trees are based on small ribosomal subunit sequences,
+we also performed read filtering to obtain reads from the 16S rDNA region
+(see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}).
+This filtering was performed using the protocol of \cite{Logares2014},
+which relies on \toolname{HMMER} \citep{Eddy1998,Eddy2009}, and respective profiles for the 16S rDNA locus.
+We performed a global identity based de-replication step on the resulting reads that yielded \num{616 405} query sequences.
+We aligned these query sequences to our \taxonname{Bacteria} reference alignment
+using \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012}.
+We then performed phylogenetic placement of the aligned query sequences onto the unconstrained and constrained reference trees,
+respectively, using \toolname{EPA-ng} \citep{Barbera2018}.
+We performed de-de-replication to obtain per-sample data again, %on the \texttt{jplace} file,
+resulting in \num{64} \texttt{jplace} files (one per original sample) with placements of the 16S rDNA sequences,
+for each of the two trees.
+
+
+Finally, we performed taxonomic assignment and taxonomic profiling of the per-sample results
+using the \texttt{assign} command implemented in \toolname{gappa},
+which works analogously to the method used in \toolname{Sativa} \citep{Kozlov2016}.
+Its basic steps are described in \appref{ch:PipelineImplementation}.
+
 
 % ######################################################################################################################
 %         Pipeline and Implementation

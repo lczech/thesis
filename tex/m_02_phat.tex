@@ -1472,75 +1472,32 @@ We hence conclude that our \ac{PhAT} is capable of analyzing such datasets and y
 \subsection{Taxonomic Assignment and Profiling}
 \label{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}
 
-Here, we assess how \acp{PhAT} perform when used for obtaining a taxonomic profile of a set of samples in conjunction with placement.
+Here, we assess how \acp{PhAT} perform when used
+for obtaining a taxonomic profile of a set of samples in conjunction with phylogenetic placement.
 We emphasize though that taxonomic assignment and profiling are neither the focus of \acp{PhAT},
 nor the intended standard applications of phylogenetic placement.
-To perform the evaluation,
-we used the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \citep{Sczyrba2017,Bremges2018},
-and phylogenetically placed the reads of the  16S locus (\num{\approx 0.08}\% of the total data)
-on our constrained and unconstrained \taxonname{Bacteria} trees.
+
+To perform the evaluation, we conducted parts of the \toolname{CAMI} Challenge \citep{Sczyrba2017},
+which is a community-driven effort to assess taxonomic profiling methods using a common set of benchmark data sets.
+To assess the feasibility of using trees generated with \ac{PhAT} to obtain taxonomic profiling of microbiome data,
+we utilized the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \citep{Bremges2018}.
+See \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut} for details on our processing of this dataset.
+In short, we phylogenetically placed the reads of the 16S region of the dataset
+% (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics})
+on our unconstrained and constrained \taxonname{Bacteria} trees.
+% The sequences of the 16S region make up \num{\approx 0.08}\% of the total dataset.
 We then used this placement data to taxonomically assign the reads
 based on the underlying \toolname{Silva} taxonomy of the trees,
 in analogy to the method used by \toolname{Sativa} \citep{Kozlov2016}.
-Unfortunately, the \toolname{CAMI} Challenge uses the \toolname{NCBI} taxonomy for the respective evaluation.
-We thus had to compute a mapping between the two taxonomies, which introduces some incongruities \citep{Balvociute2017}.
-The resulting per-read assignment was then used to generate a taxonomic profile of the data.
 
-Despite only using a small fraction of the reads and despite having to use incongruent taxonomies,
-our PhAT-based taxonomic profiling is in the mid-range of the tools evaluated by \toolname{CAMI}.
-Therefore, our method yields reasonable accuracy for taxonomic assignment and profiling.
-Note that the resolution of the assignment is limited by the taxonomy used when running the \ac{PhAT} method,
-that is, we could not assign reads at \taxonname{Species} level.
-
-% Details of the process and its results are provided in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfilingDetails};
-
-\figref{fig:cami_performance}, \figref{fig:cami_alpha_diversity}, and \tabref{tab:cami_rankings} show the most important evaluation results.
-
-\figref{fig:cami_performance_relative} and \figref{fig:cami_performance_absolute}
-
-details from the supplement:
-
-Taxonomic profiling is one potential application of phylogenetic placement.
-Thus, we also tested how well our \acp{PhAT} are suited for this purpose.
-% To this end, we conducted CAMI Challenge \citep{Sczyrba2017}
-The CAMI Challenge \citep{Sczyrba2017} is a community-driven effort to assess taxonomic profiling methods
-using a common set of benchmark data sets.
-To assess the feasibility of using trees generated with \ac{PhAT} to perform taxonomic profiling of microbiome data,
-we utilized the \taxonname{mouse gut} data set of the 2nd CAMI Challenge \citep{Bremges2018}.
-For this data set, we performed read preprocessing, phylogenetic placement
-against our constrained and unconstrained \taxonname{Bacterial} trees,
-and subsequent taxonomic assignment.
-
-More specifically, we used the unpaired HiSeq reads of the mouse gut data set from CAMI,
-which comprises \num{64} samples of simulated reads.
-The preprocessing involved read de-interleaving following \cite{DeinterleaveFastq},
-paired-end read merging using \toolname{PEAR} \citep{Zhang2014},
-as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \citep{Rognes2016}.
-This yielded a total of \num{800 341 409} reads.
-As our trees are based on small ribosomal subunit sequences,
-we also performed read filtering to obtain reads from the 16S rDNA locus.
-This filtering was performed using the protocol of \cite{Logares2014},
-which relies on \toolname{HMMER} \citep{Eddy1998,Eddy2009}, and respective profiles for the 16S rDNA locus.
-We performed a global identity based de-replication step on the resulting reads that yielded \num{616 405} query sequences.
-We aligned these query sequences to our \taxonname{Bacteria} reference alignment
-using \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012}.
-We then performed phylogenetic placement of the aligned query sequences onto the unconstrained and constrained reference trees,
-respectively, using \toolname{EPA-ng} \citep{Barbera2018}.
-We performed de-de-replication to obtain per-sample data again, %on the \texttt{jplace} file,
-resulting in \num{64} \texttt{jplace} files (one per original sample) with placements of the 16S rDNA sequences,
-for each of the two trees.
-
-Finally, we performed taxonomic assignment and taxonomic profiling of the per-sample results
-using the \texttt{assign} command implemented in \toolname{gappa},
-which works analogously to the method used in \toolname{Sativa} \citep{Kozlov2016}.
-Its basic steps are described in \secref{ch:PipelineImplementation}.
-The CAMI challenge requires taxonomic assignments
+Unfortunately, the \toolname{CAMI} Challenge requires taxonomic assignments
 that conform with the \toolname{NCBI} taxonomy \citep{Sayers2009,Benson2009}.
 As our reference tree is however based on the \toolname{Silva} taxonomy \citep{Yilmaz2014},
-we developed a dedicated mapping procedure to, in a best effort approach,
+we thus had to compute a mapping between the two taxonomies. %, which introduces some incongruences \citep{Balvociute2017}.
+To this end, we developed a dedicated mapping procedure to, in a best effort approach,
 map our results to \toolname{NCBI} taxonomic names and IDs.
 The mapping is based on the \textit{loose mapping} procedure by \cite{Balvociute2017}.
-More specifically, we try to map taxonomic paths to their name, rank, and ID in the \toolname{NCBI} taxonomy,
+More specifically, we tried to map taxonomic paths to their name, rank, and ID in the \toolname{NCBI} taxonomy,
 if we find a name-based match between the two.
 When this fails, the phylogenetic placement mass assigned to a taxonomic path by our approach
 is instead added to the last successful mapping further up in the taxonomic hierarchy.
@@ -1549,45 +1506,46 @@ we ensure that all placement masses are taken into account.
 
 This mapping is a major disadvantage of our approach when using a \toolname{Silva}-based reference,
 as the \toolname{Silva} and \toolname{NCBI} taxonomies are far from being congruent \citep{Balvociute2017}.
-Also note that our reference is limited to 16S rDNA locus. This substantially reduces the volume of data we can evaluate.
-In this particular test, only \num{\approx 0.08}\% of the total data was identified as belonging to 16S.
+Also note that our reference tree is limited to 16S rDNA region.
+This substantially reduces the volume of data we can evaluate;
+in this particular test, only \num{\approx 0.08}\% of the total mouse gut data was identified as belonging to the 16S region
+(see also \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}).
 This means that our taxonomic profiling only uses a small fraction of the available data.
-% that is, for estimating relative fractions of the taxa present in the data.
 
-Finally, we used the CAMI evaluation tool for taxonomic profilers, OPAL \citep{Sczyrba2017},
+The resulting per-read assignment was then used to generate a taxonomic profile of the data.
+We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OPAL} \citep{Sczyrba2017}
 to compare our approach to competing software and the ``gold standard'' result for the data set.
-Despite the aforementioned caveats of taxonomic profiling using phylogenetic placements in the CAMI setting,
-we find that the performance of our approach is ``middle of the field''.
-Note that this is a comparison to tools that are dedicated to taxonomic profiling,
-which also typically can assign more of the available reads.
 
-We show the most important OPAL results in \figref{fig:cami_performance}, \figref{fig:cami_alpha_diversity},
-as well as in \tabref{tab:cami_rankings}.
-Furthermore, the full OPAL output can be accessed at \url{http://github.com/lczech/placement-methods-paper}.
-
-
+We here show the most important \toolname{OPAL} results:
+\tabref{tab:cami_rankings} shows the scores and ranks of our approach compared to the other \toolname{CAMI} participants;
+\figref{fig:cami_performance} compares the tools based on different error metrics.%;
+% % \figref{fig:cami_alpha_diversity} finally shows how the tools compare with respect to their estimation of diversity,
+% in comparison to the gold standard ground truth.
+% \figref{fig:cami_performance_relative} and \figref{fig:cami_performance_absolute}
+% Furthermore, the full OPAL output can be accessed at \url{http://github.com/lczech/placement-methods-paper}.
 
 \afterpage{
+\clearpage % Flush earlier floats (otherwise order might not be correct)
 \begin{landscape}
-\begin{table}[htb]
+\begin{table}[htbp]
 \caption[CAMI: Scores and Ranks]{
 \textbf{CAMI: Scores and Ranks.}
 The table shows the scores and ranks of different tools evaluated with data from, and following the protocol of,
-the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
-Here, we compare the taxonomic assignment and profiling conducted with our \texttt{assign} command
-to the tools that took part in the 2nd CAMI challenge.
-For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
+the 2nd \toolname{CAMI} challenge \citep{Sczyrba2017,Bremges2018}.
+Here, we compare the taxonomic assignment and profiling based on our \acp{PhAT}
+to the tools that took part in the 2nd \toolname{CAMI} challenge.
+For this, we used the unconstrained and constrained \taxonname{Bacteria} tree,
 which are abbreviated in the table as ``PhAT (U)'' and ``PhAT (C)'', respectively.
-See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling} for details.
+% See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling} for details.
 \\
-Four metrics are used in CAMI for evaluating tools:
+Four metrics are used in \toolname{CAMI} for evaluating tools:
 Recall (completeness), precision (purity), L1 norm error (abbreviated here as L1 NE),
 and Weighted Unifrac Error (abbreviated here as WUE).
 For each metric, the comparative scores of the tools are shown, as well as their rankings, relative to each other.
 Also, the total sum of scores and the total rank are shown, which add up the values of the four metrics.
 The procedure of the scoring and ranking is explained in detail in the Online Supplement of \cite{Sczyrba2017}.
 \\
-Despite the caveats and limitations that are explained in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling},
+Despite the caveats and limitations that are explained in the text,
 using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the middle of the field for all metrics.
 }
 \label{tab:cami_rankings}
@@ -1677,13 +1635,24 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
 % \clearpage% Flush page
 % }
 
+% Try to print all the above first, instead of concatenation
+% with the figures following below in the next section...
+% Doesn't seem to work right now :-(
+% https://tex.stackexchange.com/a/88658
+% \afterpage{\clearpage}
+
+% https://latex.org/forum/viewtopic.php?t=16383
+% \FloatBarrier
+
 % -----------------------------------------
 %     CAMI Performance
 % -----------------------------------------
 
+% \afterpage{
+% \clearpage % Flush earlier floats (otherwise order might not be correct)
 \begin{figure}[hpbt]
     \centering
-    \includegraphics[width=0.94\linewidth]{art/cami_performance.pdf}
+    \includegraphics[width=0.94\linewidth]{cami_performance.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:cami_performance:sub:relative}
@@ -1694,23 +1663,20 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
     \end{subfigure}
     \caption[CAMI: Profiling Results]{
         \textbf{CAMI: Profiling Results.}
-        The figure shows the profiling results of different tools evaluated with data from, and following the protocol of,
-        the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
-        Here, we compare the taxonomic assignment and profiling conducted with our \texttt{assign} command
-        to the tools that took part in the 2nd CAMI challenge.
-        For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
-        which are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
-        See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling} for details on our evaluation,
-        and see \cite{Sczyrba2017} for details on CAMI and their metrics.
-        \\
-%         Subfigure \subref{fig:cami_performance:sub:relative} shows the relative performance of the tools
-%         for different taxonomic ranks by displaying the error metrics used by CAMI:
-%         Weighted Unifrac error, L1 norm error, recall (completeness), precision (purity) and false positives.
-%         The error metrics were divided by their respective maximal value to allow viewing them on the same scale
+        The figure compares the taxonomic %assignment and
+        profiling conducted with our \taxonname{Bacteria} trees
+        to the tools of the 2nd \toolname{CAMI} challenge \citep{Sczyrba2017,Bremges2018}.
+        The unconstrained and constrained tree are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
+%         \\
+        Subfigure \subref{fig:cami_performance:sub:relative} shows the \emph{relative} performance of the tools
+        across taxonomic ranks using the error metrics of \toolname{CAMI}:
+        Weighted Unifrac error, L1 norm error, recall (completeness), precision (purity) and false positives.
+%         The error metrics were divided by their respective maximal value
+%         to allow viewing them on the same scale
 %         and to allow relative performance comparisons.
 %         \\
-%         Subfigure \subref{fig:cami_performance:sub:absolute} shows the absolute recall (completeness) and precision (purity)
-%         for each tool across the taxonomic ranks.
+        Subfigure \subref{fig:cami_performance:sub:absolute} shows the \emph{absolute}
+        recall (completeness) and precision (purity) for each tool across the taxonomic ranks.
 %         \\
         In both subfigures, the red text for our PhAT evaluations indicates
         that no predictions at the corresponding taxonomic rank were returned.
@@ -1719,71 +1685,85 @@ using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the 
     }
     \label{fig:cami_performance}
 \end{figure}
+% } %afterpage
 
 % -----------------------------------------
 %     CAMI Relative Performance
 % -----------------------------------------
 
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=\linewidth]{cami_performance_relative.pdf}
-    \vspace{1em}
-    \caption[CAMI: Relative Performance]{
-        \textbf{CAMI: Relative Performance.}
-        The Figure shows the relative performance of the tools
-        for different taxonomic ranks by displaying the error metrics used by CAMI:
-        Weighted Unifrac error, L1 norm error, recall (completeness), precision (purity) and false positives.
-        The error metrics were divided by their respective maximal value to allow viewing them on the same scale
-        and to allow relative performance comparisons.
-    }
-    \label{fig:cami_performance_relative}
-\end{figure}
+% \begin{figure}[hpbt]
+%     \centering
+%     \includegraphics[width=\linewidth]{cami_performance_relative.pdf}
+%     \vspace{1em}
+%     \caption[CAMI: Relative Performance]{
+%         \textbf{CAMI: Relative Performance.}
+%         The Figure shows the relative performance of the tools
+%         for different taxonomic ranks by displaying the error metrics used by CAMI:
+%         Weighted Unifrac error, L1 norm error, recall (completeness), precision (purity) and false positives.
+%         The error metrics were divided by their respective maximal value to allow viewing them on the same scale
+%         and to allow relative performance comparisons.
+%     }
+%     \label{fig:cami_performance_relative}
+% \end{figure}
 
 % -----------------------------------------
 %     CAMI Absolute Performance
 % -----------------------------------------
 
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=\linewidth]{cami_performance_absolute.pdf}
-    \vspace{1em}
-    \caption[CAMI: Absolute Performance]{
-        \textbf{CAMI: Absolute Performance.}
-        The Figure shows the absolute recall (completeness) and precision (purity)
-        for each tool across the taxonomic ranks.
-    }
-    \label{fig:cami_performance_absolute}
-\end{figure}
+% \begin{figure}[hpbt]
+%     \centering
+%     \includegraphics[width=\linewidth]{cami_performance_absolute.pdf}
+%     \vspace{1em}
+%     \caption[CAMI: Absolute Performance]{
+%         \textbf{CAMI: Absolute Performance.}
+%         The Figure shows the absolute recall (completeness) and precision (purity)
+%         for each tool across the taxonomic ranks.
+%     }
+%     \label{fig:cami_performance_absolute}
+% \end{figure}
 
 % -----------------------------------------
 %     CAMI Alpha Diversity
 % -----------------------------------------
 
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=\linewidth]{cami_alpha_diversity.pdf}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:cami_alpha_diversity:sub:total}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:cami_alpha_diversity:sub:difference}
-    \end{subfigure}
-    \caption[CAMI: Alpha Diversity]{
-        \textbf{CAMI: Alpha Diversity.}
-        The figure shows the alpha diversity as estimated by different tools evaluated
-        with data from, and following the protocol of, the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
-        Here, we compare the taxonomic assignment and profiling conducted with our \texttt{assign} command
-        to the tools that took part in the 2nd CAMI challenge.
-        For this, we used the unconstrained and constrained \taxonname{Bacterial} tree,
-        which are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
-%         See Supplementary Section~\ref{sec:TaxonomicAssignment} for details.
-%         \\
-        \todo{add some more text here}
-    }
-    \label{fig:cami_alpha_diversity}
-\end{figure}
+% % \afterpage{
+% % \clearpage % Flush earlier floats (otherwise order might not be correct)
+% \begin{figure}[hpbt]
+%     \centering
+%     \includegraphics[width=\linewidth]{cami_alpha_diversity.pdf}
+%     \begin{subfigure}{0pt}
+%         \phantomcaption
+%         \label{fig:cami_alpha_diversity:sub:total}
+%     \end{subfigure}
+%     \begin{subfigure}{0pt}
+%         \phantomcaption
+%         \label{fig:cami_alpha_diversity:sub:difference}
+%     \end{subfigure}
+%     \caption[CAMI: Alpha Diversity]{
+%         \textbf{CAMI: Alpha Diversity.}
+%         The figure shows the alpha diversity as estimated by different tools evaluated
+%         with data from, and following the protocol of, the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
+%         Here, we compare the taxonomic assignment and profiling conducted with our trees
+%         to the tools that took part in the 2nd CAMI challenge.
+%         For this, we used the unconstrained and constrained \taxonname{Bacteria} trees,
+%         which are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
+% %         \\
+%     }
+%     \label{fig:cami_alpha_diversity}
+% \end{figure}
+% % } %afterpage
+
+% \afterpage{\clearpage}
+\todo{the order of the table and figures is messed up, and the figures of the following section interfere... :-(}
+
+The resolution of the assignment is limited by the taxonomy used when running the \ac{PhAT} method,
+that is, we could not assign reads at \taxonname{Species} level.
+% Despite the aforementioned caveats of taxonomic profiling using phylogenetic placements in the \toolname{CAMI} setting,
+Furthermore, we were only able to use a small fraction of the reads (16S) and had to use incongruent taxonomies.
+Despite this, we find that the performance of our approach is in the mid-range of the tools evaluated by \toolname{CAMI}.
+Note that this is a comparison to tools that are dedicated to taxonomic profiling,
+which also typically can assign more of the available reads.
+Therefore, our method yields reasonable accuracy for taxonomic assignment and profiling.
 
 % ======================================================================================================================
 %     Multilevel Placement
