@@ -1685,8 +1685,9 @@ As shown in \tabref{tab:hmp_binning_error}.
 branch binning can yield a speedup of up to 75\% for post-analysis run-times.
 
 Furthermore, using masses allows to summarize a set of samples
-by annotating the \ac{RT} with their average per-edge mass distribution.
-This procedure, also called \emph{squashing} \cite{Matsen2011a}, sums over all sample masses per edge
+by annotating the \ac{RT} with their (weighted) average per-edge mass distribution.
+This procedure, also called \emph{squashing} \cite{Matsen2011a}, sums over all sample masses per edge,
+% potentially weighting them by the total number of \acp{QS} per sample,
 and then normalizes them once more to obtain unit mass for this resulting average tree.
 This normalized tree thereby summarizes the (sub-)set of samples it represents.
 
@@ -1740,7 +1741,7 @@ Such meta-data features can also be summarized in a per-sample matrix, where eac
 The three matrices are shown in \figref{fig:imbalance:sub:Matrices}.
 Quantitative meta-data features are the most suitable for computational purposes,
 as they can be used for calculations such as detecting correlations with the placement mass distributions of samples,
-see for instance \secref{ch:Visualization:sec:EdgeCorrelation}.
+see for instance \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}.
 
 % ======================================================================================================================
 %     Distances between Samples
