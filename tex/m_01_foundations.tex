@@ -1569,8 +1569,11 @@ typically, the same \ac{RT} is used, in order to allow for comparisons of the ph
 In this context, it is important to consider how to properly normalize the samples.
 Normalization is required as the sample size (often also called library size),
 that is, the number of sequences per sample, can vary by several orders of magnitude.
-This is due to efficiency variations in the sequencing process or biases introduced by the amplification process,
+This is due to technical aspects in the sequencing process, such as efficiency variations,
+or biases introduced by the amplification process,
 as explained in \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}.
+In consequence, metagenomic sequence data are inherently compositional \cite{Gloor2017},
+which needs to be considered in all steps of data analysis.
 
 Selecting an appropriate normalization strategy hence constitutes a common problem in many metagenomic studies.
 The appropriateness depends on data characteristics \cite{Weiss2017}, but also on the biological question asked.
@@ -1656,7 +1659,8 @@ which is identical to the number of \acp{QS} in the sample,
 The key idea is to use the distribution of placement mass points over the edges of the \ac{RT} to characterize a sample.
 This allows for normalizing samples of different size
 by scaling the total sample mass to unit mass $1.0$.
-In other words, absolute abundances are converted into relative abundances.
+In other words, absolute abundances---which are inappropriate for analyses
+of metagenomic sequences due to the compositional nature of the data \cite{Gloor2017}---are converted into relative abundances.
 This way, rare species, which might have been removed by rarefaction, can be kept,
 as they only contribute a negligible mass to the branches into which they have been placed.
 This approach is analogous to using proportional values for methods based on OTU count tables.
@@ -1841,7 +1845,7 @@ Then, the KR distance can be expressed in closed form as
 
 This notation treats the placements as a continuous distribution over the branches of the tree
 instead of a collection of point masses, and hence describes a more general form of the KR distance.
-This allows a further generalization by introducing an additional parameter $p$,
+The distance can further be generalized by introducing an additional parameter $p$,
 where $0 < p < \infty$ controls the impact of mass relative to transport \cite{Rachev1991,Rachev1998}:
 
 \begin{equation}
