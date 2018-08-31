@@ -55,7 +55,7 @@ but also the pre- and post-processing, than, for instance, similarity-based meth
 %     Methods
 % ######################################################################################################################
 
-\section{Methods}
+\section{Methods and Implementation}
 \label{ch:AutomaticTrees:sec:Methods}
 
 % First, we introduce a method to automatically construct representative sequences from databases to infer reference phylogenies.
@@ -2039,20 +2039,21 @@ The accuracy on the second level is slightly worse when using \acp{PhAT} as \acp
 \section{Conclusion and Outlook}
 \label{ch:AutomaticTrees:sec:ConclusionOutlook}
 
-We presented algorithms and software tools to facilitate and accelerate
+We presented methods and algorithms to facilitate and accelerate
 phylogenetic placement of large environmental sequencing studies. % sets of sequence samples.
+\todo{ref to implementation section in the supplement?!}
 
-The \acf{PhAT} method provides a means for automatically obtaining suitable reference trees
-by using the taxonomy of large sequence databases.
-Using the Silva database as a test case,
+The \acf{PhAT} method (\secref{ch:AutomaticTrees:sec:Methods:sub:PhAT}) provides a means
+for automatically obtaining suitable reference trees by using the taxonomy of large sequence databases.
+Using the \toolname{Silva} database as a test case,
 we showed that it can be applied for accurately (pre-)placing environmental sequences into taxonomic clades.
-% In combination with our multilevel placement approach,
-% even very broad \acp{PhAT} achieve high accuracy, particularly when using high-level clade constraints.
+In combination with our multilevel placement approach (\secref{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement}),
+even very broad \acp{PhAT} achieve high accuracy, particularly when using high-level clade constraints.
 The method can also be used for rapid data exploration in environmental sequencing studies:
-An \ac{PhAT} might be useful to obtain an overview of the taxa that are necessary to capture the diversity of a sequence dataset,
+A \ac{PhAT} might be useful to obtain an overview of the taxa that are necessary to capture the diversity of a sequence dataset,
 without the substantial human effort and potential bias of manually selecting reference sequences.
 As we showed, \acp{PhAT} can also be used to obtain taxonomic assignments and profiles for a set of samples,
-in conjunction with phylogenetic placement.
+in conjunction with phylogenetic placement (\secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}).
 % If necessary, the selected sequences can then be refined by an expert.
 % that is: use an ART, place, successively refine the selection of reference taxa in the regions needed for the dataset
 % e.g.: in the neotrop project, we didn't expect marine sequences first...
@@ -2071,36 +2072,35 @@ does not necessarily provide resolution at the \taxonname{species} level \citep{
 %Another potential disadvantage of this approach is that it relies on aligned sequences
 %with taxonomic labels, which might not be readily available in all sequence databases.
 
-As we show, our multilevel placement method as well as the preprocessing pipeline
+As we show, our multilevel placement method (\secref{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement})
+as well as the preprocessing pipeline (\secref{ch:AutomaticTrees:sec:Methods:sub:DataPreprocessing})
 accelerate the placement process without sacrificing accuracy.
 By first placing the query sequences on a broad \acf{BT}, as described in the method,
 novel environments with sequences of unknown evolutionary origin can be classified
 without having to process a large tree comprising all taxa of interest.
-% The method offers the benefits of high resolution reference trees,
-% without suffering the mentioned downsides that usually come with large alignments.
+The method hence offers the benefits of high resolution reference trees,
+without suffering the mentioned downsides that usually come with large alignments.
 % while still being computationally feasible.
-A second placement on a set of \acfp{CT} provides sufficient %taxonomic
-resolution for biological interpretation.
+A second placement level on a set of \acfp{CT} provides sufficient taxonomic resolution for biological interpretation.
 Placement accuracy can be further improved by inferring the \ac{BT}
 with a high-level constraint that separates the clades of the \acp{CT} from each other
 % and thus ensures monophyly of the clades one intends to place reads in.
 and thus ensures monophyly of these clades.
 % more than 99\% correct clade placement!
-% Furthermore, for the practical applicability and relevance of this approach, we refer to \citep{Mahe2017}.
+Furthermore, for the practical applicability and relevance of this approach, we refer to \citep{Mahe2017}.
 
-% \nicetohave{
-% Apart from exploring read data from unknown environments,
-% we see online services as a potential application of our methods.
-% A web service that offers phylogenetic placement of user-submitted sequences is confronted with two issues:
-% Firstly, the potentially large number of query sequences, and secondly, their unknown provenance.
-% Both can be solved by using a broad ``all-of-life'' backbone tree for pre-classification,
-% and subsequently distributing the second-level placement to different compute nodes.
-% } % end of nice to have
+Apart from exploring read data from unknown environments,
+we see online services as a potential application of our methods.
+A web service that offers phylogenetic placement of user-submitted sequences is confronted with two issues:
+Firstly, the potentially large number of query sequences, and secondly, their unknown provenance.
+Both can be solved by using a broad ``all-of-life'' backbone tree for pre-classification,
+and subsequently distributing the second-level placement to different compute nodes.
 
-The methods presented here are implemented as part of our \toolname{gappa} tool,
-which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}
-(see \secref{ch:PipelineImplementation} for an overview of the corresponding commands).
-All scripts and data used for this paper are available at \url{http://github.com/lczech/placement-methods-paper}.
+\todo{implementation note and ref to supplement?}
+% The methods presented here are implemented as part of our \toolname{gappa} tool,
+% which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}
+% (see \secref{ch:PipelineImplementation} for an overview of the corresponding commands).
+% All scripts and data used for this paper are available at \url{http://github.com/lczech/placement-methods-paper}.
 
 % --------------------------------------------------
 
