@@ -1529,24 +1529,24 @@ We here show the most important \toolname{OPAL} results:
 \begin{landscape}
 \begin{table}[htbp]
 \caption[CAMI Scores and Ranks]{
-\textbf{CAMI Scores and Ranks.}
-The table shows the scores and ranks of different tools evaluated with data from, and following the protocol of,
-the 2nd \toolname{CAMI} challenge \citep{Sczyrba2017,Bremges2018}.
-Here, we compare the taxonomic assignment and profiling based on our \acp{PhAT}
-to the tools that took part in the 2nd \toolname{CAMI} challenge.
-For this, we used the unconstrained and constrained \taxonname{Bacteria} tree,
-which are abbreviated in the table as ``PhAT (U)'' and ``PhAT (C)'', respectively.
-% See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling} for details.
-\\
-Four metrics are used in \toolname{CAMI} for evaluating tools:
-Recall (completeness), precision (purity), L1 norm error (abbreviated here as L1 NE),
-and Weighted Unifrac Error (abbreviated here as WUE).
-For each metric, the comparative scores of the tools are shown, as well as their rankings, relative to each other.
-Also, the total sum of scores and the total rank are shown, which add up the values of the four metrics.
-The procedure of the scoring and ranking is explained in detail in the Online Supplement of \cite{Sczyrba2017}.
-\\
-Despite the caveats and limitations that are explained in the text,
-using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the middle of the field for all metrics.
+    \textbf{CAMI Scores and Ranks.}
+    The table shows the scores and ranks of different tools evaluated with data from, and following the protocol of,
+    the 2nd \toolname{CAMI} challenge \citep{Sczyrba2017,Bremges2018}.
+    Here, we compare the taxonomic assignment and profiling based on our \acp{PhAT}
+    to the tools that took part in the 2nd \toolname{CAMI} challenge.
+    For this, we used the unconstrained and constrained \taxonname{Bacteria} tree,
+    which are abbreviated in the table as ``PhAT (U)'' and ``PhAT (C)'', respectively.
+    % See \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling} for details.
+    \\
+    Four metrics are used in \toolname{CAMI} for evaluating tools:
+    Recall (completeness), precision (purity), L1 norm error (abbreviated here as L1 NE),
+    and Weighted Unifrac Error (abbreviated here as WUE).
+    For each metric, the comparative scores of the tools are shown, as well as their rankings, relative to each other.
+    Also, the total sum of scores and the total rank are shown, which add up the values of the four metrics.
+    The procedure of the scoring and ranking is explained in detail in the Online Supplement of \cite{Sczyrba2017}.
+    \\
+    Despite the caveats and limitations that are explained in the text,
+    using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the middle of the field for all metrics.
 }
 \label{tab:cami_rankings}
 {
@@ -1775,10 +1775,8 @@ Therefore, our method yields reasonable accuracy for taxonomic assignment and pr
 We selected five bacterial clades to evaluate \ac{PhAT} accuracy on smaller clades,
 as well as to assess some properties of the Multilevel Placement approach.
 The same clades were already scrutinized in \toolname{Sativa} \citep{Kozlov2016}.
-\figref{fig:clades} shows the \taxonname{Bacteria} tree with the five test clades highlighted.
-
-% \section{Evaluation of Multilevel Placement}
-% \label{sec:EvaluationMultilevelPlacement}
+\figref{fig:clades} shows the unconstrained \taxonname{Bacteria} tree from the previous evaluations,
+with the branches of these five test clades highlighted.
 
 \begin{figure}[hpbt]
     \centering
@@ -1808,22 +1806,16 @@ The same clades were already scrutinized in \toolname{Sativa} \citep{Kozlov2016}
     \label{fig:clades}
 \end{figure}
 
-\todo{add a table to the supplement that lists which of our five test clades contains how many seqs in the backbone
-and how many in the second level alignments.}
-\todo{list how many taxa the general tree has for each clade, and how big each clade tree is -- that is, list the number of overlapping taxa.}
-\todo{table of tree sizes? see supp fig}
-
 \paragraph{Subclade Accuracy}
 \label{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement:par:SubcladeAccuracy}
 
-First, using the sequences and taxonomies of these five clades, we built unconstrained and constrained \acp{PhAT}.
+First, using the sequences and sub-taxonomies in \toolname{Silva} of these five clades,
+we built unconstrained and constrained \acp{PhAT}.
 We then conducted the same accuracy analysis as explained before on these ten trees.
-That is, we placed the \toolname{Silva} sequences of the five clades onto their respective \ac{PhAT}
+That is, we placed the \toolname{Silva} sequences of the five clades onto their respective \acp{PhAT}
 and evaluated distances to expected branches.
 Thereby, we evaluated the accuracy of these \acp{PhAT} when used as second level \aclp{CT}.
 The results are shown in \figref{fig:multilevel}.
-The placement accuracy is slightly worse for the clade trees than for the eight comprehensive \acp{PhAT} evaluated before.
-This is again likely due to 16S SSU sequences being unable to properly resolve lower taxonomic levels \citep{Janda2007}.
 
 \begin{figure}[hpbt]
     \centering
@@ -1851,14 +1843,52 @@ This is again likely due to 16S SSU sequences being unable to properly resolve l
         to test how our \ac{PhAT} method works for less diverse sets of sequences.
         These five clades are also highlighted in \figref{fig:clades};
         see there for a description of the clades.
-        The evaluation was conducted as explained in the text;
-        \todo{and follows the accuracy measurement as explained in sec and fig...}
-        in short, we placed the \toolname{Silva} sequences of the clades on their respective tree,
+        The evaluation was conducted as explained in the text,
+        using the accuracy measurement as before (see \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:MeasurementMethod}).
+        In short, we placed the \toolname{Silva} sequences of the clades on their respective tree,
         and measured how far each of them is away from the branch of the consensus sequence it is represented by.
 %         The figure follows \figref{fig:constraints_backbone} in layout.
+        \\
+        The top row (Subfigures \subref{fig:multilevel:sub:edge_unconstr} and \subref{fig:multilevel:sub:edge_constr})
+        shows discrete distances in number of branches;
+        the bottom row (Subfigures \subref{fig:multilevel:sub:branch_unconstr} and \subref{fig:multilevel:sub:branch_constr})
+        show continuous distances in branch length units.
+        The left side shows the accuracy of the unconstrained trees,
+        the right side shows the accuracy for trees constrained by the \toolname{Silva} taxonomy.
     }
     \label{fig:multilevel}
 \end{figure}
+
+% \todo{add a table to the supplement that lists which of our five test clades contains how many seqs in the backbone
+% and how many in the second level alignments.}
+% \todo{list how many taxa the general tree has for each clade, and how big each clade tree is -- that is, list the number of overlapping taxa.}
+% \todo{table of tree sizes? see supp fig}
+
+\todo{maybe add a table similar to \tabref{tab:ReferenceTreesOverview}, listing sizes and accuracy etc.}
+
+% \begin{table}[htbp]
+% \caption[Subclade sizes and accuracy]{
+%     \textbf{Subclade sizes and accuracy.}
+%     The table lists how many taxa each of the selected five subclades has
+%     in the first level tree (our unconstrained \taxonname{Bacteria} tree, see \figref{fig:clades}) and
+%     in the second level trees (used for the evaluation shown in \figref{fig:multilevel}).
+% }
+% \label{tab:subclade_sizes}
+% {
+%     \begin{center}
+%     \begin{tabular}{lrr}
+%         \toprule
+%                  & \multicolumn{2}{c}{Tree Size} \\
+%         Subclade & First Level & Second Level    \\
+%         \midrule
+%         × & × & ×\\
+%         × & × & ×\\
+%         × & × & ×
+%         \bottomrule
+%     \end{tabular}
+%     \end{center}
+% }
+% \end{table}
 
 % from top eval in /home/lucas/Projects/bacardi/02\_multilevel/05\_accuracy\_viz
 % Actinobacteria  Correct pqueries 0: 41590 / 50700 = 0.820316
@@ -1875,27 +1905,32 @@ This is again likely due to 16S SSU sequences being unable to properly resolve l
 %
 % Cyanobacteria
 % 94 taxa
+% 79 seqs
 % 11,379 sequences
 %
 % Proteobacteria
 % 1,569 taxa
+% 1372 seqs
 % 200,083 sequences
 %
 % Firmicutes
 % 652 taxa
+% 583 seqs
 % 138,636 sequences
 %
 % Bacteroidetes
 % 440 taxa
+% 406 seqs
 % 49,214 sequences
 %
 % Actinobacteria
 % 494 taxa
+% 406 seqs
 % 51,160 sequence
 
-from the fig:
-
-The placement accuracy on these sub-clades is slightly worse compared to the broad \taxonname{Bacteria} tree,
+The placement accuracy is slightly worse for the sub-clade trees
+than for the eight comprehensive \acp{PhAT} evaluated before
+(see \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:UnconstrainedConstrainedResults}),
 which can be seen by comparison to \figref{fig:constraints_backbone}.
 On average, 73.4\% of the sequences were placed exactly on their expected branch,
 dominated by \taxonname{Proteobacteria} and \taxonname{Firmicutes},
@@ -1903,22 +1938,22 @@ which combined make up 75\% of the sequences in the five clades, and have an acc
 The \taxonname{Actinobacteria} have the highest accuracy,
 with 82\% of their sequences placed on the expected branch.
 
-% There are however also differences between the clades.
+There are however also differences between the clades.
 The two smallest clades, \taxonname{Actinobacteria} and \taxonname{Cyanobacteria},
 exhibit the shortest distances in branch length units.
 In fact, the longest distance of any sequence from its expected branch in the \taxonname{Cyanobacteria} clade
-is around \num{0.4}, which is indicated by the end of the red line in the lower two plots.
-On the other hand, the \taxonname{Firmicutes} generally have the lowest accuracy here.
+is around \num{0.4}, which is indicated by the end of the red line in the lower two plots of \figref{fig:multilevel}.
+On the other hand, the \taxonname{Firmicutes} generally have the lowest accuracy.
 In \figref{fig:clades}, which shows the unconstrained \taxonname{Bacteria} tree,
 the \taxonname{Firmicutes} clade exhibits many paraphyletic branches,
 which is a known issue \citep{Parks2018}.
 This indicates that there is a high incongruence
 between the \taxonname{Firmicutes} taxonomy and phylogeny in \toolname{Silva},
-which might explain why the \taxonname{Firmicutes} score worst here.
+which might explain why the \taxonname{Firmicutes} score worst in \figref{fig:multilevel}.
 
 These results are likely due to the inability of 16S SSU sequences to properly resolve lower taxonomic levels
 \citep{Mignard2006,Petti2007,Janda2007}.
-For example, Table 2 of \citep{Janda2007} lists \num{10} bacterial genera
+For example, Table~2 of \citep{Janda2007} lists \num{10} bacterial genera
 that are known to be hard to identify using 16S sequences.
 These genera account for \num{7.9}\% of the \num{2846} taxa
 that are represented by the five bacterial trees tested here.
@@ -1927,23 +1962,23 @@ belong to one of these genera.
 This might explain the worse scores of these clade trees.
 Lastly, the consensus sequences at the tips of the trees represent the \taxonname{Genus} level.
 Thus, these have short branches, which increases the probability of misplacements.
+
 % the Cyanobacteria (red) ends, because there are no more placements further away from their correct edges than this.
 % this shows short branches etc. get avg branch lenghts of those trees!
 % number of taxa, number of sequences for each tree!
-%
 % and to give an example of how multilevel placement works.
 % we do not trust species level placement anyway. see text
-
----
-
 
 \paragraph{First Level Accuracy}
 \label{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement:par:FirstLevelAccuracy}
 
-Next, using the five clades, we evaluated the accuracy of the first placement level when conducting Multilevel Placement.
+Next, using the five clades, we evaluated the accuracy of the first placement level when conducting Multilevel Placement
+(as introduced in \secref{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement}).
 So far, our evaluation focused on the distance from a sequence placement to its expected placement branch.
-For the first placement level on a \acf{BT}, it is however more important that a sequence is placed into the correct clade.
-% so that it can subsequently be placed on the correct second level \acf{CT} tree.
+For the first placement level on a \acf{BT}, it is however more important that a sequence is placed into the correct clade
+than the exact placement branch.
+A sequence that is placed in the correct clade of the first level tree
+can subsequently be placed on the correct second level \acf{CT} tree.
 Thus, we used the unconstrained \taxonname{Bacteria} \ac{BT} again,
 and assessed how many sequences were placed in the clades shown in \figref{fig:clades}.
 Of the \num{450 313} sequences in \toolname{Silva} in these clades, % that belong to one of these clades,
@@ -1952,11 +1987,11 @@ Thus, for multilevel placement, they will be assigned to the correct second leve
 % This is expected, as these clades represent high taxonomic ranks. % everything else would mean that EPA is not doing anything reasonable at all...
 More specifically, the \taxonname{Firmicutes} perform worst,
 as only 94.7\% of the \taxonname{Firmicute} sequences are placed into the corresponding clade.
-This can be explained by the high amount of paraphyletic branches of this clade, cf.~\figref{fig:multilevel},
+This can be explained by the high amount of paraphyletic branches of this clade, as mentioned above,
 which is a known issue \citep{Parks2018}. % found a fitting fresh preprint thanks to Alexey!
 The sequences of the other four clades we tested achieve a clade identification accuracy exceeding 99\%.
-% This shows that having a high overlap of the clades with with the \ac{BT} yields high accuracy.
-% In other words, second level clade trees should be represented by multiple branches on the backbone tree.
+This shows that having a high overlap of the clades with with the \ac{BT} yields high accuracy.
+In other words, second level clade trees should be represented by multiple branches on the backbone tree.
 % We already used this in \citep{Mahe2017}.
 
 % how many sequences were placed in the expected clades?
@@ -1968,14 +2003,14 @@ The sequences of the other four clades we tested achieve a clade identification 
 % Bacteria_Cyanobacteria_:    11316   /   11379   =   0.994463
 % total                      441473   /   450313  =   0.9803692099
 
-As mentioned before, %in the method description,
+As mentioned in \secref{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement} before,
 a high-level taxonomic constraint can improve the accuracy of placing a sequence into the correct \ac{BT} clade.
 To show this, we inferred the \taxonname{Bacteria} \ac{RT} again,
 but used a \taxonname{Phylum} level constraint
 % that separates the sequences of the five clades from each other and from the rest of the sequences.
 that separates the five clades from each other and from the rest of the tree.
 All branches within the clades were resolved using maximum likelihood.
-The tree (not shown)  is similar to the tree in \figref{fig:clades}, but all five clades are now monophyletic.
+The tree (not shown) is similar to the tree in \figref{fig:clades}, but all five clades are now monophyletic.
 Using this tree, 99.3\% of the sequences were placed into the correct clade.
 Particularly the accuracy for \taxonname{Firmicutes} improved, yielding an accuracy of 99.5\%.
 
