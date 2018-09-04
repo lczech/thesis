@@ -217,7 +217,22 @@ for example by using the Pearson Correlation Coefficient or Spearman's Rank Corr
 This yields a per-edge correlation of the placement masses or imbalances with the meta-data feature,
 and can again be visualized via color coding of the edges.
 
-It is inexpensive to calculate and hence scales well to large datasets.
+The Pearson Correlation Coefficient $r$ between the per-edge mass or imbalance column $c$ (with average $\bar{c}$)
+and the meta-data column $m$ (with average $\bar{m}$) for a set of $s$ samples is calculated as
+
+\begin{equation}
+    \label{ch:Visualization:eq:PCC}
+    r ~=~ \frac{ \sum_{i=1}^{s} (c_i - \bar{c})(m_i - \bar{m}) }{ \sqrt{ \sum_{i=1}^{s} (c_i - \bar{c})^2 } ~ \sqrt{ \sum_{i=1}^{s} (m_i - \bar{m})^2 } }
+%     r =\frac{\sum ^n _{i=1}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum ^n _{i=1}(x_i - \bar{x})^2} \sqrt{\sum ^n _{i=1}(y_i - \bar{y})^2}}
+\end{equation}
+
+Spearman's Rank Correlation Coefficient is calculated the same, but instead of using the actual values
+of the matrix columns, their ranking is used.
+That is, the values are reduced to ordinal numbers, where the lowest value is transformed into \num{1},
+the second lowest value into \num{2}, etc.
+As a consequence, instead of a linear correlation, this coefficient calculates the strength of monotonic correlations.
+
+Both variants are inexpensive to calculate and hence scales well to large datasets.
 As typical correlation coefficients are within $[ -1.0, 1.0 ]$, there is again no need for further normalization.
 This yields a tree where edges or clades with either a high linear or monotonic correlation
 with the selected meta-data feature are highlighted.
