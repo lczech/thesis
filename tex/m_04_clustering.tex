@@ -14,10 +14,10 @@
 \todo{distance measures, nhd, simulations, mantel test}
 
 % ######################################################################################################################
-%         Motivation
+%         Background and Motivation
 % ######################################################################################################################
 
-\section{Motivation}
+\section{Background and Motivation}
 \label{ch:Clustering:sec:Motivation}
 
 Given a set of metagenomic samples, one key question is how much they differ from each other.
@@ -52,12 +52,19 @@ Given a set of metagenomic samples, one key question is how much they differ fro
 % ---
 
 % ######################################################################################################################
-%         Phylogenetic k-means
+%         Methods and Implementation
 % ######################################################################################################################
 
+\section{Methods and Implementation}
+\label{ch:Clustering:sec:Methods}
+
+% ======================================================================================================================
+%     Phylogenetic k-means
+% ======================================================================================================================
+
 % PDF bookmarks do not accept the $k$ math mode, so make it use the letter instead.
-\section{Phylogenetic \texorpdfstring{$k$-means}{k-means}}
-\label{ch:Clustering:sec:PhylogeneticKmeans}
+\subsection{Phylogenetic \texorpdfstring{$k$-means}{k-means}}
+\label{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans}
 
 The number of tips in the resulting clustering tree obtained through Squash Clustering
 is equal to the number $n$ of samples that are being clustered.
@@ -142,8 +149,8 @@ describing where each sample was taken from, c.f.~\figref{fig:hmp_kmeans_all_18}
 %     Algorithmic Improvements
 % ======================================================================================================================
 
-\subsection{Algorithmic Improvements}
-\label{ch:Clustering:sec:PhylogeneticKmeans:sub:AlgorithmicImprovements}
+\paragraph{Algorithmic Improvements}
+\label{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans:par:AlgorithmicImprovements}
 
 In each assignment step of the algorithm, distances from all samples to all centroids are calculated,
 which has a time complexity of $\mathcal{O}(n \cdot k)$.
@@ -173,13 +180,13 @@ Then, choose the sample of that cluster that is furthest from its centroid,
 and assign it to the empty cluster instead.
 This process is repeated if multiple empty clusters occur at once.
 
-% ######################################################################################################################
+% ======================================================================================================================
 %         Imbalance k-means
-% ######################################################################################################################
+% ======================================================================================================================
 
 % PDF bookmarks do not accept the $k$ math mode, so make it use the letter instead.
-\section{Imbalance \texorpdfstring{$k$-means}{k-means}}
-\label{ch:Clustering:sec:ImbalanceKmeans}
+\subsection{Imbalance \texorpdfstring{$k$-means}{k-means}}
+\label{ch:Clustering:sec:Methods:sub:ImbalanceKmeans}
 
 We further propose \emph{Imbalance $k$-means},
 which is a variant of $k$-means that makes use of the edge imbalance transformation,
@@ -210,10 +217,10 @@ see Section \nameref{ch:Clustering:sec:Results:sub:Performance} for details.
 %         Results
 % ######################################################################################################################
 
-\section{Results}
+\section{Evaluation and Results}
 \label{ch:Clustering:sec:Results}
 
-We now evaluate our Phylogenetic $k$-means clustering (which uses edge masses and KR distances) and
+We here evaluate our Phylogenetic $k$-means clustering (which uses edge masses and KR distances) and
 Imbalance $k$-means clustering (which uses edge imbalances and euclidean distances) methods in terms of their clustering accuracy.
 We used the \ac{BV} as an example of a small dataset to which methods such as Squash Clustering \cite{Matsen2011a} are still applicable,
 and the \ac{HMP} dataset to showcase that our methods scale to datasets that are too large for existing methods.
@@ -237,7 +244,7 @@ but not change the general findings of these experiments.
 An evaluation of the number of clusters using the Elbow method is shown in \figref{fig:elbows}.
 We furthermore conducted Squash Clustering and Edge PCA on the dataset,
 thereby reproducing previous results, in order to allow for a direct comparison between the methods,
-see \figref{fig:cluster_kmeans}.
+see \figref{fig:cluster_kmeans_trees}.
 The figure shows the results of Squash Clustering, Edge PCA, and two alternative dimensionality reduction methods,
 colorized by the cluster assignments \emph{PKM} of Phylogenetic $k$-means (in red, green, and blue)
 and \emph{IKM} of the Imbalance $k$-means (in purple, orange, and gray), respectively.
@@ -245,34 +252,34 @@ We use two different color sets for the two methods, in order to make them disti
 Note that the mapping of colors to clusters is arbitrary and depends on the random initialization of the algorithm.
 
 % That figure is bonkers. Everything condensed in half a page. I like it!
-\begin{figure}[!ht]
+\begin{figure}[!htpb]
     \centering
-    \includegraphics[width=\linewidth]{pppp/cluster_kmeans.pdf}
+    \includegraphics[width=\linewidth]{cluster_kmeans_trees.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
-        \label{fig:cluster_kmeans:sub:mass_tree}
+        \label{fig:cluster_kmeans_trees:sub:mass_tree}
     \end{subfigure}
     \begin{subfigure}{0pt}
         \phantomcaption
-        \label{fig:cluster_kmeans:sub:imbalance_tree}
+        \label{fig:cluster_kmeans_trees:sub:imbalance_tree}
     \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:cluster_kmeans:sub:mds}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:cluster_kmeans:sub:pca}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:cluster_kmeans:sub:edgepca}
-    \end{subfigure}
-    \caption[Comparison of $k$-means clustering to Squash Clustering and Edge PCA]{
-        \textbf{Comparison of $k$-means clustering to Squash Clustering and Edge PCA.}
+%     \begin{subfigure}{0pt}
+%         \phantomcaption
+%         \label{fig:cluster_kmeans_trees:sub:mds}
+%     \end{subfigure}
+%     \begin{subfigure}{0pt}
+%         \phantomcaption
+%         \label{fig:cluster_kmeans_trees:sub:pca}
+%     \end{subfigure}
+%     \begin{subfigure}{0pt}
+%         \phantomcaption
+%         \label{fig:cluster_kmeans_trees:sub:edgepca}
+%     \end{subfigure}
+    \caption[Comparison of $k$-means clustering to Squash Clustering]{
+        \textbf{Comparison of $k$-means clustering to Squash Clustering.}
         We applied our variants of the $k$-means clustering method
-        to the \ac{BV} dataset in order to compare them to existing methods.
-        See \cite{Srinivasan2012} for details of the dataset and its interpretation.
+        to the \ac{BV} dataset \cite{Srinivasan2012} in order to compare them to existing methods.
+%         See \cite{Srinivasan2012} for details of the dataset and its interpretation.
         We chose $k:=3$, as this best fits the features of the dataset.
         For each sample, we obtained two cluster assignments:
         First, by using Phylogenetic $k$-means, %that is, by using edge masses as input to $k$-means,
@@ -282,7 +289,7 @@ Note that the mapping of colors to clusters is arbitrary and depends on the rand
         red, green, and blue show the cluster assignments \emph{PKM},
         while purple, orange, and gray show the cluster assignments \emph{IKM}.
         % Sub (A)
-        \subref{fig:cluster_kmeans:sub:mass_tree}
+        \subref{fig:cluster_kmeans_trees:sub:mass_tree}
         Hierarchical cluster tree of the samples, using Squash Clustering.
         The tree is a recalculation of Figure~1(A) of \cite{Srinivasan2012}.
         Each leaf represents a sample; branch lengths are KR distances.
@@ -290,7 +297,7 @@ Note that the mapping of colors to clusters is arbitrary and depends on the rand
         The lower half of red samples are mostly healthy subjects,
         while the green and blue upper half are patients affected by Bacterial Vaginosis.
         % Sub (B)
-        \subref{fig:cluster_kmeans:sub:imbalance_tree}
+        \subref{fig:cluster_kmeans_trees:sub:imbalance_tree}
         The same tree, but annotated by \emph{IKM}.
         The tree is flipped horizontally for ease of comparison.
         The healthy subjects are split into two sub-classes,
@@ -298,25 +305,11 @@ Note that the mapping of colors to clusters is arbitrary and depends on the rand
         orange and purple represent samples were \taxonname{Lactobacillus iners} and \taxonname{Lactobacillus crispatus}
         dominate the microbiome, respectively.
         The patients mostly affected by BV are clustered in gray.
-        % Sub (C)
-        \subref{fig:cluster_kmeans:sub:mds}
-        Multidimensional scaling using the pairwise KR distance matrix of the samples,
-        and colored by \emph{PKM}.
-        % Sub (D)
-        \subref{fig:cluster_kmeans:sub:pca}
-        Principal component analysis applied to the distance matrix by interpreting it as a data matrix.
-        This is a recalculation of Figure~4 of \cite{Matsen2011b},
-        but colored by \emph{PKM}.
-        % Sub (E)
-        \subref{fig:cluster_kmeans:sub:edgepca}
-        Edge PCA applied to the samples,
-        which is a recalculation of Figure~3 of \cite{Matsen2011b},
-        but colored by \emph{IKM}.
     }
-    \label{fig:cluster_kmeans}
+    \label{fig:cluster_kmeans_trees}
 \end{figure}
 
-As can be seen in \figref{fig:cluster_kmeans:sub:mass_tree}, Squash Clustering as well as
+As can be seen in \figref{fig:cluster_kmeans_trees:sub:mass_tree}, Squash Clustering as well as
 Phylogenetic $k$-means can distinguish healthy subjects from those affected by Bacterial Vaginosis.
 Healthy subjects constitute the lower part of the cluster tree.
 They have shorter branches between each other, indicating the smaller KR distance between them,
@@ -326,7 +319,7 @@ As it uses the KR distance, it assigns all healthy subjects with short cluster t
 The green and blue clusters are mostly the subjects affected by the disease.
 
 The distinguishing features between the green and the blue cluster are not apparent in the Squash cluster tree.
-This can however be seen in \figref{fig:cluster_kmeans:sub:mds},
+This can however be seen in \figref{fig:kmeans_all:sub:mds_em},
 which shows a \acf{MDS} plot of the pairwise KR distances between the samples.
 \ac{MDS} \cite{Mardia1978,Krzanowski1994,Everitt2010} is a dimensionality reduction method that
 can be used for visualizing levels of similarity between data points.
@@ -342,7 +335,7 @@ That is, the actual clustering just distinguishes healthy from sick patients (\f
 % Although this separation is smooth, it shows how Phylogenetic $k$-means
 % finds clusters based on KR distance between samples, and thus yields results comparable to \ac{MDS}.
 
-A similar visualization of the pairwise KR distances is shown in \figref{fig:cluster_kmeans:sub:pca}.
+A similar visualization of the pairwise KR distances is shown in \figref{fig:kmeans_all:sub:pca_em}.
 It is a recalculation of Figure~4 in the preprint \cite{Matsen2011b},
 which did not appear in the final published version \cite{Matsen2011a}.
 % Alternatively:
@@ -355,7 +348,7 @@ the direct application of \ac{PCA} to a distance matrix lacks a simple interpret
 Again, the red cluster is clearly separated from the rest,
 but this time, the distinction between the green and the blue cluster is not as apparent.
 
-In \figref{fig:cluster_kmeans:sub:imbalance_tree}, we compare Squash Clustering to Imbalance $k$-means.
+In \figref{fig:cluster_kmeans_trees:sub:imbalance_tree}, we compare Squash Clustering to Imbalance $k$-means.
 Here, the distinction between the two \taxonname{Lactobacillus} clades
 can be seen by the purple and orange cluster assignments.
 The cluster tree also separates those clusters into clades.
@@ -363,7 +356,7 @@ The separate small group of orange samples above the purple clade is an artifact
 The diseased subjects are all assigned to the gray cluster, represented by the upper half of the cluster tree.
 It is apparent that both methods separate the same samples from each other.
 
-Lastly, \figref{fig:cluster_kmeans:sub:edgepca} compares Imbalance $k$-means to Edge PCA.
+Lastly, \figref{fig:kmeans_all:sub:epca_ei} compares Imbalance $k$-means to Edge PCA.
 The plot is a recalculation of Figure~3 of \cite{Matsen2011b}, which also appeared in Figure~6 in \cite{Matsen2011a}
 and Figure~3 in \cite{Srinivasan2012},
 but colored using our cluster assignments.
@@ -377,6 +370,189 @@ Furthermore, examples visualizations of the cluster centroids are shown in \figr
 which further supports that our methods yield results that are in agreement with existing methods.
 % In summary, our novel $k$-means variants find clusters that are in agreement with existing methods.
 % \todo{cluster centroid diversity ist interessant. plus tax assignment counts a la pierre pro centroid.}
+
+% ==============================
+%     k-means comparison
+% ==============================
+
+\begin{figure}[hpbt!]
+    \centering
+    \includegraphics[width=\linewidth]{pppp/kmeans_all.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:mds_em}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:mds_ei}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:mds_ns}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:pca_em}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:pca_ei}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:pca_ns}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:epca_em}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:epca_ei}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:kmeans_all:sub:epca_ns}
+    \end{subfigure}
+    \caption[Comparison of $k$-means clustering to MDS, PCA, and Edge PCA]{
+        \textbf{Comparison of $k$-means clustering to MDS, PCA, and Edge PCA.}
+        Here, we show and compare the dimensionality reduction methods MDS, PCA, and Edge PCA (one per row).
+        MDS and PCA were calculated on the pairwise KR distance matrix of the \ac{BV} dataset,
+        Edge PCA was calculated using the placements
+        on the re-inferred \ac{RT} of the original publication \cite{Srinivasan2012}.
+        The plots are colored by the cluster assignments as found by our $k$-means variants (first two columns),
+        and by the Nugent score of the samples (last column).
+        The Nugent score is included to allow comparison of the health status of patients with the clustering results.
+%         \subref{fig:kmeans_all:sub:mds_em}, \subref{fig:kmeans_all:sub:pca_em} and \subref{fig:kmeans_all:sub:epca_ei}
+%         are identical to \figref{fig:cluster_kmeans}\subref{fig:cluster_kmeans:sub:mds},
+%         \subref{fig:cluster_kmeans:sub:pca} and \subref{fig:cluster_kmeans:sub:edgepca} of the main text, respectively.
+        \subref{fig:kmeans_all:sub:pca_ns} and \subref{fig:kmeans_all:sub:epca_ns} are recalculations of
+        Figures~4 and 3 of \cite{Matsen2011b}, respectively.
+        This figure reveals additional details about how the $k$-means method works,
+        that is, which samples are assigned to the same cluster.
+        For example, the purple cluster found by Imbalance $k$-means forms a dense cluster of close-by samples on the left
+        in \subref{fig:kmeans_all:sub:mds_ei} and \subref{fig:kmeans_all:sub:pca_ei},
+        which is in accordance with the short branch lengths
+        of this cluster as shown in \figref{fig:cluster_kmeans_trees:sub:imbalance_tree} of the main text.
+        \\
+%       From the other Figure
+         % Sub (C)
+%         \subref{fig:cluster_kmeans_trees:sub:mds}
+        Multidimensional scaling using the pairwise KR distance matrix of the samples,
+        and colored by \emph{PKM}.
+        % Sub (D)
+%         \subref{fig:cluster_kmeans_trees:sub:pca}
+        Principal component analysis applied to the distance matrix by interpreting it as a data matrix.
+        This is a recalculation of Figure~4 of \cite{Matsen2011b},
+        but colored by \emph{PKM}.
+        % Sub (E)
+%         \subref{fig:cluster_kmeans_trees:sub:edgepca}
+        Edge PCA applied to the samples,
+        which is a recalculation of Figure~3 of \cite{Matsen2011b},
+        but colored by \emph{IKM}.
+    }
+    \label{fig:kmeans_all}
+\end{figure}
+
+% ==============================
+%     k-means Centroids
+% ==============================
+
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=\linewidth]{pppp/centroids.pdf}
+    \caption[Example of $k$-means cluster centroids visualization]{
+        % In this figure, I assume that the reader is already familiar with the characteristics of the dataset.
+        % No need to repeat everything over again...
+        \textbf{Example of $k$-means cluster centroids visualization.}
+        Here we show the cluster centroids as found by our $k$-means variants using the \ac{BV} dataset,
+        visualized on the reference tree via color coding.
+        The cluster assignments are the same as in \figref{fig:cluster_kmeans_trees} of the main text;
+        the first row show the three clusters found by Phylogenetic $k$-means,
+        the second row the clusters found by Imbalance $k$-means.
+        Each tree represents one centroid around which the samples were clustered,
+        that is, it shows the combined masses of the samples that were assigned to that cluster.
+        The edges are colored relative to each other, using a linear scaling of
+        light blue (no mass), purple (half of the maximal mass) and black (maximal mass).
+        \\
+        As explained in the main text, the samples can be split into three groups:
+        The diseased subjects, which have placement mass in various parts of the tree,
+        as well as two groups of healthy subjects, with placement mass in one of two \taxonname{Lactobacillus} clades
+        (marked with black arcs on the left of the trees).
+        This grouping is also clearly visible in these trees.
+        The red cluster for example represents all healthy subjects,
+        and thus most of its mass is located in the two \taxonname{Lactobacillus} clades.
+        The purple and orange clusters on the other hand show a difference in placement mass between those clades.
+        Furthermore, the placement mass of the gray cluster is mostly
+        a combination of the masses of the green and blue cluster,
+        all of which represent diseased subjects.
+        These observations are in accordance with previous findings as explained in the main text.
+    }
+    \label{fig:centroids}
+\end{figure}
+
+% ==============================
+%     k-means Elbow Plots
+% ==============================
+
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=\linewidth]{pppp/elbows.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:elbows:sub:bv_phylo}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:elbows:sub:bv_imb}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:elbows:sub:hmp_phylo}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:elbows:sub:hmp_imb}
+    \end{subfigure}
+    \caption[Variances of $k$-means clusters in our test datasets]{
+        \textbf{Variances of $k$-means clusters in our test datasets.}
+        The figures show the cluster variance,
+        that is, the average squared distance of the samples to their assigned cluster centroids,
+        for different values of $k$.
+        The first row are clusterings of the BV dataset, the second row of the HMP dataset.
+        They were clustered using Phylogenetic $k$-means (first column),
+        and Imbalance $k$-means (second column), respectively.
+        Accordingly, \subref{fig:elbows:sub:bv_phylo} and \subref{fig:elbows:sub:hmp_phylo} use the KR distance,
+        while \subref{fig:elbows:sub:bv_imb} and \subref{fig:elbows:sub:hmp_imb} use the euclidean distance
+        to measure the variance.
+        These plots can be used for the Elbow method
+        in order to find the appropriate number of clusters in a dataset \cite{Thorndike1953}.
+        Low values of $k$ induce a high variance, because many samples exhibit a large distance from their assigned centroid.
+        On the other hand, at a given point, higher values of $k$ only yield a marginal gain by further splitting clusters.
+%         and slightly reduce this distance by further splitting clusters.
+        Thus, if the data has a natural number of clusters, the corresponding $k$ produces an angle in the plot,
+        called the ``elbow''.
+%         Candidate points for such elbows are marked in orange here.
+        \\
+        For example, \subref{fig:elbows:sub:bv_phylo} and \subref{fig:elbows:sub:bv_imb}
+        exhibit the elbow at $k:=2$ and $3$, respectively, which are marked with orange circles.
+        These values are consistent with previous findings, for instance, \figref{fig:cluster_kmeans_trees} \todo{}:
+        There, Phylogenetic $k$-means splits the samples into a distinct red cluster and the nearby green and blue clusters,
+        while Imbalance $k$-means yields three separate clusters in purple, orange, and gray.
+        \\
+        For the HMP dataset, the elbow is less pronounced.
+        We suspect that this is due to the broad reference tree not being able to adequately
+        resolve fine-grained differences between samples,
+        see \secref{ch:EmpiricalDatasets} for details.
+        Likely candidates for $k$ are $4-6$ for \subref{fig:elbows:sub:hmp_phylo}
+        and around $7$ for \subref{fig:elbows:sub:hmp_imb}.
+        These values are consistent with the number of coherent ``blocks'' of clusters,
+        which can be observed in \figref{fig:hmp_kmeans_all_18}.
+        Clearer results for this dataset might be obtained with other methods for finding ``good'' values for $k$,
+        although we did not test them here.
+    }
+    \label{fig:elbows}
+\end{figure}
 
 % ----------------------------------------------------------------------------------------------------------------------
 %     HMP Dataset
@@ -441,6 +617,30 @@ This is further explored by using the Elbow method as shown in \figref{fig:elbow
         On the other hand, the mouth samples are more densely clustered in \subref{fig:hmp_kmeans_all_18:sub:ei_unconstr}.
     }
     \label{fig:hmp_kmeans_all_18}
+\end{figure}
+
+% ============================
+%     k-means HMP
+% ============================
+
+\begin{figure}[hpbt]
+    \centering
+    \includegraphics[width=0.6\linewidth]{pppp/hmp_kmeans_all_8.pdf}
+    \caption[Clustering using Phylogenetic $k$-means on the HMP dataset]{
+        \textbf{Clustering using Phylogenetic $k$-means on the HMP dataset.}
+        $k$ is set to 8, instead of $k:=18$ as in the main text,
+        based on a coarse aggregation of the original body site labels.
+        See \figref{fig:cluster_kmeans_trees} \todo{} for the cluster assignment where $k$ is set to the original number of labels;
+        there, we also list how the labels were aggregated.
+        Each row represents a body site; each column one of the \num{8} clusters.
+        The color values indicate how many samples of a body site were assigned to each cluster.
+        Some of the body sites can be clearly separated,
+        while particularly the samples from the oral region are distributed over different clusters.
+        This might be due to %the broad reference tree not being able to resolve the fine details between these samples,
+%         but might also indicate a
+        homogeneity of the oral samples.
+    }
+    \label{fig:hmp_kmeans_all_8}
 \end{figure}
 
 % Ideally, each cluster would contain only samples from the same body site.
@@ -511,31 +711,9 @@ In contrast, \toolname{guppy} needed \num{43} days for this dataset.
 Lastly, branch binning can be used to achieve additional speedups,
 as shown in \tabref{tab:hmp_binning_error}.
 
-% ######################################################################################################################
-%         Conclusion and Outlook
-% ######################################################################################################################
-
-\section{Conclusion and Outlook}
-\label{ch:Clustering:sec:ConclusionOutlook}
-
-Furthermore, we presented adapted variants of the $k$-means method,
-which exploit the structure of phylogenetic placement data to identify clusters of environmental samples.
-The method builds upon ideas such as Squash Clustering and can be applied to substantially larger datasets,
-as it uses a pre-defined number of clusters.
-% They are thus useful to identify similarities between samples
-For future exploration, other forms of cluster analyses could be extended to work on phylogenetic placement data,
-for example, soft $k$-means clustering \cite{Dunn1973,Bezdek1981} or density-based methods \cite{Kriegel2011}.
-The main challenge when adopting such methods consists in making them phylogeny-aware,
-that is, to use mass distributions on trees instead of the typical $\mathbb{R}^n$ vectors.
-%as the underlying space in which the data is modeled.
-
-% ######################################################################################################################
-%         Supplement
-% ######################################################################################################################
-
-% ======================================================================================================================
+% ==================================
 %     Binnify Speedup and Errors
-% ======================================================================================================================
+% ==================================
 
 \begin{table}[htb]
 \caption[Effect of Branch Binning on the KR Distance of the HMP Dataset]{
@@ -579,193 +757,21 @@ We also conducted these tests on the BV dataset, were the relative error is even
 }
 \end{table}
 
-% ======================================================================================================================
-%     k-means comparison
-% ======================================================================================================================
+% ######################################################################################################################
+%         Conclusion and Outlook
+% ######################################################################################################################
 
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=\linewidth]{pppp/kmeans_all.pdf}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:mds_em}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:mds_ei}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:mds_ns}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:pca_em}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:pca_ei}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:pca_ns}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:epca_em}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:epca_ei}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:kmeans_all:sub:epca_ns}
-    \end{subfigure}
-    \caption[Comparison of $k$-means clustering to MDS, PCA, and Edge PCA]{
-        \textbf{Comparison of $k$-means clustering to MDS, PCA, and Edge PCA.}
-        Here, we show and compare the dimensionality reduction methods MDS, PCA, and Edge PCA (one per row).
-        MDS and PCA were calculated on the pairwise KR distance matrix of the \ac{BV} dataset,
-        Edge PCA was calculated using the placements
-        on the re-inferred \ac{RT} of the original publication \cite{Srinivasan2012}.
-        The plots are colored by the cluster assignments as found by our $k$-means variants (first two columns),
-        and by the Nugent score of the samples (last column).
-        The Nugent score is included to allow comparison of the health status of patients with the clustering results.
-        \subref{fig:kmeans_all:sub:mds_em}, \subref{fig:kmeans_all:sub:pca_em} and \subref{fig:kmeans_all:sub:epca_ei}
-        are identical to \figref{fig:cluster_kmeans}\subref{fig:cluster_kmeans:sub:mds},
-        \subref{fig:cluster_kmeans:sub:pca} and \subref{fig:cluster_kmeans:sub:edgepca} of the main text, respectively.
-        \subref{fig:kmeans_all:sub:pca_ns} and \subref{fig:kmeans_all:sub:epca_ns} are recalculations of
-        Figures~4 and 3 of \cite{Matsen2011b}, respectively.
-        This figure reveals additional details about how the $k$-means method works,
-        that is, which samples are assigned to the same cluster.
-        For example, the purple cluster found by Imbalance $k$-means forms a dense cluster of close-by samples on the left
-        in \subref{fig:kmeans_all:sub:mds_ei} and \subref{fig:kmeans_all:sub:pca_ei},
-        which is in accordance with the short branch lengths
-        of this cluster as shown in \figref{fig:cluster_kmeans:sub:imbalance_tree} of the main text.
-    }
-    \label{fig:kmeans_all}
-\end{figure}
+\section{Conclusion and Outlook}
+\label{ch:Clustering:sec:ConclusionOutlook}
 
-% ======================================================================================================================
-%     k-means Centroids
-% ======================================================================================================================
+Furthermore, we presented adapted variants of the $k$-means method,
+which exploit the structure of phylogenetic placement data to identify clusters of environmental samples.
+The method builds upon ideas such as Squash Clustering and can be applied to substantially larger datasets,
+as it uses a pre-defined number of clusters.
+% They are thus useful to identify similarities between samples
+For future exploration, other forms of cluster analyses could be extended to work on phylogenetic placement data,
+for example, soft $k$-means clustering \cite{Dunn1973,Bezdek1981} or density-based methods \cite{Kriegel2011}.
+The main challenge when adopting such methods consists in making them phylogeny-aware,
+that is, to use mass distributions on trees instead of the typical $\mathbb{R}^n$ vectors.
+%as the underlying space in which the data is modeled.
 
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=\linewidth]{pppp/centroids.pdf}
-    \caption[Example of $k$-means cluster centroids visualization]{
-        % In this figure, I assume that the reader is already familiar with the characteristics of the dataset.
-        % No need to repeat everything over again...
-        \textbf{Example of $k$-means cluster centroids visualization.}
-        Here we show the cluster centroids as found by our $k$-means variants using the \ac{BV} dataset,
-        visualized on the reference tree via color coding.
-        The cluster assignments are the same as in \figref{fig:cluster_kmeans} of the main text;
-        the first row show the three clusters found by Phylogenetic $k$-means,
-        the second row the clusters found by Imbalance $k$-means.
-        Each tree represents one centroid around which the samples were clustered,
-        that is, it shows the combined masses of the samples that were assigned to that cluster.
-        The edges are colored relative to each other, using a linear scaling of
-        light blue (no mass), purple (half of the maximal mass) and black (maximal mass).
-        \\
-        As explained in the main text, the samples can be split into three groups:
-        The diseased subjects, which have placement mass in various parts of the tree,
-        as well as two groups of healthy subjects, with placement mass in one of two \taxonname{Lactobacillus} clades
-        (marked with black arcs on the left of the trees).
-        This grouping is also clearly visible in these trees.
-        The red cluster for example represents all healthy subjects,
-        and thus most of its mass is located in the two \taxonname{Lactobacillus} clades.
-        The purple and orange clusters on the other hand show a difference in placement mass between those clades.
-        Furthermore, the placement mass of the gray cluster is mostly
-        a combination of the masses of the green and blue cluster,
-        all of which represent diseased subjects.
-        These observations are in accordance with previous findings as explained in the main text.
-    }
-    \label{fig:centroids}
-\end{figure}
-
-% ======================================================================================================================
-%     k-means HMP
-% ======================================================================================================================
-
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=0.6\linewidth]{pppp/hmp_kmeans_all_8.pdf}
-    \caption[Clustering using Phylogenetic $k$-means on the HMP dataset]{
-        \textbf{Clustering using Phylogenetic $k$-means on the HMP dataset.}
-        $k$ is set to 8, instead of $k:=18$ as in the main text,
-        based on a coarse aggregation of the original body site labels.
-        See \figref{fig:cluster_kmeans} for the cluster assignment where $k$ is set to the original number of labels;
-        there, we also list how the labels were aggregated.
-        Each row represents a body site; each column one of the \num{8} clusters.
-        The color values indicate how many samples of a body site were assigned to each cluster.
-        Some of the body sites can be clearly separated,
-        while particularly the samples from the oral region are distributed over different clusters.
-        This might be due to %the broad reference tree not being able to resolve the fine details between these samples,
-%         but might also indicate a
-        homogeneity of the oral samples.
-    }
-    \label{fig:hmp_kmeans_all_8}
-\end{figure}
-
-% ======================================================================================================================
-%     k-means Elbow Plots
-% ======================================================================================================================
-
-\begin{figure}[hpbt]
-    \centering
-    \includegraphics[width=\linewidth]{pppp/elbows.pdf}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:elbows:sub:bv_phylo}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:elbows:sub:bv_imb}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:elbows:sub:hmp_phylo}
-    \end{subfigure}
-    \begin{subfigure}{0pt}
-        \phantomcaption
-        \label{fig:elbows:sub:hmp_imb}
-    \end{subfigure}
-    \caption[Variances of $k$-means clusters in our test datasets]{
-        \textbf{Variances of $k$-means clusters in our test datasets.}
-        The figures show the cluster variance,
-        that is, the average squared distance of the samples to their assigned cluster centroids,
-        for different values of $k$.
-        The first row are clusterings of the BV dataset, the second row of the HMP dataset.
-        They were clustered using Phylogenetic $k$-means (first column),
-        and Imbalance $k$-means (second column), respectively.
-        Accordingly, \subref{fig:elbows:sub:bv_phylo} and \subref{fig:elbows:sub:hmp_phylo} use the KR distance,
-        while \subref{fig:elbows:sub:bv_imb} and \subref{fig:elbows:sub:hmp_imb} use the euclidean distance
-        to measure the variance.
-        These plots can be used for the Elbow method
-        in order to find the appropriate number of clusters in a dataset \cite{Thorndike1953}.
-        Low values of $k$ induce a high variance, because many samples exhibit a large distance from their assigned centroid.
-        On the other hand, at a given point, higher values of $k$ only yield a marginal gain by further splitting clusters.
-%         and slightly reduce this distance by further splitting clusters.
-        Thus, if the data has a natural number of clusters, the corresponding $k$ produces an angle in the plot,
-        called the ``elbow''.
-%         Candidate points for such elbows are marked in orange here.
-        \\
-        For example, \subref{fig:elbows:sub:bv_phylo} and \subref{fig:elbows:sub:bv_imb}
-        exhibit the elbow at $k:=2$ and $3$, respectively, which are marked with orange circles.
-        These values are consistent with previous findings, for instance, \figref{fig:cluster_kmeans}:
-        There, Phylogenetic $k$-means splits the samples into a distinct red cluster and the nearby green and blue clusters,
-        while Imbalance $k$-means yields three separate clusters in purple, orange, and gray.
-        \\
-        For the HMP dataset, the elbow is less pronounced.
-        We suspect that this is due to the broad reference tree not being able to adequately
-        resolve fine-grained differences between samples,
-        see \secref{ch:EmpiricalDatasets} for details.
-        Likely candidates for $k$ are $4-6$ for \subref{fig:elbows:sub:hmp_phylo}
-        and around $7$ for \subref{fig:elbows:sub:hmp_imb}.
-        These values are consistent with the number of coherent ``blocks'' of clusters,
-        which can be observed in \figref{fig:hmp_kmeans_all_18}.
-        Clearer results for this dataset might be obtained with other methods for finding ``good'' values for $k$,
-        although we did not test them here.
-    }
-    \label{fig:elbows}
-\end{figure}
