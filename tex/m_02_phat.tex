@@ -225,8 +225,13 @@ of the sequence database to identify potential candidate groups of sequences
 that could be represented by a consensus sequence (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}).
 We interpret a taxonomy as a sequence labeling, where similar sequences have related labels.
 Thus, a taxonomy represents a pre-classification of similar sequences that can be exploited to group them.
-% However, this assumes that the taxonomic classification is correct for most sequences \cite{Kozlov2016}.
+For instance, \figref{fig:tax_entropy} shows six sequences (S1--S6),
+which the underlying databases has classified into a clade of the taxonomy,
+and which thus form a group of related sequences.
+Note that this assumes that the taxonomic classification is correct for most sequences \cite{Kozlov2016},
+which we asses later in \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:FurtherAspectsAndObservations}.
 % The impact of taxonomic mislabels and spurious sequences is absorbed by using consensus sequences.
+The goal is then to find clades/groups of sequences that represent the diversity of the database.
 
 \begin{figure}[t!hpb]
     \centering
@@ -243,18 +248,19 @@ Thus, a taxonomy represents a pre-classification of similar sequences that can b
     \label{fig:tax_entropy}
 \end{figure}
 
-For a clade $t$ of the taxonomic tree, we denote by $H(t)$ the entropy of all sequences that belong to that clade,
+To this end, for a clade $t$ of the taxonomic tree,
+we denote by $H(t)$ the entropy of all sequences that belong to that clade,
 including all sequences in its sub-clades, that is, its lower taxonomic ranks.
 Clades with low entropy imply that they contain highly similar sequences that can in turn be represented
 by a consensus sequence without sacrificing too much diversity.
 Inversely, clades with high entropy contain diverse sequences,
 implying that a consensus sequence is not likely to sufficiently capture the inherent sequence diversity.
 It is thus better to expand these clades and construct separate consensus sequences for their respective sub-clades.
-An example is shown in \figref{fig:tax_entropy}.
+Examples of the per-site entropies are shown in \figref{fig:tax_entropy}.
 As the clade structure of a taxonomy forms a tree, this criterion can then be applied recursively,
 as shown in \algref{algo:taxonomy_expansion}.
 
-\todo{the formatting is currently off here...}
+% \todo{the formatting is currently off here...}
 
 \begin{algorithm}
 \caption{\textbf{Taxonomy Expansion}}\label{algo:taxonomy_expansion}
@@ -311,6 +317,7 @@ Given this list of clades from different taxonomic ranks, we can now compute the
 % As the clades were selected to have a low entropy, they contain sequences that are similar to each other.
 For each clade, all sequences in that clade and its sub-clades are used to construct a consensus sequence,
 which represents the clade diversity, and serves as the reference sequence for that clade.
+An exemplary majority rule consensus sequence is shown in \figref{fig:tax_entropy} below the six sequences S1--S6.
 This has several advantages:
 If only a few sequences diverge from the majority of that clade,
 the entropy might underestimate the molecular diversity of a clade.
@@ -750,6 +757,7 @@ and are hence preferable in cases where congruence with the taxonomy is not need
 \afterpage{
 \begin{landscape}
 \begin{table}[htb]
+\vspace*{1em}
 \caption[Tree Topology Significance Tests]{
 \textbf{Tree Topology Significance Tests.}
 Here, we report typical significance tests comparing
@@ -789,6 +797,7 @@ p-AU: p-value of approximately unbiased (AU) test \citep{Shimodaira2002}.
     \end{tabular}
     \end{center}
 }
+\vspace*{1em}
 \end{table}
 \end{landscape}
 } %afterpage
@@ -1417,7 +1426,7 @@ For details on the dataset and its processing, see \appref{supp:sec:DetailsEmpir
 The sequences were placed on the tree, and subsequently analyzed with two different methods,
 as shown in \figref{fig:hmp_mds_epca}.
 
-\begin{figure}[hpbt]
+\begin{figure}[thb!]
     \centering
     \includegraphics[width=\linewidth]{art/mds_epca.pdf}
     \begin{subfigure}{0pt}
