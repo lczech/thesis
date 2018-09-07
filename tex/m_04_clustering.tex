@@ -20,36 +20,77 @@
 \section{Background and Motivation}
 \label{ch:Clustering:sec:Motivation}
 
-Given a set of metagenomic samples, one key question is how much they differ from each other.
-\todo{see} \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances}
+Given a set of metagenomic sequence samples (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}),
+and a distance measure between them (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances}),
+a fundamental task consists in clustering samples that are similar to each other.
+For example, Squash Clustering performs agglomerative hierarchical clustering of samples,
+as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}.
+It is based on the phylogenetic placement of the \acfp{QS} of the samples on a \acf{RT},
+and employs the KR distance to asses sample similarity.
+An example of the resulting clustering tree is shown in \figref{fig:squash_edgepca:sub:squash}.
 
-%  All below is moved to foundations chapter now!
-% Given such a distance measure between samples,
-% % e.g. Earth Mover's Distance or Node Histogram Distance as described above,
-% a fundamental task consists in clustering samples that are similar to each other.
-% Standard linkage-based clustering methods like \mbox{UPGMA} % mbox avoids hyphenation
-% \cite{Michener1957,Sokal1958,Legendre1998} are solely based on the distances between samples,
-% that is, they calculate the distances of clusters as a function of pairwise sample distances.
-% Squash Clustering \cite{Matsen2011a,Srinivasan2012} is a method that
-% also takes into account the intrinsic structure of phylogenetic placement data.
-% It uses the KR distance to perform agglomerative hierarchical clustering of samples.
-% Instead of using pairwise sample distances, however,
-% it merges (\emph{squashes}) clusters of samples by calculating their average per-edge placement mass.
-% Thus, in each step, it operates on the same type of data, that is, on mass distributions on the \ac{RT}.
-% This results in a hierarchical clustering tree that has meaningful, and hence interpretable, branch lengths.
-%
-% Remark:
-% Squash clustering uses the KR distance, which is based on mass distributions on the edges of the \ac{RT}.
-% It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead.
-% For instance, Figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
-% on a dataset of Bacterial Vaginosis, a disease of the vagina.
-% On the left hand side of the figure, the blue data points, representing healthy women, cluster close together,
-% while the red data points, which belong to sick patients, spread over the rest of the graph.
-% The result of Squash Clustering on this dataset is presented in Figure 1 of \cite{Srinivasan2012}.
-% The bottom half of the clustering tree, containing mainly healthy samples, has short branches,
-% while the top half, with mostly samples from sick patients, has many long branches.
-% Thus, Squash Clustering and normal PCA represent almost equivalent information in this case.
-% ---
+For large datasets, producing a clustering tree can however considered to be a downside of Squash Clustering,
+as the number of tips in this tree is equal to the number $n$ of samples that are being clustered.
+Thus, for datasets with more than a few hundred samples,
+the clustering result becomes hard to inspect and interpret visually.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{squash_edgepca.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:squash_edgepca:sub:squash}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:squash_edgepca:sub:pca}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:squash_edgepca:sub:epca}
+    \end{subfigure}
+    \caption[Existing analysis methods on the BV dataset]{
+        \textbf{Existing analysis methods on the BV dataset.}
+        We applied \subref{fig:squash_edgepca:sub:squash} Squash Clustering,
+        \subref{fig:squash_edgepca:sub:pca} PCA on the pairwise KR distance matrix between samples,
+        and \subref{fig:squash_edgepca:sub:epca} Edge PCA,
+        using the \acf{BV} dataset \cite{Srinivasan2012}.
+        The Subfigures are recalculations of Figure~1(A) of \cite{Srinivasan2012},
+        and Figures~4 and 3 of \cite{Matsen2011b}, respectively.
+        All Subfigures represent samples as colored dots according to their respective Nugent score,
+        which indicates the severeness of the \ac{BV} infection of the samples/patients.
+%         In \subref{fig:squash_edgepca:sub:squash}, we added coloring to the samples (tips) of the cluster tree for convenience.
+        See \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods} for a description of the methods,
+        and \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV} for details on the dataset.
+    }
+    \label{fig:squash_edgepca}
+\end{figure}
+
+Furthermore, depending on the data and research question at hand,
+the KR distance is not always the best measure of sample similarity.
+As explained in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing},
+edge imbalances can often reveal more subtle differences between samples than edge masses.
+Thus, it might make sense to use a distance based on edge imbalances instead.
+
+To further illustrate this, \figref{fig:squash_edgepca:sub:pca} shows
+the result of a standard principal component analysis (PCA) \cite{Pearson1901,Jolliffe2002}
+on the pairwise KR distance matrix of the \acf{BV} dataset \cite{Srinivasan2012} that we used before.
+On the left hand side of the figure, the blue samples,
+representing healthy women with a low Nugent score, form a dense cluster.
+Towards the right hand side however, the red samples, which belong to sick patients, are spread over the rest of the graph.
+As Squash Clustering also uses the KR distance, the same pattern can be observed in its resulting clustering tree,
+as shown in \figref{fig:squash_edgepca:sub:squash}:
+The bottom half of the clustering tree, containing mainly healthy (blue) samples, has short branches,
+which correspond to the dense blue region in \figref{fig:squash_edgepca:sub:pca}.
+At the same time, the top half, with mostly samples from sick (red) patients, has many long branches,
+corresponding to the scattered red region in \figref{fig:squash_edgepca:sub:pca}.
+Thus, Squash Clustering represents almost equivalent information to a standard PCA in this case.
+It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}).
+This can be seen in \figref{fig:squash_edgepca:sub:epca}, which shows the result of Edge PCA on the dataset.
+There, the healthy (blue) samples clearly separate
+into two groups for the two dominant \taxonname{Lactobacillus} clades in healthy patients,
+which is due to the edge imbalances resolving smaller differences between the placements on nearby clades in this dataset.
 
 % ######################################################################################################################
 %         Methods and Implementation
@@ -57,6 +98,20 @@ Given a set of metagenomic samples, one key question is how much they differ fro
 
 \section{Methods and Implementation}
 \label{ch:Clustering:sec:Methods}
+
+We here propose two variants of $k$-means clustering \cite{Steinhaus1956,Macqueen1967},
+which we call \emph{Phylogenetic $k$-means}, and \emph{Imbalance $k$-means}, respectively.
+They are clustering methods for phylogenetic placement of a set of metagenomic sequence samples,
+and address the issues described above.
+Note that these methods are clustering samples, instead of sequences \cite{Kelley2010}.
+Both methods produce a predefined number of clusters, and hence are able to work with arbitrarily large datasets.
+Phylogenetic $k$-means uses the KR distance to asses sample similarity, that is, it uses edge masses,
+while Imbalance $k$-means uses edge imbalances instead.
+
+The methods take as input a set of $n$ samples, each consisting of a set of \acfp{QS} placed on a fixed \acf{RT}.
+They then assign the samples to $k$ clusters, each represented by a cluster \emph{centroid}
+that describes the average placement mass distribution of the samples assigned to it.
+We later also discuss how to chose a reasonable value for $k$.
 
 % ======================================================================================================================
 %     Phylogenetic k-means
@@ -66,45 +121,69 @@ Given a set of metagenomic samples, one key question is how much they differ fro
 \subsection{Phylogenetic \texorpdfstring{$k$-means}{k-means}}
 \label{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans}
 
-The number of tips in the resulting clustering tree obtained through Squash Clustering
-is equal to the number $n$ of samples that are being clustered.
-Thus, for datasets with more than a few hundred samples,
-the clustering result becomes hard to inspect and interpret visually.
-We propose a variant of $k$-means clustering \cite{Macqueen1967} to address this problem,
-which we call \emph{Phylogenetic $k$-means}.
-It uses a similar approach as Squash Clustering, but yields a predefined number of $k$ clusters.
-It is hence able to work with arbitrarily large datasets.
-Note that we are clustering samples here, instead of sequences \cite{Kelley2010}.
-We discuss choosing a reasonable value for $k$ later.
+Phylogenetic $k$-means employs the KR distance (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR})
+and hence yields results that are consistent with the clustering tree of Squash Clustering.
+% but it yields a predefined number of $k$ clusters.
 
-The underlying idea is to assign each of the $n$ samples to one of $k$ cluster centroids,
-where each centroid represents the average mass distribution of all samples assigned to it.
-Note that all samples and centroids are of the same data type,
+% ----------------------------------------------------------------------------------------------------------------------
+%     Algorithm
+% ----------------------------------------------------------------------------------------------------------------------
+
+\paragraph{Algorithm}
+\label{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans:par:Algorithm}
+
+% The underlying idea is to assign each of the $n$ samples to one of $k$ cluster centroids,
+% where each centroid represents the average mass distribution of all samples assigned to it.
+
+The input samples and the cluster centroids are of the same data type,
 namely, they are mass distributions on a fixed \ac{RT}.
-It is thus possible to calculate distances between samples and centroids,
-and to calculate their average mass distributions, as described earlier.
-Our implementation follows Lloyd's algorithm \cite{Lloyd1982},
-% to iteratively improve the assignments and the centroids,
+It is thus possible to calculate the KR distances between samples and centroids,
+and to calculate their average mass distributions by \emph{squashing},
+as described in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}.
+
+The objective is then to find an assignment of the $n$ samples into $k$ clusters
+that minimizes the total distance between each sample and the cluster centroid it is assigned to,
+measured as the KR distance between them.
+That is, for $k$ clusters, each represented by a set $A_k$ of samples assigned to it, and its centroid $C_k$,
+the objective is to find
+
+\begin{equation}
+    \label{ch:Clustering:eq:KmeansObjective}
+    \hat{A} ~=~ \argmin_A \sum_{i=1}^{k} \sum_{s \in A_i} \mbox{KR}( s, C_i )
+\end{equation}
+
+% Keep in mind that each sample in the assignments $A_k$ and each centroid $C_k$
+% are placement mass distributions on the \ac{RT}, between which the KR distance can be calculated.
+The optimal solution $\hat{A}$ for the assignment of samples to clusters can be found via a brute-force search.
+However, the number of possible assignments of $n$ samples to $k$ clusters
+is given by the Stirling partition number $S(n,k)$ \cite{Graham1989a},
+which is too large for any realistic dataset.
+
+Hence, our implementation follows the Lloyd-Forgy algorithm \cite{Lloyd1982,Forgy1965},
+which is the standard heuristical method to solve the $k$-means problem.
+It iteratively improves the assignments $A$ and the centroids $C$ in two alternating steps,
 as shown in \algref{algo:kmeans}.
 
-\vspace*{1em} % \todo{maybe remove later again}
+% \todo{maybe remove space later again:}
+% \vspace*{1em}
 \begin{algorithm}
 \caption{Phylogenetic $k$-means}\label{algo:kmeans}
 \begin{algorithmic}[1]
-    \State $ \text{initialize } \textit{k Centroids} $
-    \While{ $\text{not converged}$ }
-        \State $ \text{assign each } \textit{Sample} \text{ to nearest } \textit{Centroid} $
-        \State $ \text{update } \textit{Centroids} \text{ as mass averages of their } \textit{Samples} $
+    \State initialize $k$ \textit{Centroids}
+    \While{not converged}
+        \State assign each \textit{Sample} to nearest \textit{Centroid} ($A$)
+        \State update \textit{Centroids} as mass averages of their \textit{Samples} ($C$)
     \EndWhile
-    \State \textbf{return} \text{Assignments and} $\textit{Centroids}$
+    \State \textbf{return} \textit{Assignments} $A$ and \textit{Centroids} $C$
 \end{algorithmic}
 \end{algorithm}
 
-By default, we use the $k$-means++ initialization algorithm \cite{Arthur2007} to obtain a set of $k$ initial centroids.
+By default, we use the $k$-means++ initialization algorithm \cite{Arthur2007} to obtain an initial set of $k$ centroids.
 It works by subsequent random selection of samples to be used as initial centroids,
 until $k$ centroids have been selected.
 In each step, the probability of selecting a sample is
 proportional to its squared distance to the nearest already selected sample.
+Hence, centroids are preferably selected that are far away from each other.
 An alternative initialization is to select samples as initial clusters entirely at random.
 This is however more likely to yield sub-optimal clusterings \cite{Kanungo2003}.
 
@@ -112,7 +191,7 @@ Then, each sample is assigned to its nearest centroid, using the KR distance. %f
 Lastly, the centroids are updated to represent
 the average mass distribution of all samples that are currently assigned to them.
 This iterative process alternates between improving the assignments and the centroids.
-Thus, the main difference to normal $k$-means is the use of phylogenetic information:
+Thus, the main difference to normal $k$-means in the $\mathbb{R}^d$ is the use of phylogenetic information:
 Instead of euclidean distances on vectors, we use the KR distance,
 and instead of averaging vectors to obtain centroids, we use the average mass distribution.
 
@@ -120,7 +199,7 @@ The process is repeated until it converges,
 that is, the cluster assignments do not change any more,
 or until a maximum number of iterations have been executed.
 % The second stopping criterion makes sure that the algorithm terminates even with non-convergent datasets.
-The second stopping criterion is added to avoid the super-polynomial worst case running time of $k$-means,
+This second stopping criterion is added to avoid the super-polynomial worst case running time of $k$-means,
 which however almost never occurs in practice \cite{Bottou1995,Arthur2006}.
 
 The result of the algorithm is an assignment of each sample to one of the $k$ clusters.
@@ -131,23 +210,9 @@ That is, each centroid can be represented as the average mass distribution of th
 This allows to inspect the centroids and thus to interpret how the samples were clustered.
 Examples of this are shown in \figref{fig:centroids}.
 
-The key question is how to select an appropriate $k$
-that reflects the number of ``natural'' clusters in the data.
-There exist various suggestions in the literature
-\cite{Thorndike1953,Rousseeuw1987,Bischof1999,Pelleg2000,Tibshirani2001,Hamerly2004};
-% See also: https://stackoverflow.com/a/1793572/4184258 and
-% http://www.sthda.com/english/articles/29-cluster-validation-essentials/96-determining-the-optimal-number-of-clusters-3-must-know-methods/
-we assessed the Elbow method \cite{Thorndike1953} as explained in \figref{fig:elbows},
-which is a straight forward method that yielded reasonable results for our test datasets.
-Additionally, for a quantitative evaluation of the clusterings,
-we used the $k$ that arose from the number of distinct labels based on the available meta-data for the data.
-% that is, the number of distinct categories our data is known to belong to.
-For example, the \ac{HMP} samples are labeled with \num{18} distinct body sites,
-describing where each sample was taken from, c.f.~\figref{fig:hmp_kmeans_all_18}.
-
-% ======================================================================================================================
+% ----------------------------------------------------------------------------------------------------------------------
 %     Algorithmic Improvements
-% ======================================================================================================================
+% ----------------------------------------------------------------------------------------------------------------------
 
 \paragraph{Algorithmic Improvements}
 \label{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans:par:AlgorithmicImprovements}
@@ -156,13 +221,14 @@ In each assignment step of the algorithm, distances from all samples to all cent
 which has a time complexity of $\mathcal{O}(n \cdot k)$.
 In order to accelerate this step, we can apply branch binning
 as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}.
-% It is both possible to bin all samples, or just the centroid masses,
-% but not the samples, as an intermediate approximation.
 For the \ac{BV} dataset, we found that even using just \num{2} bins per edge does not alter the cluster assignments.
 Branch binning reduces the number of mass points that have to be accessed in memory during KR distance calculations;
 however, the costs for tree traversals remain.
 Thus, we observed a maximal speedup of 75\% when using one bin per branch,
 see \tabref{tab:hmp_binning_error} for details.
+Intermediate binning strategies are also possible:
+instead of binning all masses of the input samples, just the centroid masses can be binned.
+
 % even binning to \num{1} bin,
 % that is, combining all placement masses on a branch into one point,
 % changes the cluster assignment of only \num{2} of {220} samples
@@ -189,16 +255,17 @@ This process is repeated if multiple empty clusters occur at once.
 \label{ch:Clustering:sec:Methods:sub:ImbalanceKmeans}
 
 We further propose \emph{Imbalance $k$-means},
-which is a variant of $k$-means that makes use of the edge imbalance transformation,
-and thus also takes the clades of the tree into account.
+which is a variant of $k$-means that makes use of the edge imbalance transformation
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}),
+and thus takes the clades of the reference tree into account.
 In order to quantify the difference in imbalances between two samples,
 we use the euclidean distance between their imbalance vectors (that is, rows of the imbalance matrix).
 This is a suitable distance measure,
 as the imbalances implicitly capture the tree topology as well as the placement mass distributions.
 As a consequence, the expensive tree traversals required for Phylogenetic $k$-means are not necessary here.
 The algorithm takes the edge imbalance matrix of normalized samples as input,
-as shown in \figref{fig:imbalance:sub:Matrices},
-and performs a standard euclidean $k$-means clustering following Lloyd's algorithm.
+% as shown in \figref{fig:imbalance:sub:Matrices},
+and performs a standard euclidean $k$-means clustering following the Lloyd-Forgy algorithm \cite{Lloyd1982,Forgy1965}.
 % As there is no apparent phylogenetically informative distance measure between imbalance vectors,
 % we use euclidean distance instead.
 % This also allows to calculated centroids as simple vector averages.
@@ -208,10 +275,46 @@ as both use the same input data as well as the same distance measure.
 Furthermore, as the method does not need to calculate KR distances,
 and thus does not involve tree traversals,
 it is several orders of magnitude faster than the Phylogenetic $k$-means.
-For example, on the \ac{HMP} dataset, it runs in mere seconds, instead of several hours needed for Phylogenetic $k$-means;
-see Section \nameref{ch:Clustering:sec:Results:sub:Performance} for details.
-% \todo{die nameref links, die von diesem dummen template erwartet werden, sind nicht eindeutig.
-% das ist nicht gut, muss mir da mal was ausdenken, oder noch mal im submission guide nachschauen...}
+For example, on the \ac{HMP} dataset (see \appref{supp:sec:DetailsEmpiricalDatasets:sub:HMP}),
+it runs in mere seconds, instead of several hours needed for Phylogenetic $k$-means;
+see Section \secref{ch:Clustering:sec:Results:sub:Performance} for details.
+
+% ======================================================================================================================
+%     Finding k
+% ======================================================================================================================
+
+\subsection{Finding appropriate values for \texorpdfstring{$k$}{k}}
+\label{ch:Clustering:sec:Methods:sub:FindingK}
+
+A commonly criticized downside of $k$-means clustering in general is
+that the number of clusters $k$ is an input parameter to the algorithm.
+Hence, a key question is how to select an appropriate $k$
+that reflects the number of ``natural'' clusters in the data.
+There exist various suggestions in the literature
+\cite{Thorndike1953,Rousseeuw1987,Bischof1999,Pelleg2000,Tibshirani2001,Hamerly2004}.
+% See also: https://stackoverflow.com/a/1793572/4184258 and
+% http://www.sthda.com/english/articles/29-cluster-validation-essentials/96-determining-the-optimal-number-of-clusters-3-must-know-methods/
+
+We used the Elbow method \cite{Thorndike1953},
+which is a straight forward method that yielded reasonable results for our test datasets.
+It works by plotting the cluster variance,
+that is, the average squared distance of the samples to their assigned cluster centroids,
+for different values of $k$.
+On the one hand, for low values of $k$, many samples exhibit a large distance to their assigned centroid,
+% the distances from samples to their assigned centroids are relatively
+inducing a high variance.
+On the other hand, higher values of $k$ further split the clusters and hence reduce the variance.
+% and slightly reduce this distance by further splitting clusters.
+Thus, at a given point, increasing $k$ only yields a marginal change in variance.
+If the data has a natural number of clusters, the corresponding $k$ at this point produces an angle in the plot,
+called the \emph{elbow}.
+Thus, the presence of an elbow in the variance plot indicates reasonable values for $k$.
+
+Additionally, for a quantitative evaluation of the clusterings,
+we used the $k$ that arose from the number of distinct categories or labels based on the available meta-data for the data.
+% that is, the number of distinct categories our data is known to belong to.
+For example, the samples of the \ac{HMP} dataset are labeled with \num{18} distinct body sites,
+describing where each sample was taken from, c.f.~\figref{fig:hmp_kmeans_all_18}.
 
 % ######################################################################################################################
 %         Results
@@ -251,7 +354,6 @@ and \emph{IKM} of the Imbalance $k$-means (in purple, orange, and gray), respect
 We use two different color sets for the two methods, in order to make them distinguishable at first glance.
 Note that the mapping of colors to clusters is arbitrary and depends on the random initialization of the algorithm.
 
-% That figure is bonkers. Everything condensed in half a page. I like it!
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\linewidth]{cluster_kmeans_trees.pdf}
@@ -516,9 +618,7 @@ which further supports that our methods yield results that are in agreement with
     \end{subfigure}
     \caption[Variances of $k$-means clusters in our test datasets]{
         \textbf{Variances of $k$-means clusters in our test datasets.}
-        The figures show the cluster variance,
-        that is, the average squared distance of the samples to their assigned cluster centroids,
-        for different values of $k$.
+        The figures show the cluster variance for different values of $k$.
         The first row are clusterings of the BV dataset, the second row of the HMP dataset.
         They were clustered using Phylogenetic $k$-means (first column),
         and Imbalance $k$-means (second column), respectively.
@@ -527,11 +627,12 @@ which further supports that our methods yield results that are in agreement with
         to measure the variance.
         These plots can be used for the Elbow method
         in order to find the appropriate number of clusters in a dataset \cite{Thorndike1953}.
-        Low values of $k$ induce a high variance, because many samples exhibit a large distance from their assigned centroid.
-        On the other hand, at a given point, higher values of $k$ only yield a marginal gain by further splitting clusters.
-%         and slightly reduce this distance by further splitting clusters.
-        Thus, if the data has a natural number of clusters, the corresponding $k$ produces an angle in the plot,
-        called the ``elbow''.
+%         Moved to text:
+%         Low values of $k$ induce a high variance, because many samples exhibit a large distance from their assigned centroid.
+%         On the other hand, at a given point, higher values of $k$ only yield a marginal gain by further splitting clusters.
+% %         and slightly reduce this distance by further splitting clusters.
+%         Thus, if the data has a natural number of clusters, the corresponding $k$ produces an angle in the plot,
+%         called the ``elbow''.
 %         Candidate points for such elbows are marked in orange here.
         \\
         For example, \subref{fig:elbows:sub:bv_phylo} and \subref{fig:elbows:sub:bv_imb}

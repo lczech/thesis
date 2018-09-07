@@ -1154,17 +1154,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="334.67854"
-     inkscape:cy="189.17574"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="465.71082"
+     inkscape:cy="281.44064"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g11388-3"
      showgrid="false"
-     inkscape:window-width="1869"
-     inkscape:window-height="1056"
+     inkscape:window-width="1694"
+     inkscape:window-height="1388"
      inkscape:window-x="51"
      inkscape:window-y="24"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      fit-margin-top="1"
      fit-margin-left="1"
      fit-margin-bottom="1"
@@ -4086,7 +4086,7 @@
            xml:space="preserve"
            id="flowRoot11325"
            style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
-           transform="matrix(0.22204866,0,0,0.22204866,-147.17646,1547.6888)"><flowRegion
+           transform="matrix(0.22204866,0,0,0.22204866,-147.17652,1547.6888)"><flowRegion
              id="flowRegion11327"><rect
                id="rect11329"
                width="108.18615"
@@ -4107,45 +4107,34 @@
              style="font-size:72px;line-height:1.25">10</flowPara></flowRoot>        <path
            inkscape:connector-curvature="0"
            style="fill:#0000ff;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1.03725171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-           d="m -354.14417,1380.5099 c 0,4.9756 -7.47146,4.9756 -7.47146,0 0,-4.981 7.47146,-4.981 7.47146,0"
+           d="m -354.14423,1380.5098 c 0,4.9756 -7.4714,4.9756 -7.4714,0 0,-4.981 7.4714,-4.981 7.4714,0"
            id="path9739" />
         <path
            inkscape:connector-curvature="0"
            style="fill:#3300cc;fill-opacity:1;fill-rule:nonzero;stroke:#3300cc;stroke-width:1.03725171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-           d="m -354.14417,1400.423 c 0,4.9809 -7.47146,4.9809 -7.47146,0 0,-4.981 7.47146,-4.981 7.47146,0"
+           d="m -354.14423,1400.4229 c 0,4.9809 -7.4714,4.9809 -7.4714,0 0,-4.981 7.4714,-4.981 7.4714,0"
            id="path9741" />
         <path
            inkscape:connector-curvature="0"
            style="fill:#660099;fill-opacity:1;fill-rule:nonzero;stroke:#660099;stroke-width:1.03725171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-           d="m -354.14417,1420.336 c 0,4.981 -7.47146,4.981 -7.47146,0 0,-4.9755 7.47146,-4.9755 7.47146,0"
+           d="m -354.14423,1420.3359 c 0,4.981 -7.4714,4.981 -7.4714,0 0,-4.9755 7.4714,-4.9755 7.4714,0"
            id="path9743" />
         <path
            inkscape:connector-curvature="0"
            style="fill:#990063;fill-opacity:1;fill-rule:nonzero;stroke:#990063;stroke-width:1.03725171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-           d="m -354.14417,1440.2545 c 0,4.9756 -7.47146,4.9756 -7.47146,0 0,-4.981 7.47146,-4.981 7.47146,0"
+           d="m -354.14423,1440.2544 c 0,4.9756 -7.4714,4.9756 -7.4714,0 0,-4.981 7.4714,-4.981 7.4714,0"
            id="path9745" />
         <path
            inkscape:connector-curvature="0"
            style="fill:#cc0030;fill-opacity:1;fill-rule:nonzero;stroke:#cc0030;stroke-width:1.03725171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-           d="m -354.14417,1460.1676 c 0,4.9809 -7.47146,4.9809 -7.47146,0 0,-4.9756 7.47146,-4.9756 7.47146,0"
+           d="m -354.14423,1460.1675 c 0,4.9809 -7.4714,4.9809 -7.4714,0 0,-4.9756 7.4714,-4.9756 7.4714,0"
            id="path9747" />
         <path
            inkscape:connector-curvature="0"
            style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:1.03725171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-           d="m -354.14417,1480.0861 c 0,4.9755 -7.47146,4.9755 -7.47146,0 0,-4.981 7.47146,-4.981 7.47146,0"
+           d="m -354.14423,1480.086 c 0,4.9755 -7.4714,4.9755 -7.4714,0 0,-4.981 7.4714,-4.981 7.4714,0"
            id="path9749" />
-        <flowRoot
-           transform="matrix(0.92723538,0,0,0.92723538,-691.02323,453.0753)"
-           style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333302px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
-           id="flowRoot3711"
-           xml:space="preserve"><flowRegion
-             id="flowRegion3713"><rect
-               y="-8226.0518"
-               x="-474.28571"
-               height="9800"
-               width="4594.2856"
-               id="rect3715" /></flowRegion><flowPara
-             id="flowPara3717" /></flowRoot>      </g>
+      </g>
       <flowRoot
          transform="matrix(0.23947389,0,0,0.23947389,2057.6197,146.68529)"
          style="color:#000000;font-size:72.38088989px;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
