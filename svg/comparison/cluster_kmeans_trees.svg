@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="500.34937"
-   height="520.89233"
+   width="174.30092mm"
+   height="180.47144mm"
    id="svg2"
    version="1.1"
    inkscape:version="0.92.3 (unknown)"
@@ -1243,27 +1243,27 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000001"
-     inkscape:cx="406.41786"
-     inkscape:cy="217.58346"
+     inkscape:zoom="1.0000001"
+     inkscape:cx="33.301649"
+     inkscape:cy="311.38643"
      inkscape:document-units="px"
      inkscape:current-layer="g10356"
      showgrid="false"
-     fit-margin-top="2"
-     fit-margin-left="2"
-     fit-margin-right="2"
-     fit-margin-bottom="2"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
      inkscape:snap-bbox="true"
      inkscape:snap-bbox-edge-midpoints="true"
      inkscape:bbox-nodes="true"
-     inkscape:window-width="3389"
-     inkscape:window-height="1416"
+     inkscape:window-width="1869"
+     inkscape:window-height="1056"
      inkscape:window-x="51"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:bbox-paths="true"
      inkscape:snap-bbox-midpoints="true"
-     units="px"
+     units="mm"
      inkscape:snap-global="false" />
   <metadata
      id="metadata7">
@@ -1281,31 +1281,31 @@
      inkscape:label="labels"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(1218.9003,300.10671)"
+     transform="translate(1137.295,851.83465)"
      style="display:inline" />
   <g
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="graphs"
      style="display:inline"
-     transform="translate(-2.332598,1.9867467)" />
+     transform="translate(-83.937881,553.71469)" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="tree imb"
      style="display:inline"
-     transform="translate(-2.332698,1.9867525)" />
+     transform="translate(-83.937981,553.71469)" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="tree wei"
-     transform="translate(-2.332698,1.9867525)"
+     transform="translate(-83.937981,553.71469)"
      style="display:inline">
     <g
        id="g10356"
        transform="matrix(0.22566622,0,0,0.22566622,1.3689064,-1.7762384)">
       <flowRoot
-         transform="translate(-5.8351813,78.932651)"
+         transform="matrix(1.3119031,0,0,1.3119031,357.99182,-2334.1252)"
          style="color:#000000;font-size:64.99274445px;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
          id="flowRoot8271"
          xml:space="preserve"><flowRegion
@@ -1317,12 +1317,12 @@
              width="175.76654"
              id="rect8275"
              style="font-size:64.99274445px" /></flowRegion><flowPara
-           style="font-size:64.99274445px;line-height:1.25"
+           style="font-size:54.04452133px;line-height:1.25"
            id="flowPara8277">(a)</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot8279"
          style="color:#000000;font-size:64.99274445px;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
-         transform="translate(1174.1648,78.932651)"><flowRegion
+         transform="matrix(1.3119031,0,0,1.3119031,1906.0375,-2334.1252)"><flowRegion
            id="flowRegion8281"
            style="font-size:64.99274445px"><rect
              id="rect8283"
@@ -1332,8 +1332,8 @@
              y="-79.127495"
              style="font-size:64.99274445px" /></flowRegion><flowPara
            id="flowPara8285"
-           style="font-size:64.99274445px;line-height:1.25">(b)</flowPara></flowRoot>      <g
-         transform="matrix(-2.7118099,0,0,2.7118099,1280.3781,2153.3729)"
+           style="font-size:54.04452133px;line-height:1.25">(b)</flowPara></flowRoot>      <g
+         transform="matrix(-3.2504313,0,0,3.2504313,2022.4489,361.51826)"
          id="g8152-6"
          style="display:inline">
         <circle
@@ -1344,7 +1344,7 @@
            id="circle8154-3" />
       </g>
       <g
-         transform="matrix(-2.7118099,0,0,2.7118099,1280.3781,2213.2157)"
+         transform="matrix(-3.2504313,0,0,3.2504313,2022.4489,433.24708)"
          id="g8156-2"
          style="display:inline">
         <circle
@@ -1355,15 +1355,15 @@
            id="circle8158-0" />
       </g>
       <circle
-         style="display:inline;fill:#999999;fill-opacity:1;stroke:none;stroke-width:2.71180987"
-         cx="-1280.3785"
-         cy="2273.0586"
-         r="16.270859"
+         style="display:inline;fill:#999999;fill-opacity:1;stroke:none;stroke-width:3.25043154"
+         cx="-2022.4501"
+         cy="504.97601"
+         r="19.502588"
          id="circle7462-1"
          transform="scale(-1,1)" />
       <g
          id="g7403-5"
-         transform="matrix(2.7118099,0,0,2.7118099,581.4665,2213.8536)"
+         transform="matrix(3.2504313,0,0,3.2504313,1184.719,434.01168)"
          style="display:inline">
         <circle
            id="circle7405-5"
@@ -1374,7 +1374,7 @@
       </g>
       <g
          id="g7407-4"
-         transform="matrix(2.7118099,0,0,2.7118099,581.4665,2273.0585)"
+         transform="matrix(3.2504313,0,0,3.2504313,1184.719,504.97589)"
          style="display:inline">
         <circle
            id="circle7409-7"
@@ -1385,7 +1385,7 @@
       </g>
       <g
          id="g7879-6"
-         transform="matrix(2.7118099,0,0,2.7118099,581.4665,2154.6487)"
+         transform="matrix(3.2504313,0,0,3.2504313,1184.719,363.04746)"
          style="display:inline">
         <circle
            id="circle7881-9"
@@ -1395,7 +1395,7 @@
            style="fill:#e41a1c;fill-opacity:1;stroke:none" />
       </g>
       <flowRoot
-         transform="translate(594.56562,2207.7526)"
+         transform="matrix(1.1986206,0,0,1.1986206,1218.1451,426.69889)"
          style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
          id="flowRoot21294-3"
          xml:space="preserve"><flowRegion
@@ -1414,7 +1414,7 @@
          xml:space="preserve"
          id="flowRoot25836"
          style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
-         transform="translate(1292.2909,2207.7526)"><flowRegion
+         transform="matrix(1.1986206,0,0,1.1986206,2054.453,426.69889)"><flowRegion
            id="flowRegion25838"><rect
              id="rect25840"
              width="210.05226"
@@ -1430,7 +1430,7 @@
          xml:space="preserve"
          id="flowRoot6755"
          style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
-         transform="translate(436.6746,2077.8798)"><flowRegion
+         transform="matrix(1.1986206,0,0,1.1986206,1011.1688,271.03067)"><flowRegion
            id="flowRegion6757"><rect
              id="rect6759"
              width="696.90125"
@@ -1445,7 +1445,7 @@
            style="font-size:47.26744843px;line-height:1.25;text-align:start;text-anchor:start">with Phylogenetic <flowSpan
    id="flowSpan6768"
    style="font-style:italic;font-size:47.26744843px;-inkscape-font-specification:'Sans Italic'">k</flowSpan>-means:</flowPara></flowRoot>      <flowRoot
-         transform="translate(1168.84,2076.89)"
+         transform="matrix(1.1986206,0,0,1.1986206,1888.7571,269.84427)"
          style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
          id="flowRoot6773"
          xml:space="preserve"><flowRegion
@@ -1463,7 +1463,7 @@
            style="font-size:47.26744843px;line-height:1.25;text-align:start;text-anchor:start">with Imbalance <flowSpan
    id="flowSpan6770"
    style="font-style:italic;font-size:47.26744843px;-inkscape-font-specification:'Sans Italic'">k</flowSpan>-means:</flowPara></flowRoot>      <g
-         transform="matrix(-1,0,0,1,2212.1181,95.419891)"
+         transform="matrix(-1.3119031,0,0,1.3119031,3267.7317,-2321.3582)"
          id="g5630"
          style="display:inline">
         <g
@@ -9811,7 +9811,7 @@
       </g>
       <g
          id="g5625"
-         transform="translate(13.633519,95.758419)"
+         transform="matrix(1.3119031,0,0,1.3119031,383.53287,-2320.914)"
          style="display:inline">
         <g
            id="g5627">
