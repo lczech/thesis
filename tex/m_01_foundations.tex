@@ -881,19 +881,19 @@ along the same branch (\nucleobase{T} $\rightarrow$ \nucleobase{A} $\rightarrow$
 
 The process of state transitions is defined by the substitution rate matrix %$Q$
 
-\begin{equation}
-    \begin{align*}
-        Q ~&=~
-         \begin{pmatrix}
-         ~-q_{A}   &   q_{AC}   &   q_{AG}   &   q_{AT}~~ \\
-         ~q_{CA}   &  -q_{C}    &   q_{CG}   &   q_{CT}~~ \\
-         ~q_{GA}   &   q_{GC}   &  -q_{G}    &   q_{GT}~~ \\
-         ~q_{TA}   &   q_{TC}   &   q_{TG}   &  -q_{T}~~
-         \end{pmatrix}
-        \\ \\
-        - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i,j \in \left\{~ A, C, G, T ~\right\}
-    \end{align*}
-\end{equation}
+% \begin{equation}
+\begin{align}
+    Q ~&=~
+     \begin{pmatrix}
+     ~-q_{A}   &   q_{AC}   &   q_{AG}   &   q_{AT}~~ \\
+     ~q_{CA}   &  -q_{C}    &   q_{CG}   &   q_{CT}~~ \\
+     ~q_{GA}   &   q_{GC}   &  -q_{G}    &   q_{GT}~~ \\
+     ~q_{TA}   &   q_{TC}   &   q_{TG}   &  -q_{T}~~
+     \end{pmatrix}
+    \\[1.5em]
+    - q_{i} ~&=~ - \sum_{j \neq i} q_{ij}, ~ i,j \in \left\{~ A, C, G, T ~\right\}
+\end{align}
+% \end{equation}
 
 % The instantaneous transition rates between states are given
 % by the substitution rate matrix (Q-matrix), where the rows must sum to $0$.
