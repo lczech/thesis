@@ -1,0 +1,110 @@
+process:
+selected this clade, because it looked okay:
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina
+then, grep -A 625 "Calyptosporidae" SILVA_123.1_SSURef_Nr99_tax_silva_full_align_trunc.fasta > seqs.txt
+then, filter out all-gap sites with aliview, and select some interesting columns from the result,
+and put into selection
+
+>FJ904636.1.1724 Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae;Calyptospora spinosa
+GGCUGA-
+>FJ904635.1.1481 Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae;Calyptospora spinosa
+GGCUGA-
+>FJ904646.1.1866 Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae;Calyptospora funduli
+CG-G-A-
+>FJ904637.1.1733 Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae;Calyptospora spinosa
+GG-AGG-
+>FJ904638.1.1689 Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae;Calyptospora serrasalmi
+GGAUGCC
+>GU479670.1.1826 Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae;Calyptospora funduli
+CG-G-A-
+
+GGCUGA-
+GGCUGA-
+CG-G-A-
+GG-AGG-
+GGAUGCC
+CG-G-A-
+
+2018-01-31 20:21:56 INFO sites consensus_sequence_with_threshold SG-K-M-
+2018-01-31 20:21:56 INFO sites consensus_sequence_with_majorities GG-TGA-
+
+
+2017-09-01 21:24:08 INFO sites SGMKGM-
+2017-09-01 21:24:08 INFO entr 0.950934
+2017-09-01 21:24:08 DBG  site 0: 0.918296
+2017-09-01 21:24:08 DBG  site 1: 0
+2017-09-01 21:24:08 DBG  site 2: 1.45915
+2017-09-01 21:24:08 DBG  site 3: 1.45915
+2017-09-01 21:24:08 DBG  site 4: 0.918296
+2017-09-01 21:24:08 DBG  site 5: 1.25163
+2017-09-01 21:24:08 DBG  site 6: 0.650022
+
+
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Aggregata
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Besnoitia
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Caryospora
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Cyclospora
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Cystoisospora
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Eimeria
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Goussia
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Hyaloklossia
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Lankesterella
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Margolisiella
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Rhytidocystis
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Sarcocystis
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Symbiont group
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Toxoplasma
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;uncultured
+
+Eukaryota                       0.042899
+  SAR                           0.041816
+    Alveolata                   0.029004
+      Apicomplexa               0.034149
+        Conoidasida             0.029078
+          Coccidia              0.021871
+            Eimeriorina         0.019703
+              Aggregata         0.013117
+              Besnoitia         0.003800
+              Calyptosporidae   0.014254
+              Caryospora        0.000300
+              Eimeria           0.012608
+              ...
+
+
+
+                            Aggregata (0.013117) subtree: 0 leaves: 0
+                            Besnoitia (0.003800) subtree: 0 leaves: 0
+                            Calyptosporidae (0.014254) subtree: 0 leaves: 0
+                            Caryospora (0.000300) subtree: 0 leaves: 0
+                            Cyclospora (0.001625) subtree: 0 leaves: 0
+                            Cystoisospora (0.002132) subtree: 0 leaves: 0
+                            Eimeria (0.012608) subtree: 0 leaves: 0
+                            Goussia (0.013433) subtree: 0 leaves: 0
+                            Hyaloklossia (0.000000) subtree: 0 leaves: 0
+                            Lankesterella (0.008610) subtree: 0 leaves: 0
+                            Margolisiella (0.012785) subtree: 0 leaves: 0
+                            Rhytidocystis (0.011569) subtree: 0 leaves: 0
+                            Sarcocystis (0.017269) subtree: 0 leaves: 0
+                            Symbiont group (0.004424) subtree: 0 leaves: 0
+                            Toxoplasma (0.009400) subtree: 0 leaves: 0
+                            uncultured (0.006310) subtree: 0 leaves: 0
+
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Aggregata	B	7	0	0	0	3	0.013117
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Besnoitia	B	7	0	0	0	4	0.00380015
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Calyptosporidae	B	7	0	0	0	6	0.0142538
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Caryospora	B	7	0	0	0	2	0.0003
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Cyclospora	B	7	0	0	0	3	0.0016245
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Cystoisospora	B	7	0	0	0	7	0.00213231
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Eimeria	B	7	0	0	0	264	0.0126078
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Goussia	B	7	0	0	0	27	0.0134329
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Hyaloklossia	B	7	0	0	0	1	0
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Lankesterella	B	7	0	0	0	3	0.00860983
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Margolisiella	B	7	0	0	0	3	0.0127849
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Rhytidocystis	B	7	0	0	0	3	0.0115694
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Sarcocystis	B	7	0	0	0	103	0.0172686
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Symbiont group	B	7	0	0	0	3	0.00442416
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;Toxoplasma	B	7	0	0	0	7	0.00939974
+Eukaryota;SAR;Alveolata;Apicomplexa;Conoidasida;Coccidia;Eimeriorina;uncultured	B	7	0	0	0	4	0.00631001
+
+................................................................................
