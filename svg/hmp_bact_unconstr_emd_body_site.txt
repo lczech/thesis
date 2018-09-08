@@ -1,0 +1,39 @@
+Stool
+Tongue Dorsum
+Palatine Tonsils
+Throat
+Saliva
+Attached Keratinized Gingiva
+Hard Palate
+Buccal Mucosa
+Supragingival Plaque
+Subgingival Plaque
+Left Retroauricular Crease
+Right Retroauricular Crease
+Anterior Nares
+Left Antecubital Fossa
+Right Antecubital Fossa
+Vaginal Introitus
+Mid Vagina
+Posterior Fornix
+N/A
+
+Stool
+Mouth
+Mouth
+Mouth
+Mouth
+Mouth
+Mouth
+Mouth
+Mouth
+Mouth
+Ear
+Ear
+Nose
+Arm
+Arm
+Vagina
+Vagina
+Vagina
+N/A
