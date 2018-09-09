@@ -82,7 +82,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="267.44586"
+     inkscape:cx="185.11843"
      inkscape:cy="123.68184"
      inkscape:document-units="px"
      inkscape:current-layer="g1674"
@@ -114,7 +114,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -294,7 +294,7 @@
                  width="532.96613"
                  id="rect5118" /></flowRegion><flowPara
                style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Medium';text-align:end;text-anchor:end"
-               id="flowPara5120">Region</flowPara></flowRoot>          <path
+               id="flowPara5120">Group</flowPara></flowRoot>          <path
              sodipodi:nodetypes="cc"
              inkscape:connector-curvature="0"
              id="path5122-7"
