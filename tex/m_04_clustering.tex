@@ -11,7 +11,7 @@
     \textbf{Contributions:} Lucas Czech... Alexandros Stamatakis...
 }
 
-\todo{distance measures, nhd, simulations, mantel test}
+% \todo{distance measures, nhd, simulations, mantel test}
 
 % ######################################################################################################################
 %         Background and Motivation
@@ -26,7 +26,7 @@ a fundamental task consists in clustering samples that are similar to each other
 For example, Squash Clustering performs agglomerative hierarchical clustering of samples,
 as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}.
 It is based on the phylogenetic placement of the \acfp{QS} of the samples on a \acf{RT},
-and employs the KR distance to asses sample similarity.
+and employs the KR distance to assess sample similarity.
 An example of the resulting clustering tree is shown in \figref{fig:squash_edgepca:sub:squash}.
 
 For large datasets, producing a clustering tree can however considered to be a downside of Squash Clustering,
@@ -107,7 +107,7 @@ They are clustering methods for phylogenetic placement of a set of metagenomic s
 and address the issues described above.
 Note that these methods are clustering samples, and not single sequences \cite{Kelley2010}.
 Both methods produce a predefined number of clusters, and hence are able to work with arbitrarily large datasets.
-Phylogenetic $k$-means uses the KR distance to asses sample similarity, that is, it uses edge masses,
+Phylogenetic $k$-means uses the KR distance to assess sample similarity, that is, it uses edge masses,
 while Imbalance $k$-means uses edge imbalances instead.
 
 The methods take as input a set of $n$ samples, each consisting of their \acfp{QS} placed on a fixed \acf{RT}.
@@ -662,7 +662,7 @@ Furthermore, in \figref{fig:hmp_kmeans_all_8},
 we show a clustering of this dataset into $k:=8$ broader body site groups
 to exemplify the effect of using different values of $k$.
 See \tabref{tab:hmp_data_overview} for the grouping of the original body site labels.
-This effect is further explored by using the Elbow method,
+The effect of $k$ on the clustering results is further explored by using the Elbow method,
 as described later in \secref{ch:Clustering:sec:Results:sub:ElbowMethod}.
 % that is, using the constrained Bacterial tree as well as Imbalance $k$-means.
 
@@ -921,8 +921,8 @@ The first row represents the baseline case of using no binning,
 where each placement location of the \num{118} million sequences
 is taken into account in the computation of the KR distance.
 Hence, even binning the masses on each of the \num{3 824} branches of the tree into \num{256} intervals
-yields a substantial speedup.
-When using fewer bins per branch, the run-time decreases,
+already yields a substantial speedup.
+When using fewer bins per branch, the run-time further decreases,
 at the cost of slightly increasing the average relative error.
 Still, even when compressing the placement masses into only one bin per branch (that is, just using per-branch masses),
 the average relative error of the KR distances is around 1\%, which is acceptable for most applications.
@@ -967,6 +967,7 @@ That is, they have to be extended to this type of data by
 using mass distributions on trees instead of operating on $\mathbb{R}^d$ vectors in the euclidean space,
 %as the underlying space in which the data is modeled.
 and using appropriate distances measures such as the KR distance to assess sample similarity.
+% The necessary adaptations in the clustering algorithms are not always \todo{what?}
 In case of using edge imbalances (instead of edge masses),
 the adaptation of existing clustering methods is more straight forward
 and might work by plugging in the edge imbalance matrix into existing implementations.

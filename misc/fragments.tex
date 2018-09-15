@@ -188,21 +188,6 @@ compare to edge pca
 
 \url{https://stats.stackexchange.com/questions/203766/use-cases-for-coefficient-of-variation-vs-index-of-dispersion/203808#203808}
 
-% Remark:
-% Squash clustering uses the KR distance, which is based on mass distributions on the edges of the \ac{RT}.
-% It thus ``suffers'' from the same shortcomings that Edge PCA is solving by using mass imbalance instead.
-% For instance, figure 7 of \cite{Matsen2011a} shows the result of a normal principal component analysis
-% on a dataset of Bacterial Vaginosis, a disease of the vagina.
-% On the left hand side of the figure, the blue data points, representing healthy women, cluster close together,
-% while the red data points, which belong to sick patients, spread over the rest of the graph.
-% The result of Squash Clustering on this dataset is presented in figure 1 of \cite{Srinivasan2012}.
-% The bottom half of the clustering tree, containing mainly healthy samples, has short branches,
-% while the top half, with mostly samples from sick patients, has many long branches.
-% Thus, Squash Clustering and normal PCA represent almost equivalent information in this case.
-% \todo{This whole paragraph should be left out if it does not suddenly become relevant for the rest of the section.
-% I just found this an interesting observation and wanted to note it down.}
-% \alexis{okay, you should definitely keep it for your thesis}
-
 4. Distance Calculation
 emd, node histogram distance.
 

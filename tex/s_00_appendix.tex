@@ -5,7 +5,7 @@
 \chapter{Supporting Information}
 \label{ch:SupportingInformation}
 
-\begin{table}[htb]
+\begin{table}[htbp]
 \caption[IUPAC notation of nucleobases and ambiguity characters]{
 \textbf{IUPAC notation of nucleobases and ambiguity characters.}
 The table lists the character representations of nucleobases and their combinations
@@ -43,7 +43,7 @@ See \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences} for more
     V & not T (\textbf{V} comes after T and U) & \rb{} A & \rb{} C & \rb{} G &  & 3 & B \\
     \hline
     N & any \textbf{N}ucleotide (not a gap) & \rb{} A & \rb{} C & \rb{} G & \rb{} T & 4 & N \\
-    Z & \textbf{Z}ero &  &  &  &  & 0 & Z
+    Z & \textbf{Z}ero &  &  &  &  & 0 &
 %     \bottomrule
 %     \hline
     \end{tabular}
@@ -51,7 +51,68 @@ See \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences} for more
 }
 \end{table}
 
-\todo{maybe add the entropy examples from \url{/home/lucas/Dropbox/HITS/manuscripts/automatic-reference-trees/svg} here}
+\begin{figure}[thb!p]
+    \centering
+    \includegraphics[width=\linewidth]{entropy.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:a}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:b}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:c}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:d}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:e}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:f}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:g}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:entropy:sub:h}
+    \end{subfigure}
+    \caption[Examples of the per-site entropy for different character frequencies]{
+        \textbf{Examples of the per-site entropy for different character frequencies.}
+        The Figure shows the entropy $H$ that results from an alignment site with some exemplary nucleotide frequencies.
+        See \secref{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:SequenceEntropy}
+        for details of the calculation of the per-site entropy,
+        and for its application in the context of multiple sequence alignments.
+        The entropy is symmetric with respect to permutations of the nucleobases;
+        we here show examples using the nucleobase \nucleobase{G} as the most frequent character at the site.
+        For simplicity, we here do not include the gap character.
+        \\
+        The subfigures are ordered by increasing entropy,
+        which ranges from $0$ for a site with only a single character, as in \subref{fig:entropy:sub:a},
+        to $2$ for a site with all four nucleobases equally frequent, as in \subref{fig:entropy:sub:h}.
+%         \subref{fig:entropy:sub:a} The site only contains one character, the resulting entropy is $0$.
+%         \subref{fig:entropy:sub:b}, \subref{fig:entropy:sub:c} Another character appears with 25\% and 50\% frequency, respectively.
+%         \subref{fig:entropy:sub:d} One character appears with 70\% frequency, the three remaining ones with 10\% each.
+%         \subref{fig:entropy:sub:e} Three characters with equal frequency of 33.3\% each.
+%         \subref{fig:entropy:sub:f} Two characters with 40\%, and two with 10\% frequency.
+%         \subref{fig:entropy:sub:g} One character with 40\%, and three with 20\% frequency each.
+%         \subref{fig:entropy:sub:h} All four characters are equally frequent with 25\% each, resulting in the maximum entropy of $2$.
+        The maximum possible entropy is given by the base of the logarithm.
+        The choice of base is irrelevant when comparing entropies with each other,
+        as it simply introduces a constant factor.
+    }
+    \label{fig:entropy}
+\end{figure}
+
 
 % ######################################################################################################################
 %         Empirical Datasets
@@ -166,6 +227,10 @@ Lastly, the ``Chunks'' column shows into how many chunks of size \num{50 000} th
 }
 \end{table}
 
+% ======================================================================================================================
+%     Bacterial Vaginosis
+% ======================================================================================================================
+
 \section{Bacterial Vaginosis}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:BV}
 
@@ -191,7 +256,7 @@ which was provided by Sujatha Srinivasan.
 See \figref{fig:bv_squash} and \figref{fig:bv_edgepca} for the respective results.
 This small dataset with a total of \num{426 612} query sequences, thereof \num{15 060} unique,
 was already analyzed with phylogenetic placement methods in the original publication.
-We used it as an example of a well-designed study to asses our results using an \ac{PhAT} as reference tree.
+We used it as an example of a well-designed study to assess our results using an \ac{PhAT} as reference tree.
 In addition to the \taxonname{Bacteria} \ac{PhAT},
 we re-inferred the reference tree of the original publication using their alignment,
 again using \toolname{RAxML~8.2.8} \citep{Stamatakis2014}.
@@ -203,8 +268,16 @@ Finally, the query sequences were placed on these trees using \toolname{EPA-ng} 
 and the analyses were subsequently performed as explained in \figref{fig:bv_squash} and \figref{fig:bv_edgepca}.
 \todo{the above is not up to date!}
 
+% ======================================================================================================================
+%     Neotropical Soils
+% ======================================================================================================================
+
 \section{Neotropical Soils}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:NTS}
+
+% ======================================================================================================================
+%     Tara Oceans
+% ======================================================================================================================
 
 \section{Tara Oceans}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:Tara}
@@ -242,6 +315,10 @@ which are not readily usable with our correlation analysis.
 Lastly, in order to use features such as the date, that is, in order to analyze samples over time,
 the same sampling locations would need to be visited at different times during the year,
 which is not the case for the Tara Oceans expedition.
+
+% ======================================================================================================================
+%     Human Microbiome Project
+% ======================================================================================================================
 
 \section{Human Microbiome Project}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:HMP}
@@ -300,9 +377,9 @@ The chunk placements were then transformed again into per-sample placement files
 before finally running the steps explained in Figure~\ref{fig:hmp_mds_epca}.
 % see mapseq paper for another example of hmp processing description
 
-% ======================================================================================================================
+% --------------------------------------------
 %     HMP Dataset Labels
-% ======================================================================================================================
+% --------------------------------------------
 
 \begin{table}[htb]
 \caption[HMP Dataset Overview]{
@@ -350,6 +427,10 @@ The last column lists how many samples from each body site were used in our eval
     \end{center}
 }
 \end{table}
+
+% ======================================================================================================================
+%     Mouse Gut
+% ======================================================================================================================
 
 \section{Mouse Gut}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}
@@ -511,6 +592,9 @@ used for the tests and figures in this paper at \url{http://github.com/lczech/pl
 
 \chapter{List of Publications}
 \label{ch:Publications}
+
+here: all publications.
+see also \secref{ch:Introduction:sec:ObjectiveContribution} for more details on the important major ones.
 
 \todo{workshops and conferences, TA}
 

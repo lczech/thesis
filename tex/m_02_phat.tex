@@ -178,6 +178,7 @@ The entropy is \num{0} for sites that only contain a single character.
 It increases the more different characters an alignment site contains, {\em and} the more similar their frequencies are.
 % low for sites with one dominant character, and high for sites with a similar distribution of more than one character.
 Its maximum occurs if all characters appear with the same frequency (each of them \num{20}\%).
+Some examples for the entropy when using four nucleobases are shown in \figref{fig:entropy}.
 Note that we also treat ambiguous characters as gaps
 (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}).
 As only \num{0.008}\% of the non-gap characters in our test database (\toolname{Silva}) are ambiguous,
@@ -229,7 +230,7 @@ For instance, \figref{fig:tax_entropy} shows six sequences (S1--S6),
 which the underlying databases has classified into a clade of the taxonomy,
 and which thus form a group of related sequences.
 Note that this assumes that the taxonomic classification is correct for most sequences \cite{Kozlov2016},
-which we asses later in \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:FurtherAspectsAndObservations}.
+which we assess later in \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:FurtherAspectsAndObservations}.
 % The impact of taxonomic mislabels and spurious sequences is absorbed by using consensus sequences.
 The goal is then to find clades/groups of sequences that represent the diversity of the database.
 
@@ -893,8 +894,8 @@ Further details are provided in \tabref{tab:ReferenceTreesOverview}.
         For example, in \subref{fig:constraints_backbone:sub:edge_unconstr},
         more than 85\% of the sequences of the \taxonname{Bacteria} (red) are placed
         within a radius of at most one branch from their expected branch,
-        and in \subref{fig:constraints_backbone:sub:branch_unconstr}, more than 95\% of the Eukaryota (purple) are
-        within a radius of 0.1 branch length units from their expected branches.
+        and in \subref{fig:constraints_backbone:sub:branch_unconstr}, more than 95\% of the \taxonname{Eukaryota} (purple)
+        are within a radius of 0.1 branch length units from their expected branches.
         % If we for example want to know how accurately 80\% of the sequences were placed,
         % we follow the graph at 80\% down to the x-axis to find the wanted value.
         \\
@@ -1232,7 +1233,7 @@ However, when considering only the distance of the most likely placement (highes
 instead of using average distances weighted by the \ac{LWR} per \ac{QS},
 the constrained trees consistently yield better results (data not shown).
 In other words, the most likely placement is more often on the correct branch of the constrained trees.
-For example, the most significant change is observed for the Eukaryota tree,
+For example, the most significant change is observed for the \taxonname{Eukaryota} tree,
 with 84\% correct placements for the unconstrained tree, but 89\% for the constrained one.
 We suspect that this is an artifact of our evaluation process,
 as we consider a sequence to be correctly placed if the placement branch belongs to the consensus sequence
@@ -1292,7 +1293,7 @@ we can not repeat the previous accuracy tests on empirical environmental dataset
 Instead, we assess if the \acp{PhAT} yield meaningful quantitative results for typical post-analysis methods.
 To this end, we placed two empirical metagenomic amplicon barcoding datasets
 (see \appref{ch:EmpiricalDatasets} for their details) on our unconstrained \taxonname{Bacteria} tree.
-To asses the placement results obtained from the \ac{PhAT},
+To assess the placement results obtained from the \ac{PhAT},
 we performed Squash Clustering and Edge PCA \citep{Matsen2011a} post-analyses
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}) on the placement results.
 
@@ -1316,7 +1317,7 @@ to assess differences induced by using distinct references trees.
 % Each colored dot in the figure represents one sample.
 The results reveal that the \ac{PhAT} reproduces certain aspects of the results of previous studies
 based on custom \acp{RT} with manually selected reference sequences,
-at least to the extend that is expected from its phylogenetic resolution.
+at least to the extent that is expected from its phylogenetic resolution.
 
 First, we conducted Squash Clustering \citep{Matsen2011a}
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering})
@@ -1459,7 +1460,7 @@ as shown in \figref{fig:hmp_mds_epca}.
 % It is a generalization of the UniFrac distance \citep{Lozupone2005,Lozupone2007a}.
 
 First, we computed the pairwise KR distance matrix
-(see (\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR})) between all samples.
+(see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR}) between all samples.
 This high-dimensional matrix was then embedded into the plot by performing \acf{MDS}.
 \ac{MDS} \citep{Mardia1978,Krzanowski1994,Everitt2010} is a dimensionality reduction technique that
 finds an embedding of a distance matrix into lower dimensions (in this case, \num{2} dimensions)
@@ -1472,6 +1473,7 @@ suffices to separate different body site regions from each other.
 Even different oral regions are mostly separated, although there seems to be quite some overlap.
 % Similar to \figref{fig:bv_edgepca:sub:edgepca_orig}, the plot forms a triangle of samples,
 % roughly separated by body site regions.
+\todo{weird transition and abrupt ending. more flesh!}
 We hence conclude that our \ac{PhAT} is capable of analyzing such datasets and yields useful results.
 
 % ======================================================================================================================
@@ -1984,8 +1986,8 @@ Thus, these have short branches, which increases the probability of misplacement
 Next, using the five clades, we evaluated the accuracy of the first placement level when conducting Multilevel Placement
 (as introduced in \secref{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement}).
 So far, our evaluation focused on the distance from a sequence placement to its expected placement branch.
-For the first placement level on a \acf{BT}, it is however more important that a sequence is placed into the correct clade
-than the exact placement branch.
+For the first placement level on a \acf{BT}, it is however more important that a sequence is placed into the correct clade,
+while the exact placement branch is mostly irrelevant.
 A sequence that is placed in the correct clade of the first level tree
 can subsequently be placed on the correct second level \acf{CT} tree.
 Thus, we used the unconstrained \taxonname{Bacteria} \ac{BT} again,
