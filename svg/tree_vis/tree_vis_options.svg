@@ -14,7 +14,7 @@
    viewBox="0 0 210.96369 84.98394"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (unknown)"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="tree_vis_options.svg">
   <defs
      id="defs2" />
@@ -26,16 +26,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="388.54299"
-     inkscape:cy="298.43306"
+     inkscape:cx="272.8287"
+     inkscape:cy="212.71877"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g1015-3"
      showgrid="false"
-     inkscape:window-width="1694"
-     inkscape:window-height="1080"
-     inkscape:window-x="51"
-     inkscape:window-y="24"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1554"
+     inkscape:window-height="879"
+     inkscape:window-x="46"
+     inkscape:window-y="21"
+     inkscape:window-maximized="1"
      fit-margin-top="0.5"
      fit-margin-left="0.5"
      fit-margin-bottom="0.5"
@@ -414,11 +414,11 @@
        id="ellipse1385"
        style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.3650637;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     <circle
-       r="1.293613"
+       r="1.9404194"
        cy="29.866747"
        cx="98.323174"
        id="circle1391"
-       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#42c16a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.54759556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#42c16a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.50000002;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot1393"
@@ -456,11 +456,11 @@
            y="-45.031391" /></flowRegion><flowPara
          id="flowPara1413"
          style="font-size:16px">(c)</flowPara></flowRoot>    <circle
-       r="1.293613"
+       r="1.9404194"
        cy="64.193619"
        cx="18.095362"
        id="circle1391-3"
-       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#42c16a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.54759556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#42c16a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.50000002;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     <g
        transform="translate(-9.787467e-7,-1.2945446e-6)"
        id="g1015-3">
@@ -644,11 +644,11 @@
          cy="63.370495"
          r="0.86240864" />
       <circle
-         r="1.293613"
+         r="1.9404194"
          cy="63.370495"
          cx="162.26381"
          id="circle1389-9"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#42c16a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.54759556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#42c16a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.50000002;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     </g>
   </g>
   <g
