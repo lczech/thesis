@@ -160,14 +160,16 @@ It is labor- and time-intensive, but through optimization and automation, costs 
 Eventually, this allowed for large-scale sequencing projects, such as the Human Genome Project \cite{Venter2001},
 which sequenced the whole human genome comprising more than three billion nucleobases.
 Sanger sequencing allows to determine long parts of the sequence at once (> \num{500} nucleobases),
-which then have to be assembled to build the final genome sequence.
+which then have to be \emph{assembled} to build the final genome sequence.
 
 In the last decades, a variety of novel high-throughput DNA sequencing technologies
 have been developed \cite{Pettersson2009,Reuter2015,Goodwin2016}.
-In particular, \emph{Next Generation Sequencing} (NGS) \cite{Logares2012,Mardis2013}
-has revolutionized biology by transforming it into a data-driven and compute-intense discipline \citep{Escobar-Zepeda2015}.
-The costs of these technologies are decreasing faster than Moore's law \cite{Wetterstrand2018}.
-This leads to a ``tsunami'' of sequence data,
+In particular, \emph{Next Generation Sequencing} (NGS) technologies \cite{Logares2012,Mardis2013}
+have revolutionized biology by transforming it into a data-driven and compute-intense discipline \citep{Escobar-Zepeda2015}.
+The costs of these technologies are decreasing faster than Moore's law \cite{Moore1965,Wetterstrand2018},
+as shown in \figref{fig:sequencing_costs},
+while at the same time, their throughput is increasing.
+This leads to an ever growing amount of sequence data,
 which poses a challenge for computational methods analyzing these data.
 Compared to Sanger sequencing, NGS technologies are generally cheaper and faster \cite{Voelkerding2009,Metzker2010},
 but come at the price of introducing more errors in the sequence output,
@@ -204,7 +206,7 @@ for computational methods for analyzing DNA sequences.
 
 Sanger sequencing requires careful preparation of the genetic material,
 and is thus best suited for sequencing single organisms.
-There are however many (microbial) organisms that cannot be cultured on a Petri dish,
+There are however many (microbial) organisms that cannot be cultured in the laboratory,
 and are hence hard to sequence with this technique.
 Apart from being cheaper, Next Generation Sequencing machines also ``digest'' all genetic material given to them.
 They thus allow for directly studying microbial samples
@@ -257,7 +259,7 @@ and described in more detail in the following.
 
 % The following paragraph is not totally needed, as we are not doing functional analysis.
 % However, it introduces many other terms alongside, which is useful later on.
-Functional annotation \cite{Stein2001} is the prediction of the gene functions of the reads,
+Functional annotation \cite{Stein2001} is the prediction of the genetic functions of the sequences,
 and the inference of metabolic capacity of microbial communities \cite{Brown2017}.
 As the proteins that are needed in the pathways of such functions can be encoded by genes across the genome,
 whole-genome sequencing is necessary to capture all genes of interest.
@@ -300,7 +302,8 @@ which is an essential component of the ribosome.
 The ribosome is a molecular machinery that is responsible for protein synthesis (translation) in all living organisms.
 % and are thus present in virtually all \taxonname{bacteria} and \taxonname{eukaryota}.
 Often, prior to sequencing, these regions are amplified by many orders of magnitude,
-using the polymerase chain reaction (PCR) to create a sufficient number of copies of these regions \cite{Bartlett2003}.
+using the polymerase chain reaction (PCR)
+to create a sufficient number of copies of these regions for sequencing \cite{Bartlett2003}.
 The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}.
 The PCR amplification process however is known to introduce biases \cite{Logares2014,Brown2017}.
 For example, the relative abundances of the final amplicons
@@ -978,7 +981,7 @@ a diagonal matrix of the stationary base frequencies:
 
 \begin{align}
     \newcommand{\lra}{\leftrightarrow}
-    Q = R \cdot diag(\pi_i) =
+    Q = R \cdot \mbox{diag}(\pi_i) =
     \begin{pmatrix}
          -q_A                       &   r_{A \lra C} \cdot \pi_C   &   r_{A \lra G} \cdot \pi_G   &   r_{A \lra T} \cdot \pi_T~~  \\
         ~r_{A \lra C} \cdot \pi_A   &   -q_C                       &   r_{C \lra G} \cdot \pi_G   &   r_{C \lra T} \cdot \pi_T~~  \\
@@ -1851,7 +1854,7 @@ There, the weights represent the influence of sample clusters during an agglomer
 In practice, the average mass distributions are calculated per placement location.
 Because phylogenetic placements represent point masses on the edges of the tree,
 squashing can be seen as joining the (weighted) set of placements of the samples on corresponding edges of the \ac{RT}.
-The resulting masses can then be normalized again to again obtain unit mass for the resulting average tree.
+The resulting masses can then be normalized again to obtain unit mass for the resulting average tree.
 % This normalized tree thereby summarizes the (sub-)set of samples it represents.
 
 \paragraph{Edge Imbalances}
