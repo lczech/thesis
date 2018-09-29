@@ -89,96 +89,129 @@ allow for in-depth interpretation and visualization of the data,
 they were not developed with a particular focus on large-scale studies comprising many thousand environmental samples.
 For large datasets, these methods might provide too much detail,
 making it hard to interpret results, to spot patterns and clusters in the data,
-and to discover correlations with meta-data.
+and to discover correlations with per-sample meta-data.
 
 Lastly, the problem of scalability to large datasets does not only affect the methods themselves.
 Because of the ever growing amount of sequence data,
 scalability is becoming an issue for the software pipelines as well.
-State-of-the-art phylogenetic placement implementations can place billions of sequences within a few hours \cite{Barbera2018}.
-Methods for processing and analyzing the data, in particular phylogenetic placement data,
+State-of-the-art phylogenetic placement implementations can process billions of sequences within a few hours \cite{Barbera2018}.
+Methods for handling and analyzing the data, in particular phylogenetic placement data,
 hence require efficient and scalable software implementations.
 
 % ######################################################################################################################
 %         Objective and Contribution
 % ######################################################################################################################
 
-\section{Objective and Contribution}
-\label{ch:Introduction:sec:ObjectiveContribution}
+% \section{Objective and Contribution}
+% \label{ch:Introduction:sec:ObjectiveContribution}
 
-in this thesis...
+\section{Contribution and Overview}
+\label{ch:Introduction:sec:ContributionOverview}
 
-\chpref{ch:AutomaticTrees}
+This thesis makes several contributions to the field of computational phylogenetics,
+specifically for conducting phylogenetic placement and analyzing the resulting data.
+In particular, we introduce multiple novel methods to overcome the issues and limitations described above.
+The methods were already described in two peer-reviewed publications \cite{Czech2018,Czech2018a},
+and their data and code was made available at \url{http://github.com/lczech/placement-methods-paper}.
+% phat \cite{Czech2018}
+% vis clust \cite{Czech2018a}
+% \citeauthor{Czech2018} and \citeauthor{Czech2018a} and \citeauthor{Czech2018,Czech2018a}
 
-\chpref{ch:Visualization}
+Firstly, we describe an automated approach for obtaining suitable reference trees for phylogenetic placement,
+as well as pre-processing pipelines to accelerate and enable
+phylogenetic placement of large metagenomic datasets (\chpref{ch:AutomaticTrees}).
+Secondly, we introduce methods to visualize such large datasets
+in order to detect patterns within the data and correlations with per-sample meta-data (\chpref{ch:Visualization}).
+Lastly, we present an approach for clustering metagenomic samples (\chpref{ch:Clustering}),
+measuring similarity between samples in terms of the species diversity they contain.
 
-\chpref{ch:Clustering}
+Apart from the two publications on which this thesis is based,
+we reviewed several software tools for visualizing phylogenetic trees \cite{Czech2017}.
+In this publication, we investigated whether certain types of per-branch and per-node meta-data of phylogenetic trees
+were correctly displayed in \num{20} tools, particularly when first modifying the tree topology.
+We found that most of the tested tools had some kind of issue or undocumented behavior and
+did not properly support the \fileformat{Newick} file format for phylogenetic trees.
+We also showed that this already has affected trees published in peer-reviewed journals.
 
-we developed methods for working with such data, and helped to conduct several empirical studies using established as well as our novel methods.
+In addition to these theoretical projects, we also helped in several empirical data analysis studies
+by conducting established analysis methods as well as prototypes of our novel methods.
+In particular, we ran the phylogenetic analyses for a study of \num{154} locations
+in neotropical rainforest soils \cite{Mahe2017}.
+The study found that the microbial diversity in these soils is dominated by protistic parasites.
+For this project, we developed prototypes of our multilevel placement approach
+(\secref{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement})
+as well as of some visualization techniques (\secref{ch:Visualization:sec:Motivation}).
 
-method papers (main contrib for this work, see next section)
-phat \cite{Czech2018}
-vis clust \cite{Czech2018a}
+Further data analysis studies that we contributed to include the 1KITE project \cite{Misof2014} (\url{http://1kite.org}),
+where we helped to conduct phylogenetic tree reconstructions for a diverse set of \num{1500} insects,
+as well as a study of \taxonname{Microsopirida} and \taxonname{Cryptomycota} \cite{Bass2018a},
+were we contributed phylogenetic placement analyses
+in order to resolve some branches in the phylogenetic tree of these groups of microbial \taxonname{Eukaryotes}.
+\todo{Mention the current projects as well?:}
+An ongoing large-scale endeavor is the UniEuk project \cite{Berney2017},
+which aims to become a unified reference database for the \taxonname{Eukaryotes},
+and to which we provided consultancy and helped in planning workflows and pipelines.
+In a current empirical project, we develop tools for analyzing a dataset of microbial \taxonname{Eukaryotes},
+with the aim of showing that novel sequencing technologies that yield longer sequences per run
+can improve taxonomic and phylogenetic analyses compared to other sequencing technologies.
+Lastly, we are currently working on an empirical dataset of \taxonname{Dinoflagellates},
+where we also conducted phylogenetic placement analyses.
 
+In the course of developing our novel methods, we implemented them in \texttt{C++},
+and provide the resulting code in our open-source library \toolname{genesis} (\url{https://github.com/lczech/genesis}).
+Apart from our novel methods, the library provides efficient re-implementations of existing methods \cite{Matsen2010},
+which are faster than the original implementation by orders of magnitude.
+Furthermore, the library also implements a multitude of data structures and functions for working with
+phylogenetic placements, genetic sequences, phylogenetic trees, taxonomies, and many other data types,
+as well as a plethora of auxiliary functions for tasks such as visualizations, statistical evaluations, and data storage.
+Moreover, in order to also offer a user-friendly command line interface for the most important novel and established methods,
+we developed the open-source tool \toolname{gappa} (\url{https://github.com/lczech/gappa}).
+It is intended for researchers who want to conduct analyses using our methods,
+and internally uses the \toolname{genesis} library for its computations.
+For details on the software implementations, see \appref{ch:PipelineImplementation}.
+\todo{true?}
+\todo{ref to genesis/gappa paper?!}
 
+Moreover, we contributed to several other open-source software projects.
+We helped to develop an efficient approach for merging so-called \emph{paired-end reads} \cite{Flouri2017}
+and provided SIMD (single instruction, multiple data) implementations using \texttt{SSE} and \texttt{AVX} instructions
+to accelerate the merging algorithms.
+Again for acceleration, we implemented a custom MPI wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
+a tool for aligning query sequences to a given reference alignment and phylogenetic tree,
+which we made available at \url{https://github.com/lczech/papara_nt}.
+During the development of the recent high-performance re-implementation of the phylogenetic placement algorithm
+in \toolname{EPA-ng} \cite{Barbera2018}, we helped with software design decisions and implementation details questions,
+and our \toolname{genesis} library was used in the project.
+We also helped with the implementation and acceleration of a novel quartet-based method to accurately and robustly
+measure incongruence between phylogenetic trees \cite{Zhou2017},
+where again the \toolname{genesis} library was used.
+Furthermore, we provided code for the sequence clustering tool \toolname{swarm} \cite{Mahe2014,Mahe2015},
+which helped to accelerate the software by almost an order of magnitude on large datasets,
+and which will be part of the upcoming version~3 of \toolname{swarm}.
+Lastly, we are currently working on \toolname{scrapp},
+a pipeline that combines several tools of our lab, such as
+\toolname{EPA-ng} \cite{Barbera2018}, \toolname{ParGenes} \cite{Morel2018}, and \toolname{mPTP} \cite{Kapli2017},
+in order estimate the species diversity in metagenomic sequence samples based on phylogenetic placement data;
+see also \chpref{ch:ConclusionOutlook}.
+\todo{check what we write there about scrapp}
 
-tree viz review \cite{Czech2017}
+A full list of our publications is also available in \appref{ch:Publications}.
 
+The remainder of this thesis is structured as follows.
+First, we introduce the general concepts and existing methods
+of computational phylogenetics and phylogenetic placement in \chpref{ch:Foundations}.
+Then, in Chapters \ref{ch:AutomaticTrees}--\ref{ch:Clustering}, we describe the aforementioned novel methods
+for conducting and analyzing phylogenetic placements.
+Finally, we conclude and discuss future work in \chpref{ch:ConclusionOutlook}.
 
-
-method and software dev:
-
-salt \cite{Flouri2017}
-
-unieuk \cite{Berney2017}
-
-tree clustering workshop?
-
-epa ng \cite{Barbera2018}
-
-quartet score \cite{Zhou2017}
-
-swarm code contrib \cite{Mahe2014,Mahe2015}
-
-scrapp
-
-
-
-
-data analysis:
-
-1kite \cite{Misof2014}
-\url{http://1kite.org}
-
-neotrop \cite{Mahe2017}
-
-microsopirida \cite{Bass2018a}
-
-long reads (in prep)
-
-dinos (in prep)
-
-
-
-
-mention genesis and gappa, their implementation chapter in the appendix,
-their paper?!
-github links
-\url{https://github.com/lczech/genesis}
-\url{https://github.com/lczech/gappa}
-
-genesis: implements some established methods, just way faster
-
-mention  \url{http://github.com/lczech/placement-methods-paper} for the result files of two of the papers
-
-full list of publications is available in \secref{ch:Publications}
+% tree clustering workshop?
 
 % ######################################################################################################################
 %         Structure and Overview
 % ######################################################################################################################
 
-\section{Structure and Overview}
-\label{ch:Introduction:sec:StructureOverview}
-
+% \section{Structure and Overview}
+% \label{ch:Introduction:sec:StructureOverview}
 
 \todo{check that the url and access date of all online sources are present in bibliography!}
 
@@ -189,5 +222,7 @@ full list of publications is available in \secref{ch:Publications}
 BV, TO, HMP, etc
 
 \todo{unify table and figure caption capitalization}
+
+\todo{unify citep cite}
 
 \todo{more workflow flow charts?}
