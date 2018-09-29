@@ -1,0 +1,111 @@
+% ######################################################################################################################
+%         Pipeline and Implementation
+% ######################################################################################################################
+
+\cleardoublepage
+
+\chapter{Pipeline and Implementation}
+\label{ch:PipelineImplementation}
+
+\paperbox{
+    This chapter is based on the peer-reviewed publications:
+}{\paperart \paperpppp}{
+    \textbf{Contributions:} Lucas Czech... Alexandros Stamatakis...
+}
+
+\todo{add genesis and gappa logos. because we can.}
+
+The methods described here are implemented in our tool \toolname{gappa},
+which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}.
+\toolname{gappa} internally uses our C++ library \toolname{genesis},
+which offers functionality for working with phylogenies and phylogenetic placement data,
+and also contains methods to work with taxonomies, sequences and many other data types.
+\toolname{genesis} is also freely available under GPLv3 at \url{http://github.com/lczech/genesis}.
+
+\toolname{gappa} offers a command line interface for conducting typical tasks when working with phylogenetic placements.
+The methods that we described here are implemented via the following sub-commands:
+
+\begin{itemize}
+    \item \texttt{dispersion}: The command takes a set of jplace files (called samples), and calculates and visualizes
+        the Edge Dispersion per edge of the reference tree.
+    \item \texttt{correlation}: The command takes a set of jplace samples, as well as a table containing metadata
+        features for each sample. It then calculates and visualizes the Edge Correlation with the metadata features per
+        edge of the reference tree.
+    \item \texttt{phylogenetic-kmeans} and \texttt{imbalance-kmeans}: Performs $k$-means clustering of a set of jplace
+        files according to our methods.
+    \item \texttt{squash} and \texttt{edgepca}: Reimplementations of the two existing methods \cite{Matsen2011a,Evans2012}.
+\end{itemize}
+
+These are the \toolname{gappa} commands that are relevant for this paper.
+The tool also offers additional commands that are useful for phylogenetic placement data, such as visualization or filtering.
+At the time of writing this manuscript, \toolname{gappa} is under active development,
+with more functions planned in the near future.
+Lastly, we provide prototype implementations, scripts, data, and other tools
+used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.
+
+
+\todo{ART:}
+
+An implementation of the methods described here is freely available in our tool \toolname{gappa},
+which is published under GPLv3 at \url{http://github.com/lczech/gappa}.
+\toolname{gappa} is based on our C++ library \toolname{genesis},
+which offers functionality concerning phylogenies and phylogenetic placement data,
+but also has functions to work with sequences, taxonomies and many other data types.
+\toolname{genesis} is also published under GPLv3 and is available at \url{http://github.com/lczech/genesis}.
+
+\toolname{gappa} offers a command line interface for typical tasks of working with phylogenetic placements.
+The methods described in this paper are implemented via four sub-commands:
+
+\begin{itemize}
+    \item \texttt{phat}: Phylogenetic Automatic (Reference) Tree method.
+          The command expects a taxonomy file and a sequence file of a sequence database,
+          e.g., \toolname{Silva} \citep{Quast2013,Yilmaz2014},
+          as well as the target number of consensus sequences to be generated for the intended phylogeny.
+          The result is a \texttt{fasta} file with consensus sequences representing taxonomic clades.
+          The command can be further customized, e.g., by changing the consensus sequence method,
+          using only a specified subclade of the taxonomy for running the algorithm,
+          as well as several detail settings for the method.
+          It can also output additional info files that allow to inspect details of the calculations,
+          like the number of sequences and their entropy per clade.
+    \item \texttt{extract}: Extract/collect placements in specific sub-clades of the tree.
+          The command performs the main step of the multilevel placement approach.
+          Its input is a set of \texttt{jplace} files containing placements on the backbone tree,
+          as well as a file listing the clade name that each taxon of the backbone tree belongs to.
+          For each clade, it then writes a new \texttt{jplace} file,
+          containing all queries that were placed in that clade with more than a customizable threshold
+          of their placement mass.
+          \\
+          Furthermore, if provided with the sequence files that were used to make the input \texttt{jplace} files,
+          the corresponding sequence of each query are also written to \texttt{fasta} files per clade.
+          Thus, a per-clade collection of sequences is created, where each result file contains the sequences
+          that were placed in this clade of the backbone tree.
+          These can then be used for the second level placement on separate clade-specific trees.
+    \item \texttt{chunkify}: Split a set of \texttt{fasta} files into chunks of equal size,
+          and write abundance maps.
+          The command re-names the sequences using a configurable hash function (MD5, SHA1 or SHA256),
+          and de-duplicates across all input sequences.
+          Its output are chunk files of sequences, as well as an abundance map file for each input sequences file.
+          The sequence chunk files can then be used to perform phylogenetic placement
+          to obtain per-chunk \texttt{jplace} files.
+    \item \texttt{unchunkify}: Take the per-chunk \texttt{jplace} files as well as the abundance map files,
+          and generate a \texttt{jplace} for each original sequence file, including the correct abundances.
+          This command is the second step of the \texttt{chunkify} command, and reverts its effect,
+          so that the resulting \texttt{jplace} files are as if they were created using the original sequence files.
+    \item \texttt{assign}: Perform taxonomic assignment using phylogenetic placements.
+          While this is not the main focus of this work, we briefly introduce this method here.
+          The command uses a taxonomic labeling of the tips of the reference tree
+          to annotate all inner branches of the tree with the longest common taxonomic label
+          for the induced subtree of the inner branch, in analogy to \toolname{Sativa} \citep{Kozlov2016}.
+          Then, each query sequence in the provided \texttt{jplace} files
+          is taxonomically assigned according to the labels of the branches where it does have placement mass.
+          This can subsequently either be used for taxonomic assignment of the query sequences themselves,
+          or to obtain a taxonomic profile of one or more samples.
+\end{itemize}
+
+These are the commands of \toolname{gappa} relevant for this paper,
+but it also offers more commands that are useful when working with phylogenetic placements.
+For details on the commands, and additional potentially useful commands,
+see the \toolname{gappa} documentation at \url{https://github.com/lczech/gappa/wiki}.
+At the time of writing, it is under active development, and more functions are planned for the near future.
+Furthermore, we provide prototype implementations, scripts, data and other tools
+used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.
