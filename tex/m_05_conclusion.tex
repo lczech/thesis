@@ -5,9 +5,346 @@
 \chapter{Conclusion and Outlook}
 \label{ch:ConclusionOutlook}
 
-we showed...
+In this thesis, we made several contributions to the field of computational phylogenetics,
+and phylogenetic placement in particular.
+The methods were already described in two peer-reviewed publications \cite{Czech2018,Czech2018a},
+and the respective data and scripts were made available at \url{http://github.com/lczech/placement-methods-paper}.
+The implementation is available in our \toolname{genesis} library (\url{https://github.com/lczech/genesis});
+we furthermore offer a ready-to-use command line interface for the presented methods
+via our \toolname{gappa} tool (\url{https://github.com/lczech/gappa}).
+This chapter briefly summarizes our contributions and gives an outlook for future development and research questions
+in the field of phylogenetic placement.
 
-in the future...
-future work
+Being first introduced between 2009 and 2010 \cite{Berger2009,Matsen2010a},
+phylogenetic placement and its downstream analysis methods are still in their infancy,
+but are becoming more and more popular in the research community.
+Their advantages include greater interpretability and visualizability of results,
+at the cost of additional methodological and computational complexity.
+There are hence still obstacles to overcome before phylogeny-aware methods (such as phylogenetic placement)
+can reach maturity and widespread use in the research community:
+% generally less prevalent than simpler analysis methods,
+% such as those based on sequence similarity.
 
-scrapp: species count estimation, used to discover novelty! (the novelty aspect is mentioned in the foundations chapter!)
+\begin{itemize}
+    \item \textbf{Usability:}
+          Current software pipelines for phylogenetic placement are mostly build from separate programs and tools
+          that are not well integrated with each other, and only bound together via intermediate files and scripts.
+          This induces costs for first-time users of such tools, such as the manual compilation and setup of the software,
+          as well as costs for ad-hoc scripting solutions to connect different steps of the pipeline.
+    \item \textbf{Scalability:}
+          The amount of sequence data is growing exponentially (see \secref{ch:Introduction:sec:Motivation}),
+          currently doubling roughly every seven months \cite{Stephens2015}.
+          Phylogeny-aware analysis methods for sequence data are generally more compute-intense than, e.\,g.,
+          methods based on sequence similarity.
+          The speed and scalability of these tools thus
+          need to stay on a par with the amount of sequencing data being produced.
+    \item \textbf{Analysis Methods and Research Questions:}
+          Downstream analysis methods that take phylogenetic information into account
+          are not yet as versatile and matured as classical data analysis methods.
+          Hence, researchers might refrain from using phylogenetic placement and resort to established methodology.
+          There are however many research questions that might benefit from analyses using phylogeny-aware methods,
+          for example in disciplines such as bio-geography or health and medicine.
+%           Methods are missing maybe because of the complexity.
+\end{itemize}
+
+We discuss our contributions to the field with respect to these obstacles in the following,
+and describe potential research directions for overcoming them.
+
+\paragraph{Usability and Scalability}
+\label{ch:ConclusionOutlook:par:UsabilityScalability}
+
+In \chpref{ch:AutomaticTrees} we presented an approach to automatically obtain
+reference trees for phylogenetic placement called \emph{\acfp{PhAT}} using large reference sequence databases.
+We showed that \acp{PhAT} are valuable and accurate trees for
+conducting phylogenetic placement and taxonomic assignment of metagenomic sequences.
+They thus alleviate the labor-intense and potentially error-prone work of collecting suitable reference sequences,
+and might even replace such ``manual'' trees in some applications.
+% Hence, an interesting future direction might be to extend and evaluate them for other purposes and use cases such as ???
+In the same chapter, we presented a multi-level placement approach as well as our pre-processing pipeline
+to enable and speed up phylogenetic placement
+of large, diverse datasets with hundreds to thousands of environmental sequence samples.
+All these methods simplify and accelerate the processes for researchers
+who want to apply phylogenetic placement and respective downstream analyses.
+
+In order to further facilitate to get acquainted with phylogenetic placement without the need for setup and scripting,
+online services for quickly testing standard methods might be worth to offer.
+For example, uploaded query sequences could be placed on our four \acp{PhAT} used in the evaluation
+(see \secref{ch:AutomaticTrees:sec:Evaluation:sub:ReferenceTreeSetup:par:SequenceSelection}),
+or on custom reference trees.
+These services could further offer standard analysis methods such as Edge~PCA and Squash Clustering
+(\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}),
+or the methods that we presented in this thesis (see Chapters \ref{ch:Visualization} and \ref{ch:Clustering}).
+
+For more advanced or large-scale studies, a custom setup is however usually inevitable,
+both in order to scale up the processing using computer clusters as well as to allow customization of the workflow.
+% State-of-the-art implementations of phylogenetic placement, such as our \toolname{EPA-ng} \cite{Barbera2018},
+% are able to place billions of sequences withing a few hours on computer clusters.
+% There are however other steps in typical pipelines that do not yet scale and hence form a bottleneck.
+% For example, \toolname{PaPaRa} \cite{Berger2011a,Berger2012},
+% a phylogeny-aware tool for aligning query sequences against a reference alignment,
+% might benefit from a re-implementation.
+Such studies might benefit from offering well-defined integrated pipelines for the basic steps of phylogenetic placement,
+with a simple setup for all common functionality,
+for instance by using platforms such as \toolname{Galaxy} \cite{Afgan2018}.
+Tools and pipelines that integrate different steps of the analysis can furthermore be implemented more efficiently,
+as they can make better use of computing infrastructure such as \texttt{\acs{MPI}},
+and distribute computations with less overhead for intermediate files and bookkeeping between pipeline steps.
+
+% can be implemented in integrated ways for computer clusters.
+% which will be necessary because of the large amounts of data that are coming our way
+
+Moreover, to achieve a tighter interaction of the tools within a pipeline,
+and to incentivize experimentation with existing methods and development of novel methods,
+file formats need to be flexible and extensible.
+For example, the \fileformat{jplace} file standard for phylogenetic placement \cite{Matsen2012}
+is based on the \fileformat{JSON} format \cite{JsonMemo,JsonStandard}, and hence easily extensible.
+The standard however currently (as of \fileformat{jplace} version 3) lacks support for multiple samples per file,
+and additional per-sample or even per-query annotations and other meta-data.
+A similar issue applies to file formats for phylogenetic trees, as we showed in \cite{Czech2017}.
+In particular, the \fileformat{Newick} format is often extended ad-hoc for specific needs
+(this is even done within the \fileformat{jplace} format itself),
+with no standardized support from downstream tools or tree viewers.
+Proper standards could thus also help to avoid ambiguities and misinterpretations of results.
+
+% before researchers actually tune existing methods to their particular needs
+% and start extending and experimenting with existing approaches.
+% hinders rapid testing of methods,
+
+With respect to the methods and tools presented in this thesis,
+we plan to extend our \toolname{gappa} tool to include more existing analysis methods
+and additional pre- and post-processing functions such as filtering, merging and manipulating placement files.
+In the long term, we also want to re-implement all functionality offered by the
+\toolname{guppy} tool from the \toolname{pplacer} suite \cite{Matsen2010},
+and thereby make \toolname{gappa} a more efficient and scalable replacement for \toolname{guppy}.
+
+Furthermore, we are planning to extend the \toolname{genesis} library, which is written in \texttt{C++},
+to offer \acs{API} bindings for \texttt{Python} as well.
+Hence, \toolname{genesis} could combine the advantages of both programming languages:
+For standard functions such as file processing and most internal computations,
+it can use our highly efficient \texttt{C++} implementations,
+which often make use of multi-threading via \texttt{OpenMP} (Open Multi-Processing) for multi-core computers.
+The modular and clear \acs{API} of \toolname{genesis} further allows its use in production code.
+At the same time, ad-hoc solutions for pipeline tasks such as file conversions or extraction of certain data
+could be implemented as \texttt{Python} scripts.
+This also facilitates to use \toolname{genesis} for experimentation and rapid prototyping of novel ideas and methods.
+
+\paragraph{Analysis Methods}
+\label{ch:ConclusionOutlook:par:AnalysisMethods}
+
+% downstream methods for phylogenetic placement are not yes as plenty as standard sequence based methods
+
+In \chpref{ch:Visualization}, we described methods for visualizing the phylogenetic placement of large metagenomic datasets.
+The methods allow to detect differences between samples (\emph{Edge Dispersion}),
+as well as correlations with per-sample meta-data (\emph{Edge Correlation}),
+and thus are intended for similar use cases as the established Edge PCA \citep{Matsen2011a}.
+However, our novel methods directly visualize important features of the samples (an their meta-data)
+on the underlying reference tree, which allows interpretation in a phylogenetic context.
+Furthermore, in \chpref{ch:Clustering}, we introduced clustering methods for metagenomic samples
+(\emph{Phylogenetic $k$-means} and \emph{Imbalance $k$-means}),
+which serve a similar purpose as Squash Clustering \citep{Matsen2011a},
+but are better suited for larger datasets.
+% The presented methods can also be combined, allowing
+
+These novel methods extend the portfolio of available analysis tools for phylogenetic placement.
+There are however still many approaches from the fields of machine learning and data mining
+that could be useful to adapt to phylogenetic placement data.
+It might further be worth to develop integrative methods that can incorporate heterogeneous features
+such as phylogenetic data and different types of meta-data in a combined analysis \cite{Mariette2018}.
+% e.\,g., using unsupervised machine learning methods \cite{Mariette2018}.
+The challenge for adapting existing methods usually consists in making the methods phylogeny-aware,
+for example by having them operate on distributions on trees
+(including respective distance measures such as the KR distance) rather than on $\mathbb{R}^d$ vectors.
+
+As we showed, \emph{unsupervised} methods can be extended to phylogenetic placement data,
+and thus are valuable tools for metagenomic data exploration.
+It might thus be interesting to also adapt other types of unsupervised machine learning methods to such data,
+such as different clustering \cite{Kriegel2011} or dimensionality reduction \cite{VanDerMaaten2008} methods,
+or visualization and anomaly detection approaches.
+
+The adaptation of \emph{supervised} machine learning approaches to phylogenetic data might however be more complicated.
+In recent years, several approaches have been proposed for metagenomic sequence data,
+using large-scale machine learning \cite{Vervier2015,Soueidan2015}
+and deep learning \cite{Angermueller2016,Fiannaca2018} techniques.
+These approaches consider each sequence to be a data point, meaning that enough training data are available.
+They are applied for tasks such as OTU clustering, sequence classification, taxonomic assignment, and gene prediction.
+In this thesis however, we are interested in whole metagenomic samples (instead of single sequences)
+as the data points to be considered.
+Current datasets are often not large enough (in number of distinct samples)
+to allow for robust learning on this level of granularity.
+Recent approaches in this direction focus on comparative studies \cite{Soueidan2015}.
+They are mainly based on features such as
+abundances and presence/absence patters of sequences (or \acsp{OTU}) within the samples \cite{Pasolli2016},
+or use so-called $k$-mers (subword occurrences within sequences) as features \cite{Asgari2015}.
+These features are simple enough to allow training with current dataset sizes.
+However, given the growth rate of metagenomic sequencing,
+sufficient training data for more detailed analyses are likely to become available in the future.
+Hence, incorporating phylogenetic information in supervised machine learning methods might yield improvements,
+and could be used for tasks such as classification of samples and regression with respect to per-sample meta-data features.
+
+Another interesting and promising research direction is the application of deep learning techniques
+to graph structures \cite{Scarselli2009,Bronstein2017}.
+In such models, information is propagated across the graph,
+which could model placement distributions by interpreting the underlying phylogeny as a graph structure
+\todo{}
+
+This however also requires datasets with enough samples for training such models.
+
+very promising: very recently, methods have been suggested
+
+Phylogenetic convolutional neural networks in metagenomics
+\cite{Fioravanti2018}
+
+PopPhy-CNN: A Phylogenetic Tree Embedded Architecture for Convolution Neural Networks for
+Metagenomic Data
+\cite{Reiman2018}
+
+\paragraph{Research Questions}
+\label{ch:ConclusionOutlook:par:ResearchQuestions}
+
+% future of phylogeny-aware methods, in particular of phylogenetic placement:
+% concepts such as deep learning and machine learning in general
+% There is however also potential in the development of more concrete methods for particular applications and use cases.
+% Machine learning techniques could for example be used to this end,
+% as tools for developing methods for the following research questions
+% and provide ample prospects for future development.
+
+The general concepts and techniques described above %are of current interest in the research community, and
+can be employed as tools for developing more concrete methods for particular
+
+to help answering particular research questions
+
+we here describe some ideas for future
+applications and use cases,
+to whic pp could be adapted
+
+% Using such tools and methods can help answer important research questions in biology,
+% This can help to answer important research questions
+for example
+in biology, as well as in subfields such as biogeography, ecology, medicine and human health.
+Here, we present some ideas for future research questions to which phylogeny-aware methods,
+and phylogenetic placement in particular, could be adapted.
+
+
+%-----------------------
+% Species Diversity Estimation
+%-----------------------
+
+\noindent\rule{\textwidth}{0.4pt}
+
+As mentioned in \secref{ch:Introduction:sec:ContributionOverview}, we are currently working on \toolname{scrapp},
+which stands for ``Species Counting on Reference trees viA Phylogenetic Placements''.
+It is a tool for estimating the species diversity in metagenomic samples per branch of a reference tree,
+and hence is useful for discovering novelty in microbial data.
+
+this is important and useful, and is a tool in demand by the research community.
+and an example of how to re-work a problem (species counting) into a phylogenetic context and display stuff on the tree
+
+It is build as a pipeline that combines several tools of our lab, such as
+\toolname{EPA-ng} \cite{Barbera2018}, \toolname{ParGenes} \cite{Morel2018}, and \toolname{mPTP} \cite{Kapli2017},
+and hence is also a first step in the direction of integrated pipelines as explained above.
+
+
+
+% Apart from species diversity, there are
+Estimating species diversity is an important task for metagenomic studies in general.
+% and hence in demand by the research community.
+
+
+%-----------------------
+% Taxonomic Assignment
+%-----------------------
+
+\noindent\rule{\textwidth}{0.4pt}
+
+metagenomic studies need to estimate the microbial community composition, for example in the form of per-taxon relative abundances \cite{Lindgreen2016}
+taxonomic assignment
+
+our ad-hoc implementation in gappa assign:
+a tool that can keep up with methods specifically developed for this purpose
+\cite{Lindgreen2016,Sczyrba2017,Almeida2018}
+see \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}
+
+could be extended to a full tool for tax assignment
+
+
+
+There are furthermore some more specific fields in which we see an opportunity for phylogeny-aware methods,
+for example biogeography, ecology, and human health.
+
+
+
+
+wiki:
+``Biogeography is the study of the distribution of species and ecosystems in geographic space and through geological time.
+Organisms and biological communities often vary in a regular fashion along geographic gradients of latitude, elevation, isolation and habitat area.''
+
+
+
+
+%-----------------------
+% Biogeography and Ecology
+%-----------------------
+
+\noindent\rule{\textwidth}{0.4pt}
+
+pairwise geographic distances between the locations form which environmental samples were extracted
+
+use in combination with pairwise comparisons between the phylogenetic data contained in the sample, for instance, via the KR distance
+
+
+biogeography stuff (Guillaume Lentendu)
+
+There is reasearch on microbial biogeography:
+Microbial biogeography \cite{HughesMartiny2006}
+``A large body of research supports the idea that free-living microbial taxa exhibit biogeographic patterns.''
+
+and it also used evolutionary methods:
+biogeography evolutionary approach
+\cite{Cox2016}
+
+Bacterial Community Variation in Human Body Habitats Across Space and Time \cite{Costello2009}
+
+time series, same location (i.e., forests and lakes, or individual humans)
+periodic patterns:
+
+Metagenomics meets time series analysis: unraveling microbial community dynamics \cite{Faust2015}
+
+%-----------------------
+% Co-occurrence (geographical, ecological)
+%-----------------------
+
+\noindent\rule{\textwidth}{0.4pt}
+
+wiki:
+``Ecology is the branch of biology which studies the interactions among organisms and their environment.''
+
+dependencesn not only with meta-data but between species: co-occurrences
+
+\cite{Lima-Mendez2015,Villalobos2017,Zelezniak2015}
+
+might be interesting to visualize co-occurrences with respect to phylogenetic information
+
+
+%-----------------------
+% Medicine and Health Care
+%-----------------------
+
+\noindent\rule{\textwidth}{0.4pt}
+
+medicine, human health, health care
+
+was already used in BV
+
+place lineages etc of HIV
+
+in recent years, there have been studies that conduct
+phylogenetic analyses of widely researched diseases such as HIV/AIDS \cite{Castro-Nallar2012,Brenner2013}
+and different types of cancer \cite{Brown2017a,Abbosh2017}
+
+strain detection: which one is it?!
+
+hmp gut biomonitoring
+\acf{HMP} \citep{Huttenhower2012,Methe2012}
+that we used in chapters...
+
+in conclusion, there is much to do!
