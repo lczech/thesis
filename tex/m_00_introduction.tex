@@ -34,6 +34,7 @@ typically in form of a sequence of characters
 In recent decades, the throughput of sequencing technologies increased,
 while at the same time, the cost decreased faster than Moore's law,
 as shown in \figref{fig:sequencing_costs}.
+Currently, the sequencing capacity doubles roughly every seven months \cite{Stephens2015}.
 This lead to a ``tsunami'' of sequence data,
 which constitutes a challenge for computational analyses of these data.
 % computational biology
@@ -75,7 +76,8 @@ Phylogenetic placement methods classify a set of \emph{query sequences}
 into the context of known evolutionary relationships, provided in form of a \emph{reference tree}.
 While this information already represents biological knowledge \emph{per se},
 it can also be used for further downstream analyses \cite{Matsen2011a}.
-The research in this field is however quite young and not many such analysis methods have been developed.
+Although such phylogeny-aware methods offer large potential for sequence data analysis and interpretation,
+the research in this field is quite young and not many such analysis methods have been developed.
 
 An important task prior to conducting phylogenetic placement of metagenomic sequences is to obtain a suitable
 reference phylogenetic tree that captures the biological diversity of the species to be placed.
@@ -112,7 +114,7 @@ This thesis makes several contributions to the field of computational phylogenet
 specifically for conducting phylogenetic placement and analyzing the resulting data.
 In particular, we introduce multiple novel methods to overcome the issues and limitations described above.
 The methods were already described in two peer-reviewed publications \cite{Czech2018,Czech2018a},
-and their data and code was made available at \url{http://github.com/lczech/placement-methods-paper}.
+and their data and scripts were made available at \url{http://github.com/lczech/placement-methods-paper}.
 % phat \cite{Czech2018}
 % vis clust \cite{Czech2018a}
 % \citeauthor{Czech2018} and \citeauthor{Czech2018a} and \citeauthor{Czech2018,Czech2018a}
@@ -165,18 +167,18 @@ Furthermore, the library also implements a multitude of data structures and func
 phylogenetic placements, genetic sequences, phylogenetic trees, taxonomies, and many other data types,
 as well as a plethora of auxiliary functions for tasks such as visualizations, statistical evaluations, and data storage.
 Moreover, in order to also offer a user-friendly command line interface for the most important novel and established methods,
-we developed the open-source tool \toolname{gappa} (\url{https://github.com/lczech/gappa}).
+we developed the open-source tool \toolname{gappa} (\url{https://github.com/lczech/gappa}),
+which stands for ``Genesis Applications for Phylogenetic Placement Analysis''.
 It is intended for researchers who want to conduct analyses using our methods,
 and internally uses the \toolname{genesis} library for its computations.
 For details on the software implementations, see \appref{ch:PipelineImplementation}.
-\todo{true?}
 \todo{ref to genesis/gappa paper?!}
 
 Moreover, we contributed to several other open-source software projects.
 We helped to develop an efficient approach for merging so-called \emph{paired-end reads} \cite{Flouri2017}
 and provided SIMD (single instruction, multiple data) implementations using \texttt{SSE} and \texttt{AVX} instructions
 to accelerate the merging algorithms.
-Again for acceleration, we implemented a custom MPI wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
+Again for acceleration, we implemented a custom \texttt{\acs{MPI}} wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
 a tool for aligning query sequences to a given reference alignment and phylogenetic tree,
 which we made available at \url{https://github.com/lczech/papara_nt}.
 During the development of the recent high-performance re-implementation of the phylogenetic placement algorithm
@@ -186,7 +188,7 @@ We also helped with the implementation and acceleration of a novel quartet-based
 measure incongruence between phylogenetic trees \cite{Zhou2017},
 where again the \toolname{genesis} library was used.
 Furthermore, we provided code for the sequence clustering tool \toolname{swarm} \cite{Mahe2014,Mahe2015},
-which helped to accelerate the software by almost an order of magnitude on large datasets,
+which was the basis for accelerating the software by almost an order of magnitude on large datasets,
 and which will be part of the upcoming version~3 of \toolname{swarm}.
 Lastly, we are currently working on \toolname{scrapp},
 a pipeline that combines several tools of our lab, such as
@@ -221,8 +223,13 @@ Finally, we conclude and discuss future work in \chpref{ch:ConclusionOutlook}.
 \todo{list of acronyms!} see andre, add MB/GB, PCA,
 BV, TO, HMP, etc
 
+\todo{sort acronyms alphabetically}
+\todo{make acronyms all in same capitalization}
+
 \todo{unify table and figure caption capitalization}
 
 \todo{unify citep cite}
 
 \todo{more workflow flow charts?}
+
+\todo{add pdf bookmarks for frontmatter chapters}

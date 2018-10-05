@@ -73,8 +73,8 @@ Unconstrained maximum likelihood trees were inferred using \toolname{RAxML v8.2.
 % which internally again relies on \toolname{RAxML},
 % and offers a convenient way to turn a taxonomy into a constraint tree.
 For aligning reads against reference alignments and reference trees,
-we used a custom MPI wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
-which is available at \cite{PaPaRaMPI}.
+we used a custom \texttt{\acs{MPI}} wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
+which we made available at \cite{PaPaRaMPI}.
 We then applied the \texttt{chunkify} procedure as explained in \cite{Czech2018}
 to split the sequences into chunks of unique sequences prior to conducting the phylogenetic placement,
 in order to minimize processing time.
@@ -146,8 +146,8 @@ we re-inferred the reference tree of the original publication using their alignm
 again using \toolname{RAxML~8.2.8} \citep{Stamatakis2014}.
 The query sequences of the dataset were then aligned to our reference tree and alignment,
 as well as to the reference alignment of the original publication and our re-inferred tree.
-For aligning, we used a custom MPI wrapper of \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012},
-which is available at \citep{PaPaRaMPI}.
+For aligning, we used a custom \texttt{\acs{MPI}} wrapper of \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012},
+which we made available at \citep{PaPaRaMPI}.
 Finally, the query sequences were placed on these trees using \toolname{EPA-ng} \citep{Barbera2018},
 and the analyses were subsequently performed as explained in \figref{fig:bv_squash} and \figref{fig:bv_edgepca}.
 \todo{the above is not up to date!}

@@ -13,6 +13,32 @@ Auf deutsch...
 \section*{Abstract}
 \vspace*{1em}
 
-In English...
+metagenomics, data, phylo placement
+
+First, we present an approach to automatically obtain reference phylogenetic trees
+called \emph{\acfp{PhAT}} from large reference sequence databases.
+We show that the \acp{PhAT} are valuable and accurate reference trees
+for conducting phylogenetic placement of metagenomic sequences.
+% by measuring the placement accuracy they yield, and by evaluating their properties when placing empirical datasets.
+They can also be used for taxonomic assignment of sequences,
+or be tailored to specific clades of the underlying reference database.
+We moreover present approaches and pipelines to enable and accelerate phylogenetic placement of large datasets.
+Our \emph{multi-level} placement approach can be used for large, diverse datasets
+where a single reference tree for all species of interest is too large for analysis and interpretation,
+without sacrificing placement accuracy.
+Our pre-processing pipeline furthermore helps to conduct large-scale analyses
+of hundreds to thousands of environmental sequence samples.
+
+Next, we described methods for visualizing such datasets in \chpref{ch:Visualization}.
+The methods allow to detect differences between samples (\emph{Edge Dispersion}),
+as well as correlations with per-sample meta-data (\emph{Edge Correlation}),
+and thus are intended for similar use cases as the established Edge PCA \citep{Matsen2011a}.
+However, our novel methods directly visualize important features of the samples (an their meta-data)
+on the underlying reference tree, which allows interpretation in a phylogenetic context.
+
+all methods are evaluated in terms of their scaling and speed
+as well as
+using empirical datasets to show that they are able to reproduce known
+things and yield novel interpretations
 
 %\end{abstract}
