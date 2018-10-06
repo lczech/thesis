@@ -170,33 +170,52 @@ They are applied for tasks such as OTU clustering, sequence classification, taxo
 In this thesis however, we are interested in whole metagenomic samples (instead of single sequences)
 as the data points to be considered.
 Current datasets are often not large enough (in number of distinct samples)
-to allow for robust learning on this level of granularity.
-Recent approaches in this direction focus on comparative studies \cite{Soueidan2015}.
+to allow for robust learning on this level of granularity without over-fitting the training data \cite{Angermueller2016}.
+There are however some recent approaches in this direction, which focus on comparative studies \cite{Soueidan2015}.
 They are mainly based on features such as
 abundances and presence/absence patters of sequences (or \acsp{OTU}) within the samples \cite{Pasolli2016},
 or use so-called $k$-mers (subword occurrences within sequences) as features \cite{Asgari2015}.
 These features are simple enough to allow training with current dataset sizes.
 However, given the growth rate of metagenomic sequencing,
 sufficient training data for more detailed analyses are likely to become available in the future.
-Hence, incorporating phylogenetic information in supervised machine learning methods might yield improvements,
-and could be used for tasks such as classification of samples and regression with respect to per-sample meta-data features.
+Hence, incorporating phylogenetic information in supervised machine learning methods might yield
+improved accuracy as well as better interpretability.
+This could be used for tasks such as classification of samples,
+% (e.\,g., prediction of meta-data features such as health status with respect to a disease)
+and prediction and regression with respect to per-sample meta-data features.
 
-Another interesting and promising research direction is the application of deep learning techniques
-to graph structures \cite{Scarselli2009,Bronstein2017}.
-In such models, information is propagated across the graph,
-which could model placement distributions by interpreting the underlying phylogeny as a graph structure
-\todo{}
+Notable supervised approaches that are interesting and promising for problems in the life sciences
+are \emph{neural networks}, and \emph{deep learning} in particular \cite{Skansi2018}.
+Such methods are in principle well suited for the complex and high-dimensional data produced in these domains.
+Hence, first approaches have recently been described
+for a variety of use cases in biology and medicine \cite{Mamoshina2016,Min2017,Ching2018}.
+There are however some general issues that need to be solved when employing deep learning.
+Firstly, similar to other supervised methods, the amount of available (labeled) data in current biological studies
+is often too limited for training deep neural networks \cite{Min2017,Ching2018}.
+Secondly, deep learning is often considered a ``black box'' that lacks interpretability and testability;
+there are however recent approaches to alleviate this \cite{Min2017,Reiman2018}.
+% how users should interpret these models to make testable hypotheses about the system under study remains an open challenge.
+Future data collection and method development efforts are likely able to overcome these obstacles.
+Then, deep learning approaches could be expedient tools for analyzing and understanding metagenomic data.
 
-This however also requires datasets with enough samples for training such models.
-
-very promising: very recently, methods have been suggested
-
-Phylogenetic convolutional neural networks in metagenomics
-\cite{Fioravanti2018}
-
-PopPhy-CNN: A Phylogenetic Tree Embedded Architecture for Convolution Neural Networks for
-Metagenomic Data
-\cite{Reiman2018}
+There have also been first attempts that use tree structures and phylogenetic trees in neural networks.
+For example, the the architecture of a neural network can be modeled
+according to a given graph structure \cite{Scarselli2009,Bronstein2017}.
+In such models, data on the nodes of the graph is propagated across the graph during the training of the network,
+which allows to exploit the additional information encoded in the graph.
+This could be used for phylogenetic trees as well, using the tree as a fixed graph,
+and the distribution of phylogenetic placements as the data that the system is trained on.
+A very recent and promising idea is to embed the evolutionary information of phylogenetic trees into the euclidean space,
+and then use convolutional neural networks (CNNs) on the resulting matrices \cite{Fioravanti2018,Reiman2017,Reiman2018}.
+These methods are able to accurately predict meta-data features of a set of metagenomic samples,
+given the per-sample taxonomic profile.
+In detail, these methods infer a tree from the OTUs present in the dataset,
+and use the OTU abundances per sample to train the network.
+In consequence, the underlying tree differs in each study, which hinders the use of pre-trained networks,
+for example in medical applications, where data of new patients needs to be classified.
+Instead, one could easily embed a fixed reference tree in a similar manner,
+and use phylogenetic placement distributions on the tree instead of abundances for the training.
+% These recent methods can be apply with good prospects to metagenomic data, and to phylogenetic placement in particular.
 
 \paragraph{Research Questions}
 \label{ch:ConclusionOutlook:par:ResearchQuestions}
@@ -209,9 +228,8 @@ Metagenomic Data
 % and provide ample prospects for future development.
 
 The general concepts and techniques described above %are of current interest in the research community, and
-can be employed as tools for developing more concrete methods for particular
+can be employed as tools for developing more concrete methods to help answering novel research questions.
 
-to help answering particular research questions
 
 we here describe some ideas for future
 applications and use cases,
@@ -230,6 +248,11 @@ and phylogenetic placement in particular, could be adapted.
 %-----------------------
 
 \noindent\rule{\textwidth}{0.4pt}
+
+a first step to answer known questions in a new phylogeny-aware manner ...
+
+display stuff on the tree: better than just species count numbers per taxon (if that is a thing...)
+
 
 As mentioned in \secref{ch:Introduction:sec:ContributionOverview}, we are currently working on \toolname{scrapp},
 which stands for ``Species Counting on Reference trees viA Phylogenetic Placements''.
