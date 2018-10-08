@@ -7,8 +7,10 @@
 
 In this thesis, we made several contributions to the field of computational phylogenetics,
 and phylogenetic placement in particular.
-The methods were already described in two peer-reviewed publications \cite{Czech2018,Czech2018a},
-and the respective data and scripts were made available at \url{http://github.com/lczech/placement-methods-paper}.
+% The methods were already described in two peer-reviewed publications \cite{Czech2018,Czech2018a},
+% and the respective data and scripts were made available at \url{http://github.com/lczech/placement-methods-paper}.
+We described the methods already in two peer-reviewed publications \cite{Czech2018,Czech2018a},
+and made their data and scripts available at \url{http://github.com/lczech/placement-methods-paper}.
 The implementation is available in our \toolname{genesis} library (\url{https://github.com/lczech/genesis});
 we furthermore offer a ready-to-use command line interface for the presented methods
 via our \toolname{gappa} tool (\url{https://github.com/lczech/gappa}).
@@ -53,7 +55,7 @@ and describe potential research directions for overcoming them.
 \paragraph{Usability and Scalability}
 \label{ch:ConclusionOutlook:par:UsabilityScalability}
 
-In \chpref{ch:AutomaticTrees} we presented an approach to automatically obtain
+In \chpref{ch:AutomaticTrees}, we presented an approach to automatically obtain
 reference trees for phylogenetic placement called \emph{\acfp{PhAT}} using large reference sequence databases.
 We showed that \acp{PhAT} are valuable and accurate trees for
 conducting phylogenetic placement and taxonomic assignment of metagenomic sequences.
@@ -66,8 +68,8 @@ of large, diverse datasets with hundreds to thousands of environmental sequence 
 All these methods simplify and accelerate the processes for researchers
 who want to apply phylogenetic placement and respective downstream analyses.
 
-In order to further facilitate to get acquainted with phylogenetic placement without the need for setup and scripting,
-online services for quickly testing standard methods might be worth to offer.
+In order to further facilitate acquaintance with phylogenetic placement in the research community,
+without the need for setup and scripting, online services for quickly testing standard methods might be worth to offer.
 For example, uploaded query sequences could be placed on our four \acp{PhAT} used in the evaluation
 (see \secref{ch:AutomaticTrees:sec:Evaluation:sub:ReferenceTreeSetup:par:SequenceSelection}),
 or on custom reference trees.
@@ -104,7 +106,7 @@ A similar issue applies to file formats for phylogenetic trees, as we showed in 
 In particular, the \fileformat{Newick} format is often extended ad-hoc for specific needs
 (this is even done within the \fileformat{jplace} format itself),
 with no standardized support from downstream tools or tree viewers.
-Proper standards could thus also help to avoid ambiguities and misinterpretations of results.
+Creating proper standards could thus also help to avoid ambiguities and misinterpretations of results.
 
 % before researchers actually tune existing methods to their particular needs
 % and start extending and experimenting with existing approaches.
@@ -196,9 +198,10 @@ Secondly, deep learning is often considered a ``black box'' that lacks interpret
 there are however recent approaches to alleviate this \cite{Min2017,Reiman2018}.
 % how users should interpret these models to make testable hypotheses about the system under study remains an open challenge.
 Future data collection and method development efforts are likely able to overcome these obstacles.
-Then, deep learning approaches could be expedient tools for analyzing and understanding metagenomic data.
+Then, deep learning approaches that take phylogenetic information into account
+could be expedient tools for analyzing and understanding metagenomic data.
 
-There have also been first attempts that use tree structures and phylogenetic trees in neural networks.
+There have also been first attempts that directly use tree structures and phylogenetic trees in neural networks.
 For example, the the architecture of a neural network can be modeled
 according to a given graph structure \cite{Scarselli2009,Bronstein2017}.
 In such models, data on the nodes of the graph is propagated across the graph during the training of the network,
@@ -274,7 +277,7 @@ Research has been conducted looking into the biogeographical patterns of microbi
 \cite{HughesMartiny2006}, and there are also evolutionary approaches \cite{Cox2016}.
 This could for instance be extended to phylogenetic placements by combining them with geographical data:
 The KR distance between two metagenomic samples is a pairwise measure;
-similarly, the geographic locations form which the samples were extracted yield pairwise distances between samples.
+similarly, the geographic locations from which the samples were extracted yield pairwise distances between samples.
 These measures could be used to infer microbial patterns that change with geographical distance.
 This is similar to correlating the placement distribution with per-sample meta-data
 as we described in \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation},
@@ -290,7 +293,7 @@ experienced in the microbial communities across time \cite{Costello2009,Faust201
 This is typically assessed using the taxonomic composition of the samples.
 By extending such methods to phylogenetic placements,
 the time-dependent patterns could be displayed on a phylogenetic tree,
-which again might help in interpreting and visualizing them.
+which again might add useful details for interpreting and visualizing them.
 
 % instead of assessing dependencies between species abundances and external factors (such as meta-data features, location, time),
 Furthermore, in the field of ecology, the co-occurrence patterns between species
@@ -303,6 +306,7 @@ while potentially omitting valuable details of interactions on lower taxonomic l
 Thus, it might be interesting to visualize co-occurrences with respect to phylogenetic information.
 This entails the challenge to simplify the visualization and only show relevant co-occurrences,
 for example by highlighting branches of the reference tree with a high correlation with other branches.
+% Such methods might then be
 
 Throughout this thesis, we used the \acf{BV} \cite{Srinivasan2012} and the \acf{HMP} \citep{Huttenhower2012,Methe2012}
 datasets as examples for health-related applications of our methods.
@@ -313,7 +317,7 @@ such as HIV/AIDS \cite{Castro-Nallar2012,Brenner2013} and different types of can
 Thus, we see large potential in phylogeny-aware methods for diagnostics, and human health in general.
 
 In conclusion, the development of novel methods that use phylogenetic information
-is highly promising for many fields of research.
+is highly promising for many fields of research in the life sciences and medicine.
 In particular, methods based on phylogenetic placement allow to process large metagenomic datasets,
 and to visualize them in different ways using the underlying reference tree as an additional source
 of information that aids interpretation of the results.
