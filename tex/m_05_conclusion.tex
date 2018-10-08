@@ -226,148 +226,94 @@ and use phylogenetic placement distributions on the tree instead of abundances f
 % Machine learning techniques could for example be used to this end,
 % as tools for developing methods for the following research questions
 % and provide ample prospects for future development.
-
-The general concepts and techniques described above %are of current interest in the research community, and
-can be employed as tools for developing more concrete methods to help answering novel research questions.
-
-
-we here describe some ideas for future
-applications and use cases,
-to whic pp could be adapted
-
 % Using such tools and methods can help answer important research questions in biology,
 % This can help to answer important research questions
-for example
-in biology, as well as in subfields such as biogeography, ecology, medicine and human health.
-Here, we present some ideas for future research questions to which phylogeny-aware methods,
-and phylogenetic placement in particular, could be adapted.
 
+The general concepts and techniques described above %are of current interest in the research community, and
+can be employed for developing more concrete methods to help answering novel research questions.
+% for example in fields such as biogeography, ecology, and human health.
+We here present some ideas for future applications and use cases in metagenomics,
+to which phylogeny-aware methods, and phylogenetic placement in particular, could be adapted
+by using these techniques.
 
-%-----------------------
-% Species Diversity Estimation
-%-----------------------
-
-\noindent\rule{\textwidth}{0.4pt}
-
-a first step to answer known questions in a new phylogeny-aware manner ...
-
-display stuff on the tree: better than just species count numbers per taxon (if that is a thing...)
-
-
+% a first step to answer known questions in a new phylogeny-aware manner ...
 As mentioned in \secref{ch:Introduction:sec:ContributionOverview}, we are currently working on \toolname{scrapp},
 which stands for ``Species Counting on Reference trees viA Phylogenetic Placements''.
 It is a tool for estimating the species diversity in metagenomic samples per branch of a reference tree,
-and hence is useful for discovering novelty in microbial data.
-
-this is important and useful, and is a tool in demand by the research community.
-and an example of how to re-work a problem (species counting) into a phylogenetic context and display stuff on the tree
-
+and hence is useful for discovering and describing novelty in microbial data.
+Thus, \toolname{scrapp} reworks a common question in biology (species counting and diversity estimation),
+and brings it into a phylogenetic context,
+where results can be visualized and interpreted using the additional information of the reference tree.
 It is build as a pipeline that combines several tools of our lab, such as
 \toolname{EPA-ng} \cite{Barbera2018}, \toolname{ParGenes} \cite{Morel2018}, and \toolname{mPTP} \cite{Kapli2017},
 and hence is also a first step in the direction of integrated pipelines as explained above.
 
-
-
 % Apart from species diversity, there are
-Estimating species diversity is an important task for metagenomic studies in general.
+% Estimating species diversity is an important task for metagenomic studies in general.
 % and hence in demand by the research community.
 
+A related question is that of estimating the microbial community composition in a metagenomic sample,
+for example in the form of per-taxon relative abundances and taxonomic assignments \cite{Lindgreen2016}.
+We explained the compositional nature of phylogenetic placements in
+\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses},
+and described our ad-hoc implementation for taxonomic assignment based on phylogenetic placement in %the \toolname{gappa} tool in
+\secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}.
+In order to keep up with methods specifically developed for taxonomic assignment
+\cite{Lindgreen2016,Sczyrba2017,Almeida2018},
+our implementation could be extended and refined,
+and hence become a tool that uses phylogenetic context to answer questions of community composition.
 
-%-----------------------
-% Taxonomic Assignment
-%-----------------------
+% There are furthermore some specific fields in which we see an opportunity for phylogeny-aware methods,
+% for example biogeography, ecology, and medicine. %human health.
 
-\noindent\rule{\textwidth}{0.4pt}
+Further fields in which we see an opportunity for phylogeny-aware methods are biogeography and ecology,
+which ask questions concerning the distribution of species across geographic space and through time,
+and their interactions with each other, respectively.
 
-metagenomic studies need to estimate the microbial community composition, for example in the form of per-taxon relative abundances \cite{Lindgreen2016}
-taxonomic assignment
+Research has been conducted looking into the biogeographical patterns of microbial communities
+\cite{HughesMartiny2006}, and there are also evolutionary approaches \cite{Cox2016}.
+This could for instance be extended to phylogenetic placements by combining them with geographical data:
+The KR distance between two metagenomic samples is a pairwise measure;
+similarly, the geographic locations form which the samples were extracted yield pairwise distances between samples.
+These measures could be used to infer microbial patterns that change with geographical distance.
+This is similar to correlating the placement distribution with per-sample meta-data
+as we described in \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation},
+but requires some other form of correlation measure.
+% pairwise measures could be used for this.
+We conducted some tests in this direction, but unfortunately,
+the available datasets were shown to not exhibit such biogeographical patterns \cite{Lentendu2018}.
 
-our ad-hoc implementation in gappa assign:
-a tool that can keep up with methods specifically developed for this purpose
-\cite{Lindgreen2016,Sczyrba2017,Almeida2018}
-see \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}
+Instead of location, time is also be used for comparing metagenomic samples.
+In such studies, the same location is sampled at different points in time,
+thus allowing to investigate the dynamics, variations, and (potentially) periodic patterns
+experienced in the microbial communities across time \cite{Costello2009,Faust2015}.
+This is typically assessed using the taxonomic composition of the samples.
+By extending such methods to phylogenetic placements,
+the time-dependent patterns could be displayed on a phylogenetic tree,
+which again might help in interpreting and visualizing them.
 
-could be extended to a full tool for tax assignment
+% instead of assessing dependencies between species abundances and external factors (such as meta-data features, location, time),
+Furthermore, in the field of ecology, the co-occurrence patterns between species
+have been researched for many habitats and ecosystems \cite{Lima-Mendez2015,Villalobos2017,Zelezniak2015}.
+These interactions are often visualized in so-called co-occurrence networks,
+which aggregate abundances at a high taxonomic level,
+and show links that indicate co-presence and exclusion between the depicted taxa.
+Unfortunately, even at high taxonomic levels, these networks are often very complex and hard to interpret,
+while potentially omitting valuable details of interactions on lower taxonomic levels.
+Thus, it might be interesting to visualize co-occurrences with respect to phylogenetic information.
+This entails the challenge to simplify the visualization and only show relevant co-occurrences,
+for example by highlighting branches of the reference tree with a high correlation with other branches.
 
+Throughout this thesis, we used the \acf{BV} \cite{Srinivasan2012} and the \acf{HMP} \citep{Huttenhower2012,Methe2012}
+datasets as examples for health-related applications of our methods.
+Many of the above research questions are also interesting from a medical point of view,
+and can be readily applied to other human datasets to assess health status.
+In recent years, there have been studies that conduct phylogenetic analyses of widely researched diseases
+such as HIV/AIDS \cite{Castro-Nallar2012,Brenner2013} and different types of cancer \cite{Brown2017a,Abbosh2017}.
+Thus, we see large potential in phylogeny-aware methods for diagnostics, and human health in general.
 
-
-There are furthermore some more specific fields in which we see an opportunity for phylogeny-aware methods,
-for example biogeography, ecology, and human health.
-
-
-
-
-wiki:
-``Biogeography is the study of the distribution of species and ecosystems in geographic space and through geological time.
-Organisms and biological communities often vary in a regular fashion along geographic gradients of latitude, elevation, isolation and habitat area.''
-
-
-
-
-%-----------------------
-% Biogeography and Ecology
-%-----------------------
-
-\noindent\rule{\textwidth}{0.4pt}
-
-pairwise geographic distances between the locations form which environmental samples were extracted
-
-use in combination with pairwise comparisons between the phylogenetic data contained in the sample, for instance, via the KR distance
-
-
-biogeography stuff (Guillaume Lentendu)
-
-There is reasearch on microbial biogeography:
-Microbial biogeography \cite{HughesMartiny2006}
-``A large body of research supports the idea that free-living microbial taxa exhibit biogeographic patterns.''
-
-and it also used evolutionary methods:
-biogeography evolutionary approach
-\cite{Cox2016}
-
-Bacterial Community Variation in Human Body Habitats Across Space and Time \cite{Costello2009}
-
-time series, same location (i.e., forests and lakes, or individual humans)
-periodic patterns:
-
-Metagenomics meets time series analysis: unraveling microbial community dynamics \cite{Faust2015}
-
-%-----------------------
-% Co-occurrence (geographical, ecological)
-%-----------------------
-
-\noindent\rule{\textwidth}{0.4pt}
-
-wiki:
-``Ecology is the branch of biology which studies the interactions among organisms and their environment.''
-
-dependencesn not only with meta-data but between species: co-occurrences
-
-\cite{Lima-Mendez2015,Villalobos2017,Zelezniak2015}
-
-might be interesting to visualize co-occurrences with respect to phylogenetic information
-
-
-%-----------------------
-% Medicine and Health Care
-%-----------------------
-
-\noindent\rule{\textwidth}{0.4pt}
-
-medicine, human health, health care
-
-was already used in BV
-
-place lineages etc of HIV
-
-in recent years, there have been studies that conduct
-phylogenetic analyses of widely researched diseases such as HIV/AIDS \cite{Castro-Nallar2012,Brenner2013}
-and different types of cancer \cite{Brown2017a,Abbosh2017}
-
-strain detection: which one is it?!
-
-hmp gut biomonitoring
-\acf{HMP} \citep{Huttenhower2012,Methe2012}
-that we used in chapters...
-
-in conclusion, there is much to do!
+In conclusion, the development of novel methods that use phylogenetic information
+is highly promising for many fields of research.
+In particular, methods based on phylogenetic placement allow to process large metagenomic datasets,
+and to visualize them in different ways using the underlying reference tree as an additional source
+of information that aids interpretation of the results.
