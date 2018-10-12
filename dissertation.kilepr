@@ -183,37 +183,37 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=207
+line=146
 mode=LaTeX
-open=true
+open=false
 order=1
 
 [item:tex/m_01_foundations.tex]
 archive=true
-column=28
+column=6
 encoding=UTF-8
 highlight=LaTeX
-line=1953
+line=1732
 mode=LaTeX
 open=false
 order=3
 
 [item:tex/m_02_phat.tex]
 archive=true
-column=38
+column=97
 encoding=UTF-8
 highlight=LaTeX
-line=18
+line=42
 mode=LaTeX
 open=false
 order=3
 
 [item:tex/m_03_visualization.tex]
 archive=true
-column=44
+column=74
 encoding=UTF-8
 highlight=LaTeX
-line=22
+line=45
 mode=LaTeX
 open=false
 order=3
@@ -230,12 +230,12 @@ order=2
 
 [item:tex/m_05_conclusion.tex]
 archive=true
-column=57
+column=53
 encoding=UTF-8
 highlight=LaTeX
-line=136
+line=301
 mode=LaTeX
-open=true
+open=false
 order=2
 
 [item:tex/s_01_si.tex]
@@ -280,23 +280,23 @@ order=-1
 
 [item:thesis.bib]
 archive=true
-column=18
+column=45
 encoding=UTF-8
 highlight=BibTeX
-line=4828
+line=4073
 mode=BibTeX
 open=true
-order=0
+order=1
 
 [item:thesis.tex]
 archive=true
-column=47
+column=13
 encoding=UTF-8
 highlight=LaTeX
-line=127
+line=143
 mode=LaTeX
-open=false
-order=1
+open=true
+order=0
 
 [view-settings,view=0,item:tex/f_00_titlepage.tex]
 CursorColumn=0
@@ -324,27 +324,27 @@ ViMarks=.,102,1,[,102,1,],102,1
 
 [view-settings,view=0,item:tex/m_00_introduction.tex]
 CursorColumn=0
-CursorLine=207
+CursorLine=146
 JumpList=
-ViMarks=.,226,45,[,226,22,],226,45
+ViMarks=.,236,83,[,236,82,],236,83
 
 [view-settings,view=0,item:tex/m_01_foundations.tex]
-CursorColumn=28
-CursorLine=1953
+CursorColumn=6
+CursorLine=1732
 JumpList=
-ViMarks=.,170,37,[,170,37,],170,37
+ViMarks=.,237,75,[,237,74,],237,87
 
 [view-settings,view=0,item:tex/m_02_phat.tex]
-CursorColumn=38
-CursorLine=18
+CursorColumn=97
+CursorLine=42
 JumpList=
-ViMarks=.,18,37,[,18,34,],18,37
+ViMarks=.,18,92,[,18,81,],18,92
 
 [view-settings,view=0,item:tex/m_03_visualization.tex]
-CursorColumn=44
-CursorLine=22
+CursorColumn=74
+CursorLine=45
 JumpList=
-ViMarks=.,581,39,[,581,39,],581,39
+ViMarks=.,45,73,[,45,64,],45,73
 
 [view-settings,view=0,item:tex/m_04_clustering.tex]
 CursorColumn=6
@@ -353,10 +353,10 @@ JumpList=
 ViMarks=.,109,52,[,109,51,],109,52
 
 [view-settings,view=0,item:tex/m_05_conclusion.tex]
-CursorColumn=57
-CursorLine=136
+CursorColumn=53
+CursorLine=301
 JumpList=
-ViMarks=.,136,0,[,136,0,],136,0
+ViMarks=.,300,95,[,300,81,],300,103
 
 [view-settings,view=0,item:tex/s_01_si.tex]
 CursorColumn=110
@@ -383,13 +383,13 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:thesis.bib]
-CursorColumn=18
-CursorLine=4828
+CursorColumn=45
+CursorLine=4073
 JumpList=
-ViMarks=.,4828,18,[,4828,18,],4828,18
+ViMarks=.,4086,15,[,4086,15,],4086,76
 
 [view-settings,view=0,item:thesis.tex]
-CursorColumn=47
-CursorLine=127
+CursorColumn=13
+CursorLine=143
 JumpList=
-ViMarks=.,127,46,[,127,46,],127,46
+ViMarks=.,128,0,[,128,0,],128,0
