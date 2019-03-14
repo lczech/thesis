@@ -9,11 +9,11 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="191.07339mm"
-   height="84.883537mm"
+   width="190.5mm"
+   height="78.876747mm"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.4 (unknown)"
+   inkscape:version="0.92.3 (unknown)"
    sodipodi:docname="epca.svg">
   <defs
      id="defs4">
@@ -415,21 +415,21 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.9388889"
-     inkscape:cx="431.65683"
-     inkscape:cy="82.371305"
+     inkscape:zoom="1.3710015"
+     inkscape:cx="391.98102"
+     inkscape:cy="215.47003"
      inkscape:document-units="px"
-     inkscape:current-layer="g35652"
+     inkscape:current-layer="g21718"
      showgrid="false"
-     fit-margin-top="1"
-     fit-margin-left="1"
-     fit-margin-bottom="1"
-     fit-margin-right="1"
-     inkscape:window-width="1694"
-     inkscape:window-height="1388"
+     fit-margin-top="2"
+     fit-margin-left="2"
+     fit-margin-bottom="2"
+     fit-margin-right="2"
+     inkscape:window-width="1869"
+     inkscape:window-height="1056"
      inkscape:window-x="51"
      inkscape:window-y="24"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      units="mm" />
   <metadata
      id="metadata7">
@@ -447,13 +447,13 @@
      inkscape:label="trees"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(1250.7006,1471.0807)" />
+     transform="translate(1249.6504,1450.1574)" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="taxa"
      style="display:none"
-     transform="translate(1250.7006,1471.0807)">
+     transform="translate(1249.6504,1450.1574)">
     <g
        id="g46102"
        transform="translate(4337.9822,148.91384)">
@@ -13219,17 +13219,17 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="scales"
-     transform="translate(1250.7006,1471.0807)" />
+     transform="translate(1249.6504,1450.1574)" />
   <g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="labels"
-     transform="translate(1250.7006,1471.0807)" />
+     transform="translate(1249.6504,1450.1574)" />
   <g
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="subfigures"
-     transform="translate(1250.7006,1471.0807)">
+     transform="translate(1249.6504,1450.1574)">
     <g
        id="g21718"
        transform="matrix(0.09256686,0,0,0.09256686,-1132.6883,-1314.106)">
@@ -51456,7 +51456,7 @@
            font-size="10"
            y="176.10934"
            x="23.666666"
-           style="font-size:15.4454951px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1;">-0.2</text>
+           style="font-size:15.36427021px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1">-0.2</text>
         <line
            id="line35664"
            y2="135.86"
@@ -51476,7 +51476,7 @@
            font-size="10"
            y="140.24835"
            x="23.666666"
-           style="font-size:15.4454951px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1;">-0.1</text>
+           style="font-size:15.36427021px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1">-0.1</text>
         <line
            id="line35670"
            y2="100"
@@ -51496,7 +51496,7 @@
            font-size="10"
            y="104.38835"
            x="23.666666"
-           style="font-size:15.4454951px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1;">0.0</text>
+           style="font-size:15.36427021px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1">0.0</text>
         <line
            id="line35676"
            y2="64.139702"
@@ -51516,7 +51516,7 @@
            font-size="10"
            y="68.528053"
            x="23.666666"
-           style="font-size:15.4454951px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1;">0.1</text>
+           style="font-size:15.36427021px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1">0.1</text>
         <line
            id="line35682"
            y2="28.279499"
@@ -51536,7 +51536,7 @@
            font-size="10"
            y="32.667854"
            x="23.666666"
-           style="font-size:15.4454951px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1;">0.2</text>
+           style="font-size:15.36427021px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1">0.2</text>
       </g>
       <g
          id="g47698"
@@ -51690,29 +51690,29 @@
            style="font-size:15.36427021px;line-height:0%;font-family:Verdana;fill:#000000;fill-opacity:1">0.3</text>
       </g>
       <flowRoot
-         transform="matrix(0.99474116,0,0,0.99474116,470.02243,-259.85089)"
+         transform="matrix(0.99474116,0,0,0.99474116,253.96238,107.45121)"
          style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
          id="flowRoot65037"
          xml:space="preserve"><flowRegion
            id="flowRegion65039"><rect
              y="-1420.4912"
              x="-1450.5791"
-             height="190.35995"
-             width="2371.3708"
+             height="610.13214"
+             width="771.75653"
              id="rect65041" /></flowRegion><flowPara
            style="font-size:144px;line-height:1.25"
-           id="flowPara65043">(a) First Component</flowPara></flowRoot>      <flowRoot
+           id="flowPara65043">(a)</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot65047"
          style="color:#000000;line-height:0.01%;letter-spacing:0px;word-spacing:0px;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate"
-         transform="matrix(0.99474116,0,0,0.99474116,4437.1319,-259.85089)"><flowRegion
+         transform="matrix(0.99474116,0,0,0.99474116,4221.0719,107.45121)"><flowRegion
            id="flowRegion65049"><rect
              id="rect65051"
-             width="1863.9915"
-             height="285.26227"
+             width="771.75653"
+             height="610.13214"
              x="-1450.5791"
              y="-1420.4912" /></flowRegion><flowPara
            id="flowPara65053"
-           style="font-size:144px;line-height:1.25">(b) Second Component</flowPara></flowRoot>    </g>
+           style="font-size:144px;line-height:1.25">(b)</flowPara></flowRoot>    </g>
   </g>
 </svg>

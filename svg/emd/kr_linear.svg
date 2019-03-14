@@ -13,8 +13,8 @@
    height="133.62947"
    id="svg6471"
    version="1.1"
-   inkscape:version="0.92.3 (unknown)"
-   sodipodi:docname="kr.svg"
+   inkscape:version="0.92.4 (unknown)"
+   sodipodi:docname="kr_linear.svg"
    inkscape:export-filename="/home/lucas/Dropbox/HITS/presentations/2017-08-07 HPI Potsdam/pics/matrix_correlation.png"
    inkscape:export-xdpi="468.76001"
    inkscape:export-ydpi="468.76001">
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.291953"
-     inkscape:cx="348.7621"
-     inkscape:cy="-6.5358165"
+     inkscape:zoom="1.6206555"
+     inkscape:cx="345.98856"
+     inkscape:cy="14.349951"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
@@ -696,7 +696,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1045,21 +1045,21 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot5520"
-       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#6a3d1f;fill-opacity:1;stroke:none;"
        transform="matrix(2.3005598,0,0,2.3005598,75.388298,-572.34153)"
        inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_1.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><flowRegion
          id="flowRegion5522"
-         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+         style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"><rect
            id="rect5524"
            width="13.129433"
            height="11.10173"
            x="36.870567"
            y="246.26045"
-           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
+           style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;" /></flowRegion><flowPara
          id="flowPara5526"
-         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;">+3</flowPara></flowRoot>    <path
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;">+3</flowPara></flowRoot>    <path
        style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
        d="M 131.16926,106.35678 V 8.2076392"
        id="path4945-9-6"
@@ -1150,20 +1150,20 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot5520-4-6"
-       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#6a3d1f;fill-opacity:1;stroke:none;"
        transform="matrix(2.3005598,0,0,2.3005598,214.58444,-572.31168)"
        inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_2.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><flowRegion
          id="flowRegion5522-6-5"
-         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+         style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"><rect
            id="rect5524-6-1"
            width="13.129433"
            height="11.10173"
            x="36.870567"
            y="246.26045"
-           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
-         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;"
+           style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"
          id="flowPara5705">+2</flowPara></flowRoot>    <path
        style="fill:none;stroke:#b2b2b2;stroke-width:0.76412725;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 391.72308,106.32958 V 18.63235"
@@ -1266,20 +1266,20 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot5520-4-6-9-9"
-       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#6a3d1f;fill-opacity:1;stroke:none;"
        transform="matrix(2.3005598,0,0,2.3005598,353.2094,-572.33948)"
        inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_3.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><flowRegion
          id="flowRegion5522-6-5-0-8"
-         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+         style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"><rect
            id="rect5524-6-1-4-3"
            width="19.548134"
            height="7.8112926"
            x="36.870567"
            y="246.26045"
-           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
-         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;"
+           style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"
          id="flowPara5705-4-5">+4</flowPara></flowRoot>    <path
        style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
        d="M 376.65232,106.35677 V 8.2076466"
@@ -1519,20 +1519,20 @@
          id="flowPara5705-4-5-8" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot5520-4-6-9-9-0-4"
-       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5cc039;fill-opacity:1;stroke:none;"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#6a3d1f;fill-opacity:1;stroke:none;"
        transform="matrix(2.3005598,0,0,2.3005598,433.89299,-572.30446)"
        inkscape:export-filename="/home/lucas/Dropbox/HITS/KIT/phd presentation hpi/emd_4.png"
        inkscape:export-xdpi="599.66003"
        inkscape:export-ydpi="599.66003"><flowRegion
          id="flowRegion5522-6-5-0-8-5-8"
-         style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;"><rect
+         style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"><rect
            id="rect5524-6-1-4-3-8-6"
            width="50.004433"
            height="10.97004"
            x="36.870567"
            y="246.26045"
-           style="font-family:sans-serif;fill:#5cc039;fill-opacity:1;" /></flowRegion><flowPara
-         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#5cc039;fill-opacity:1;"
+           style="font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;" /></flowRegion><flowPara
+         style="font-size:6px;line-height:1.25;font-family:sans-serif;fill:#6a3d1f;fill-opacity:1;"
          id="flowPara5705-4-5-8-2">Distance: 9</flowPara></flowRoot>    <path
        style="fill:none;stroke:#000000;stroke-width:1.59761107;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
        d="M 499.39384,106.35679 V 8.2076669"
@@ -1562,7 +1562,7 @@
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <rect
-       style="opacity:0.99299999;fill:#94d87b;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       style="opacity:0.99299999;fill:#6a3d1f;fill-opacity:1;stroke:none;stroke-width:1.59761107"
        id="rect5133-4-0"
        width="15.97611"
        height="47.748405"
@@ -1610,7 +1610,7 @@
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <rect
-       style="fill:#94d87b;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       style="fill:#6a3d1f;fill-opacity:1;stroke:none;stroke-width:1.59761107"
        id="rect5133-4-0-0"
        width="16.008459"
        height="32.057152"
@@ -1620,7 +1620,7 @@
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <rect
-       style="fill:#94d87b;fill-opacity:1;stroke:none;stroke-width:1.59761107"
+       style="fill:#6a3d1f;fill-opacity:1;stroke:none;stroke-width:1.59761107"
        id="rect5133-4-0-0-0"
        width="15.97611"
        height="63.68499"
