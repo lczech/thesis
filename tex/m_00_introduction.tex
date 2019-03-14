@@ -68,7 +68,7 @@ A key question in the analysis of such data is to determine the evolutionary rel
 While these DNA sequences can hypothetically be used to infer phylogenetic trees from scratch,
 this approach is limited by several theoretical and practical difficulties:
 For instance, typical metagenomic samples contain too many, and too short, sequences
-for a feasible and reliable tree inference.
+for a feasible and reliable tree inference \cite{Matsen2010}.
 
 One approach to tackle this issue is the so-called \emph{phylogenetic placement} \cite{Matsen2010,Berger2011}
 of metagenomic sequences into a given phylogenetic tree (\secref{ch:Foundations:sec:PhylogeneticPlacement}).
@@ -84,7 +84,7 @@ reference phylogenetic tree that captures the biological diversity of the specie
 The assembly of a set of reference sequences from biological databases that can be used to infer such a tree
 is typically a manual process, and hence both labor-intensive and potentially error-prone.
 This might detain researchers from employing phylogenetic placement in the first place,
-and resort to simpler methods based on sequence similarity instead.
+and resort to simpler methods based on sequence similarity/identity instead.
 
 Furthermore, while the existing downstream analysis methods for phylogenetic placement
 (introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods})
@@ -160,7 +160,7 @@ can improve taxonomic and phylogenetic analyses compared to other sequencing tec
 Lastly, we are currently working on an empirical dataset of \taxonname{Dinoflagellates},
 where we also conducted phylogenetic placement analyses.
 
-In the course of developing our novel methods, we implemented them in \texttt{C++},
+In the course of developing our novel methods, we implemented them in \texttt{C++11},
 and provide the resulting code in our open-source library \toolname{genesis} (\url{https://github.com/lczech/genesis}).
 Apart from our novel methods, the library provides efficient re-implementations of existing methods \cite{Matsen2010},
 which are faster than the original implementation by orders of magnitude.
@@ -189,13 +189,16 @@ We also helped with the implementation and acceleration of a novel quartet-based
 measure incongruence between phylogenetic trees \cite{Zhou2017},
 where again the \toolname{genesis} library was used.
 Furthermore, we provided code for the sequence clustering tool \toolname{swarm} \cite{Mahe2014,Mahe2015},
-which was the basis for accelerating the software by almost an order of magnitude on large datasets,
-and which will be part of the upcoming version~3 of \toolname{swarm}.
+which was used for accelerating the software by factors of up to \num{20}-fold,
+while at the same time significantly reducing its memory requirements.
+Our contribution will be part of the upcoming version~3 of \toolname{swarm}.
 Lastly, we are currently working on \toolname{scrapp},
 a pipeline that combines several tools of our lab, such as
 \toolname{EPA-ng} \cite{Barbera2018}, \toolname{ParGenes} \cite{Morel2018}, and \toolname{mPTP} \cite{Kapli2017},
 in order estimate the species diversity in metagenomic sequence samples based on phylogenetic placement data;
 see also \chpref{ch:ConclusionOutlook}.
+
+\todo{mention eukbank above as well!}
 
 A full list of our publications is also available in \appref{ch:Publications}.
 
@@ -215,6 +218,12 @@ Finally, we conclude and discuss potential for future development in \chpref{ch:
 % \section{Structure and Overview}
 % \label{ch:Introduction:sec:StructureOverview}
 
+\todo{add more (sub) titles to figures that have subfigure. some of them are currently only named a and b, but could use some proper titles!}
+
+\todo{change my citations from bioRxiv to the proper journals}
+
+\todo{normalize all uses of e.g. to use \\eg = e./,g., and make sure that the command does not need brackets... do the same for other abbrevs: cf, ie and what not}
+
 \todo{check that the url and access date of all online sources are present in bibliography!}
 
 % \todo{I used a few public domain images from wikipedia as sources, and modified them as needed. make sure that this is okay.}
@@ -228,10 +237,14 @@ BV, TO, HMP, etc
 
 \todo{unify table and figure caption capitalization}
 
+\todo{make sure that the black boxes at the beginning of each chapter are finished!}
+
 \todo{unify citep cite}
 
-\todo{more workflow flow charts?}
+\todo{more workflow flow charts? eg chunkify?}
 
 \todo{add pdf bookmarks for frontmatter chapters}
 
 \todo{check bib entry for Sponk2010, which is currently manually typeset to avoid a hyperlink across a page break}
+
+\todo{for re-calculated figures, add the author name. instead of saying ``recalc of fig x of [abc]'', say ``recalc of fig x of bla et al [abc]''!}
