@@ -323,7 +323,8 @@ Such an approach are for example the so-called \textsubscript{mi}tags \citep{Log
 Because of the ubiquity of the 16S and 18S rDNA regions in organisms and, consequently, in sequencing studies,
 many databases provide reference sequences of these marker regions for known species.
 The reads or amplicons obtained from an environmental sample can then be employed
-to estimate their microbial diversity by comparison against these known species.
+to estimate the composition and diversity of the microbial community \cite{Hugerth2017},
+for example by comparison against the known species in databases.
 
 % ======================================================================================================================
 %     Sequence Alignments
@@ -431,13 +432,29 @@ that are needed to achieve some given frequency threshold per site,
 and represent these characters by their ambiguity character.
 Furthermore, many methods based on fixed thresholds have been proposed,
 such as Cavener's method \citep{Cavener1987,Cavener1991a};
-see \cite{Day1992a} for a review and comparison.
+see \citeay{Day1992a} for a review and comparison.
 
 It is also possible (yet not common) to directly use the relative per-site character frequencies
 in the mathematical frameworks of many downstream analysis methods.
 This allows to leverage all of the information contained in the input set of sequences.
 However, to our knowledge, there is no standard file format to store such information,
 and consequently, no way of forwarding this information to the respective tools.
+
+% ======================================================================================================================
+%     Operational Taxonomic Units (OTUs)
+% ======================================================================================================================
+
+\subsection{Operational Taxonomic Units}
+\label{ch:Foundations:sec:SequenceAnalysis:sub:OTUs}
+
+\todo{section about OTUs, if this becomes necessary for the balances and phylo factorization}
+
+\todo{} see \url{https://en.wikipedia.org/wiki/Operational_taxonomic_unit} for some inspiration
+
+otu table, can be seen as a Contingency table (is this actually what biologist use?) for which otu appears in which sample
+
+\cite{Li2015a}: ``Microbiome, Metagenomics, and High-Dimensional Compositional Data Analysis''
+\todo{could be placed here, or above for meta-g analyses, or below in the placement normalization/compositional part. or all of these places}
 
 % ######################################################################################################################
 %         Tree of Life
@@ -456,7 +473,7 @@ it ignores certain biological and evolutionary events.
 A strict hierarchy does not allow for reticulate events,
 such as hybridization \cite{Maddison1997a}, genetic recombination \cite{Hein1993},
 or horizontal gene transfer \cite{Ochman2000,DunningHotopp2011,Robinson2013}.
-Although approaches such as networks have been proposed to model these events \cite{Huson2011a},
+Although approaches such as networks have been proposed to model these events \cite{Cardona2008a,Huson2011a},
 the simplicity of a hierarchy or a tree structure still remains useful and
 is widely employed for classifying and naming organisms, as well as understanding their evolutionary relationships.
 
@@ -588,7 +605,7 @@ also called an \emph{evolutionary tree}, or---synonymously---a \emph{phylogeny}.
 \label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:TreeProperties}
 
 The leaf nodes, or \emph{tips}, of the tree represent living (\emph{extant}) biological entities
-such as species, strains, individual organisms, or even cells of a multicellular organism.
+such as species, strains, individual organisms, or even single cells. %of a multicellular organism.
 Thus, the tips are often referred to as the \emph{taxa} of the tree.
 This is a generic term that includes all of the above entities.
 The tips are often named according to the entities they represent (e.\,g., species names);
@@ -643,31 +660,6 @@ and is hence often used in topology-related algorithms;
 for example, the tree in \figref{fig:tree_vis_options:sub:unrooted} is described by the set of bipartitions
 $B = \{ (\, \mbox{\sffamily ABC|DE} \,), (\, \mbox{\sffamily AB|CDE}\, ) \}$.
 
-For two trees $T_1$ and $T_2$ with the same set of taxa, but differing topologies,
-their bipartitions sets $B_1$ and $B_2$ can be used to define distance metrics between them.
-The \emph{Robinson-Foulds} (RF) distance \cite{Robinson1981}, or symmetric difference metric,
-for instance is defined as the number of bipartitions that are unique to either of the trees:
-
-\begin{equation}
-    \label{ch:Foundations:sec:TreeOfLife:eq:RF-Distance}
-    \mbox{RF}(T_1, T_2) = \sfrac{1}{2} \,\cdot\, (\, | B_1 \cup B_2 | - | B_1 \cap B_2 | \,)
-\end{equation}
-
-The factor of $\sfrac{1}{2}$ is derived from the fact that we use all bipartitions here,
-instead of only the non-trivial ones.
-This unweighted, absolute distance is often used when comparing phylogenies.
-There also exists weighted and relative variants, as well as a variant called \emph{branch score} \cite{Kuhner1994},
-which also takes the branch lengths of the trees into account.
-
-A set of taxa is \emph{monophyletic},
-if there is a bipartition of the tree that separates these taxa from all other taxa of the tree.
-In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
-Furthermore, a monophyletic set of taxa is called a \emph{clade} of the tree;
-in other words, a clade is a subtree that is separated from the rest of the tree by one edge.
-For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
-that is, they form a clade of the tree.
-Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
-
 \begin{figure}[thb]
     \centering
     \includegraphics[width=\linewidth]{tree_vis_options.pdf}
@@ -703,6 +695,41 @@ Lastly, a non-monophyletic set of taxa is \emph{paraphyletic}.
     \label{fig:tree_vis_options}
 \end{figure}
 
+For two trees $T_1$ and $T_2$ with the same set of taxa, but differing topologies,
+their bipartitions sets $B_1$ and $B_2$ can be used to define distance metrics between them.
+The \emph{Robinson-Foulds} (RF) distance \cite{Robinson1981}, or \emph{symmetric difference} metric,
+for instance is defined as the number of bipartitions that are unique to either of the trees:
+
+% \begin{equation}
+%     \label{ch:Foundations:sec:TreeOfLife:eq:RF-Distance}
+% %     \mbox{RF}(T_1, T_2) = \sfrac{1}{2} \,\cdot\, (\, | B_1 \cup B_2 | - | B_1 \cap B_2 | \,)
+%     \mbox{RF}(T_1, T_2) ~=~ | B_1 \cup B_2 | - | B_1 \cap B_2 | ~=~ |\, ( B_1 \setminus B_2 ) \cup ( B_1 \setminus B_2 ) \,|
+% \end{equation}
+\begin{align}
+    \label{ch:Foundations:sec:TreeOfLife:eq:RF-Distance}
+%     \mbox{RF}(T_1, T_2) = \sfrac{1}{2} \,\cdot\, (\, | B_1 \cup B_2 | - | B_1 \cap B_2 | \,)
+    \mbox{RF}(T_1, T_2)
+    &= |\, B_1 \cup B_2 \,| - |\, B_1 \cap B_2 \,| \nonumber \\[0.7em]
+    &= |\, ( B_1 \setminus B_2 ) \cup ( B_1 \setminus B_2 ) \,|
+\end{align}
+
+% The factor of $\sfrac{1}{2}$ is derived from the fact that we use all bipartitions here,
+% instead of only the non-trivial ones.
+This unweighted, absolute distance is often used when comparing phylogenies.
+There also exists weighted and relative variants, as well as a variant called \emph{branch score} \cite{Kuhner1994},
+which also takes the branch lengths of the trees into account.
+
+A set of taxa is \emph{monophyletic},
+if there is a bipartition of the tree that separates these taxa from all other taxa of the tree.
+In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
+Furthermore, a monophyletic set of taxa is called a \emph{clade} of the tree;
+in other words, a clade is a subtree that is separated from the rest of the tree by one edge.
+For example, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily C} in \figref{fig:tree_vis_options} are monophyletic---%
+they form a clade of the tree.
+Lastly, a non-monophyletic set of taxa is called \emph{paraphyletic}.
+For instance, the taxa {\sffamily A}, {\sffamily B}, and {\sffamily E} in \figref{fig:tree_vis_options} are paraphyletic---%
+they are not separated from the other taxa by a single edge.
+
 \paragraph{Practical Aspects of Trees}
 \label{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:PracticalAspects}
 
@@ -725,11 +752,17 @@ which are represented by the higher ranks of the taxonomy.
 It is however possible that the taxa at one rank of the taxonomy are not monophyletic in the phylogenetic tree.
 In this case, the two are \emph{incongruent}.
 
+\todo{use paper?: Synthesis of phylogeny and taxonomy into a comprehensive tree of life}
+\todo{maybe also Parks2018 and papers cite in there?}
+
 % particularly considering that the genes might evolve differently from the species or from what the taxonomy says
 
 The most common file format for storing phylogenetic trees is the \fileformat{Newick} format \cite{Archie1986}.
-It uses parentheses and commas to specify the nesting structure of the tree,
+It uses parentheses to specify the nesting structure of the tree,
 and also allows to store node labels and branch lengths.
+It however lacks proper support for additional branch- and node-related meta-data,
+which can lead to erroneous results \cite{Czech2017}.
+% it is the most commonly used file format for phylogenetic trees.
 The \fileformat{NEXUS} format \cite{Maddison1997} is a container format for biological data,
 and internally also relies on the \fileformat{Newick} format for storing trees.
 Furthermore, the \fileformat{phyloXML} format \cite{Han2009} is an \fileformat{XML} based format
@@ -783,9 +816,10 @@ by integrating over the tree and the parameter space;
 it can thereby also incorporate prior empirical knowledge into the process.
 
 Typical software tools for inferring ML trees include \toolname{IQ-TREE} \cite{Nguyen2015a},
-\toolname{FastTree} \cite{Price2010}, \toolname{GARLI} \cite{Zwickl2006}, and \toolname{RAxML} \cite{Stamatakis2014},
-while Bayesian inference can for example be conduced using software tools such as \toolname{BEAST} \cite{Suchard2018},
-\toolname{MrBayes} \cite{Ronquist2003}, and \toolname{ExaBayes} \cite{Aberer2014}.
+\toolname{FastTree} \cite{Price2010}, \toolname{GARLI} \cite{Zwickl2006}, and \toolname{RAxML} \cite{Stamatakis2014};
+see \citeay{Zhou2018} for a critical review.
+Bayesian inference on the other hand can for example be conduced using software tools such as
+\toolname{BEAST} \cite{Suchard2018}, \toolname{MrBayes} \cite{Ronquist2003}, and \toolname{ExaBayes} \cite{Aberer2014}.
 
 % ######################################################################################################################
 %     Maximum Likelihood Tree Inference
@@ -950,7 +984,7 @@ by which the diagonal elements $q_{i}$ are defined.
 
 The expected number of substitutions at an alignment site between two nodes of the tree
 is expressed as the branch length $b$ between the nodes,
-and is a component for measuring the (real) evolutionary time $t$ between them.
+and is a component for measuring the (real) evolutionary distance/time $t$ between them.
 Under the MC model, evolutionary time and branch length are proportional to each other
 with the \emph{evolutionary rate} $r$ being their proportionality factor: $t = r \cdot b$.
 Then, for a given time $t$, the \emph{transition probabilities} $p_{ij}(t)$ between states in a stationary process
@@ -1126,7 +1160,7 @@ see for example \tabref{tab:TreeTopologyTests}.
 \label{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputation}
 
 Here, we introduce the basic computational aspects of the Maximum Likelihood score calculation.
-For a more in-depth description, see \cite{Yang2014}.
+For a more in-depth description, see \citeay{Yang2014}.
 We assume a fixed tree topology $T$, fix branch lengths $\bar{b}$,
 as well as a given model of sequence evolution $M$ with parameters $\bar{\theta}$.
 That is, we do not cover the tree search itself here,
@@ -1227,7 +1261,7 @@ the conditional likelihood of node {\sffamily V} to be in state $c$ at site $s$,
 \end{equation}
 
 The equation can be interpreted as follows:
-The product of transition probability and conditional likelihood represents a change from state $c$ to another state in $N$.
+The product of transition probability and conditional likelihood represents a change from state $c$ to another state $j \in N$.
 By summing this product for all states, all possible inner states in the child node are accounted for.
 Finally, the product of the two sums is the new conditional likelihood of the node being in state $c$ at site $s$,
 given the evolutionary history of its two children and their subtrees.
@@ -1277,7 +1311,8 @@ Finally, the overall likelihood $\mathcal{L}( \mbox{MSA} ~|~ T, \bar{b}, M, \bar
 for the entire MSA can be computed.
 For mathematical simplicity, the sites are generally assumed to evolve independently,
 although this is not expected to be the case from a biological perspective.
-Then, for an alignment with $m$ sites, the overall likelihood is simply the product of the per-site likelihoods:
+Under this assumption, for an alignment with $m$ sites,
+the overall likelihood is simply the product of the per-site likelihoods:
 
 \begin{equation}
     \label{ch:Foundations:sec:MLTreeInference:eq:root_likelihood}
@@ -1348,7 +1383,7 @@ computational challenges and bottlenecks arise \cite{Scholz2012}.
 In particular, both calculating an MSA and inferring a phylogeny are NP-hard \cite{Just2001,Chor2005},
 and thus impractical or infeasible for large datasets.
 Furthermore, metagenomic reads are often short, and hence lack phylogenetic signal
-to robustly infer a tree and to properly resolve their relationships.
+to robustly infer a tree and to properly resolve their relationships \cite{Janssen2018}.
 
 Thus, \emph{phylogenetic placement}  (also called \emph{evolutionary placement})
 has been developed for conducting phylogenetic analyses of such data \cite{VonMering2007,Monier2008}.
@@ -1469,6 +1504,7 @@ as explained in \secref{ch:Foundations:sec:MLTreeInference:sub:LikelihoodComputa
 Note that the likelihood computation uses the MSA (extended by the query sequence),
 the tree topology and branch lengths, as well as the model and its parameters as before.
 The model of nucleotide evolution should be the same that was used for inferring the tree,
+in order to keep the meaning of the branch lengths consistent,
 see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol}.
 % mention that epa ng can use all the model stuff explaine above: subst models, rate hetero, etc
 After this, the newly created nodes on the branch are removed again and the branch lengths are reset,
@@ -1480,7 +1516,11 @@ In other words, for each branch of the tree, the process yields a so-called \emp
 that is, an optimized position on the branch, along with a likelihood score for the whole tree.
 The likelihood scores for a \ac{QS} are then transformed into probabilities,
 which quantify the uncertainty of placing the sequence on the respective branch \cite{Strimmer2002,VonMering2007}.
-The probability of placing a \ac{QS} on a branch $q$ is called the \emph{\acl{LWR}}\acused{LWR} (\acs{LWR}),
+The probability of placing a \ac{QS} on a branch $q$ is called the \emph{\acl{LWR}}\acused{LWR}
+(\acs{LWR}) %\footnote{In physics, \emph{weight} is the gravitational force acting on a \emph{mass}.
+% It would hence be more precise to call this the \emph{likelihood mass ratio},
+% as there is no gravity involved in phylogenetic placement.
+% We however stick to established terminology here, and use weight and mass interchangeably.}
 and is calculated relative to the other branches $i$ of the tree $T$ as
 
 \begin{equation}
@@ -1598,13 +1638,15 @@ but it can also be utilized for a variety of downstream analyses.
 A typical task in metagenomic studies is to identify and classify the environmental sequences with respect
 to known reference sequences, either in a taxonomic or phylogenetic context,
 as mentioned in \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}.
-Conventional methods for this task, such as \toolname{BLAST} \cite{Altschul1990}, are based on sequence similarity.
+Conventional methods for this task, such as \toolname{BLAST} \cite{Altschul1990},
+are based on sequence similarity or identity.
 Such methods are fast, and directly assign query sequences to the most similar reference sequences,
 as shown in \figref{fig:blast_epa:sub:blast}.
 % Potentially, they use some similarity score,
 However, this implies that they only attain satisfying accuracy levels
 if the query sequences are sufficiently similar to the reference sequences.
-Furthermore, the best \toolname{BLAST} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
+Furthermore, \toolname{BLAST} might yield suboptimal results \cite{Shah2018},
+and the best \toolname{BLAST} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
 This is particularly true for environments where available reference databases do not exhibit
 sufficient taxon coverage \citep{Mahe2017}.
 Moreover, as insufficient taxon coverage cannot be detected by methods that are based on sequence similarity,
@@ -1646,7 +1688,7 @@ and hence provides a more accurate means for read identification and classificat
 as shown in \figref{fig:blast_epa:sub:epa}.
 For example, the classification of query sequences
 can be summarized by means of sequence abundances \cite{Pace1997,Hugenholtz1998},
-or to obtain taxonomic assignments \cite{Kozlov2016}.
+or to obtain taxonomic assignments \cite{Nguyen2014,Kozlov2016}.
 
 Furthermore, phylogenetic placement also allows for more elaborate downstream analyses.
 Firstly, the reference tree usually offers a higher resolution than simple per-taxon abundance counts,
@@ -1669,14 +1711,18 @@ There also exist variants of phylogenetic placement that use maximum parsimony \
 and minimum evolution \cite{Filipski2015} instead of maximum likelihood,
 and variants that calculate Bayesian posterior probabilities \cite{Matsen2010}.
 Moreover, the boosting method \toolname{SEPP} has been proposed to improve the accuracy of the placements \cite{Mirarab2012}.
-The recently proposed tool \toolname{RAPPAS} \cite{Linard2018} is an alignment-free approach
-that is not based on ML, but yields comparable results to standard phylogenetic placement implementations.
+The recently proposed tools \toolname{RAPPAS} \cite{Linard2018} and \toolname{APPLES} \cite{Balaban2018}
+are alignment-free approaches that are based on comparing sequence $k$-mers (subsequences) instead of using an ML framework.
+These tools yield comparable results to standard ML-based phylogenetic placement implementations,
+but are faster and can handle larger reference trees.
 
 Phylogenetic placement has further been used for a variety of applications and derived pipelines, such as
 species delimitation as in \toolname{PTP} \cite{Zhang2013} and \toolname{mPTP} \cite{Kapli2017},
 genome and metagenome analysis as in \toolname{PhyloSift} \cite{Darling2014},
 taxonomic identification and phylogenetic profiling as in \toolname{TIPP} \cite{Nguyen2014}, and
 identification and correction of taxonomically mislabeled sequences as in \toolname{Sativa} \cite{Kozlov2016}.
+
+\todo{PhyloPhlAn?!} \verb|https://www.nature.com/articles/ncomms3304?origin=ppub|
 
 % these tools combine 1,010 more citations (as of 2018-07-01)
 
@@ -1687,21 +1733,26 @@ identification and correction of taxonomically mislabeled sequences as in \tooln
 \subsection{Placement Processing}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing}
 
-% \paragraph{Normalization}
-% \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}
-
 When placing multiple environmental samples, for instance, from different geographical locations,
 typically, the same \ac{RT} is used, in order to allow for comparing the phylogenetic composition of these samples.
+\todo{better transition}
+
+\paragraph{Normalization}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}
+
+\todo{better transition}
 In this context, it is important to consider how to properly normalize the samples.
 Normalization is required as the sample size (often also called library size),
-that is, the number of sequences per sample, can vary by several orders of magnitude.
+that is, the number of sequences per sample, can vary by several orders of magnitude within one study.
 This is due to technical aspects of the sequencing process, such as efficiency variations,
 or biases introduced by the amplification process,
 as explained in \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}.
-As a consequence, metagenomic sequence data are inherently compositional \cite{Gloor2017}.
-This needs to be considered in all data analysis steps.
+As a consequence, metagenomic sequence data are inherently compositional \cite{Gloor2017},
+which can lead to spurious statistical analyses \cite{Aitchison1986,Jackson1997,Tsilimigras2016,Gloor2016a}.
+This impedes statistical analyses of the data and hence needs to be considered in all analysis steps \cite{Silverman2017}.
 
-Selecting an appropriate normalization strategy hence constitutes a common problem in many metagenomic studies.
+We here briefly outline common types of problems due to normalization that also affect phylogenetic placement data.
+Selecting an appropriate normalization strategy constitutes a general problem in many metagenomic studies.
 The appropriateness depends on data characteristics \cite{Weiss2017}, but also on the biological question asked.
 For example, estimating indices such as the species richness are often implemented
 via so-called \emph{rarefaction} and rarefaction curves \cite{Gotelli2001}
@@ -1711,19 +1762,24 @@ Furthermore, the specific type of input sequence data has to be taken into accou
 Biases induced by the amplification process can potentially be avoided if, instead of amplicons,
 data based on shotgun sequencing are used, such as \textsubscript{mi}tags \cite{Logares2014}.
 Moreover, similar sequences can be clustered prior to phylogenetic placement analysis, for instance,
-by constructing so-called \emph{operational taxonomic units} (OTUs) \cite{Sokal1963,Blaxter2005},
+by constructing so-called \emph{operational taxonomic units} (OTUs) \cite{Sokal1963,Blaxter2005,Chen2013},
 using programs such as \toolname{UCLUST} \cite{Edgar2010},
-\toolname{VSEARCH} \cite{Rognes2016}, or \toolname{swarm} \cite{Mahe2014,Mahe2015}.
-Analyses using OTUs focus on species diversity instead of simple abundances.
+\toolname{VSEARCH} \cite{Rognes2016}, or \toolname{swarm} \cite{Mahe2014,Mahe2015}.Analyses using OTUs focus on species diversity instead of simple abundances.
 OTU clustering substantially reduces the number of sequences,
 and hence greatly decreases the computational cost of placement analyses.
 Lastly, one may completely disregard the abundances (which correspond to the \emph{multiplicities} of placements)
 of the placed sequences, reads, or OTUs, and only be interested in their presence/absence when comparing samples.
 
-Which of the above analysis strategies is deployed,
+\todo{proper section on otu clustering!, \cite{Chen2013} for a review}
+
+\todo{more on comp data and spurious results, see silverman2017}
+
+All of the above analysis strategies are also applicable to phylogenetic placement,
+e.\,g., by placing OTUs instead of sequences.
+Which of these strategies is deployed,
 depends on the specific design of the study and the research question at hand.
-The common challenge is that the number of sequences per sample differs,
-and that this affects most post-analysis methods.
+The common challenge is that the number of sequences per sample differs, which affects most post-analysis methods,
+and can lead to conflicting interpretations and irreproducible results \cite{Gloor2016,Tsilimigras2016}.
 
 In the following, we therefore explain how the necessary sample size normalizations can be performed.
 We also introduce established terminology,
@@ -1740,7 +1796,10 @@ such as the UniFrac distance \cite{Lozupone2005,Lozupone2007a}
 can benefit from rarefaction \cite{Weiss2017}.
 However, in the context of phylogenetic placement, rarefaction is not necessary.
 Thus, more valid data can be kept.
-To this end, it is convenient to think of the reference tree as a graph.
+For a thorough comparison of UniFrac to methods based on phylogenetic placement, see \cite{Matsen2011a}.
+
+In order to compare the placements obtained from a set of samples,
+it is convenient to think of the reference tree as a graph.
 % (when exploiting graph properties of the tree, we refer to the branches of the tree as edges).
 Then, the per-branch \acp{LWR} for a single \ac{QS}
 can be interpreted as mass points distributed over the edges of the \ac{RT},
@@ -1751,42 +1810,57 @@ For simplicity, we ignore that typically not all placements are stored in \filef
 meaning that the mass per QS can also be $<1$.
 Hence, each \ac{QS} is assumed to have a total accumulated mass of $1.0$ on the \ac{RT}.
 The \emph{mass of an edge} or \emph{edge mass} refers to the sum of the \acp{LWR} on that edge for all \acp{QS} of a sample,
-as shown in \figref{fig:imbalance:sub:ReferenceTree}.
+as shown in \figref{fig:mass_ops:sub:masses}.
+The edge masses can serve as a simplification of the data
+that summarizes a whole sample in a vector with $m$ entries, for an \ac{RT} with $m$ edges.
+A larger example for the full \ac{RT} is shown in \figref{fig:masses_imbalances:sub:ReferenceTree}.
 The \emph{total mass} of a sample is then the sum over all edge masses,
 which is identical to the number of \acp{QS} in the sample,
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{imbalance.pdf}
+    \includegraphics[width=0.7\linewidth]{mass_ops.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
-        \label{fig:imbalance:sub:ReferenceTree}
+        \label{fig:mass_ops:sub:masses}
     \end{subfigure}
     \begin{subfigure}{0pt}
         \phantomcaption
-        \label{fig:imbalance:sub:Matrices}
+        \label{fig:mass_ops:sub:binning}
     \end{subfigure}
-    \caption[Edge Masses and Imbalances]{
-        \textbf{Edge Masses and Imbalances.}
-        \subref{fig:imbalance:sub:ReferenceTree}
-        Reference tree where each edge is annotated with the normalized mass (first value, blue) and
-        imbalance (second value, red) of the placements in a sample.
-        The imbalance is the sum of masses on the root side of the edge minus the sum of the masses on the non-root side.
-        The depicted tree is unrooted, hence, its top-level trifurcation (gray dot) is used as ``root'' node.
-        An exemplary calculation of the imbalance is given at the top.
-        Because terminal edges only have a root side, their imbalance is not informative.
-        \subref{fig:imbalance:sub:Matrices}
-        The masses and imbalances for the edges of a sample constitute the rows of the first two matrices.
-        The third matrix contains the available meta-data features for each sample.
-        These matrices are used to calculate, for instance, the edge principal components or correlation coefficients.
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:mass_ops:sub:squashing}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:mass_ops:sub:imbalance}
+    \end{subfigure}
+    \caption[Operations on placement masses]{
+        \textbf{Operations on Placement Masses.}
+        \subref{fig:mass_ops:sub:masses}
+        The \emph{edge mass} or \emph{mass of an edge} is the sum of \acsp{LWR} on that edge for all \acsp{QS} in a sample.
+        \subref{fig:mass_ops:sub:binning}
+        In order to reduce time and memory of the computations,
+        masses can be \emph{binned} by summarizing them across \acp{QS} in intervals along the edges.
+        \subref{fig:mass_ops:sub:squashing}
+        The masses on corresponding edges of the \ac{RT} of two or more samples can be \emph{squashed} to represent
+        the average mass distribution of the samples.
+        For simplicity, we here use equal weights, and show edge masses instead of individual \acp{LWR}.
+        \subref{fig:mass_ops:sub:imbalance}
+        The \emph{edge imbalance} of an edge is the sum of masses on all edges on the root side of the edge
+        ({\sffamily A+B}, with the root in subtree {\sffamily A} denoted as a gray dot)
+        minus the sum of the masses on the edges on the non-root side ({\sffamily C+D}),
+        while ignoring the mass on the edge itself.
+
     }
-    \label{fig:imbalance}
+    \label{fig:mass_ops}
 \end{figure}
 
 The key idea is to use the distribution of placement mass points over the edges of the \ac{RT} to characterize a sample.
-This allows for normalizing samples of different size
-by scaling the total sample mass to unit mass $1.0$.
-In other words, absolute abundances---which are inappropriate for analyses
+This allows for normalizing samples of different size by scaling the total sample mass to unit mass $1.0$.
+This is done by dividing the mass of each placement location by the total sum of all masses in the sample.
+In other words, absolute abundances---which are not meaningful for analyses
 of metagenomic sequences due to the compositional nature of the data \cite{Gloor2017}---are converted into relative abundances.
 This way, rare species, which might have been removed by rarefaction, can be kept,
 as they only contribute a negligible mass to the branches into which they have been placed.
@@ -1795,44 +1869,31 @@ For each OTU, such tables store a count of how often it appeared in each sample,
 which can be transformed into proportional values
 by scaling each sample/column of the table by its sum of OTU counts \cite{Weiss2017}.
 Most of the methods presented here use normalized samples, that is, they use relative abundances.
-As relative abundances are compositional data, certain caveats occur \cite{Aitchison1986,Lovell2015,Gloor2016},
+As relative abundances are however compositional data, certain caveats occur \cite{Aitchison1986,Lovell2015,Gloor2016},
 which we discuss where appropriate.
+
+\paragraph{Binning and Squashing of Edge Masses}
+\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:BinningSquashing}
 
 When working with large numbers of \acp{QS},
 the mass interpretation allows to further simplify and reduce the amounts of data:
-The masses on each edge of the tree can be quantized into $b$ discrete bins,
-that is, each edge is divided into $b$ intervals (or bins) of the corresponding branch length.
-All mass points on that edge are then accumulated into their respective nearest bin.
-For example, by accumulating mass points at their nearest interval midpoint, masses are only minimally moved.
+The masses on each edge of the tree can be quantized into $b$ discrete bins, as shown in \figref{fig:mass_ops:sub:binning}.
+That is, each edge is divided into $b$ intervals (or bins) of the corresponding branch length,
+and all mass points on that edge are accumulated into their respective nearest bin.
+For example, by accumulating mass points at their nearest interval midpoint,
+or at the weighted average of all masses in each bin, masses are only minimally moved.
 The parameter $b$ controls the resolution and accuracy of this approximation.
-In the extreme case of $b:=1$, all masses on an edge are grouped into one single bin.
+In the extreme case of $b:=1$, all masses on an edge are grouped into one single bin
+(which is equivalent to only considering the edge mass instead of individual \acp{LWR}).
 This \emph{branch binning} process drastically reduces the number of mass points
 that need to be stored and analyzed in several methods we present,
 while only inducing a negligible decrease in accuracy.
-As shown in \tabref{tab:hmp_binning_error}.
-branch binning can yield a speedup of up to 75\% for post-analysis run-times.
-
-\paragraph{Squashing of Edge Masses}
-\label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Squashing}
+As shown in \tabref{tab:hmp_binning_error},
+branch binning can yield a speedup of up to 75\% for post-analysis run-times without altering the results of the analysis.
 
 The interpretation of placements as masses on the edges of the tree further allows to summarize a set of samples
-by annotating the \ac{RT} with their (weighted) average per-edge mass distribution.
-This procedure is called \emph{squashing} \cite{Matsen2011a};
-an example is shown in \figref{fig:squashing}.
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.95\linewidth]{squashing.pdf}
-    \caption[Squashing of Edge Masses]{
-        \textbf{Squashing of Edge Masses.}
-        Two trees are merged (\emph{squashed}) by calculating the weighted average
-        of the respective mass distributions on their branches.
-        For simplicity, we here summarize the masses per edge and visualize them as branch widths.
-        In practice however, each placement location of each query sequence is considered separately.
-        The Figure is based on the similar Figure 3/2 of \cite{Matsen2011a}; see there for more details on squashing.
-    }
-    \label{fig:squashing}
-\end{figure}
+by annotating the \ac{RT} with their (weighted) average per-edge mass distribution, as shown in \figref{fig:mass_ops:sub:squashing}.
+This procedure is called \emph{squashing} \cite{Matsen2011a}.
 
 In order to squash two samples, they have to be placed on a fixed \ac{RT}.
 Then, the mass distribution $m_s$ of the squash tree is calculated as
@@ -1850,10 +1911,13 @@ When working with absolute abundances, the weights can be set to the total numbe
 for relative abundances, the weights are set to $1$.
 The above calculation can also be trivially extended to more than two samples to get their average placement mass.
 Squashing is also a central technique of Squash Clustering \citep{Matsen2011a}, which we introduce below in
-\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}.
+\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering},
+and which also shows a larger example of squashing in \figref{fig:squashing}.
 There, the weights represent the influence of sample clusters during an agglomerative hierarchical clustering algorithm.
 
-In practice, the average mass distributions are calculated per placement location.
+In practice, instead of only considering per-edge masses,
+the average mass distributions are calculated per placement location;
+that is, each \ac{LWR} is taken into account individually.
 Because phylogenetic placements represent point masses on the edges of the tree,
 squashing can be seen as joining the (weighted) set of placements of the samples on corresponding edges of the \ac{RT}.
 The resulting masses can then be normalized again to obtain unit mass for the resulting average tree.
@@ -1862,7 +1926,7 @@ The resulting masses can then be normalized again to obtain unit mass for the re
 \paragraph{Edge Imbalances}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}
 
-So far, we have only considered the per-edge masses, as shown in \figref{fig:imbalance}.
+So far, we have only considered the per-edge masses.
 Often, however, it is also of interest to ``summarize'' the mass of an entire clade, that is, to consider per-clade masses.
 For example, sequences of the \ac{RT} that represent species or strains might not provide sufficient phylogenetic signal
 for properly resolving the phylogenetic placement of short sequences \cite{Dunthorn2014}.
@@ -1876,37 +1940,106 @@ Each edge splits the tree into two parts
 of which only one contains the root (or top-level trifurcation) of the tree.
 For a given edge, its mass difference is then calculated by summing all masses in the root part of the tree
 and subtracting all masses in the other part,
-while ignoring the mass of the edge itself \cite{Matsen2011a}.
-This difference is called the \emph{imbalance} of the edge.
+while ignoring the mass of the edge itself \cite{Matsen2011a}, as shown in \figref{fig:mass_ops:sub:imbalance}.
+This difference is called the \emph{imbalance} of the edge \cite{Matsen2011a}.
 It is usually normalized to represent unit total mass,
 as the absolute (not normalized) imbalance otherwise propagates the effects of differing sample sizes all across the tree.
 It is irrelevant where the root of the tree is,
 as any re-rooting changes the sign of edge imbalance values consistently across different samples.
+A larger example for the full \ac{RT} is shown in \figref{fig:masses_imbalances:sub:ReferenceTree}.
 
-An example of the imbalance calculation is shown in \figref{fig:imbalance:sub:ReferenceTree}.
+% An example of the imbalance calculation is shown in \figref{fig:masses_imbalances:sub:ReferenceTree}.
 The edge imbalance relates the masses on the two sides of an edge to each other.
 This implicitly captures the \ac{RT} topology and reveals information about its clades.
 Furthermore, this transformation can reveal differences in the placement mass distribution
 of nearby branches of the tree.
 This is in contrast to the KR distance (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR} below),
 which yields low values for masses that are close to each other on the tree.
-Note that for normalized samples with unit total mass,
+Note that %for normalized samples with unit total mass,
 the imbalance of a leaf edge is simply the total mass of the tree minus the mass of the edge.
 It thus contains mostly irrelevant information and can often be omitted.
+
+\todo{this was moved in the paper. maybe move it here, too. or at least, rework as needed!}
+
+The concept of edge imbalances has similarity with
+the Phylogenetic Isometric Log-Ratio (PhILR) transformation \cite{Silverman2017}
+and with Phylogenetic Factorization (Phylo\-Factor) \cite{Washburne2017a}.
+In these approaches, a \emph{balance} between the OTU abundances in the two subtrees below a node
+of a rooted binary phylogenetic tree is calculated.
+This balance thus expresses which of the two subtree has more OTUs in it.
+Comparing the per-node balance across samples allows to find nodes that change with respect to the balance,
+indicating ``factors'' that explain differences between the samples in terms of the phylogeny.
+The transformation into balances yields orthogonal components, which are not compositional,
+and can hence be used with many standard analysis methods.
+
+Furthermore, the Balance Trees method \cite{Morton2017} also calculates
+the balance of nodes using the isometric log-ratio of OTU abundances.
+However, instead of using a phylogenetic tree, it assumes any binary partitioning of the OTUs
+(e.\,g., obtained from a UPGMA clustering \cite{Legendre1998} of the OTUs based on a meta-data feature).
+These nodes thus correspond to particular meta-data values,
+allowing statements about the changes in OTU abundances that occur with changing environmental variables.
+%value thresholds that separate distinct samples.
+
+The two main differences between balances and the edge imbalances described here are as follows.
+Firstly, balances are calculated for the two subtrees below a node,
+which expects a rooted tree, and ignores the remainder of the tree.
+Edge imbalances are calculated per edge instead of per node, and do not need a rooted tree.
+They directly compare the two sides of an edge and thus take all of the tree into account.
+This further implies that a change in the underlying mass distribution affects the imbalance of all edges in the tree,
+which is not the case for node balances.
+% Hence, the previously mentioned caveats apply.
+Secondly, balances are based on a tree that connects the OTUs that are present in a set of samples.
+Such trees need to be inferred or built for each set of OTUs anew, hindering comparisons across studies.
+% Edge imbalances use phylogenetic placement, and thus have a fixed reference tree that can be re-used.
+Edge imbalances use a fixed reference tree that provides additional phylogenetic information,
+and that can be used in a production setting were novel sequences arrive after building the tree.
 
 \paragraph{Placement Data Matrices}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:PlacementDataMatrices}
 
-The edge masses and edge imbalances per sample can be summarized by two matrices,
-which we use for all further downstream edge- and clade-related analyses, respectively.
+An example of the edge masses and edge imbalances for a sample is shown in \figref{fig:masses_imbalances:sub:ReferenceTree}.
+These values can be summarized by two matrices,
+which we use for many downstream edge- and clade-related analyses, respectively.
 In these matrices, each row corresponds to a sample, and each column to an edge of the \ac{RT}.
+These matrices have dimensions $m \times n$ for $m$ edges of the \ac{RT} and $n$ samples.
+In other words, the edge masses matrix collects the edge mass vectors mentioned above,
+while the edge imbalance matrix transforms these masses as described before.
 Note that these matrices can either store absolute or relative abundances,
 depending on whether the placement mass was normalized or not.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{masses_imbalances.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:masses_imbalances:sub:ReferenceTree}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:masses_imbalances:sub:Matrices}
+    \end{subfigure}
+    \caption[Edge masses and imbalances]{
+        \textbf{Edge Masses and Imbalances.}
+        \subref{fig:masses_imbalances:sub:ReferenceTree}
+        Reference tree where each edge is annotated with the normalized mass (first value, blue) and
+        imbalance (second value, red) of the placements in a sample.
+%         The imbalance is the sum of masses on the root side of the edge minus the sum of the masses on the non-root side.
+        The depicted tree is unrooted, hence, its top-level trifurcation (gray dot) is used as ``root'' node.
+%         An exemplary calculation of the imbalance is given at the top.
+%         Because terminal edges only have a root side, their imbalance is not informative.
+        \subref{fig:masses_imbalances:sub:Matrices}
+        The masses and imbalances for the edges of a sample constitute the rows of the first two matrices.
+        The third matrix contains the available meta-data features for each sample.
+        These matrices are used to calculate, for instance, the Edge PCA
+        (\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}) or correlation coefficients.
+    }
+    \label{fig:masses_imbalances}
+\end{figure}
 
 Furthermore, many studies provide meta-data for their samples,
 for instance, the pH value or temperature of the samples' environment.
 Such meta-data features can also be summarized in a per-sample matrix, where each column corresponds to one feature.
-The three matrices are shown in \figref{fig:imbalance:sub:Matrices}.
+The three matrices are shown in \figref{fig:masses_imbalances:sub:Matrices}.
 Quantitative meta-data features are the most suitable for computational purposes,
 as they can be used for calculations such as detecting correlations with the placement mass distributions of samples,
 see for instance \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}.
@@ -1987,7 +2120,8 @@ Hence, the KR distance operates on normalized samples; that is, it compares rela
         \textbf{Linear KR Distance.}
         Distribution A is transformed into distribution B by moving mass along the axis,
         while keeping track of the moved distances.
-        For simplicity, masses are discretized here; the continuous case works analogously.
+        The dark blocks represent the masses being moved along the grid.
+        For simplicity, masses and distances are discretized here; the continuous case works analogously.
     }
     \label{fig:kr_linear}
 \end{figure}
@@ -2002,7 +2136,7 @@ In the special case of assigning mass only to the tips of the tree
 the KR distance is equivalent to the weighted UniFrac distance \cite{Evans2012}.
 
 The mathematical properties of the phylogenetic KR distance
-have been thoroughly examined by \citeauthor{Evans2012} \cite{Evans2012}.
+have been thoroughly examined by \citea{Evans2012}. %\citeauthor{Evans2012} \cite{Evans2012}.
 In summary, the KR distance can be formulated as an integral over distances $\lambda$ along the branches of the tree $T$.
 % Let $T$ the space of points along the
 Let $\tau(x)$ denote the subtree below point $x$ on $T$ for an arbitrary rooting,
@@ -2018,7 +2152,7 @@ Then, the KR distance can be expressed in closed form as
 This notation treats the placements as a continuous distribution over the branches of the tree
 instead of a collection of point masses, and hence describes a more general form of the KR distance.
 The distance can further be generalized by introducing an additional parameter $p$,
-where $0 < p < \infty$ controls the impact of mass relative to transport \cite{Rachev1991,Rachev1998}:
+with $0 < p < \infty$, which controls the impact of mass relative to transport \cite{Rachev1991,Rachev1998}:
 
 \begin{equation}
     \label{ch:Foundations:sec:PhylogeneticPlacement:eq:KR2}
@@ -2030,7 +2164,7 @@ In typical applications however, the default of $p=1$ is used,
 which yields \eqnref{ch:Foundations:sec:PhylogeneticPlacement:eq:KR1} and
 corresponds to the physical interpretation of mass movements.
 
-\todo{mention NH distance here if we use it later!}
+% \todo{mention NH distance here if we use it later!}
 
 % ======================================================================================================================
 %     Existing Analysis Methods
@@ -2085,12 +2219,14 @@ these visualizations on the tree explains \emph{why} they are separated.
 Each principal component yields a tree visualization,
 where edges are highlighted that are responsible for the observed differences
 in the corresponding principal axis of the plot.
-An example of this is shown later on in \figref{fig:epca}.
+An example of this is shown later in \figref{fig:epca}.
 
 \paragraph{Squash Clustering}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}
 
 % \emph{Squash Clustering} \citep{Matsen2011a} is a hierarchical clustering method for phylogenetic placement data.
+
+\todo{show similarity to concept of } \cite{Death2002}
 
 A fundamental task for a set of metagenomic samples consists in
 finding clusters of samples that are similar to each other according to some distance measure, such as the KR distance.
@@ -2102,18 +2238,47 @@ In contrast, \emph{Squash Clustering} \cite{Matsen2011a} is a method that
 also takes the intrinsic structure of phylogenetic placement data into account.
 It uses the KR distance (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR})
 to perform agglomerative hierarchical clustering of samples.
-Instead of using pairwise sample distances,
-it merges (\emph{squashes}, see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Squashing})
-clusters of samples by calculating their weighted average per-edge placement mass.
+Instead of using pairwise sample distances, it merges
+(\emph{squashes}, see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:BinningSquashing})
+clusters of similar samples by calculating their weighted average per-edge placement mass,
+as shown in \figref{fig:squashing}.
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{squashing.pdf}
+    \caption[Squashing of Edge Masses]{
+        \textbf{Squashing of Edge Masses.}
+        Two trees are merged (\emph{squashed}) by calculating the weighted average
+        of the respective mass distributions on their branches.
+        By squashing, a cluster of (similar) samples can be summarized and visualized.
+        For simplicity, we here show the masses per edge and visualize them as branch widths.
+        In practice however, each placement location of each query sequence is considered individually.
+        The Figure is based on the similar Figure 3/2 of \cite{Matsen2011a}; see there for more details on squashing.
+    }
+    \label{fig:squashing}
+\end{figure}
+
+Squash Clustering starts with each sample being its own cluster.
+Then, iteratively, it calculates the pairwise KR distance between all clusters of samples,
+and merges the pair of clusters that are closest to each other,
+until only one cluster containing all samples remains.
+The merging is conducted by squashing all samples in the respective clusters,
+using the total mass (number of samples) per cluster as weights.
+% Hence, the weights used in the squashing procedure when merging two such clusters
+% (see  for details) are set to the number of samples they represent.
+
+This results in a hierarchical clustering tree, where tips correspond to samples,
+and branch lengths correspond to KR distances between clusters.
+% This results in a hierarchical clustering tree of samples that has meaningful, and hence interpretable, branch lengths:
+% The distances in the cluster tree correspond to the KR distance between merged samples.
 Thus, in each step, Squash Clustering operates on the same type of data, namely, mass distributions on the fixed \ac{RT}.
-In the agglomerative clustering, an inner node of the clustering tree represents a set of merged/squashed samples.
-Hence, the weights used in the squashing procedure when merging two such clusters
-(see \figref{fig:squashing} for details) are set to the number of samples they represent.
-
-This results in a hierarchical clustering tree of samples that has meaningful, and hence interpretable, branch lengths:
-The distances in the cluster tree correspond to the KR distance between merged samples.
+\todo{next sentence was added from the paper. see if fitting:}
+In the beginning, each item considered in the clustering is one sample,
+while later steps of the clustering operate on the merged (squashed) samples.
+% until only one large cluster remains that combines all samples.
+Each inner node of the clustering tree represents a set of merged/squashed samples.
 Examples of such cluster trees are shown later on in \figref{fig:bv_squash} and \figref{fig:cluster_kmeans_trees}.
+% An exemplary clustering tree is shown later in \figref{fig:squash_edgepca:sub:squash}.
 Furthermore, as the inner nodes of the cluster tree are again mass distributions,
 they can be visualized, and thus allow for interpreting the features of each set of merged samples.
 
