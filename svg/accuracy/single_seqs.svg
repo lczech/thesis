@@ -14,7 +14,7 @@
    height="1074.9395"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.3 (unknown)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="single_seqs.svg">
   <defs
      id="defs4"
@@ -1788,7 +1788,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="704.12061"
+     inkscape:cx="739.8349"
      inkscape:cy="498.91919"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
@@ -1798,8 +1798,8 @@
      fit-margin-bottom="5"
      fit-margin-right="5"
      inkscape:window-width="1694"
-     inkscape:window-height="1388"
-     inkscape:window-x="51"
+     inkscape:window-height="1387"
+     inkscape:window-x="49"
      inkscape:window-y="24"
      inkscape:window-maximized="0" />
   <metadata
@@ -1810,7 +1810,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1960,27 +1960,27 @@
          id="flowRegion9332-5"
          style="stroke-linecap:butt;stroke-linejoin:round"><rect
            y="-191.92354"
-           x="-90"
-           height="51.42857"
-           width="327.14288"
+           x="-194.28572"
+           height="51.428574"
+           width="611.42859"
            id="rect9334-1"
            style="text-align:center;text-anchor:middle;stroke-linecap:butt;stroke-linejoin:round" /></flowRegion><flowPara
          style="font-size:24px;line-height:1.25;text-align:center;text-anchor:middle;stroke-linecap:butt;stroke-linejoin:round"
-         id="flowPara9336-7">Majorities</flowPara></flowRoot>    <flowRoot
+         id="flowPara9336-7">Majority Consensus Sequences</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot14448"
-       style="color:#000000;line-height:0.01%;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;marker:none;enable-background:accumulate"
+       style="color:#000000;line-height:0.01%;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;marker:none;enable-background:accumulate;"
        transform="translate(1096.8445,166.05065)"><flowRegion
          id="flowRegion14450"
-         style="stroke-linecap:butt;stroke-linejoin:round"><rect
+         style="stroke-linecap:butt;stroke-linejoin:round;text-anchor:middle;text-align:center;"><rect
            id="rect14452"
-           width="280.00003"
-           height="38.571426"
-           x="-90"
+           width="612.41766"
+           height="69.231689"
+           x="-215.71428"
            y="-191.92354"
-           style="text-align:center;text-anchor:middle;stroke-linecap:butt;stroke-linejoin:round" /></flowRegion><flowPara
+           style="text-align:center;text-anchor:middle;stroke-linecap:butt;stroke-linejoin:round;" /></flowRegion><flowPara
          id="flowPara14454"
-         style="font-size:24px;line-height:1.25;text-align:center;text-anchor:middle;stroke-linecap:butt;stroke-linejoin:round">Single Sequences</flowPara></flowRoot>    <g
+         style="font-size:24px;line-height:1.25;text-align:center;text-anchor:middle;stroke-linecap:butt;stroke-linejoin:round;">Non-Consensus Sequences</flowPara></flowRoot>    <g
        id="figure_1-3"
        transform="matrix(1.3333333,0,0,1.3333333,763.85605,543.15232)"
        style="stroke-linecap:butt;stroke-linejoin:round">
