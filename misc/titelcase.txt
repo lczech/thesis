@@ -1,1 +1,0 @@
-https://tex.stackexchange.com/questions/166616/implementation-of-title-case-in-bibtex

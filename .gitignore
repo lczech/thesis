@@ -1,7 +1,7 @@
 # Custom
 
-misc/da/
-misc/thesis_alexey/
+misc/
+.kile/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
