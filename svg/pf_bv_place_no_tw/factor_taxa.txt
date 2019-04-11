@@ -1,0 +1,36 @@
+Factor 0:
+Lactobacillus jensenii
+Lactobacillus kalixensis
+Lactobacillus crispatus
+
+Factor 1:
+[Leptotrichia] amnionii
+Sneathia sanguinegens
+
+Factor 2:
+Gardnerella vaginalis
+
+Factor 3:
+Megasphaera sp. type 1
+
+Factor 4:
+Lactobacillus crispatus
+
+Factor 5:
+Eggerthella sp. type 1
+
+Factor 6:
+Prevotella timonensis
+Prevotella buccalis
+Prevotella genogroup 3
+
+Factor 7:
+Prevotella bivia
+Prevotella amnii
+
+Factor 8:
+Atopobium vaginae
+
+Factor 9:
+Lactobacillus iners
+

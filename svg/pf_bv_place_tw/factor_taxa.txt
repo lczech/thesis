@@ -1,0 +1,92 @@
+Factor 0:
+Streptococcus thermophilus
+Streptococcus salivarius
+Streptococcus mutans
+Streptococcus equinus
+Streptococcus gallolyticus
+Streptococcus anginosus
+Streptococcus oralis
+Lactobacillus iners
+Enterococcus avium
+Pediococcus acidilactici
+Enterococcus faecium
+Lactobacillus coleohominis
+Lactobacillus fermentum
+Lactobacillus crispatus
+Streptococcus sanguinis
+Streptococcus mitis
+Streptococcus parasanguinis
+Enterococcus faecalis
+Lactobacillus plantarum
+Streptococcus agalactiae
+Streptococcus constellatus
+Lactobacillus vaginalis
+Lactobacillus jensenii
+Enterococcus durans
+Weissella paramesenteroides
+Lactobacillus gasseri
+Lactobacillus kalixensis
+Streptococcus intermedius
+
+Factor 1:
+Lactobacillus kalixensis
+Lactobacillus crispatus
+
+Factor 2:
+[Leptotrichia] amnionii
+Sneathia sanguinegens
+
+Factor 3:
+Actinomyces neuii
+Actinomyces meyeri
+Actinomyces lingnae
+Arcanobacterium phocae
+Corynebacterium pyruviciproducens
+Corynebacterium accolens
+Actinobaculum massiliense
+Corynebacterium tuberculostearicum
+Actinomyces hongkongensis
+Atopobium minutum
+Brevibacterium paucivorans
+Varibaculum cambriense
+Atopobium rimae
+Corynebacterium ureicelerivorans
+Arcanobacterium hippocoleae
+Dermacoccus nishinomiyaensis
+Mobiluncus curtisii
+Mobiluncus mulieris
+Brevibacterium otitidis
+Alloscardovia omnicolens
+Bifidobacterium bifidum
+Corynebacterium ulceribovis
+Actinomyces urogenitalis
+Eggerthella sp. type 1
+Slackia exigua
+Arcanobacterium haemolyticum
+Gardnerella vaginalis
+Brevibacterium massiliense
+Atopobium vaginae
+Mycobacterium novocastrense
+Bifidobacterium breve
+
+Factor 4:
+Megasphaera sp. type 1
+
+Factor 5:
+Shuttleworthia satelles
+BVAB1
+
+Factor 6:
+[Leptotrichia] amnionii
+
+Factor 7:
+Prevotella bivia
+Prevotella amnii
+
+Factor 8:
+Gardnerella vaginalis
+
+Factor 9:
+Bifidobacterium bifidum
+Bifidobacterium breve
+
