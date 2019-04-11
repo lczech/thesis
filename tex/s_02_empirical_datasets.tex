@@ -152,6 +152,27 @@ Finally, the query sequences were placed on these trees using \toolname{EPA-ng} 
 and the analyses were subsequently performed as explained in \figref{fig:bv_squash} and \figref{fig:bv_edgepca}.
 \todo{the above is not up to date!}
 
+\todo{pf}
+
+
+For our comparison of Placement-Factorization to the original Phylofactorization \cite{Washburne2017a},
+we furthermore conducted OTU clustering of the sequences, using two different methods:
+We used \toolname{vsearch v2.9.1} \cite{Rognes2016} as well as \toolname{swarm v2.2.2} \cite{Mahe2014,Mahe2015}
+to obtain two sets of OTU clusters.
+We filtered the OTU table to remove low abundance OTUs, by only keeping those that appear in more than 10\% of the samples.
+In order to assign each OTU to a fitting taxonomic path,
+we used the \toolname{assign} command of our toll \toolname{gappa}.
+To this end, we placed the OTUs on the BV reference tree mentioned above,
+in order to obtain taxonomic assignments for the OTUs
+that are in line with the taxonomic labels used in our other analyses of the dataset.
+Each set of OTUs was subsequently aligned with \toolname{MAFFT v7.310} \cite{Katoh2002,Katoh2013},
+using the \toolname{L-INS-i} strategy \cite{Katoh2005}.
+Finally, we inferred an OTU tree for each set, using the recent \toolname{RAxML-NG v0.7.0} \cite{Kozlov2018a}.
+These two OTU trees were then used with the meta-data for conducting an analysis with \toolname{Phylofactor},
+based on the excellent tutorials at \url{https://github.com/reptalex/phylofactor}.
+The results for the first ten factors for each of these two trees is for example shown in S3~Table of the supplement.
+
+
 % ======================================================================================================================
 %     Neotropical Soils
 % ======================================================================================================================
@@ -262,6 +283,17 @@ placed on the unconstrained \taxonname{Bacteria} tree with \num{2 059} tips usin
 The chunk placements were then transformed again into per-sample placement files,
 before finally running the steps explained in Figure~\ref{fig:hmp_mds_epca}.
 % see mapseq paper for another example of hmp processing description
+
+\todo{pf}
+
+
+For our re-analysis of the oral/fecal dataset of the original Phylofactorization \cite{Washburne2017a},
+we used the test data provided at \url{https://github.com/reptalex/phylofactor}.
+We modified the scripts to produce \num{10} factors instead of the default of using their stopping criterion,
+in order to be comparable to our implementation and results.
+For the comparison with our Placement-Factorization, we selected a suitable oral/fecal subset of the \ac{HMP} dataset
+as described in the main text.
+
 
 % --------------------------------------------
 %     HMP Dataset Labels

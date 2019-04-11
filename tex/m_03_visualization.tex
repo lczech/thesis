@@ -35,7 +35,7 @@ Using per-edge colors corresponds to binning all placement of an edge into one b
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}).
 %it is thinkable to use multiple bins instead, too, resulting in edges split into segments with different colors.
 For large datasets, the per-edge masses can vary by several orders of magnitude.
-In these cases, it is often preferable to use a logarithmic scaling, as shown in \cite{Mahe2017}.
+In these cases, it is often preferable to use a logarithmic scaling, as shown in \citeay{Mahe2017}.
 In addition to visualizing each sample separately, the average mass distribution
 (after \emph{squashing} the masses,
 see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses})
@@ -46,7 +46,8 @@ They can be regarded as a more detailed version of abundance charts \cite{Hutten
 which are typically shown in the form of pie or bar plots \cite{Faust2015,Mahe2017,Lentendu2018}.
 For instance, \figref{fig:abundances_comparison} shows a comparison of a simple pie chart of abundances
 compared to a visualization of per-branch abundances on a reference tree for the same dataset.
-Although there exist more advanced variants such as hierarchical pie charts offered by the Krona tool \cite{Ondov2011},
+Although there exist more advanced variants such as
+hierarchical pie charts offered by the \toolname{Krona} tool \cite{Ondov2011},
 it is apparent that the tree visualization provides more in-depth information.
 In \figref{fig:abundances_comparison:sub:branch_colors}, we actually combined the information of the pie chart
 with the tree visualization by adding the abundances next to each clade.
@@ -72,7 +73,7 @@ with the tree visualization by adding the abundances next to each clade.
         \subref{fig:abundances_comparison:sub:pie_chart} a typical pie chart of taxonomic abundances and
         \subref{fig:abundances_comparison:sub:branch_colors} the much more informative per-branch mass visualization
         using phylogenetic placement on a reference tree.
-        The data is from \cite{Mahe2017}, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:NTS} for details.
+        The data is from \citeay{Mahe2017}, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:NTS} for details.
 %         Note that pie charts are usually not considered good visualization practice,
 %         and thus better use bar plots. but, it seems to be a default in many papers...
 %         \\
@@ -146,10 +147,11 @@ and visualized, for instance, via color coding.
 This allows to examine which edges exhibit a high heterogeneity of placement masses across samples,
 % vary in terms of their placements,
 and hence indicates which edges discriminate samples.
-As edge mass values can span many orders of magnitude,
+
+As the abundances of different species, and hence also the edge mass values, can span many orders of magnitude,
+% As edge mass values can span many orders of magnitude,
 it might be necessary to scale the variance logarithmically. %, % as shown in \figref{fig:var_cor:sub:em_varl},
 %or to use some other form of normalization.
-
 Often, one is more interested in the branches with high placement mass,
 as they indicate the most abundant species in the samples.
 In these cases, using the standard deviation or variance is appropriate,
@@ -249,9 +251,32 @@ However, the correlation is \emph{not} calculated between samples or sequence ab
 Hence, even when using normalized samples, %that is, working with compositional data,
 the pitfalls regarding correlations of compositional data \cite{Lovell2015} do not apply here.
 
-% correlation: not correlating masses to each other, so the caveat does not apply.
-% not setting compositional values in correlation with each other, so the pitfall schnappt nicht zu
-% we simply say: relatively more on that branch, if higher metadata value
+\todo{rewrite the following. see below for a text. check the referenced sections for remnants of old stuff!}
+
+The method further bears some conceptual similarity to methods
+such as Phylo\-Factor \cite{Washburne2017a} and Balance Trees \cite{Morton2017},
+which we briefly described in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}.
+These methods are also able to take meta-data features into account and
+can hence identify relationships between changes in environmental variables and changes in the per-node balance.
+They differ from our Edge Correlation as described before:
+Balances are a property of nodes, not edges, and they do not use a fixed reference tree.
+We outline a potential transfer of the Edge Correlation concept to balances in \chpref{ch:ConclusionOutlook:par:AnalysisMethods}.
+
+\todo{this is from the new part of the paper: use this, adapt chapter refs}
+
+The method further bears some conceptual similarity to Phylofactorization \cite{Washburne2017a},
+for which we later present adaptation to phylogenetic placements.
+Phylofactorization also takes meta-data features into account and can hence identify relationships
+between changes in environmental variables and changes in abundances in clades of the tree.
+It typically uses linear regression in form of a \acf{GLM} to assess these relationships.
+Note that the correlation coefficient used in our Edge Correlation
+can be interpreted as the slope of the regression line of the standardized values,
+which establishes a connection between Edge Correlation and Phylofactorization.
+The advantage of using correlations here instead of a \ac{GLM} lies in its simplicity for the interpretation of results:
+% While regression can take multiple meta-data features into account at the same it,
+We are here interested in whether changes in a meta-data feature
+lead to an increase or decrease of abundances on branches or in clades of the tree.
+Using a \ac{GLM} for this purpose would not yield any advantage.
 
 % ######################################################################################################################
 %         Evaluation and Results
@@ -270,7 +295,7 @@ the pitfalls regarding correlations of compositional data \cite{Lovell2015} do n
 We re-analyzed the \acf{BV} dataset (see \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV} for details)
 by inferring a tree from the original reference sequence set
 and conducting phylogenetic placement of the \num{220} samples.
-The characteristics of this dataset were already explored in \cite{Srinivasan2012} and \cite{Matsen2011a}.
+The characteristics of this dataset were already explored by \citeay{Srinivasan2012} and \citeay{Matsen2011a}.
 We use it here to give exemplary interpretations of our Edge Dispersion and Edge Correlation methods,
 and to evaluate them in comparison to existing methods.
 
@@ -280,8 +305,11 @@ Edge Dispersion is shown in \figref{fig:var_cor:sub:em_varl},
 while \figref{fig:var_cor:sub:ei_var} shows Edge Correlation with the so-called Nugent score. % with the edge imbalances.
 The Nugent score \cite{Nugent1991} is a clinical standard for the diagnosis of Bacterial Vaginosis,
 ranging from \num{0} (healthy) to \num{10} (severe illness).
+Bacterial Vaginosis (BV) is a disease of the vagina
+that manifests itself in form of an abnormal vaginal microbiome \cite{Srinivasan2012}.
+
 The connection between the Nugent score and the abundance of placements on particular edges
-was already explored in \cite{Matsen2011a}, but only visualized indirectly (i.e., not on the \ac{RT} itself).
+was already explored by \citeay{Matsen2011a}, but only visualized indirectly (i.e., not on the \ac{RT} itself).
 For example, Figure~6 of the original study plots the first two Edge PCA components colorized by the Nugent score.
 We recalculated this figure for comparison, and show it later in \figref{fig:kmeans_all:sub:epca_ns}.
 
@@ -289,12 +317,12 @@ In contrast, our Edge Correlation measure directly reveals
 the connection between Nugent score and placements on the reference tree:
 The clade on the left hand side of the tree, to which the red and orange branches lead to,
 are \taxonname{Lactobacillus iners} and \taxonname{Lactobacillus crispatus}, respectively,
-which were identified in \cite{Srinivasan2012} to be associated with a healthy vaginal microbiome.
+which were identified in \citeay{Srinivasan2012} to be associated with a healthy vaginal microbiome.
 Thus, their presence in a sample is anti-correlated with the Nugent score, which is lower for healthy subjects.
 The branches leading to this clade are hence colored in red.
 On the other hand, there are several other clades that exhibit a positive correlation with the Nugent score,
 that is, were green and blue paths lead to in the figure,
-again a finding already reported in \cite{Srinivasan2012}.
+again a finding already reported in \citeay{Srinivasan2012}.
 
 Both trees in \figref{fig:var_cor} highlight the same parts of the tree:
 The dark branches with high deviation in \figref{fig:var_cor:sub:em_varl} represent clades
@@ -304,14 +332,14 @@ also vary between samples of different Nugent score.
 This indicates that both methods reveal the clades that are relevant for discriminating samples of this dataset.
 
 We further compared our methods to the visualization of Edge PCA components on the reference tree.
-To this end, we recalculated Figures~4 and 5 of \cite{Matsen2011a},
+To this end, we recalculated Figures~4 and 5 of \citeay{Matsen2011a},
 and visualized them with our color scheme in \figref{fig:epca} for ease of comparison.
 They show the first two components of Edge PCA, mapped back to the \ac{RT}.
 The first component, \figref{fig:epca:sub:comp1},
 reveals that the \taxonname{Lactobacillus} clade represents the axis with the highest heterogeneity across samples,
 while the second component, \figref{fig:epca:sub:comp2},
-further distinguishes between the two aforementioned clades within \taxonname{Lactobacillus}.
-Edge Correlation also highlights the \taxonname{Lactobacillus} clade as shown in \figref{fig:var_cor:sub:ei_var},
+further distinguishes between the two aforementioned clades within the \taxonname{Lactobacilli}.
+As shown in \figref{fig:var_cor:sub:ei_var}, Edge Correlation also highlights the \taxonname{Lactobacillus} clade,
 but does not distinguish further between its sub-clades.
 This is because a high Nugent score is associated
 with a high abundance of placements in either of the two relevant \taxonname{Lactobacillus} clades.
@@ -544,7 +572,7 @@ We again found similar correlations compared to the Nugent score.
         in subfigures \subref{fig:amsel_ph:sub:amsel_em} and \subref{fig:amsel_ph:sub:amsel_ei},
         as well as with the vaginal pH value
         in subfigures \subref{fig:amsel_ph:sub:ph_em} and \subref{fig:amsel_ph:sub:ph_ei}.
-        Both features were also used in \cite{Srinivasan2012} as additional indicators of Bacterial Vaginosis.
+        Both features were also used in \citeay{Srinivasan2012} as additional indicators of Bacterial Vaginosis.
         The figures are almost identical to the ones shown in \figref{fig:all_nugent};
         that is, they yield results that are consistent with the previously used Nugent score,
         as well as consistent with existing methods.
@@ -734,3 +762,5 @@ or (ii) how oceanic currents influence species diversity and distribution in the
 While it is unlikely that such questions can be answered in a single visualization,
 it might still be interesting and helpful to explore more involved methods
 using phylogenetic placement data to help answering them.
+
+\todo{taxon weighing instead of simply division by mean}

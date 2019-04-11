@@ -241,6 +241,8 @@ and their functional annotation (``What are they doing?'') \cite{Desai2012,Lindg
 Typical pipelines for both tasks are summarized in \figref{fig:metaseq_pipeline}
 and described in more detail in the following.
 
+\todo{cite} \cite{Peabody2015}: ``Evaluation of shotgun metagenomics sequence classification methods using in silico and in vitro simulated communities''
+
 \begin{figure}[hpbt!]
     \centering
     \includegraphics[width=\linewidth]{metaseq_pipeline.pdf}
@@ -455,6 +457,13 @@ otu table, can be seen as a Contingency table (is this actually what biologist u
 
 \cite{Li2015a}: ``Microbiome, Metagenomics, and High-Dimensional Compositional Data Analysis''
 \todo{could be placed here, or above for meta-g analyses, or below in the placement normalization/compositional part. or all of these places}
+
+\cite{Chen2013} for a review
+
+use of otus instead of all sequences is a current debate.
+\cite{Callahan2017,Glassman2018}
+for broad scale studies, such as what we do here, it does not seem to make much of a difference though.
+\cite{Glassman2018}
 
 % ######################################################################################################################
 %         Tree of Life
@@ -719,6 +728,8 @@ This unweighted, absolute distance is often used when comparing phylogenies.
 There also exists weighted and relative variants, as well as a variant called \emph{branch score} \cite{Kuhner1994},
 which also takes the branch lengths of the trees into account.
 
+\todo{also mention iternode scores and our quartet scores?}
+
 A set of taxa is \emph{monophyletic},
 if there is a bipartition of the tree that separates these taxa from all other taxa of the tree.
 In a rooted tree, the node at the end of that edge is then the putative common ancestor of these taxa.
@@ -816,7 +827,7 @@ by integrating over the tree and the parameter space;
 it can thereby also incorporate prior empirical knowledge into the process.
 
 Typical software tools for inferring ML trees include \toolname{IQ-TREE} \cite{Nguyen2015a},
-\toolname{FastTree} \cite{Price2010}, \toolname{GARLI} \cite{Zwickl2006}, and \toolname{RAxML} \cite{Stamatakis2014};
+\toolname{FastTree} \cite{Price2010}, \toolname{GARLI} \cite{Zwickl2006}, and \toolname{RAxML} \cite{Stamatakis2014,Kozlov2018a};
 see \citeay{Zhou2018} for a critical review.
 Bayesian inference on the other hand can for example be conduced using software tools such as
 \toolname{BEAST} \cite{Suchard2018}, \toolname{MrBayes} \cite{Ronquist2003}, and \toolname{ExaBayes} \cite{Aberer2014}.
@@ -1383,7 +1394,7 @@ computational challenges and bottlenecks arise \cite{Scholz2012}.
 In particular, both calculating an MSA and inferring a phylogeny are NP-hard \cite{Just2001,Chor2005},
 and thus impractical or infeasible for large datasets.
 Furthermore, metagenomic reads are often short, and hence lack phylogenetic signal
-to robustly infer a tree and to properly resolve their relationships \cite{Janssen2018}.
+to robustly infer a tree and to properly resolve their relationships \cite{Matsen2010,Janssen2018}.
 
 Thus, \emph{phylogenetic placement}  (also called \emph{evolutionary placement})
 has been developed for conducting phylogenetic analyses of such data \cite{VonMering2007,Monier2008}.

@@ -192,10 +192,10 @@ This is however more likely to yield sub-optimal clusterings \cite{Kanungo2003}.
 Then, each sample is assigned to its nearest centroid, using the KR distance. %for example the KR or NH distance.
 Lastly, the centroids are updated to represent
 the average mass distribution of all samples that are currently assigned to them.
-This iterative process alternates between improving the assignments and the centroids.
+This iterative process alternates between improving the assignments and improving the centroids.
 Thus, the main difference to normal $k$-means in the $\mathbb{R}^d$ is the use of phylogenetic information:
 Instead of euclidean distances on vectors, we use the KR distance,
-and instead of averaging vectors to obtain centroids, we use the average mass distribution.
+and instead of averaging vectors to obtain centroids, we use the average mass distribution on the tree.
 
 The process is repeated until it converges,
 that is, the cluster assignments do not change any more between subsequent iterations,
@@ -220,7 +220,7 @@ Examples of this are shown in \figref{fig:centroids}.
 \paragraph{Algorithmic Improvements}
 \label{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans:par:AlgorithmicImprovements}
 
-In each assignment step of the algorithm, distances from all samples to all centroids are calculated,
+In each assignment step of the algorithm, distances from all $n$ samples to all $k$ centroids are computed,
 which has a time complexity of $\mathcal{O}(n \cdot k)$.
 In order to accelerate this step, we can apply branch binning
 as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}.
@@ -247,7 +247,7 @@ Although this problem did not occur in our tests, we implemented the following s
 First, find the cluster with the highest variance.
 Then, choose the sample of that cluster that is furthest from its centroid,
 and assign it to the empty cluster instead.
-This process is repeated if multiple empty clusters occur at once.
+This process is repeated if multiple empty clusters occur at once in an iteration.
 
 % ======================================================================================================================
 %         Imbalance k-means
@@ -262,19 +262,19 @@ which is a variant of $k$-means that makes use of the edge imbalance transformat
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}),
 and thus takes the clades of the reference tree into account.
 In order to quantify the difference in imbalances between two samples,
-we use the euclidean distance between their imbalance vectors (that is, rows of the imbalance matrix).
+we use the Euclidean distance between their imbalance vectors (that is, rows of the imbalance matrix).
 This is a suitable distance measure,
 as the imbalances implicitly capture the tree topology as well as the placement mass distributions.
 As a consequence, the expensive tree traversals required for Phylogenetic $k$-means are not necessary for the calculations.
 The algorithm takes the edge imbalance matrix of normalized samples as input,
 % as shown in \figref{fig:imbalance:sub:Matrices},
-and performs a standard euclidean $k$-means clustering following the Lloyd-Forgy algorithm \cite{Lloyd1982,Forgy1965}.
+and performs a standard Euclidean $k$-means clustering following the Lloyd-Forgy algorithm \cite{Lloyd1982,Forgy1965}.
 % As there is no apparent phylogenetically informative distance measure between imbalance vectors,
 % we use euclidean distance instead.
 % This also allows to calculated centroids as simple vector averages.
 
 This variant of $k$-means tends to find clusters that are consistent with the results of Edge PCA,
-as both use the same input data and both operate in euclidean space. %as well as the same distance measure.
+as both use the same input data (imbalances) and both operate in Euclidean space. %as well as the same distance measure.
 Furthermore, as the method does not need to calculate KR distances,
 and thus neither involves tree traversals nor needs to consider each placement location (or bins of those) separately,
 it is several orders of magnitude faster than Phylogenetic $k$-means.
@@ -849,13 +849,16 @@ As the centroids are randomly initialized, the number of iterations can vary;
 in our tests, it was mostly below \num{100}.
 For the \ac{BV} dataset with \num{220} samples and a reference tree with \num{1 590} edges, using $k:=3$,
 our implementation ran \num{9} iterations, needing \SI{35}{\second} and \SI{730}{\mega\byte} of main memory on a single core.
-For the \ac{HMP} dataset with \num{9 192} samples and \num{3 824} edges, we used $k:=18$,
+% For the \ac{HMP} dataset with \num{9 192} samples and \num{3 824} edges, we used $k:=18$,
+For the \ac{HMP} dataset with \num{9 192} samples containing \num{119} million sequences,
+and a reference tree with \num{3 824} edges, we used $k:=18$,
 which took \num{46} iterations and ran in \SI{2.7}{\hour} on \num{16} cores, using \SI{48}{\giga\byte} memory.
 
 In contrast to this, Imbalance $k$-means neither needs to conduct any expensive tree traversals,
+% and does not need to store each individual placement,
 nor take single placement locations into account,
-but instead operates on compact vectors, using euclidean distances.
-It is hence several orders of magnitude faster than Phylogenetic $k$-means.
+but instead operates on compact vectors with one entry per edge, using euclidean distances.
+It is hence several orders of magnitude faster than Phylogenetic $k$-means, and only needs a fraction of the memory.
 For example, using again $k:=18$ for the \ac{HMP} dataset,
 the algorithm executed \num{75} iterations in \SI{2}{\second}.
 It is thus also applicable to extremely large datasets.
