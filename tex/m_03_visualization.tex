@@ -84,6 +84,57 @@ with the tree visualization by adding the abundances next to each clade.
     \label{fig:abundances_comparison}
 \end{figure}
 
+% A more detailed visualization can be obtained by showing the abundances per taxon and per sample.
+% which is often used for OTU trees, where a heat map can show the abundances of the OTUS at the tips of the tree.
+A more detailed visualization of the abundances per taxon and per sample 
+can be obtained via a heat map that shows the per-sample abundances at the tips of the tree.
+This is often used for OTU trees, where tips correspond to the OTUs that the tree was inferred from.
+This can be extended to placements by also showing abundances/masses at the inner edges, 
+as shown in \figref{fig:heat_tree}.
+The figure shows the placements per edge and per sample for the \ac{BV} dataset;
+see \secref{supp:sec:DetailsEmpiricalDatasets:sub:BV} for details on this dataset.
+
+% for instance in form of a heat map as exemplified in \figref{fig:heat_tree}.
+% Typically, these visualizations are used for trees inferred from OTU sequences,
+% meaning that abundances 
+% typically, for otus abundances at tips.
+% can however be extended to placements by also showing masses at inner branches,
+
+\begin{figure}[!htbp]
+    \centering
+    \vspace{-1em}
+    \includegraphics[width=\linewidth]{heat_tree.pdf}
+    \caption[Visualization of per-edge and per-sample masses of the BV dataset]{
+        \textbf{Visualization of per-edge and per-sample masses of the BV dataset.}
+        The figure provides an overview of the placement of the \ac{BV} dataset:
+        The left hand side shows a condensed version of the original reference tree of \citeay{Srinivasan2012},
+        colored by log-scaled placement mass of all samples accumulated.
+        For clarity and simplicity, in this figure we used a reference tree
+        built from the consensus sequences of each original reference taxon,
+        so that each species is represented by exactly one tip here.
+        The \taxonname{Lactobacillus} clade is highlighted in the tree, which is an important clade for this dataset.
+        \\
+        The right hand side shows a heat map that further resolves the placement masses per sample:
+        Each row corresponds to a branch of the tree on the left (note that dashed lines also start from inner branches),
+        and each column represents one sample.
+        The values are log-centered in order to be consistent with typical OTU abundance heat map representations,
+        for example as in \citeay{Washburne2017a}.
+        The samples/columns are sorted by their Nugent score,
+        from \num{0} at the left for the healthy patients to \num{10} at the right for the sick ones.
+        The Nugent score of each sample is also shown at the top as a blue to red bar.
+        % ranging from 0 (healthy) to 10 (severe illness).
+    }
+    \label{fig:heat_tree}
+\end{figure}
+
+On the left hand side of \figref{fig:heat_tree}, note the two particularly dark branches, 
+\taxonname{Lactobacillus iners} and \taxonname{Lactobacillus crispatus},
+which are the major species associated with a healthy vaginal microbiome \cite{Srinivasan2012}.
+This can also be seen on the right hand side of the figure,
+where the high abundance of \taxonname{Lactobacillus} in healthy patients
+is visible in the lower part of the matrix,
+while the diseased patients exhibit high placement masses at several other taxa \cite{Srinivasan2012}.
+
 Such visualizations directly depict the placement masses on the tree.
 When visualizing the accumulated masses of multiple samples at once,
 it is important to chose the appropriate normalization strategy for the task at hand,
@@ -251,21 +302,17 @@ However, the correlation is \emph{not} calculated between samples or sequence ab
 Hence, even when using normalized samples, %that is, working with compositional data,
 the pitfalls regarding correlations of compositional data \cite{Lovell2015} do not apply here.
 
-\todo{rewrite the following. see below for a text. check the referenced sections for remnants of old stuff!}
-
-The method further bears some conceptual similarity to methods
-such as Phylo\-Factor \cite{Washburne2017a} and Balance Trees \cite{Morton2017},
-which we briefly described in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}.
-These methods are also able to take meta-data features into account and
-can hence identify relationships between changes in environmental variables and changes in the per-node balance.
-They differ from our Edge Correlation as described before:
-Balances are a property of nodes, not edges, and they do not use a fixed reference tree.
-We outline a potential transfer of the Edge Correlation concept to balances in \chpref{ch:ConclusionOutlook:par:AnalysisMethods}.
-
-\todo{this is from the new part of the paper: use this, adapt chapter refs}
+% The method further bears some conceptual similarity to methods
+% such as Phylo\-Factor \cite{Washburne2017a} and Balance Trees \cite{Morton2017},
+% which we briefly described in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}.
+% These methods are also able to take meta-data features into account and
+% can hence identify relationships between changes in environmental variables and changes in the per-node balance.
+% They differ from our Edge Correlation as described before:
+% Balances are a property of nodes, not edges, and they do not use a fixed reference tree.
+% We outline a potential transfer of the Edge Correlation concept to balances in \chpref{ch:ConclusionOutlook:par:AnalysisMethods}.
 
 The method further bears some conceptual similarity to Phylofactorization \cite{Washburne2017a},
-for which we later present adaptation to phylogenetic placements.
+for which we present adaptation to phylogenetic placements in \chpref{ch:Factorization}.
 Phylofactorization also takes meta-data features into account and can hence identify relationships
 between changes in environmental variables and changes in abundances in clades of the tree.
 It typically uses linear regression in form of a \acf{GLM} to assess these relationships.
