@@ -25,7 +25,7 @@
 % \subsection*{Phylogenetic ILR transform and Phylofactorization}
 % \label{sec:MaterialsMethods:sub:Balances}
 
-The concepts and methods presented in the previous Chapters \ref{ch:Visualization} and \ref{ch:Clustering} 
+The concepts and methods presented in the previous Chapters~\ref{ch:Visualization} and \ref{ch:Clustering}
 resemble two recent approaches for analyzing phylogenetic data:
 the Phylogenetic Isometric Log-Ratio (\emph{PhILR}) transformation and balances \cite{Silverman2017},
 as well as Phylogenetic Factorization (\emph{Phylofactorization}) \cite{Washburne2017a}.
@@ -33,6 +33,7 @@ These methods use a tree inferred from the OTU sequences of the samples (instead
 and annotate the abundances of OTUs per sample on the tips of this tree (instead of placement masses on the branches).
 The methods use these data to draw conclusions about compositional changes in clades of the tree in different samples,
 as well as relationships of per-clade OTU abundances with environmental meta-data variables.
+See \secref{ch:Foundations:sec:SequenceAnalysis:sub:OTUs} for details on OTU clustering of metagenomic samples.
 
 % The PhILR transform computes a \emph{balance} between the OTU abundances
 % in the two subtrees below a given inner node of the tree...
@@ -43,17 +44,18 @@ This is a measure of contrast that expresses which of the two subtrees comprises
 In the PhILR transform  \cite{Silverman2017}, these balances are computed
 for the two subtrees below each inner node of a rooted binary tree,
 while ignoring abundances in the respective remainder of the tree.
-In Phylofactorization however, these balances are computed for the two subtrees that are induced by the edges of the tree.
+In Phylofactorization however, these balances are computed
+for the two subtrees that are induced by the edges of the tree \cite{Washburne2017a}.
 This is highly similar to the concept of edge imbalances 
 that we introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}.
 Note that despite sharing a similar name and exhibiting conceptual similarities,
-balances and the previously introduced edge imbalances are distinct approaches that should not be confused.
+balances and edge imbalances are distinct approaches that should not be confused.
 We later discuss respective similarities and differences in more detail.
 
 Furthermore, we remark that the \emph{Balance Trees} method \cite{Morton2017} employs analogous concepts
 by calculating the balance of nodes using the isometric log-ratio of OTU abundances.
 However, instead of using a phylogenetic tree, it assumes any binary partitioning of the OTUs,
-e.\,g., obtained from a UPGMA clustering of the OTUs based on a meta-data feature.
+e.\,g., obtained from a UPGMA clustering \cite{Legendre1998} of the OTUs based on a meta-data feature.
 These nodes thus correspond to specific meta-data values,
 again allowing for statements about the changes in OTU abundances that occur with changing environmental variables.
 %value thresholds that separate distinct samples.
@@ -112,6 +114,25 @@ as used by the PhILR transform \cite{Silverman2017}.
 \section{Methods and Implementation}
 \label{ch:Balances:sec:Methods}
 
+In \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}, 
+we briefly outlined the inherently compositional nature of metagenomic sequence data \cite{Gloor2017}.
+For a thorough discussion of the implications of this, see \citeay{Silverman2017}.
+One solution is to transform the data into an unconstrained space that is not compositional.
+This can, for example, be achieved via the Isometric Log-Ratio (ILR) transform \cite{Egozcue2003},
+which, given a compositional space, creates a new coordinate system with an orthonormal basis \cite{Egozcue2005}.
+The ILR transform requires a sequential binary partitioning of the underlying original space \cite{Pawlowsky-Glahn2015}.
+As suggested in \citeay{Silverman2017},
+a bifurcating phylogenetic tree (e.\,g., our \ac{RT}) represents such a partitioning,
+which also provides a meaningful way of interpreting the resulting coordinates.
+This so-called \emph{Phylogenetic ILR} (PhILR) transform yields an ILR coordinate system
+that captures the evolutionary relationships of the phylogeny \cite{Silverman2017}.
+The resulting coordinates are called \emph{balances} \cite{Egozcue2003,Egozcue2005}.
+The balances obtained from an ILR transform represent the log-ratio of the geometric means of the data in the two subtrees.
+Hence, they can be interpreted as a contrast (log-ratio) between two aggregates (geometric means) of data.
+% which facilitates to use them for phylofactorization.
+Furthermore, due to the orthogonality of the ILR basis vectors,
+the balances can be used by conventional statistical tools without suffering from compositional artifacts.
+
 % ----------------------------------------------------------------------------------------------------------------------
 %     ILR Transform
 % ----------------------------------------------------------------------------------------------------------------------
@@ -120,64 +141,49 @@ as used by the PhILR transform \cite{Silverman2017}.
 % \subsection{Phylogenetic ILR Transform for Phylogenetic Placements}
 \label{ch:Balances:sec:Methods:sub:ILRTransform}
 
-In \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}, 
-we briefly explained the inherently compositional nature of metagenomic sequence data \cite{Gloor2017}.
-For a thorough discussion of the implications of this, see \cite{Silverman2017}.
-One solution is to transform the data into an unconstrained space that is not compositional.
-This can, for example, be achieved via the Isometric Log-Ratio (ILR) transform \cite{Egozcue2003},
-which, given a compositional space, creates a new coordinate system with an orthonormal basis \cite{Egozcue2005}.
-The ILR transform requires a sequential binary partitioning of the underlying original space \cite{Pawlowsky-Glahn2015}.
-As suggested in \cite{Silverman2017},
-a bifurcating phylogenetic tree (e.g., our \ac{RT}) represents such a partitioning,
-which also provides a meaningful way of interpreting the resulting coordinates.
-This so-called \emph{Phylogenetic ILR} (PhILR) transform yields an ILR coordinate system
-that captures the evolutionary relationships of the phylogeny \cite{Silverman2017}.
-The resulting coordinates are called \emph{balances} \cite{Egozcue2003,Egozcue2005}.
-The balances obtained from an ILR transform represent the log-ratio of the geometric means of the data in the two subtrees.
-Hence, they can be interpreted as a contrast (log-ratio) between two aggregates (geometric means).
-% which facilitates to use them for phylofactorization.
-Furthermore, due to the orthogonality of the ILR basis vectors,
-the balances can be used by conventional statistical tools without suffering from compositional artifacts.
-
 % \todo{Maybe add a figure here? Not sure which one, but might think of something that shows how balances contrast two subtrees.}
 
 In the following, we present an adaptation of the PhILR transform and balances to placement data,
-based on the work of \cite{Silverman2017}.
+based on the work of \citeay{Silverman2017}.
 See there for more details on the method and the underlying mathematical concepts,
 such as the connection between the ILR transform and the centered log-ratio (CLR) transform.
-We now describe the computation of the Phylogenetic ILR transform,
+We describe the computation of the Phylogenetic ILR transform,
 along with the changes needed for phylogenetic placement data.
-We focus on the computation for a single sample.
+We focus on the computation for a single sample;
+for multiple samples, the process is simply repeated.
 We assume that a fixed \acf{RT} (a sequential binary partitioning)
 along with the per-branch placements of the sequences in the sample are given.
-The placements are represented by a vector $\bm{c}$ of size $m$, containing the absolute (not normalized) edge masses,
-where $m$ is the number of edges in the tree.
+
+The per-edge placements of the sample are represented by a vector $\bm{c}$ of size $m$, 
+containing the absolute (not normalized) edge masses, where $m$ is the number of edges in the tree.
 In other words, our input is a single row (one sample)
 of the edge masses matrix, as shown in \figref{fig:masses_imbalances:sub:Matrices}.
 % as well as an $m \times n$ data matrix $X$ for $m$ edges of the tree and $n$ samples,
 % containing the absolute per-edge masses of the placed sequences in each sample,
-The absolute masses are transformed into relative abundances as described in Section \nameref{sec:Introduction:sub:Masses}:
+The absolute masses are transformed into relative abundances as described in %Section \nameref{sec:Introduction:sub:Masses}:
+\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeMasses}:
 Each element of $\bm{c}$ is divided by the sum of all elements,
 yielding the relative masses vector $\bm{x}$ for the given sample.
-In compositional data analysis, this operation is known as the closure of the data \cite{Aitchison1986}.
-% , and computed as
+In compositional data analysis, this operation is known as the \emph{closure} of the data \cite{Aitchison1986}, and computed as:
 
-% \begin{equation*}
-%     \label{ch:MaterialsMethods:sec:Balances:eq:Closure}
-%     \bm{x} = \left[~ \frac{c_1}{\sum_m c_m}, \dots, \frac{c_m}{\sum_m c_m} ~\right]
-% \end{equation*}
+\begin{equation}
+    \label{ch:Balances:sec:Methods:eq:Closure}
+    \bm{x} = \left[~ \frac{c_1}{\sum_m c_m}, \dots, \frac{c_m}{\sum_m c_m} ~\right]
+\end{equation}
 
 The original PhILR furthermore allows to use per-taxon weights $\bm{p}$
 in order to down-weigh the impact of low abundant taxa/OTUs \cite{Egozcue2016,Silverman2017}.
-In our adaptation, this weighting scheme is accordingly changed to weights $\bm{p}$ \emph{per edge} of the \ac{RT}.
+In our adaptation, this weighting scheme is accordingly changed to \emph{per edge} weights $\bm{p}$ of the \ac{RT}.
 Unfortunately, the nomenclature of existing publications
-(namely, \cite{Matsen2011a} and \cite{Silverman2017}) creates a conflict here:
+(namely, \citeay{Matsen2011a} and \citeay{Silverman2017}) creates a conflict here:
 These weights are not to be confused with our terminology of likelihood weights and edge masses.
+
 The default case of edge weights $\bm{p} = ( 1, \ldots, 1 )$ represents no weighting,
 where each edge equally contributes to the balance,
 while any $\bm{p} \neq ( 1, \ldots, 1 )$ is a generalized form of the ILR transform \cite{Silverman2017}.
 We later describe an appropriate choice of weights
-in Section \nameref{sec:MaterialsMethods:sub:Balances:sub:EdgeWeights}.
+% in Section \nameref{sec:MaterialsMethods:sub:Balances:sub:EdgeWeights}.
+in \secref{ch:Balances:sec:Methods:sub:EdgeWeights}.
 These weights are applied to the relative masses $\bm{x}$ to obtain the shifted composition $\bm{y} = \bm{x} / \bm{p}$,
 using element-wise division \cite{Egozcue2016}.
 
@@ -190,7 +196,7 @@ to the subsets of masses and weights of the given sample at the edges in $R$.
 Then, the balance $y^*$ between the sets $R$ and $S$ is computed as:
 
 \begin{equation}
-    \label{ch:MaterialsMethods:sec:Balances:eq:Balance}
+    \label{ch:Balances:sec:Methods:eq:Balance}
 %     y_i^* = \sqrt{ \frac{ n_i^+ \cdot n_i^- }{ n_i^+ + n_i^- }} ~\cdot~ \log \frac{g_p( \bm{y}_i^+ ) }{ g_p( \bm{y}_i^- ) }
 %     y^*( R, S ) ~=~ \sqrt{ \frac{ w_R \cdot w_S }{ w_R + w_S }} ~\cdot~
 %     y^*( R, S ) ~=~ \sqrt{ \frac{ \sum \bm{p}_R \cdot \sum \bm{p}_S }{ \sum \bm{p}_R + \sum \bm{p}_S }} ~\cdot\,
@@ -209,7 +215,7 @@ The first term is a scaling term that, for a given edge, is constant across all 
 It ensures unit length of the ILR basis elements, and uses the sums of weights in $\bm{p}$:
 
 \begin{equation}
-    \label{ch:MaterialsMethods:sec:Balances:eq:WeightSums}
+    \label{ch:Balances:sec:Methods:eq:WeightSums}
     \nu_R = \sum_{r \in R} p_r  ~~~\mbox{and}~~~  \nu_S = \sum_{s \in S} p_s
 \end{equation}
 
@@ -217,60 +223,89 @@ The second term is the log-ratio of geometric means, where $\operatorname{gm}( \
 is the weighted geometric mean of the values in $\bm{y}_R$ with weights $\bm{p}_R$:
 
 \begin{equation}
-    \label{ch:MaterialsMethods:sec:Balances:eq:GeometricMean}
+    \label{ch:Balances:sec:Methods:eq:GeometricMean}
 %     g_p( \bm{y}_i^\pm ) = \exp \left( \frac{ \sum_{( \theta_{ij} = \pm 1 )} p_j \log y_j }{ \sum_{( \theta_{ij} = \pm 1 )} p_j } \right)
-    \operatorname{gm}( \bm{y}_R, \bm{p}_R ) = \exp \left( \frac{ \sum_{r \in R} \, p_r \cdot \log y_r }{ \sum_{r \in R} \, p_r } \right)
+    \operatorname{gm}( \bm{y}_R, \bm{p}_R )
+%     = \left( \prod_{r \in R} y_r ^ {p_r} \right) ^ { \sfrac{1}{ \sum_{r \in R} \, p_r } }
+    = \left(~ \prod_{r \in R} y_r ^ {~p_r} \right) ^ { \frac{1}{ \nu_R } }
+%     = \left(~ \prod_{r \in R} y_r ^ {~p_r} \right) ^ { \nu_R ^{-1} }
+    = \exp \left( \frac{ \sum_{r \in R} \, p_r \cdot \log y_r }{ \sum_{r \in R} \, p_r } \right)
 \end{equation}
 
 Note that if $\bm{p} = ( 1, \ldots, 1 )$, % we get $Y = C$ and $\nu_R = |\, \bm{y}_R \,|$,
-\eqnref{ch:MaterialsMethods:sec:Balances:eq:Balance}
+\eqnref{ch:Balances:sec:Methods:eq:Balance}
 represents the original ILR transform without a weighting scheme \cite{Egozcue2003},
-\eqnref{ch:MaterialsMethods:sec:Balances:eq:WeightSums} equals the number of edges in $R$ and $S$, respectively,
-and \eqnref{ch:MaterialsMethods:sec:Balances:eq:GeometricMean} is the standard (unweighted) geometric mean.
+\eqnref{ch:Balances:sec:Methods:eq:WeightSums} equals the number of edges in $R$ and $S$, respectively,
+and \eqnref{ch:Balances:sec:Methods:eq:GeometricMean} is the standard (unweighted) geometric mean.
+We show an example of the balance computation in \figref{fig:balances}.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\linewidth]{pdf/balances.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:balances:sub:masses}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:balances:sub:tree}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:balances:sub:calculation}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:balances:sub:balances}
+    \end{subfigure}
+    \caption[Example computation of the balances between two subtrees]{
+        \textbf{Example computation of the balances between two subtrees.}
+        \subref{fig:balances:sub:masses}
+        The basis of the computation are the per-branch masses of the samples, 
+        which are here summarized in the mass matrix, c.\,f. \figref{fig:masses_imbalances:sub:Matrices}.
+        \subref{fig:balances:sub:tree}
+        We here show the computation of the balance for the two subtrees induced by the dashed edge of the tree,
+        for one sample.
+        Numbers next to edges are the accumulated per-edge placement masses of the sequences in the sample,
+        that is, one row of the matrix.
+        We call the left hand side of the tree R, and the right hand side S, as seen from the dashed edge.
+        For simplicity, we do not use weighting here; that is, we assume $\bm{p} = ( 1, \ldots, 1 )$.
+        \subref{fig:balances:sub:calculation}
+        First, the geometric means for both subtrees are calculated, then, their balance.
+        The balance is positive, indicating that subtree R contains more placement mass on (geometric) average.
+        \subref{fig:balances:sub:balances}
+        The compuation is repeated for all edges and for all samples, yielding the \emph{balance matrix} shown here.
+    }
+    \label{fig:balances}
+\end{figure}
 
 % balance can be computed for nodes, subtrees, or -- similar to imbalances, for two sides of an edge.
-Balances as defined here can be computed as a measure of contrast between any disjoint sets $R$ and $S$ of edges.
+Balances as defined here can be computed as a measure of \emph{contrast} between any disjoint sets $R$ and $S$ of edges.
 Interchanging $S$ and $R$ flips the sign of the balance;
 this is irrelevant for the subsequent steps presented here, as long as the interchange is applied consistently.
 % We decided for the convention of using the subtree that contains the root for the numerator,
 % in accordance with edge imbalances.
 When computing the balance between the edges in the two subtrees induced by some given edge $e$,
-the conceptual similarity with the previously described \nameref{sec:Introduction:sub:Imbalances} becomes apparent:
+the conceptual similarity with the previously described edge imbalances 
+(\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}) becomes apparent:
 Imbalances use the difference of sums for contrasting and aggregating,
 while balances use the ratio of means for the same purpose.
-We show an example of this computation in \figref{fig:balances}.
 Hence, balances represent a similar transformation of the placement data,
-that can also be used to conduct analyses, such as the Phylofactorization, as presented in the next section.
+that can also be used to conduct analyses, such as the Phylofactorization, as presented in \chpref{ch:Factorization}.
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.7\linewidth]{pdf/balances.pdf}
-    \caption{
-        \textbf{Example computation of the balances between two subtrees.}
-        The figure shows how the balance is computed for the two subtrees induced by the dashed edge of the tree,
-        for one sample.
-        Numbers next to edges are the accumulated placement mass of the sequences in the sample.
-        We call the left hand side of the tree R, and the right hand side S, as seen from the dashed edge.
-        For simplicity, we do not use weighting here; that is, we assume $\bm{p} = ( 1, \ldots, 1 )$.
-        First, the geometric means for both subtrees are calculated, then, their balance.
-        The balance is positive, indicating that subtree R contains more placement mass on (geometric) average.
-    }
-    \label{fig:balances}
-\end{figure}
-
-We however remark that the using (unweighted) balances in our previously presented methods,
-such as Edge Correlation and $k$-means clustering,
+We however remark that using (unweighted) balances in our previously presented methods,
+such as Edge Correlation (\secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation})
+and $k$-means clustering (\secref{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans}),
 might lead to spurious results, due to the insensitivity of the geometric mean to singular large values.
 That is, individual branches that accumulate a large fraction of the placement mass (sequence abundances)
 might only insignificantly change the geometric mean of their clade.
 However, such branches are typically the interesting ones,
 and hence should exert more influence on the transformation, which is exactly the purpose of the taxon weighting scheme.
-This further implies that
-balances are not indifferent to splittings of reference taxa into multiple representatives
+This further implies that balances are not indifferent to splittings of reference taxa into multiple representatives
 (pers.~comm. with A.~Washburne on 2018-11-23).
 %the distribution of placement masses across several branches of related species
 % yields different balances compared to having a single representative taxa in the \ac{RT};
-We discuss the implications of this in more detail in the evaluation of the method.
+We discuss the implications of this in more detail in the evaluation of the method (\secref{ch:Balances:sec:Results}).
 
 % Hence, balances can also be employed for our other methods presented above, such as
 % \nameref{sec:MaterialsMethods:sub:Visualization:sub:Correlation} and
@@ -285,26 +320,26 @@ We discuss the implications of this in more detail in the evaluation of the meth
 %     Edge Weights
 % ----------------------------------------------------------------------------------------------------------------------
 
-\subsection{Edge Weights}
+\subsection{Taxon Weighting Scheme}
 \label{ch:Balances:sec:Methods:sub:EdgeWeights}
 
 The PhILR also allows for incorporating two distinct weighting schemes for the balances,
 one based on taxon abundances, and one based on the branch lengths of the underlying phylogeny \cite{Silverman2017}.
 As mentioned above, we implemented the former, while leaving the latter as future work.
 
-We now describe how to adapt the taxon weights of \cite{Silverman2017} to our placement-based approach,
+We here describe how to adapt the taxon weights of \cite{Silverman2017} to our placement-based approach,
 that is, how an appropriate vector $\bm{p}$ of edge weights can be constructed.
-Originally, this weighting scheme down-weighs the influence of low abundant taxa \cite{Silverman2017},
+Originally, this taxon weighting scheme down-weighs the influence of low abundant taxa \cite{Silverman2017},
 which are known to be less reliable and more variable \cite{Good1956}.
 Here, we accordingly down weigh edges with low placement mass, for the same reasons.
 We follow the approach of \cite{Silverman2017}, and construct the edge weights by multiplicatively combining two terms:
 
-\begin{itemize}
+\begin{enumerate}
     \item A measure for the central tendency of the absolute edge masses, for example, their mean across all samples.
           This is the main component of the weight that yields low values for edges with low mass and vice versa.
     \item A vector norm of the relative edge masses across the samples.
           This term additionally weighs edges by their specificity.
-\end{itemize}
+\end{enumerate}
 
 Our implementation allows to use the median, the arithmetic mean, and the geometric mean,
 as well as different $\ell_p$-norms (such as the Manhattan, Euclidean, and maximum norm),
@@ -313,17 +348,17 @@ We follow the advice of \cite{Silverman2017}, and by default use the geometric m
 (with pseudo-counts added to the masses to avoid skew from edges without any placement mass) and the Euclidean norm.
 In that case, the weights for edge $j$ are computed as follows:
 
-\begin{equation*}
-    \label{ch:MaterialsMethods:sec:Balances:eq:EdgeWeights}
+\begin{equation}
+    \label{ch:Balances:sec:Methods:eq:EdgeWeights}
 %     p_j = \sqrt[n]{ ( c_{j1} + 1 ) \cdot \ldots \cdot ( c_{jn} + 1 ) } \cdot \| x_j \|
 %     p_j ~=~ \sqrt[n]{ \prod_{i=1}^{n} ( \tilde{c}_{ji} + 1 ) }  ~\cdot~  \| \tilde{x}_j \|_2
     p_j ~=~ \sqrt[n]{ \prod_{i=1}^{n} ( \tilde{c}_{ji} + 1 ) }  ~~\cdot~  \sqrt{ \sum_{i=1}^{n} \tilde{x}_{ji}^2 }
-\end{equation*}
+\end{equation}
 
 Here, $n$ is the number of samples, $\tilde{c}_j$ is the vector of absolute masses at edge $j$ across all samples,
 and $\tilde{x}_j$ the vector of relative masses at edge $j$ across all samples, both of length $n$.
 That is, these measures use the masses of all $n$ samples;
-consequently, we use columns instead of rows of the edge masses matrix of \figref{fig:masses_imbalances:sub:Matrices},
+consequently, we here use columns instead of rows of the edge masses matrix of \figref{fig:masses_imbalances:sub:Matrices},
 where each column is used for the weights of the corresponding edge.
 The resulting edge weights $\bm{p}$ are then fixed and used across the balance computation of all samples.
 
@@ -339,23 +374,40 @@ The resulting edge weights $\bm{p}$ are then fixed and used across the balance c
 \section{Evaluation and Results}
 \label{ch:Balances:sec:Results}
 
-As a first test of our adaptation of balances to placement data, we apply it to the \ac{BV} dataset.
-Further assessment of balances for placement data, also with the \ac{HMP} dataset,
-is implicitly conducted by the evaluation of Placement-Factorization below,
+As a first test of our adaptation of balances to placement data, we apply it to the \ac{BV} dataset \cite{Srinivasan2012}.
+Further assessment of balances for placement data, also with the \ac{HMP} dataset \cite{Huttenhower2012,Methe2012},
+is implicitly conducted by the evaluation of Placement-Factorization in \secref{ch:Factorization:sec:Evaluation},
 which uses balances for aggregation and contrasting of subtrees.
 % We hence refrain here from further tests.
+See \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV} and \appref{supp:sec:DetailsEmpiricalDatasets:sub:HMP}
+for descriptions of the datasets.
+
+% ----------------------------------------------------------------------------------------------------------------------
+%     Principal Components
+% ----------------------------------------------------------------------------------------------------------------------
+
+\subsection{Principal Components}
+\label{ch:Balances:sec:Results:sub:PrincipalComponents}
 
 As balances are conceptually similar to edge imbalances, we perform analogous evaluations.
 To this end, we computed the per-edge balance for all edges of the \ac{BV} reference tree, across all \num{220} samples.
 That is, for each edge, we computed the balance between the two subtrees induced by the edge.
-This yields a matrix that we call \emph{balance matrix},
-and which corresponds to the imbalance matrix used for Edge PCA, c.\,f. \figref{fig:masses_imbalances:sub:Matrices}.
+This yields a matrix that we call \emph{balance matrix}, as shown in \figref{fig:balances:sub:balances},
+which corresponds to the imbalance matrix used for Edge PCA, c.\,f. \figref{fig:masses_imbalances:sub:Matrices}.
 Hence, a natural first visualization of the balances is to analyze their principal components,
 that is, to compute the PCA of the balance matrix.
-The first two components are shown in \figref{fig:bv_place_edge_balances_pca_scatter},
+The first two components of the \ac{BV} balances are shown in \figref{fig:bv_place_edge_balances_pca_scatter},
 for both variants of the balance computation (with and without taxon weighting).
-The components exhibit a separation of the samples by Nugent score,
-showing that they yield results comparable to Edge PCA.
+% The principal components exhibit a separation of the samples by Nugent score,
+% showing that they yield results comparable to Edge PCA.
+% In order to interpret what the axes of these principal components mean,
+Furthermore,
+we can again employ the visualization of PCA eigenvectors on the reference tree as used in Edge PCA \cite{Matsen2011a}.
+% c.\,f., \figref{fig:epca}.
+We show the results for %PCA on the balances of 
+the \ac{BV} dataset in \figref{fig:bv_place_edge_balances_pca_trees},
+where we visualize the first two principal components of the balances with and without taxon weighting on the tree.
+% The figure shows the edges that are responsible for the splits seen in \figref{fig:bv_place_edge_balances_pca_scatter}.
 
 \begin{figure}[!htb]
     \centering
@@ -368,55 +420,24 @@ showing that they yield results comparable to Edge PCA.
         \phantomcaption
         \label{fig:bv_place_edge_balances_pca_scatter:sub:without_taxon_weighting}
     \end{subfigure}
-    \caption{
-        \textbf{Projection of PCA on the edge balances of the \ac{BV} dataset.}
+    \caption[Projection of edge balance PCA components of the \acs{BV} dataset]{
+        \textbf{Projection of edge balance PCA components of the \ac{BV} dataset.}
         The plots show the first two principal components of a PCA on the per-edge balances,
         calculated on placements of the data on reference tree of the \ac{BV} dataset.
         That is, for each edge of the tree, we calculated the balance (log-ratio of geometric means)
         of the placement masses of the \ac{BV} samples between the two sides of the tree induced by the edge.
+        Then, we computed a PCA on the resulting balance matrix.
         \subref{fig:bv_place_edge_balances_pca_scatter:sub:with_taxon_weighting} shows the result when
         using taxon weighting \cite{Silverman2017} in the balances calculation,
         while \subref{fig:bv_place_edge_balances_pca_scatter:sub:without_taxon_weighting} shows the result
         without taxon weighting.
         Each item represents a sample, colored by its Nugent score (0 means healthy, 10 means severe illness);
         the Nugent score had no influence on the PCA calculations.
-        \\
-        Both plots separate the healthy from the sick patients.
-        In contrast to Edge PCA, the first component of
-        \subref{fig:bv_place_edge_balances_pca_scatter:sub:with_taxon_weighting}
-        does not fully distinguish between the healthy (blue) and diseased (red) samples.
-        For some reason, the component only takes \taxonname{Lactobacillus iners} into account,
-        while mostly ignoring \taxonname{Lactobacillus crispatus}.
-        This can be seen in \figref{fig:bv_place_edge_balances_pca_trees:sub:tw_pc1},
-        which shows the eigenvectors of this component visualized on the reference tree.
-        There, the path leading to the \taxonname{Lactobacillus} clade
-        does not include the branches of \taxonname{Lactobacillus crispatus}, which is marked with a black arc.
-        Including the second component however, which distinguishes between the two types of \taxonname{Lactobacillus},
-        as shown in \figref{fig:bv_place_edge_balances_pca_trees:sub:tw_pc2},
-        yields a clear separation of the samples.
-        \\
-        Subfigure \subref{fig:bv_place_edge_balances_pca_scatter:sub:without_taxon_weighting}
-        exhibits closer similarities to the Edge PCA plot shown in \figref{fig:kmeans_all:sub:epca_ns},
-        in that the first component separates healthy from sick,
-        and the second component further splits the healthy individuals apart.
-%         In fact, the only difference to Edge PCA is the use of balances instead of imbalances for the PCA.
-        The edges that are responsible for these splits can be seen in more detail
-        in \figref{fig:bv_place_edge_balances_pca_trees},
-        where we visualize the first two principal components of the balances without taxon weighting on the tree.
     }
     \label{fig:bv_place_edge_balances_pca_scatter}
 \end{figure}
 
-In order to interpret what the axes of these principal components mean,
-we can again employ the visualization of PCA eigenvectors on the reference tree as used in Edge PCA \cite{Matsen2011a},
-c.\,f., \figref{fig:epca}.
-We show the results for PCA of the balances in \figref{fig:bv_place_edge_balances_pca_trees}.
-As with Edge PCA, the principal components correspond to the \taxonname{Lactobacillus} clade,
-with the first component mostly separating \taxonname{Lactobacillus} from the rest of the tree,
-and the second component further distinguishing
-between \taxonname{Lactobacillus crispatus} and \taxonname{Lactobacillus iners}.
-
-\begin{figure}[!htb]
+\begin{figure}[!phtb]
     \centering
     \includegraphics[width=\linewidth]{pdf/bv_place_edge_balances_pca_trees.pdf}
     \begin{subfigure}{0pt}
@@ -435,12 +456,12 @@ between \taxonname{Lactobacillus crispatus} and \taxonname{Lactobacillus iners}.
         \phantomcaption
         \label{fig:bv_place_edge_balances_pca_trees:sub:no_tw_pc2}
     \end{subfigure}
-    \caption{
-        \textbf{Eigenvectors of PCA on the edge balances of the \ac{BV} dataset.}
+    \caption[Eigenvectors of edge balance PCA of the \acs{BV} dataset]{
+        \textbf{Eigenvectors of edge balance PCA of the \ac{BV} dataset.}
         The figure shows the eigenvectors of the first two principal components of PCA
         on the per-edge balances with and without taxon weighting,
         visualized on the reference tree of the \ac{BV} dataset.
-        See \figref{fig:bv_place_edge_balances_pca_scatter} for details on the balances calculation.
+%         See \figref{fig:bv_place_edge_balances_pca_scatter} for details on the balances calculation.
         The visualization of the components on the reference tree is analogous
         to the Edge PCA tree visualization as for example shown in \figref{fig:epca}.
         As the data that is considered in the PCA corresponds to the edges of the tree,
@@ -451,26 +472,60 @@ between \taxonname{Lactobacillus crispatus} and \taxonname{Lactobacillus iners}.
         and the second principal component
         in \subref{fig:bv_place_edge_balances_pca_trees:sub:tw_pc2}
         and \subref{fig:bv_place_edge_balances_pca_trees:sub:no_tw_pc2}, respectively.
-        \\
-        The figure hence indicates how the axes
-        in \figref{fig:bv_place_edge_balances_pca_scatter} can be interpreted:
-        The first component leads to the \taxonname{Lactobacillus} clade,
-        while the second one splits this clade into \taxonname{Lactobacillus iners} and \taxonname{Lactobacillus crispatus}.
-        Hence, the results obtained from this analysis are consistent with our previous findings,
-        c.\,f., \figref{fig:epca} and \cite{Srinivasan2012}.
         In \subref{fig:bv_place_edge_balances_pca_trees:sub:tw_pc1}
         and \subref{fig:bv_place_edge_balances_pca_trees:sub:no_tw_pc1},
         we marked the \taxonname{Lactobacillus crispatus} clade with a black arc at the left of the tree.
-%         in order to show that balances without taxon weighting do not include this clade in the first component.
     }
     \label{fig:bv_place_edge_balances_pca_trees}
 \end{figure}
 
-Furthermore, as mentioned in the methods description,
+\figref{fig:bv_place_edge_balances_pca_trees} hence indicates how the axes of the principal components
+in the PCA scatter plots of \figref{fig:bv_place_edge_balances_pca_scatter} can be interpreted:
+The first component leads to the \taxonname{Lactobacillus} clade,
+while the second one splits this clade into \taxonname{Lactobacillus iners} and \taxonname{Lactobacillus crispatus}.
+Both plots of \figref{fig:bv_place_edge_balances_pca_scatter} separate the healthy from the sick patients.
+However, in contrast to Edge PCA, the first component of
+\figref{fig:bv_place_edge_balances_pca_scatter:sub:with_taxon_weighting}
+does not fully distinguish between the healthy (blue) and diseased (red) samples.
+For yet to explore reasons, the component only takes \taxonname{Lactobacillus iners} into account,
+while mostly ignoring \taxonname{Lactobacillus crispatus}.
+This can be seen in \figref{fig:bv_place_edge_balances_pca_trees:sub:tw_pc1},
+which shows the eigenvectors of this component visualized on the reference tree.
+There, the path leading to the \taxonname{Lactobacillus} clade
+does not include the branches of \taxonname{Lactobacillus crispatus}, which is marked with a black arc.
+Including the second component however, which distinguishes between the two types of \taxonname{Lactobacillus},
+as shown in \figref{fig:bv_place_edge_balances_pca_trees:sub:tw_pc2},
+yields a clear separation of the samples.
+On the other hand, \figref{fig:bv_place_edge_balances_pca_scatter:sub:without_taxon_weighting}
+exhibits closer similarities to the Edge PCA plot shown in \figref{fig:kmeans_all:sub:epca_ns},
+in that the first component separates healthy from sick,
+and the second component further splits the healthy individuals apart.
+% In fact, the only difference to Edge PCA is the use of balances instead of imbalances for the PCA.
+
+Hence, the results obtained from this analysis are consistent with our previous findings, in particular with Edge PCA.
+% c.\,f., \figref{fig:epca} and \cite{Srinivasan2012}.
+% in order to show that balances without taxon weighting do not include this clade in the first component.
+The principal components separate the samples by Nugent score,
+with the first component mostly separating \taxonname{Lactobacillus} from the rest of the tree,
+and the second component further distinguishing
+between \taxonname{Lactobacillus crispatus} and \taxonname{Lactobacillus iners}.
+
+% showing that they yield results comparable to Edge PCA.
+% As with Edge PCA, the principal components correspond to the \taxonname{Lactobacillus} clade,
+
+% ----------------------------------------------------------------------------------------------------------------------
+%     Edge Correlation
+% ----------------------------------------------------------------------------------------------------------------------
+
+\subsection{Edge Correlation}
+\label{ch:Balances:sec:Results:sub:EdgeCorrelation}
+
+As mentioned in the method description (\secref{ch:Balances:sec:Methods:sub:ILRTransform}),
 balances could in principle be used as input to our previously presented methods,
 such as Edge Correlation and $k$-means clustering (which adequately might be called Balance $k$-means),
-in the same manner that we used imbalances before.
-We exemplify the correlation of the Nugent score with balances in \figref{fig:bv_place_edge_balances_correlation}.
+in the same manner that we used imbalances in these methods.
+To provide an example of using balances with these methods, 
+we show the correlation of the Nugent score with balances in \figref{fig:bv_place_edge_balances_correlation}.
 
 \begin{figure}[!htb]
     \centering
@@ -483,9 +538,9 @@ We exemplify the correlation of the Nugent score with balances in \figref{fig:bv
         \phantomcaption
         \label{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting}
     \end{subfigure}
-    \caption{
+    \caption[Correlation of the edge balances of the \acs{BV} dataset with Nugent score]{
         \textbf{Correlation of the edge balances of the \ac{BV} dataset with Nugent score.}
-        The Edge Correlation method as presented in the main text,
+        The Edge Correlation method as presented in \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation},
         and for example shown in \figref{fig:all_nugent},
         can also be conducted using balances (instead of masses or imbalances).
         We here show Edge Correlation using Spearman's Rank Correlation Coefficient,
@@ -501,18 +556,35 @@ We exemplify the correlation of the Nugent score with balances in \figref{fig:bv
     \label{fig:bv_place_edge_balances_correlation}
 \end{figure}
 
-With taxon weighting in \subref{fig:bv_place_edge_balances_correlation:sub:with_taxon_weighting},
-the result is similar to the correlation with imbalances shown in \figref{fig:all_nugent:sub:srcc_ei}:
+The result of this balance-based Edge Correlation with taxon weighting,
+shown in \figref{fig:bv_place_edge_balances_correlation:sub:with_taxon_weighting},
+is similar to the correlation with imbalances in \figref{fig:all_nugent:sub:srcc_ei}:
 An anti-correlation with the \taxonname{Lactobacillus} clade is again visible
 (less placement mass in this clade means higher Nugent score, that is, indicates a more severe illness),
 while several other clades exhibit a positive correlation with Nugent score.
+Hence, balance-based Edge Correlation \emph{with} taxon weighting is consistent with our previous findings,
+and with the imbalance-based variant of this method.
+
+However, artifacts might arise from the underlying mathematical framework of balances,
+in particular the usage of the geometric mean \emph{without} taxon weighting:
+The geometric mean is \emph{not} sensitive to singular large values,
+such as the high amount of placement mass on one of the \taxonname{Lactobacillus} branches.
+It only significantly increases if multiple high values are present,
+such as the multitude of bacterial taxa with high abundance in diseased patients of the \ac{BV} dataset \cite{Srinivasan2012}.
+This can lead to spurious results, as shown in
+\figref{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting},
+where the correlation of the unweighted balances %without taxon weighting
+with the Nugent score yields unrealistically high negative correlations
+for almost all branches that have little placement mass on them (red branches).
 
 %         However, as mentioned in the main text, without taxon weighting, spurious results can occur.
-The most striking difference to the previous Edge Correlation trees in \figref{fig:all_nugent}
-is the majority of spuriously anti-correlated (red) edges in the tree without taxon weighting
-in \subref{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting}.
-As mentioned in the main text, this is due to the insensitivity of the geometric mean
-to the presence of singular large values:
+% The most striking difference to the previous Edge Correlation trees in \figref{fig:all_nugent}
+% is however the majority of spuriously anti-correlated (red) edges in the tree \emph{without} taxon weighting
+% in \figref{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting}.
+% As mentioned in the method description in \secref, this is due to the insensitivity of the geometric mean
+% to the presence of singular large values:
+The reason that the insensitivity of the geometric mean to the presence of singular large values
+leads to the majority of spuriously anti-correlated edges is as follows:
 If most values are small, so will be their geometric mean, even if a few very large values are also present.
 As can be seen in \figref{fig:heat_tree} and \figref{fig:all_dispersions},
 the clades that exhibit a high anti-correlation here (red) have low placement mass with a low variance.
@@ -534,44 +606,47 @@ which finally explains the observed anti-correlations.
 Note that despite this, there are still edges that exhibit positive correlation (blue and green),
 which is where the actual patterns in the data outweigh the insensitivity of the geometric mean.
 
-However, artifacts might arise from the underlying mathematical framework of balances,
-in particular the usage of the geometric mean without taxon weighting:
-The geometric mean is \emph{not} sensitive to singular large values,
-such as the high amount of placement mass on one of the \taxonname{Lactobacillus} branches.
-It only significantly increases if multiple high values are present,
-such as the multitude of bacterial taxa with high abundance in diseased patients of the \ac{BV} dataset \cite{Srinivasan2012}.
-This can lead to spurious results, as shown in
-\figref{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting},
-where the correlation of the unweighted balances %without taxon weighting
-with the Nugent score yields unrealistically high negative correlations
-for almost all branches that have little placement mass on them.
-Moreover, this property of the geometric mean implies that it is sensitive to taxa splitting
+Lastly, this property of insensitivity of the geometric mean implies that it \emph{is} sensitive to taxa splitting,
+that is, to the number of reference sequences that a taxon or species is represented by in the reference tree
 (pers.~comm. with A.~Washburne on 2018-11-23):
-For example, it \emph{does} make a difference whether masses are focused on a single branch,
+For example, in the context of balances of phylogenetic placements,
+it \emph{does} make a difference whether masses are focused on a single branch,
 or distributed across several representatives of the same species.
-
-Hence, we do not recommend to use (unweighted) balances for computations such as correlations or $k$-means clustering.
-Note that when used with \acp{GLM}, such as in Phylofactorization, these issues do not arise:
-The winning edge is chosen to maximize the difference between the null deviance and the deviance of the linear model.
-That difference is small for clades with almost no mass (such as the ones affected by the issue above), %do not exhibit a large difference,
-so that the value of the objective function for such edges is lower than for edges with more mass.
-Hence, the factorization does not incorrectly identify these low-abundance clades as potential factors.
-The usage of balances in Placement-Factorization is further explored in the next section.
-
-% It is however important to note that this issue does not affect phylogenetic factorization
-% when using \acp{GLM} as the objective function:
-% The \ac{GLM} is evaluated as the difference between null deviance
-% the red branches here have almost constantly low balances (only differing in a way that correlates with nugent score,
-% as described above) [-3 to 0], while for example the winning edge has balances in a much wider range [-3 to 25].
-% hence, the null model in glm describes the red values kind of well already
-% in the sense that the absoulte deviation is small, due to the small numbers.
-% in the winning edge however, the absolute difference are larger, so that the gain (null dev minus dev) yields
-% larger values, and thus better ``fits''.
-% \todo{use this to motivate glms, and to mention again that glms can be better used instead of our edge correlation...}
+Hence, in summary,
+we do not recommend to use (unweighted) balances for computations such as correlations or $k$-means clustering.
 
 % ######################################################################################################################
-%         Conclusion and Outlook
+%         Summary and Outlook
 % ######################################################################################################################
 
-\section{Conclusion and Outlook}
-\label{ch:Balances:sec:ConclusionOutlook}
+\section{Summary and Outlook}
+\label{ch:Balances:sec:SummaryOutlook}
+
+In this chapter, we introduced an adaptation of the Phylogenetic ILR transform and balances \cite{Silverman2017}
+to phylogenetic placements.
+Balances are conceptually similar to edge imbalances, exhibit similar properties, 
+and can be used for similar types of analyses.
+% hence combining previously existing concepts from different 
+% of OTU-based balances with placement-based edge imbalances.
+Hence, with this adaptation, we helped to bridge the methodological gap 
+between OTU-based and placement-based approaches to analysing metagenomic data.
+This might lead to future development of novel methods and adaptations,
+with the intention of obtaining a better, more complete picture of metagenomic data,
+by combining the strengths of both the OTU-based and the placement-based approaches.
+
+As balances are a transformation that yields orthogonal components (one for each node or branch of the tree),
+issues pertaining to the normalization of compositional data do not arise.
+With samples being represented as a vector of balances,
+numerous standard tools for data visualization, ordination, and clustering in the euclidean space
+can be readily applied to phylogenetic placement data.
+Applying these methods to placements instead of OTUs allows for more detailed analyses,
+as the entire original sequence data can be used.
+Furthermore, using a fixed reference tree instead of one inferred from the OTUs present in a set of samples
+enables comparative studies across datasets.
+
+In the context of this work, balances are used as an intermediary tool
+in order to describe a set of samples in the context of a reference tree.
+In this chapter, we evaluated some basic analysis and visualization techniques in order to show
+that balances yield consistent results on empirical data sets compared to concepts such as edge imbalances.
+In the following chapter, we introduce Placement-Factorization,
+which uses balances as a description of clades of the reference tree.
