@@ -7,12 +7,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="11706.456"
-   height="8035.3462"
+   width="13220.895"
+   height="7975.3462"
    version="1.1"
    id="svg19136"
    sodipodi:docname="multi_factors_tree.svg"
-   inkscape:version="0.92.4 (unknown)">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
   <metadata
      id="metadata19142">
     <rdf:RDF>
@@ -36,17 +36,17 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="3389"
+     inkscape:window-width="3391"
      inkscape:window-height="1416"
      id="namedview19138"
      showgrid="false"
-     inkscape:zoom="0.11673424"
-     inkscape:cx="4133.3882"
-     inkscape:cy="2936.6246"
-     inkscape:window-x="51"
+     inkscape:zoom="0.15823765"
+     inkscape:cx="6610.4473"
+     inkscape:cy="3229.3201"
+     inkscape:window-x="49"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer6"
      inkscape:snap-global="true"
      fit-margin-top="15"
      fit-margin-left="15"
@@ -61298,13 +61298,54 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="legend bg"
+     transform="translate(1860.494,-43.513499)">
+    <rect
+       style="display:inline;opacity:1;vector-effect:none;fill:#666666;fill-opacity:0.24595469;stroke:none;stroke-width:10.23362637;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none"
+       id="rect14549"
+       width="1897.0177"
+       height="235.57784"
+       x="9428.0889"
+       y="7515.6074" />
+    <rect
+       y="7269.3213"
+       x="9646.0889"
+       height="728.14972"
+       width="208.35289"
+       id="rect14568"
+       style="display:inline;opacity:1;vector-effect:none;fill:#666666;fill-opacity:0.24595469;stroke:none;stroke-width:5.96261501;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none" />
+    <rect
+       style="display:inline;opacity:1;vector-effect:none;fill:#666666;fill-opacity:0.24595469;stroke:none;stroke-width:5.96261501;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none"
+       id="rect14570"
+       width="208.35289"
+       height="728.14972"
+       x="10126.089"
+       y="7269.3213" />
+    <rect
+       y="7269.3213"
+       x="10622.089"
+       height="728.14972"
+       width="208.35289"
+       id="rect14572"
+       style="display:inline;opacity:1;vector-effect:none;fill:#666666;fill-opacity:0.24595469;stroke:none;stroke-width:5.96261501;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none" />
+    <rect
+       style="display:inline;opacity:1;vector-effect:none;fill:#666666;fill-opacity:0.24595469;stroke:none;stroke-width:5.96261501;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none"
+       id="rect14574"
+       width="208.35289"
+       height="728.14972"
+       x="11112.089"
+       y="7269.3213" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="legend check"
      transform="translate(1860.494,-43.513499)"
      style="display:inline">
     <g
        id="g55003"
-       transform="matrix(1.221437,0,0,1.221437,-2437.7249,-1409.4395)">
+       transform="matrix(1.221437,0,0,1.221437,-897.7249,-1469.4395)">
       <g
          transform="translate(0,-20)"
          id="g54961">
@@ -61447,12 +61488,12 @@
            style="font-size:137.33332825px;line-height:154.99999523%;text-align:end;text-anchor:end"
            id="flowPara54604">Phylofactorization</flowPara></flowRoot>      <rect
          transform="rotate(-90)"
-         y="8448.8242"
-         x="-7750.8638"
-         height="1583.787"
-         width="596.60266"
+         y="8448.7861"
+         x="-7750.9028"
+         height="1559.0055"
+         width="596.68054"
          id="rect54606"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#666666;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#666666;stroke-width:9.92210388;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
       <g
          transform="matrix(6.2315252,0,0,6.2315252,7864.3428,4367.1038)"
          id="g54905"
