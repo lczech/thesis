@@ -40,7 +40,12 @@
 
 \usepackage[T1]{url} % much like \verb allow line breaks for paths and URLs
 
-\usepackage{fixltx2e}
+% https://tex.stackexchange.com/a/287158/171851
+%\usepackage{fixltx2e}
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname IncludeInRelease\endcsname\relax
+  \usepackage{fixltx2e}
+\fi
 
 % Postscript Fonts
 % times, palatino, newcent, bookman, garamond, basker,
