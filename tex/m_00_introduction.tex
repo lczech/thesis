@@ -118,7 +118,7 @@ hence require efficient and scalable software implementations.
 This thesis makes several contributions to the field of computational phylogenetics,
 specifically regarding phylogenetic placements as well as analyzing and visualizing the resulting data.
 In particular, we introduce multiple novel methods to overcome the issues and limitations described above.
-We described the methods in two already peer-reviewed publications \cite{Czech2018,Czech2018a},
+We described the methods in two already peer-reviewed publications \cite{Czech2018-phat,Czech2019-analysis},
 and made their data and scripts available at \url{http://github.com/lczech/placement-methods-paper}.
 % phat \cite{Czech2018}
 % vis clust \cite{Czech2018a}
@@ -135,7 +135,7 @@ Lastly, we present an approach for clustering metagenomic samples (\chpref{ch:Cl
 by measuring similarity between samples in terms of the species diversity they contain.
 
 Apart from the two publications on which this thesis is based,
-we published a review on several software tools for visualizing phylogenetic trees \cite{Czech2017}.
+we published a review on several software tools for visualizing phylogenetic trees \cite{Czech2017-tree-viewers}.
 In this publication, we investigated whether certain types of per-branch and per-node meta-data of phylogenetic trees
 were correctly displayed in \num{20} distinct tree visualization tools.
 % particularly when first modifying the tree topology.
@@ -177,7 +177,7 @@ and provide the resulting code in our open-source library \toolname{genesis} (\u
 Apart from the novel methods, the library provides efficient re-implementations of existing methods,
 for example the Edge PCA and Squash Clustering methods of \toolname{guppy} \cite{Matsen2010},
 which we introduce in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}.
-Our implementations are faster than the original one by orders of magnitude \cite{Czech2018}.
+Our implementations are faster than the original one by orders of magnitude \cite{Czech2018-phat}.
 Furthermore, the library also offers a multitude of data structures and functions for working with
 phylogenetic placements, genetic sequences, phylogenetic trees, taxonomies, and many other data types.
 It also provides a plethora of auxiliary functions for tasks such as visualization, statistical evaluation, and data storage.

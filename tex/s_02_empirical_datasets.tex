@@ -61,10 +61,10 @@ Lastly, we also report the run-time performance of our methods on these data.
 
 The analyses and figures presented here were conducted on distinct reference alignments and trees.
 Firstly, for the \ac{BV} dataset, we used the original set of reference sequences, and re-inferred a tree on them.
-Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method \cite{Czech2018}
+Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method \cite{Czech2018-phat}
 to construct sets of suitable reference sequences from the \toolname{Silva} database \cite{Quast2013,Yilmaz2014}.
 We used the 90\% threshold consensus sequences;
-see \cite{Czech2018} for details.
+see \citeay{Czech2018-phat} for details.
 
 For all analyses, we used the following software setup:
 Unconstrained maximum likelihood trees were inferred using \toolname{RAxML v8.2.8} \cite{Stamatakis2014}.
@@ -75,13 +75,13 @@ Unconstrained maximum likelihood trees were inferred using \toolname{RAxML v8.2.
 For aligning reads against reference alignments and reference trees,
 we used a custom \texttt{\acs{MPI}} wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
 which we made available at \cite{PaPaRaMPI}.
-We then applied the \texttt{chunkify} procedure as explained in \cite{Czech2018}
+We then applied the \texttt{chunkify} procedure as explained in \citeay{Czech2018-phat}
 to split the sequences into chunks of unique sequences prior to conducting the phylogenetic placement,
 in order to minimize processing time.
 Phylogenetic placement was conducted using \toolname{EPA-ng} \cite{Barbera2018},
 which is a faster and more scalable phylogenetic placement implementation
 than \toolname{RAxML-EPA} \cite{Berger2011} and \toolname{pplacer} \cite{Matsen2010}.
-Lastly, given the per-chunk placement files produced by \toolname{EPA-ng}, we executed the \texttt{unchunkify} procedure of \cite{Czech2018}
+Lastly, given the per-chunk placement files produced by \toolname{EPA-ng}, we executed the \texttt{unchunkify} procedure of \citeay{Czech2018-phat}
 to obtain per-sample placement files. These subsequently served as the input data for the methods presented here.
 
 \begin{table}[htb]
@@ -206,7 +206,7 @@ We filtered out sequences below \SI{95}{bps} and above \SI{150}{bps}, to remove 
 No further preprocessing (such as chimera detection) was applied.
 This resulted in a total of \num{48 036 019} sequences, thereof \num{27 697 007} unique.
 The sequences were then used for phylogenetic placement as explained above.
-We placed the sequences on the unconstrained \taxonname{Eukaryota} reference tree obtained via our \ac{PhAT} method \cite{Czech2018},
+We placed the sequences on the unconstrained \taxonname{Eukaryota} reference tree obtained via our \ac{PhAT} method \cite{Czech2018-phat},
 which comprises \num{2 059} taxa, thereof \num{1 795} eukaryotic sequences.
 The remaining \num{264} taxa are \taxonname{Archaea} and \taxonname{Bacteria},
 and were included as a broad outgroup.
@@ -248,7 +248,7 @@ as well as sequences longer than \SI{540}{bps} were removed,
 as we considered them potentially erroneous.
 No further preprocessing (such as chimera detection) was applied.
 This resulted in a total of \num{116 520 289} sequences, of which \num{63 221 538} were unique.
-We then used the unconstrained \taxonname{Bacteria} tree of our \ac{PhAT} method \cite{Czech2018} for phylogenetic placement.
+We then used the unconstrained \taxonname{Bacteria} tree of our \ac{PhAT} method \cite{Czech2018-phat} for phylogenetic placement.
 The tree comprises \num{1 914} taxa, thereof \num{1 797} bacterial sequences.
 The remaining \num{117} taxa are \taxonname{Archaea} and \taxonname{Eukaryota},
 and were included as a broad outgroup.
