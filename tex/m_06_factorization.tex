@@ -390,7 +390,7 @@ For details on the usage of \acp{GLM} for Phylofactorization, see \cite{Washburn
 \paragraph{Usage in Phylofactorization}
 \label{sec:Factorization:sub:Methods:sub:ObjectiveFunction:par:Usage}
 
-Predictive models such as \acp{GLM} expect the response variable (that is, the predicted values; here, the contrasts)
+Predictive models such as the \ac{GLM} expect the response variable (that is, the predicted values; here, the contrasts)
 to have certain statistical properties.
 In particular, linear models assume the deviation of response from the predicted value to be normally distributed.
 The ILR transform for compositional data has been proven to behave asymptotically normal \cite{Egozcue2003,Pawlowsky-Glahn2011a},
@@ -419,77 +419,97 @@ that is, predicting balances from meta-data.
 \subsection{Generalized Linear Models}
 \label{sec:Factorization:sub:Methods:sub:GLMs}
 
-We here take a short digression to introduce \acfp{GLM}
-
-
-This concept is generalized even further by a \acf{GLM} \cite{Nelder1972,McCullagh1989}.
-We here provide a brief intuition about \acp{GLM}; for details see \cite{McCullagh1989} and \cite{Agresti2018}.
-
-
 % Sources:
 % https://en.wikipedia.org/wiki/Generalized_linear_model
 % https://newonlinecourses.science.psu.edu/stat504/node/216/
 % http://www.stat.cmu.edu/~ryantibs/advmethods/notes/glm.pdf
+%
+% https://www.sagepub.com/sites/default/files/upm-binaries/21121_Chapter_15.pdf
+% https://bookdown.org/egarpor/SSS2-UC3M/logreg-deviance.html
+% https://www.stat.berkeley.edu/~blfang/STAT151A/STAT151A_lab11.html
 
-In the context of \acp{GLM},
+We now take a short digression to introduce the \acf{GLM} \cite{Nelder1972,McCullagh1989};
+% This concept is generalized even further by a \acf{GLM} \cite{Nelder1972,McCullagh1989}.
+% We provide a brief intuition about \acp{GLM} for the interested reader;
+for a more detailled explanation see \citeay{McCullagh1989} and \citeay{Agresti2018}.
+Note that the abbriviation GLM is sometimes also used for the \emph{general linear model},
+as opposed to the \emph{generalized} linear model that we discuss here, which are distinct concepts.
+Hence, sometimes, the latter is abbriviated as GLIM instead \cite{McCullagh1989}.
+The \ac{GLM} is a generalization of linear regression that allows
+% \acp{GLM} generalize from linear regression by allowing
+(a) for the response variable to have an arbitrary error distribution model
+(instead of a normal distribution, which is implicitly assumed in linear regression),
+and (b) for an arbitrary function of the response variable---called the \emph{link function}---%
+to vary linearly with the predicted values (instead of the response variable itself varying linearly).
+In the context of the \ac{GLM},
 the independent variables (e.\,g., $Z$) are called the \emph{predictor variables} or \emph{explanatory variables},
 while the dependent variable (e.\,g., $C_e$) is called the \emph{response variable}.
-\acp{GLM} generalize from linear regression by allowing
-(a) for the response variable to have an arbitrary distribution
-(instead of a normal distribution, which is implicitly assumed in linear regression),
-and (b) for an arbitrary function of the response variable (called the \emph{link function})
-to vary linearly with the predicted values (instead of the response variable itself varying linearly).
+The goal is then to best predict the (single) response variable from the (multiple) explanatory variables.
+
 %  by allowing the magnitude of the variance of each measurement to be a function of its predicted value
 % we here briefly describe the gaussian 1d case in order to provide some intuition about linear models
 % here, we describe the simple linear case of using metadata to predict contrasts (which can for example be balances, as described above)
+% The \ac{GLM} is a generalization of linear regression
+% that allows for response variables that have error distribution models other than a normal distribution.
 
 % ------------------------------------------------
-%     Overview
+%     Model Components
 % ------------------------------------------------
 
-\paragraph{Overview}
+\paragraph{Model Components}
 \label{sec:Factorization:sub:Methods:sub:GLMs:par:Overview}
 
 We here use the standard notation of $X$ being the predictor of size $n \times p$ and $Y$ being the response of size $n$,
-with $n$ the number of data points (samples) and $p$ the number of predictor variables.
+with $n$ the number of data points (e.\,g., samples)
+and $p$ the number of individual predictor variables (e.\,g., meta-data features).
 Then, a \ac{GLM} is described by three components \cite{McCullagh1989}:
-a \emph{random component}, a \emph{systematic component}, and \emph{link component}.
+a \emph{random component}, a \emph{systematic component}, and a \emph{link component}.
 
-The \emph{random component} specifies the probability distribution of $Y$ (conditioned on $X$);
-also called the \emph{error} or \emph{noise model}.
+The random component specifies the probability distribution of $Y$ (conditioned on $X$);
+it is also called the \emph{error} or \emph{noise model}.
 For example, in linear regression, we assume $Y$ to deviate from the prediction by a normally distributed error,
 while in logistic regression, the deviation is assumed to be binomially distributed.
 
-The \emph{systematic component} specifies the linear combination $\eta$ of the predictors $X$
+The systematic component specifies the linear combination $\eta$ of the predictors $X$
 using the (unknown) parameters $\beta$:
+
 \begin{equation}
 % \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:eta}
-\label{supp:sec:GLM:eq:eta}
-    \eta ~:=~ \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
+\label{sec:Factorization:sub:GLM:eq:eta}
+    \eta ~:=~ \beta^\intercal X ~=~ \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
 \end{equation}
-This is the ``linear'' part of the model.
 
-The \emph{link component} connects the random and systematic components via an invertible link function $g$.
-In particular, the link function provides a connection between the expected value $\mathbb{E}$ of $Y$ and $\eta$:
+This is the ``linear'' part of the model, which is analogous to normal linear regression.
+Note that, for conciseness, in the matrix notation $\beta^\intercal X$ we assue $X$ to have
+an implicit column of $1$'s to accommodate the parameter $\beta_0$.
+
+The link component connects the random and the systematic component via a smooth and invertible \emph{link function} $g$.
+In particular, the link function provides a connection between the expected value $\mathbb{E}$ of $Y$
+and the linear combination $\eta$ of $X$:
+
 \begin{equation}
 % \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:link}
-\label{supp:sec:GLM:eq:link}
+\label{sec:Factorization:sub:GLM:eq:link}
     % g(\mu) ~=~ \eta
-    g(\mathbb{E}(Y)) ~=~ \eta
+    g(\mathbb{E}(Y|X)) ~=~ \eta
 \end{equation}
-If the distribution of $Y$ (the random component) is assumed to be a member of the exponential family of distributions,
+
+That is, the link function transforms the expectation of the response variable to the linear predictor.
+A \ac{GLM} can hence be thought of as a non-linear regression model for the response variable.
+If the distribution of $Y$ (the random component) is assumed
+to be a member of the exponential family of distributions (normal, exponential, Poisson, Binomial, etc.),
 there is a \emph{canonical} link function for each member of the family.
 For example, for the normal distribution, $g$ is the identity function,
-while for a binomial distribution, $g$ is often the logit (log-odds) function.
+while for a binomial distribution, $g$ is often set to the logit (log-odds) function.
 
-The expected value is usually estimated as the mean of $Y$, meaning that $\mathbb{E}(Y) = \mu$.
-\todo{is that the correct wording?}
+The expected value of $Y$ is usually estimated as the mean value of $Y$, meaning that $\mathbb{E}(Y|X) = \mu$.
 The full model is then given by:
 
 \begin{equation}
 %     \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:GLM}
-    \label{supp:sec:GLM:eq:GLM}
-    \mathbb{E}(Y) ~=~ \mu ~=~ g^{-1}(\eta) ~=~ g^{-1}( \beta_0 + \beta_1 X_1 + \dots + \beta_k X_p )
+    \label{sec:Factorization:sub:GLM:eq:GLM}
+%     \mathbb{E}(Y|X) ~=~ \mu ~=~ g^{-1}(\eta) ~=~ g^{-1}( \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p )
+    \mathbb{E}(Y|X) ~=~ \mu ~=~ g^{-1}(\eta) ~=~ g^{-1}( \beta^\intercal X )
 \end{equation}
 % \begin{align}
 %     \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:GLM-exp}
@@ -498,26 +518,108 @@ The full model is then given by:
 %     g(\mu) ~&=~ \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
 % \end{align}
 
-\todo{maybe use matrix notation here to state that this is done per sample?!}
-
-The choice of distribution and link is typically informed by the type of data $Y$ that they are used for:
-For example, if $Y$ is assumed to respond linearly, the normal distribution and the identity link are well suited;
+The choice of distribution and link is typically informed by the type of data $Y$ being modelled:
+For example, if $Y$ is assumed to respond linearly to changes in $\eta$,
+the normal distribution and the identity link are well suited;
 if $Y$ are categorical data or counts (``yes''/``no'' choices), a binomial distribution and a logit link can be used;
-and if $Y$ are counts of occurrences in a fixed amount of time, the Poisson distribution and a log link are typical.
+and if $Y$ are counts of occurrences in a fixed amount of time, the Poisson distribution and a log link are typical choices.
 
-\todo{add graphs with examples, such as logit and poisson, see } \verb|21121_Chapter_15.pdf|
+In short, a \ac{GLM} uses a transformed (via the link function) linear combination of the explanatory variables $X$
+to predict the response variable $Y$, assuming some model of error (the random component).
 
-can use many x of type binary or linear or transformation or factors
+% ------------------------------------------------
+%     Different Types of Data
+% ------------------------------------------------
 
-predict a single variable from multiple
+\paragraph{Different Types of Data}
+\label{sec:Factorization:sub:Methods:sub:GLMs:par:Data}
 
+As described above, the \ac{GLM} uses the link function to allow for non-linear behaviour of the response variable $Y$.
+However, as evident from \eqnref{sec:Factorization:sub:GLM:eq:eta},
+the predictor variables are linearily combined to form $\eta$.
+Note that this does not necessarily impose a linear relationship with $Y$:
+% Note that this does not mean that their relationship with $Y$ has to be linear as well:
+The predictor variables can be arbitrarily transformed prior to their usage in the \ac{GLM},
+for example, by taking their logarithm, or using their reciprocal values.
+By (multiplicatively) combining variables, it is also possible to encode \emph{interactions} of variables.
+In fact, it is possible (and common) to use multiple transformations and interactions
+of the same underlying predictor variables simulationsly in a \ac{GLM}.
 
-how to fit? ML estimator for beta
-typically, using the Iterative Reweighted Least Squares (IRLS) method \cite{Burrus2012}
+Furthermore, the predictor variables do not have to be numerical.
+For instance, binary variables (e.\,g., the presence/absence of species)
+or categorical variables (e.\,g., the body site that a sample was taken from) can be transformed into dummy variables
+that encode different outcomes or categories as a vector of $0$'s and $1$'s.
+Such variables are also often called \emph{factor} variables.
 
+This flexibility allows to use \acp{GLM} to model many types of relationships
+between a given response variable and multiple explanatory variables.
 
-connect
+% ------------------------------------------------
+%     Fitting the Model
+% ------------------------------------------------
 
+\paragraph{Fitting the Model}
+\label{sec:Factorization:sub:Methods:sub:GLMs:par:Fitting}
+
+% In order to estimate the parameters $\beta$ for some given data $X$ and $Y$,
+% the residuals need to be minimized.
+For given data $X$ and $Y$, and a link function $g$, the model is fit to the data by estimating the parameters $\beta$.
+This optimization is typically conducted via a maximum likelhood estimation,
+using for example the Iterative Reweighted Least Squares (IRLS) method \cite{Burrus2012}.
+The IRLS method is an instance of Newton's method \cite{Ypma1995}
+and minimizes the squared differences $\delta^2$ between the values of the response variable $Y$
+and the \emph{predicted values} $\hat{Y}$:
+% and the predicted values $\hat{Y} = g^{-1}(\beta^\intercal X)$.
+
+% For given data $X$ and $Y$, and a given \ac{GLM} with link function $g$ and parameters $\beta$,
+% the \emph{predicted values} $\hat{Y}$ of the model are calcualted as:
+
+\begin{equation}
+    \label{sec:Factorization:sub:GLM:eq:predicted}
+    \hat{Y} = g^{-1}(\beta^\intercal X)
+\end{equation}
+
+% To this end, the \ac{GLM} is first fitted to the data, that is, the parameters $\beta$ are optimized.
+% Then, the predicted values $\hat{Y} = g^{-1}(\beta^\intercal X)$ can be computed.
+The differences between the values of the response variable $Y$ and the predicted values $\hat{Y}$
+are called the \emph{residuals} $\delta$ of the regression:
+
+\begin{equation}
+    \label{sec:Factorization:sub:GLM:eq:residuals}
+    \delta = y - \hat{y}
+\end{equation}
+
+As the \ac{GLM} is optimized to minimize the (squared) difference of these values,
+both the sum and the mean of the residuals are equal to zero.
+This procedure is analogous to minimzing the sum of squares in standard linear regression models.
+
+% the mean of squared differences from mean,
+% which in case of a linear regression model is the variance $\sigma^2$
+
+% ------------------------------------------------
+%     Assessing the Fitness of the Model
+% ------------------------------------------------
+
+\paragraph{Assessing the Fitness of the Model}
+\label{sec:Factorization:sub:Methods:sub:GLMs:par:Fitness}
+
+In the context of Phylofactorization and Placement-Factorization,
+the \ac{GLM} is mostly used as a intermediary tool:
+We are not so much interested in using it to actually predict response values from a given set of predictor values,
+but instead want to know how predictable the data is in general.
+In other words, we want to assess \emph{how well} the model is able fit the data.
+
+% To this end, the \emph{residuals} of the response variable can be used,
+% that is, the difference between the response value $y$ and the predicted value $\hat{y}$.
+% Model fit: R 2, residual analysis, F-statistic
+
+The fitness of a model $m$ can be assessed by comparing it to the \emph{saturated model} and the \emph{null model}.
+On the one hand, the saturated model is an abstract model that has as many estimated parameters as data points $n$,
+and hence (by definition) obtains a perfect fit of the data.
+On the other hand, the null model only has one free parameter $\beta_0$, the \emph{intercept},
+which is optimized by simply predicting the mean $\beta_0 = \bar{Y}$ for all values.
+We exemplify and summarize these concepts in \figref{fig:logistic_regression}.
+Note that a comparison of these models is valid, as they are nested.
 
 \begin{figure}[!htb]
     \centering
@@ -525,7 +627,8 @@ connect
     \caption[Example of logistic regression]{
         \textbf{Example of logistic regression.}
         The data represents a continous predictor (explanatory) variable and a binary response variable;
-        for example, the hours a student spent learning for an exam and whether the student passed (1) or failed (0) the exam.
+        for example, the number of days a student spent learning for an exam,
+        and whether the student passed (1) or failed (0) the exam.
         The null model only has a single parameter $\beta_0$ to predict the outcome;
         the optimum is hence to always predict the mean of the data.
         The saturated model on the other hand is able to predict each datum correctly,
@@ -536,134 +639,179 @@ connect
     \label{fig:logistic_regression}
 \end{figure}
 
-% ------------------------------------------------
-%     Different Types of Data
-% ------------------------------------------------
+% null deviance: LL of sat minus LL of null model.
+% the objective function for finding phylo factors:
+% we use the same as the paper, that is, null deviance minus residual deviance.
+% for glm, this is the difference in log likelihoods between the models.
 
-\paragraph{Different Types of Data}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Data}
+% from https://bookdown.org/egarpor/SSS2-UC3M/logreg-deviance.html
+% Since the likelihood of the saturated model is exactly one32, then the deviance is simply another expression of the likelihood: \[ D=-2\log\text{lik}(\hat{\boldsymbol{\beta}}). \] As a consequence, the deviance is always larger or equal than zero, being zero only if the fit is perfect.
 
-Depending on the assumption of the
+We can then calcuate the \emph{(residual) deviance} $D_m$ of the model $m$ using
+the log-likelihood $\mathcal{L}^*_s$ of the saturated model
+and the log-likelihood $\mathcal{L}^*_m$ of the fitted model $m$.
+By definition, the likelihood of the saturated model is exactly $1$.
+Hence, the deviance of a model is simply an expression of its likelihood:
 
-\todo{figure: logistic regression, see } \verb|https://www.sagepub.com/sites/default/files/upm-binaries/21121_Chapter_15.pdf|
-and \verb|https://bookdown.org/egarpor/SSS2-UC3M/logreg-deviance.html|
-or \verb|https://www.stat.berkeley.edu/~blfang/STAT151A/STAT151A_lab11.html|
+\begin{equation}
+    \label{sec:Factorization:sub:GLM:eq:deviance}
+    D_m ~:=~ 2 \cdot ( \mathcal{L}^*_s - \mathcal{L}^*_m ) ~=~ -2 \cdot \mathcal{L}^*_m
+\end{equation}
 
+% As a consequence, the deviance is always larger or equal than zero, being zero only if the fit is perfect.
+Consequently, the residual deviance is always larger than or equal to zero, being zero only for a perfect fit.
+% from 21121_Chapter_15.pdf
+% The residual deviance is analogous to (and, indeed, is a generalization of) the residual sum of squares for a linear model.
+The deviance of a model is an analogous generalization of the residual sum of squares for a linear model.
+That is, in the case of linear regression, which assumes normally distributed errors with constant variance,
+the residual deviance is equal to the residual sum of squares: %sum of squared residuals:
+% that is, the differences of the prediction from the regression line:
 
-transformation of the input vars allows to use any input.
+\begin{equation}
+    \label{sec:Factorization:sub:GLM:eq:regression}
+    D_m ~=~ \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+%     D_m ~=~ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+\end{equation}
 
-presence absence and categorical data can be encoded with dummy variables, that is as cols of 0 1
+% from https://bookdown.org/egarpor/SSS2-UC3M/logreg-deviance.html
+% A benchmark for evaluating the magnitude of the deviance is the null deviance, \[ D_0=-2\log\text{lik}(\hat{\beta}_0), \] which is the deviance of the worst model, the one fitted without any predictor, to the perfect model: \[ Y|(X_1=x_1,\ldots,X_k=x_k)\sim \mathrm{Ber}(\mathrm{logistic}(\beta_0)). \] In this case, \(\hat\beta_0=\mathrm{logit}(\frac{m}{n})=\log\frac{\frac{m}{n}}{1-\frac{m}{n}}\) where \(m\) is the number of \(1\)’s in \(Y_1,\ldots,Y_n\) (see Figure 4.10).
+% The null deviance serves for comparing how much the model has improved by adding the predictors \(X_1,\ldots,X_k\).
 
-note that this does not mean that the relationship between the predictor variables (meta-data) and response variable (contrasts) has to be linear:
-the predictor variables can be arbitrarily transformed, and
-wiki:
-and in fact multiple copies of the same underlying predictor variable can be added, each one transformed differently.
-in order to model other types of relationships.
-this is however out of scope.
+In order to evaluate the magnitude of the deviance, it can be compared to the \emph{null deviance} $D_n$,
+that is, the residual deviance of the null model.
+The null model can be understood as the worst model, being fitted without any predictors.
+The null deviance hence serves as a benchmark of how much the model $m$ in question
+improves the fitness by taking the predictors $X$ into account.
+The null model only uses the intercept $\beta_0$ to predict the values $y$. %$\hat{y}$,
+Hence, in linear regression, the residuals of the null model are the differences from the mean $\bar{y}$,
+and its deviance is equivalent to the total sum of squares of the data $Y$.
 
-so, both predictor vars and response var can be non linear, in a sense...
-ion between glm and pearson
+Often, the model comparison is done via the $R^2$ statistic,
+which is a generalization of the determination coefficient in linear regression,
+and calculated as $R^2 ~:=~ 1 - \frac{D_m}{D_n}$.
+However, we here follow \citeay{Washburne2017a} and use the differences of deviances for the comparison instead.
+That is, for our purposes, we define the fitness $\omega$ of a model $m$ as:
+% by comparing the null deviance $D_n$ to the deviance $D_m$ of the model:
 
-% ------------------------------------------------
-%     Assessing the Fit of the Model
-% ------------------------------------------------
+\begin{equation}
+    \label{sec:Factorization:sub:GLM:eq:deviancedifference}
+%     \omega ~=~ 2 \cdot ( \mathcal{L}^*_s - \mathcal{L}^*_n ) - 2 \cdot ( \mathcal{L}^*_s - \mathcal{L}^*_m )
+    \omega ~:=~ D_n - D_m
+\end{equation}
 
-\paragraph{Assessing the Fit of the Model}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Fitness}
+% The deviance of a model is the log-likelihood $\mathcal{L}_s$ of the satured model
+% minus the log-likelihood $\mathcal{L}_m$ of the model itself.
+% As stated above, our Placement-Factorization uses the same objective function as Phylofactorization,
+% which assesses the fitness of the model as the difference between the deviance of the null model
+% and the (residual) deviance of the fitted model,
+% meaning that the log-likelhood of the satured model cancels out:
 
-introduce terminology: residuals
+For the \ac{GLM}, the difference in deviances is equivalent to the difference in log-likelihood
+between the null model and the fitted model.
+As the null model is nested in the model $m$, its likelihood is less or equal to the likelihood of $m$,
+and hence its deviance greater or equal to the deviance of $m$.
+Consequently, $\omega \geq 0$, with $\omega = 0$ only if the model $m$ is equivalent to the null model.
+%did not improve the prediction at all compared to the null model.
+Intuitively, $\omega$ measures how much better the model $m$ is for predicting the response variable $Y$
+using the explanatory variables $X$, than just predicting the mean value $\bar{Y}$.
+This value hence serves as our measure of ``how well'' the model is able to predict the data,
+and is the objective funcation that is used in Phylofactorization and in Placement-Factorization.
 
-Model fit: R 2, residual analysis, F-statistic
+For example, again, for linear regression with normally distributed errors and constant variance,
+this can be computed by summing squared differences:
+% For instance, the null deviance is the mean of squared differences from mean,
+% and the residual deviance is the mean of squared differences from the regression line:
 
-the objective function for finding phylo factors:
-we use the same as the paper, that is, null deviance minus residual deviance.
-for glm, this is the difference in log likelihoods between the models.
-in the case of a simple linear regression, which assumes normally distributed errors with constant variance,
-the null deviance is the mean of squares from mean,
-and the res dev is the mean of squares from the regression line.
-we are hence using a simple linear regression of the meta-data feature on the balances.
-
-intuitively, this measures how much better a linear function of the meta-data $Z$ is
-for predicting the contrasts $C$ instead of just ``predicting'' the mean value.
-
-this can be thought of as fitting a line through a plot of the the meta-data feature on the x-axis and the balance on the y-axis,
-where each point represents one sample.
-this is done for every edge of the tree
-the objective is then to find the edge where the model (a simple linear model in our case) best explains the data,
-that is, where the balances can be best predicted from the meta-data.
-in the original publication [cite], they use GLMs and hence optimize an objective function that maximizes
-the difference between null deviance and model deviance.
-
-null deviance: LL of sat minus LL of null model. which in case of a linear regression model is the variance $\sigma^2$
-
-\todo{go on about what that is, and how gaussian residuals with fixed variance are assumed, and density function, etc...}
-in our simple linear regression, this simplifies to the difference between the variance of the balances
-and the mean squared error obtain from the linear model:
-
-
-%     \sigma^2
-
-where $\bm{\hat{y}}$ are the estimates
-
-\begin{align*}
-%     \label{sec:MaterialsMethods:sub:BalancesPhyloFactors:eq:ObjectiveFunction}
-    \label{supp:sec:GLM:eq:ObjectiveFunction}
+\begin{equation}
+    \label{sec:Factorization:sub:GLM:eq:ObjectiveFunction}
 %     \operatorname{VAR}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \bar{y}_i \right)^2 \\
 %     \operatorname{MSE}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
-    O(\bm{y}) ~=~ \sigma^2(y) - \delta^2(y)
-    ~=~ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
-    ~-~ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
-%     O &= \operatorname{VAR}(y) - \operatorname{MSE}(y) \\ \\
+    \omega %~=~ D_n - D_m %\sigma^2(y) - \delta^2(y)
+    ~=~ \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
+    ~-~ \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+%     \omega &= \operatorname{VAR}(y) - \operatorname{MSE}(y) \\ \\
 %       &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
 %        - \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
-\end{align*}
+\end{equation}
 
-with $\bar{y}$ being the mean, and $\hat{y}_i$ being the residuals of the prediction,
-that is, the deviations of each point from the regression line.
+with $\bar{y}$ being the mean, and $\hat{y}_i$ being the predicted values.
+In practice, these terms can be divided by the number of samples $n$
+without altering their suitability as an objective function to be maximized in Placement-Factorization.
+In that case, the objective function becomes equal to the difference of the variance of the data
+and the mean squared error of the prediction.
 
-from \url{http://www.imm.dtu.dk/~hmad/GLM/slides/lect06.df}
-For the normal distribution with $\Sigma = I$, the deviance is just the residual sum of squares (RSS).
+% \todo{go on about what that is, and how gaussian residuals with fixed variance are assumed, and density function, etc...}
+% in our simple linear regression, this simplifies to the difference between the variance of the balances
+% and the mean squared error obtain from the linear model:
 
-this can be interpreted as follows: the null model is given by the variance of the balances around their mean,
-which simply fits the intercept (mean) to the values, and can hence be seen as ``the data has that much dispersion''.
-the mean squared error of the fitted linear model on the other hand tries to better explain the balances,
-and is always less or equal to the variance, as the null model is a linear model with slope $0$.
-this also means that these models are nested, and their (log) likelihoods can thus be compared,
-which is what the difference between them expresses: high variance but low mse means: the data is not well explained
-by its mean, but by the linear model. hence, maximizing this quantity in order to find the next phylo factor means:
-we are looking for an edge that is best explained by a (linear) function of the meta-data.
-
+% from \url{http://www.imm.dtu.dk/~hmad/GLM/slides/lect06.df}
+% For the normal distribution with $\Sigma = I$, the deviance is just the residual sum of squares (RSS).
 
 % ------------------------------------------------
 %     Usage of Balances in GLMs
 % ------------------------------------------------
 
-\paragraph{Usage of Balances in GLMs}
+\paragraph{Usage of GLMs with Balances and in Placement-Factorization}
 \label{sec:Factorization:sub:Methods:sub:GLMs:par:Balances}
 
-\todo{from other chapter. add here somehwhere}:
+As stated before, the ILR transform for compositional data,
+and hence balances as defined in \secref{ch:Balances:sec:Methods:sub:ILRTransform},
+behave asymptotically normal \cite{Egozcue2003,Pawlowsky-Glahn2011a}.
+This allows to use them as the response variable in a \ac{GLM},
+using a normal (Gaussian) error distribution with an identiy link function.
+In Placement-Factorization, we predict balances using the per-sample meta-data as explanatory variables.
+That is, a \ac{GLM} is estimated separately for each edge of the tree,
+using the respective balances of all samples at that edge.
+By maximizing the objective function $\omega$ across all edges, we hence express the following:
+We are looking for the edge where the balances are most predictable when taking the meta-data into account,
+compared to simply using their mean as a predictor.
+% not well explained by their mean,
+% but by a model that takes the meta-data into account.
+As we assume a normal distribution for the balances,
+\eqnref{sec:Factorization:sub:GLM:eq:ObjectiveFunction} describes the compuation that we use to evaluate the objective function.
 
-Note that when used with \acp{GLM}, such as in Phylofactorization (see \chpref{ch:Factorization}), these issues do not arise:
-The winning edge is chosen to maximize the difference between the null deviance and the deviance of the linear model.
-That difference is small for clades with almost no mass (such as the ones affected by the issue above), %do not exhibit a large difference,
+In \secref{ch:Balances:sec:Results:sub:EdgeCorrelation}, we described several pitfalls of balances
+that are due to the mathematical properties of geometric means.
+This prohibits for example to use balances \emph{without} taxon weighting
+as input for our Edge Correlation (\secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}).
+However, when used in \acp{GLM} as described here, these issues \emph{do not} arise:
+The winning edge is chosen to maximize the difference between the null deviance and the deviance of the model.
+That difference is small for clades with almost no mass (such as the ones affected by the geometric mean issues),
 so that the value of the objective function for such edges is lower than for edges with more mass.
 Hence, the factorization does not incorrectly identify these low-abundance clades as potential factors.
-The usage of balances in Placement-Factorization is further explored in the next section.
 
+% Note that when used with \acp{GLM}, such as in Phylofactorization (see \chpref{ch:Factorization}), these issues do not arise:
+% The usage of balances in Placement-Factorization is further explored in the next section.
 
+% It is however important to note that this issue does not affect phylogenetic factorization
+% when using \acp{GLM} as the objective function:
+% The \ac{GLM} is evaluated as the difference between null deviance
+% the red branches here have almost constantly low balances (only differing in a way that correlates with nugent score,
+% as described above) [-3 to 0], while for example the winning edge has balances in a much wider range [-3 to 25].
+% hence, the null model in glm describes the red values kind of well already
+% in the sense that the absoulte deviation is small, due to the small numbers.
+% in the winning edge however, the absolute difference are larger, so that the gain (null dev minus dev) yields
+% larger values, and thus better ``fits''.
+% \todo{use this to motivate glms, and to mention again that glms can be better used instead of our edge correlation...}
 
-\todo{maybe use the following somewhere:}
+% maximizing the difference of deviances:
+% this can be interpreted as follows: the null model is given by the variance of the balances around their mean,
+% which simply fits the intercept (mean) to the values, and can hence be seen as ``the data has that much dispersion''.
+% the mean squared error of the fitted linear model on the other hand tries to better explain the balances,
+% and is always less or equal to the variance, as the null model is a linear model with slope $0$.
+% this also means that these models are nested, and their (log) likelihoods can thus be compared,
+% which is what the difference between them expresses: high variance but low mse means: the data is not well explained
+% by its mean, but by the linear model. hence, maximizing this quantity in order to find the next phylo factor means:
+% we are looking for an edge that is best explained by a (linear) function of the meta-data.
 
-It is however important to note that this issue does not affect phylogenetic factorization
-when using \acp{GLM} as the objective function:
-The \ac{GLM} is evaluated as the difference between null deviance
-the red branches here have almost constantly low balances (only differing in a way that correlates with nugent score,
-as described above) [-3 to 0], while for example the winning edge has balances in a much wider range [-3 to 25].
-hence, the null model in glm describes the red values kind of well already
-in the sense that the absoulte deviation is small, due to the small numbers.
-in the winning edge however, the absolute difference are larger, so that the gain (null dev minus dev) yields
-larger values, and thus better ``fits''.
-\todo{use this to motivate glms, and to mention again that glms can be better used instead of our edge correlation...}
+% might already have been said above:
+% this can be thought of as fitting a line through a plot of the the meta-data feature on the x-axis and the balance on the y-axis,
+% where each point represents one sample.
+% this is done for every edge of the tree
+% the objective is then to find the edge where the model (a simple linear model in our case) best explains the data,
+% that is, where the balances can be best predicted from the meta-data.
+% in the original publication [cite], they use GLMs and hence optimize an objective function that maximizes
+% the difference between null deviance and model deviance.
 
 % ======================================================================================================================
 %     Method Comparison
