@@ -9,6 +9,7 @@
 % title page space big/small
 \newcommand{\tpsb}{\vskip 2.8cm}
 \newcommand{\tpss}{\vskip 1.0cm}
+\newcommand{\tpsm}{\vskip 0.5cm}
 
 %% ==============================
 % Title
@@ -23,19 +24,40 @@
 \hbox{}
 % \vfill
 
-\tpsb
-\tpss
+% \tpsb
+% \tpss
 {\huge\bfseries \mytitle \par}
-\tpsb
-Dissertation\\by\\%[2mm]
 \tpss
-{\large\bfseries \myname}
+% Dissertation\\by\\%[2mm]
+zur Erlangung des akademischen Grades eines
+\tpss
+{\Large
+Doktors der Ingenieurwissenschaften /
+\\
+Doktors der Naturwissenschaften
+}
+\tpss
+der KIT-Fakultät für Informatik \\
+des Karlsruher Instituts für Technologie (KIT)
+\tpss
+\textbf{vorgelegte} \\
+% \tpsm
+% (vor der mündlichen Promotionsprüfung)
+\begin{large}\textbf{Dissertation}\end{large}
+\tpsm
+von
+\tpsm
+% {\large\bfseries \myname}
+\begin{large}\textbf{\myname}\end{large} \\
+% \tpsm
+aus \mycity
+\tpss
 
 %% ==============================
 % Institute
 %% ==============================
 
-\tpss
+% \tpss
 % at the\\
 % Interactive Systems Labs (ISL)%\\ \vspace*{1em}
 % Institute for Anthropomatics,\\
@@ -43,12 +65,12 @@ Dissertation\\by\\%[2mm]
 % At the Department of Informatics
 % An der Fakult\"at f\"ur Informatik
 % Department of Informatics,
-Karlsruhe Institute of Technology (KIT),\\
-Karlsruhe, Germany
+% Karlsruhe Institute of Technology (KIT),\\
+% Karlsruhe, Germany
 
-Heidelberg Institute for Theoretical Studies (HITS),\\
-Heidelberg, Germany
-
+% Heidelberg Institute for Theoretical Studies (HITS),\\
+% Heidelberg, Germany
+% 
 %International Center for Advanced  Communication Technologies
 
 % \begin{tabular}{p{8.5cm}l}
@@ -74,20 +96,25 @@ Heidelberg, Germany
   % Der zweite betreuende Mitarbeiter kann weggelassen werden.
 
 \tpsb
-\begin{tabular}{p{4.5cm}p{7.5cm}}
-  First Reviewer: & \reviewerone \\
-  Second Reviewer: & \reviewertwo \\
+\begin{center}
+\begin{tabular}{p{7.0cm}p{7.0cm}}
+%   First Reviewer: & \reviewerone \\
+%   Second Reviewer: & \reviewertwo \\
 %   Advisor: & \advisorone \\
 %   Second Advisor: & \advisortwo \\
+Tag der mündlichen Prüfung: & \submissiontime \\
+Erster Gutachter: & \reviewerone \\
+Zweiter Gutachter: & \reviewertwo \\
 \end{tabular}
+\end{center}
 
 %% ==============================
 % Footer
 %% ==============================
 
-\tpss
+% \tpss
 % \qquad \timestart ~-- \timeend
-\timeend
+% \timeend
 
 \end{center}
 \vfill
