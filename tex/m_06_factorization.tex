@@ -323,6 +323,36 @@ Then, the selected phylogenetic factors correspond to edges
 where a change in $Z$ most strongly predicts a change in $C_e$ across the samples,
 that is, where the effect of the (independent) meta-data variables
 on the (dependent) underlying data (e.g., per-clade abundances) is most pronounced.
+We show an example in \figref{fig:balance_factors}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\linewidth]{pdf/balance_factors.pdf}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:balance_factors:sub:bad}
+    \end{subfigure}
+    \begin{subfigure}{0pt}
+        \phantomcaption
+        \label{fig:balance_factors:sub:good}
+    \end{subfigure}
+    \caption[Examples of relationship between independent and dependent variables]{
+        \textbf{Examples of relationship between independent and dependent variables.}
+        The figure shows simulated examples of the relationship between the latitude
+        where some (hypothetical) oceanic samples were taken from
+        and the balance of two edges of a reference tree for these samples.
+        In \subref{fig:balance_factors:sub:bad}, there is no apparent relationship
+        between the balances at this edge and the latitudes.
+        This means that the clades of the tree that are split by the edge do not separate samples by latitude,
+        and hence contain species whose abundances are not affected by latidute.
+%         that are formed by the corresponding edge across which the balance was calculated
+        In \subref{fig:balance_factors:sub:good} on the other hand, the balance of each sample
+        exhibits a strong linear relationship with its latidute.
+        This indicates that the corresponding edge across which the balance was calculated
+        is a good candidate for a factor.
+    }
+    \label{fig:balance_factors}
+\end{figure}
 
 % A simple starting point is to use the magnitude of correlation between $C_e$ and $Z$ as objective function.
 % This is easy to compute and yields phylofactors that are consistent with our previously described in
@@ -481,7 +511,7 @@ using the (unknown) parameters $\beta$:
 
 This is the ``linear'' part of the model, which is analogous to normal linear regression.
 Note that, for conciseness, in the matrix notation $\beta^\intercal X$ we assue $X$ to have
-an implicit column of $1$'s to accommodate the parameter $\beta_0$.
+an implicit column of $1$'s to accommodate the intercept parameter $\beta_0$.
 
 The link component connects the random and the systematic component via a smooth and invertible \emph{link function} $g$.
 In particular, the link function provides a connection between the expected value $\mathbb{E}$ of $Y$
