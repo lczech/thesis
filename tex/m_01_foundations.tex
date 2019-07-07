@@ -142,7 +142,7 @@ Still, it is remarkable that the basic molecular principles and mechanisms of li
 \ac{DNA}, amino acids, and the genetic code---are virtually identical for all living organisms.
 This implies that by understanding and comparing the genetic information
 encoded in the genetic sequences of different organisms,
-one can understand the diversification patterns of evolution.
+one can understand the diversification patterns of evolution \cite{Zuckerkandl1965}.
 
 % ======================================================================================================================
 %     Genome Sequencing
@@ -234,7 +234,7 @@ is called \emph{metagenomics} \cite{Oulas2015}.
 % A first step is often to generate a genetic profile of the environment,
 % that is, to estimate the diversity of the organisms in the sample.
 A first step in metagenomic studies often consists in characterizing the reads obtained from an environment
-with respect to \emph{reference sequences} of known species.
+with respect to \emph{reference sequences} of known species \cite{Hug2016}.
 Reads that are similar to (parts of) these reference sequences can be assigned to them,
 while reads with low similarity to known sequences might originate from novel, undescribed species \cite{Temperton2012}.
 Key tasks in metagenomic studies are the identification and classification of the anonymous reads (``Who is there?''),
@@ -494,7 +494,7 @@ depends on the research question at hand.
 Furthermore, whether to use \acp{OTU} at all instead of all sequences is a current debate \cite{Callahan2017,Glassman2018}.
 We further discuss these questions later in the context of this work in
 \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}.
-It seems however that for broad-scale ecological studies, which is what we are mostly interested here,
+For broad-scale ecological studies however, which is what we are mostly interested here,
 the obtained results are mostly consistent across these variants \cite{Glassman2018}.
 
 \todo{maybe mention tree inferred from otus somewhere later?}
@@ -514,7 +514,7 @@ where new \emph{lineages} split from a common ancestor.
 This branching pattern forms a tree-like structure,
 which classifies organisms in a hierarchy based on common descent.
 
-While this \emph{tree of life} is an expedient and, hence, pervasive model \cite{Mindell2013},
+While this \emph{tree of life} is an expedient and, hence, pervasive model \cite{Mindell2013,Hug2016},
 it ignores certain biological and evolutionary events.
 A strict hierarchy does not allow for reticulate events,
 such as hybridization \cite{Maddison1997a}, genetic recombination \cite{Hein1993},
@@ -583,7 +583,8 @@ While early classifications relied on \emph{phenotypes}, that is, observable cha
 modern approaches to taxonomy take the genetic information into account \cite{Mayr2002}.
 For example, the three-domain system \cite{Woese1977,Woese1990} resolves the oldest evolutionary relationships,
 that is, the highest taxonomic levels, based on 16S rRNA data.
-Although this classification has been challenged \cite{Gupta1998,Mayr1998,Cavalier-Smith2002}, it is still widely used.
+Although this classification has been challenged \cite{Gupta1998,Mayr1998,Cavalier-Smith2002},
+it is still widely used \cite{Hug2016}.
 It divides cellular life forms into the three domains \taxonname{bacteria}, \taxonname{archaea}, and \taxonname{eukaryota}.
 The Eukaryotes are further separated into kingdoms,
 which include the kingdoms \taxonname{fungi}, \taxonname{plants}, and \taxonname{animals}.
@@ -827,7 +828,7 @@ that allows to store arbitrary (meta-)data at the nodes and edges of the tree.
 A phylogeny can be inferred from data that has per-taxon traits which are homologous,
 that is, which have evolved from the same traits in the common ancestor and are thus comparable \cite{Felsenstein2004,Yang2006}.
 While historically these traits were mostly phenotypes (bone shapes and sizes, metabolism, etc.),
-the focus has since shifted towards molecular data such as DNA and amino acid sequences,
+the focus has since shifted towards molecular data such as DNA and amino acid sequences \cite{Zuckerkandl1965},
 as their \emph{phylogenetic signal} is generally more abundant \cite{Hillis2000}.
 Most often, a multiple sequence alignment is used,
 whose homologous sites represent the traits of the taxa.

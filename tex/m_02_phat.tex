@@ -1234,9 +1234,9 @@ as can be seen in the last two plots
 For the above evaluations of the \ac{PhAT} method,
 we used some form of consensus sequence representation for the clades of the taxonomy,
 see e.g., \figref{fig:constraints_backbone} and \figref{fig:consensi_backbone}.
-However, we also tested how the method behaves when using actual representative sequences from the database instead,
-to represent the taxonomic clades,
-in order to avoid unnecessary blur of the phylogenetic signal, and other potential drawback of consensus sequences.
+However, we also tested how the method behaves when using actual representative sequences from the database instead
+to represent the taxonomic clades.
+This aims to avoid unnecessary blur of the phylogenetic signal, and other potential drawbacks of consensus sequences.
 
 As manually selecting representative sequences from the database was not practical,
 we used the following automated approach.
@@ -1288,7 +1288,7 @@ The results for the four unconstrained trees are shown in \figref{fig:single_seq
         They are included here for ease of comparison. 
         However, the y-axis is scaled to fit the remaining subfigures.
         Subfigures~\subref{fig:single_seqs:sub:single_seq_edge} and \subref{fig:single_seqs:sub:single_seq_branch}
-        show the evaluation of the approach of using actual non-consensus sequences 
+        show the evaluation of the approach of using actual (non-consensus) sequences
         from the database (instead of consensus sequences), as explained in the text.
         The top row (Subfigures \subref{fig:single_seqs:sub:majorities_edge} and \subref{fig:single_seqs:sub:single_seq_edge})
         shows distances in number of branches away from the expected placement branch;
@@ -1305,7 +1305,8 @@ That is, on average, the sequences were placed further away from their respectiv
 We suspect that this is (i) because single sequences do not capture the diversity of their clade
 as well as consensus sequences,
 and (ii) because they do not incorporate as much biological information (e.g., in form of ambiguity characters).
-We hence conclude that using consensus sequences to represent clades in our \ac{PhAT} approach is more accurate.
+We conclude that using consensus sequences to represent clades in our \ac{PhAT} approach is more accurate
+and hence the preferrable approach.
 
 \paragraph{Further Aspects and Observations}
 \label{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:FurtherAspectsAndObservations}
@@ -1371,7 +1372,7 @@ Therefore, we decided to only report the unfiltered results in the above evaluat
 \label{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets}
 
 \acp{PhAT} are intended for conducting phylogenetic placement of environmental sequences.
-As the true evolutionary history of such sequences is unknown,
+As such sequences are anonymous and their true evolutionary history thus unknown,
 we can not repeat the previous accuracy tests on empirical environmental datasets.
 Instead, we assess if the \acp{PhAT} yield meaningful quantitative results for typical post-analysis methods.
 To this end, we placed two already well-studied empirical metagenomic amplicon barcoding datasets
@@ -1424,11 +1425,11 @@ The resulting hierarchical cluster trees of the samples are shown in \figref{fig
         (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering})
         using \subref{fig:bv_squash:sub:squash_art}  our unconstrained \taxonname{Bacteria} \acs{PhAT} and
         \subref{fig:bv_squash:sub:squash_orig} the original reference tree of \citeay{Srinivasan2012}.
-        Subfigure \subref{fig:bv_squash:sub:squash_orig} is a recalculation of Figure~1(A) of \cite{Srinivasan2012},
+        Subfigure \subref{fig:bv_squash:sub:squash_orig} is a recalculation of Figure~1(A) of \citeay{Srinivasan2012},
         and has been horizontally flipped for ease of comparison.
         The tips of both clustering trees correspond to samples,
         which are colored by the respective per-sample Nugent score,
-        where values indicate women with severe \acl{BV}.
+        where high values indicate women with severe \acl{BV}.
     }
     \label{fig:bv_squash}
 \end{figure}
@@ -1470,7 +1471,7 @@ The resulting scatter plots are shown in \figref{fig:bv_edgepca}.
         (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA})
         using \subref{fig:bv_edgepca:sub:edgepca_art} our unconstrained \taxonname{Bacteria} \acs{PhAT} and
         \subref{fig:bv_edgepca:sub:edgepca_orig} the original reference tree of \citeay{Srinivasan2012}.
-        Subfigure \subref{fig:bv_edgepca:sub:edgepca_orig} is a recalculation of Figure~3(A) of \cite{Srinivasan2012}.
+        Subfigure \subref{fig:bv_edgepca:sub:edgepca_orig} is a recalculation of Figure~3(A) of \citeay{Srinivasan2012}.
         The items represent samples, which are colored by the respective Nugent score of each sample,
         where higher values indicate women with severe \acl{BV}.
     }
@@ -1535,6 +1536,8 @@ as shown in \figref{fig:hmp_mds_epca}.
     }
     \label{fig:hmp_mds_epca}
 \end{figure}
+
+\todo{try 3d?!}
 
 % The phylogenetic Kantorovich-Rubinstein (KR) distance \citep{Matsen2011a,Evans2012} between two samples,
 % also known as the Earth Mover's distance,

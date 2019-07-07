@@ -82,21 +82,21 @@ the PhILR transform (as explained in \chpref{ch:Balances}) in the context of Pla
 % ======================================================================================================================
 
 \subsection{Placement-Factorization}
-\label{sec:Factorization:sub:Methods:sub:Phylofactor}
+\label{ch:Factorization:sec:Methods:sub:Phylofactor}
 
 Phylofactorization can be understood as an iterative greedy graph-partitioning algorithm for a tree $T$ \cite{Washburne2018}.
 In each iteration, a \emph{winning edge} $e^*$ is identified
 that splits edges of the tree into two disjoint groups $R$ and $S$.
 To determine the winning edge, an \emph{objective function} is maximized
 that expresses the intensity of the relationship between abundances and meta-data variables.
-We later discuss this objective function in more detail in \secref{sec:Factorization:sub:Methods:sub:ObjectiveFunction}.
+We later discuss this objective function in more detail in \secref{ch:Factorization:sec:Methods:sub:ObjectiveFunction}.
 
 % ------------------------------------------------
 %     Input
 % ------------------------------------------------
 
 \paragraph{Input}
-\label{sec:Factorization:sub:Methods:sub:Phylofactor:par:Input}
+\label{ch:Factorization:sec:Methods:sub:Phylofactor:par:Input}
 
 The input to the original Phylofactorization is an $n \times m$ data matrix $X$,
 containing $j = 1, \ldots, n$ samples, and $i = 1, \ldots, m$ species (corresponding to the OTUs at the tips of the tree).
@@ -122,7 +122,7 @@ This is the same meta-data matrix that we used for example in Edge Correlation
 % ------------------------------------------------
 
 \paragraph{Algorithm}
-\label{sec:Factorization:sub:Methods:sub:Phylofactor:par:Algorithm}
+\label{ch:Factorization:sec:Methods:sub:Phylofactor:par:Algorithm}
 
 In analogy to the Generalized Phylofactorization \cite{Washburne2018,Washburne2019},
 our adapted algorithm requires three functions:
@@ -240,14 +240,14 @@ in our evaluation we used the same set of functions,
 namely the balances of the ILR transformation as explained in \chpref{ch:Balances} for aggregating and contrasting subtrees,
 and an objective function based on \acfp{GLM}, 
 which we explain in the following, 
-see \secref{sec:Factorization:sub:Methods:sub:ObjectiveFunction} and \secref{sec:Factorization:sub:Methods:sub:GLMs}.
+see \secref{ch:Factorization:sec:Methods:sub:ObjectiveFunction} and \secref{ch:Factorization:sec:Methods:sub:GLMs}.
 
 % ------------------------------------------------
 %     Output
 % ------------------------------------------------
 
 \paragraph{Output}
-\label{sec:Factorization:sub:Methods:sub:Phylofactor:par:Output}
+\label{ch:Factorization:sec:Methods:sub:Phylofactor:par:Output}
 
 The main output of the algorithm is the list of winning edges, that is, 
 of the phylogenetic factors that have been identified.
@@ -294,7 +294,7 @@ in \secref{ch:Factorization:sec:Evaluation}.
 % ======================================================================================================================
 
 \subsection{Objective Function}
-\label{sec:Factorization:sub:Methods:sub:ObjectiveFunction}
+\label{ch:Factorization:sec:Methods:sub:ObjectiveFunction}
 
 % Phylofactorization requires an objective function $\omega(C, ~Z)$ that selects the winning edge $e^*$ of each iteration
 % based on (i) the contrasts $C$ between the two subtrees induced by all edges, and (b) the meta-data variables in $Z$.
@@ -336,8 +336,8 @@ We show an example in \figref{fig:balance_factors}.
         \phantomcaption
         \label{fig:balance_factors:sub:good}
     \end{subfigure}
-    \caption[Examples of relationship between independent and dependent variables]{
-        \textbf{Examples of relationship between independent and dependent variables.}
+    \caption[Examples of relationships between independent and dependent variables]{
+        \textbf{Examples of relationships between independent and dependent variables.}
         The figure shows simulated examples of the relationship between the latitude
         where some (hypothetical) oceanic samples were taken from
         and the balance of two edges of a reference tree for these samples.
@@ -372,18 +372,19 @@ We show an example in \figref{fig:balance_factors}.
 % ------------------------------------------------
 
 \paragraph{Generalized Linear Models}
-\label{sec:Factorization:sub:Methods:sub:ObjectiveFunction:par:GLMs}
+\label{ch:Factorization:sec:Methods:sub:ObjectiveFunction:par:GLMs}
 
 A powerful approach is to model the relationship between $C_e$ and $Z$ via linear regression,
 that is, we assess how well $Z$ can predict $C_e$.
 In the simple one-dimensional case, this can be thought of as fitting a line through a scatter plot
-of the meta-data feature on the $x$-axis and the contrasts on the $y$-axis, where each point represents one sample.
-This concept is generalized via \acfp{GLM} \cite{Nelder1972,McCullagh1989,Agresti2018}.
+of the meta-data feature on the $x$-axis and the contrasts on the $y$-axis, where each point represents one sample,
+c.\,f. \figref{fig:balance_factors}.
+This concept is generalized via the \acf{GLM} \cite{Nelder1972,McCullagh1989,Agresti2018}.
 % We here provide a brief intuition about \acp{GLM}; for details see \cite{McCullagh1989} and \cite{Agresti2018}.
 % We provide a brief introduction to \acp{GLM} in S3~Text; for details see \cite{McCullagh1989} and \cite{Agresti2018}.
 % \todo{Will have to see whether I can finish this in time. If not, remove the above. The explanation here should be enough for now.}
 
-We introduce \acp{GLM} in more detail in \secref{sec:Factorization:sub:Methods:sub:GLMs}.
+We introduce \acp{GLM} in more detail in \secref{ch:Factorization:sec:Methods:sub:GLMs}.
 In short, \acp{GLM} allow to predict a single (response) variable using multiple input (explanatory) variables.
 Typically, the response variable is assumed to follow any distribution from the exponential family
 (normal, exponential, Poisson, Binomial, etc.), which is given for balances as used here.
@@ -418,7 +419,7 @@ For details on the usage of \acp{GLM} for Phylofactorization, see \cite{Washburn
 % ------------------------------------------------
 
 \paragraph{Usage in Phylofactorization}
-\label{sec:Factorization:sub:Methods:sub:ObjectiveFunction:par:Usage}
+\label{ch:Factorization:sec:Methods:sub:ObjectiveFunction:par:Usage}
 
 Predictive models such as the \ac{GLM} expect the response variable (that is, the predicted values; here, the contrasts)
 to have certain statistical properties.
@@ -447,7 +448,7 @@ that is, predicting balances from meta-data.
 % ======================================================================================================================
 
 \subsection{Generalized Linear Models}
-\label{sec:Factorization:sub:Methods:sub:GLMs}
+\label{ch:Factorization:sec:Methods:sub:GLMs}
 
 % Sources:
 % https://en.wikipedia.org/wiki/Generalized_linear_model
@@ -487,7 +488,7 @@ The goal is then to best predict the (single) response variable from the (multip
 % ------------------------------------------------
 
 \paragraph{Model Components}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Overview}
+\label{ch:Factorization:sec:Methods:sub:GLMs:par:Overview}
 
 We here use the standard notation of $X$ being the predictor of size $n \times p$ and $Y$ being the response of size $n$,
 with $n$ the number of data points (e.\,g., samples)
@@ -505,7 +506,7 @@ using the (unknown) parameters $\beta$:
 
 \begin{equation}
 % \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:eta}
-\label{sec:Factorization:sub:GLM:eq:eta}
+\label{ch:Factorization:sub:GLM:eq:eta}
     \eta ~:=~ \beta^\intercal X ~=~ \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
 \end{equation}
 
@@ -519,12 +520,13 @@ and the linear combination $\eta$ of $X$:
 
 \begin{equation}
 % \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:link}
-\label{sec:Factorization:sub:GLM:eq:link}
+\label{ch:Factorization:sub:GLM:eq:link}
     % g(\mu) ~=~ \eta
     g(\mathbb{E}(Y|X)) ~=~ \eta
 \end{equation}
 
-That is, the link function transforms the expectation of the response variable to the linear predictor.
+That is, instead of directly predicting (the expected values of) $Y$ from $X$,
+the link function transforms the expectation of the response variable to the linear predictor.
 A \ac{GLM} can hence be thought of as a non-linear regression model for the response variable.
 If the distribution of $Y$ (the random component) is assumed
 to be a member of the exponential family of distributions (normal, exponential, Poisson, Binomial, etc.),
@@ -537,7 +539,7 @@ The full model is then given by:
 
 \begin{equation}
 %     \label{ch:MaterialsMethods:sec:BalancesPhyloFactors:eq:GLM}
-    \label{sec:Factorization:sub:GLM:eq:GLM}
+    \label{ch:Factorization:sub:GLM:eq:GLM}
 %     \mathbb{E}(Y|X) ~=~ \mu ~=~ g^{-1}(\eta) ~=~ g^{-1}( \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p )
     \mathbb{E}(Y|X) ~=~ \mu ~=~ g^{-1}(\eta) ~=~ g^{-1}( \beta^\intercal X )
 \end{equation}
@@ -549,23 +551,23 @@ The full model is then given by:
 % \end{align}
 
 The choice of distribution and link is typically informed by the type of data $Y$ being modelled:
-For example, if $Y$ is assumed to respond linearly to changes in $\eta$,
+For example, if $Y$ are continuous data (that are assumed to respond linearly to changes in $\eta$),
 the normal distribution and the identity link are well suited;
 if $Y$ are categorical data or counts (``yes''/``no'' choices), a binomial distribution and a logit link can be used;
 and if $Y$ are counts of occurrences in a fixed amount of time, the Poisson distribution and a log link are typical choices.
 
 In short, a \ac{GLM} uses a transformed (via the link function) linear combination of the explanatory variables $X$
-to predict the response variable $Y$, assuming some model of error (the random component).
+(the systematic component) to predict the response variable $Y$, assuming some model of error (the random component).
 
 % ------------------------------------------------
 %     Different Types of Data
 % ------------------------------------------------
 
 \paragraph{Different Types of Data}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Data}
+\label{ch:Factorization:sec:Methods:sub:GLMs:par:Data}
 
 As described above, the \ac{GLM} uses the link function to allow for non-linear behaviour of the response variable $Y$.
-However, as evident from \eqnref{sec:Factorization:sub:GLM:eq:eta},
+However, as evident from \eqnref{ch:Factorization:sub:GLM:eq:eta},
 the predictor variables are linearily combined to form $\eta$.
 Note that this does not necessarily impose a linear relationship with $Y$:
 % Note that this does not mean that their relationship with $Y$ has to be linear as well:
@@ -589,7 +591,7 @@ between a given response variable and multiple explanatory variables.
 % ------------------------------------------------
 
 \paragraph{Fitting the Model}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Fitting}
+\label{ch:Factorization:sec:Methods:sub:GLMs:par:Fitting}
 
 % In order to estimate the parameters $\beta$ for some given data $X$ and $Y$,
 % the residuals need to be minimized.
@@ -605,17 +607,17 @@ and the \emph{predicted values} $\hat{Y}$:
 % the \emph{predicted values} $\hat{Y}$ of the model are calcualted as:
 
 \begin{equation}
-    \label{sec:Factorization:sub:GLM:eq:predicted}
+    \label{ch:Factorization:sub:GLM:eq:predicted}
     \hat{Y} = g^{-1}(\beta^\intercal X)
 \end{equation}
 
 % To this end, the \ac{GLM} is first fitted to the data, that is, the parameters $\beta$ are optimized.
 % Then, the predicted values $\hat{Y} = g^{-1}(\beta^\intercal X)$ can be computed.
 The differences between the values of the response variable $Y$ and the predicted values $\hat{Y}$
-are called the \emph{residuals} $\delta$ of the regression:
+are called the \emph{residuals} $\delta$ of the regression for each data point $i$:
 
 \begin{equation}
-    \label{sec:Factorization:sub:GLM:eq:residuals}
+    \label{ch:Factorization:sub:GLM:eq:residuals}
     \delta = y - \hat{y}
 \end{equation}
 
@@ -631,7 +633,7 @@ This procedure is analogous to minimzing the sum of squares in standard linear r
 % ------------------------------------------------
 
 \paragraph{Assessing the Fitness of the Model}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Fitness}
+\label{ch:Factorization:sec:Methods:sub:GLMs:par:Fitness}
 
 In the context of Phylofactorization and Placement-Factorization,
 the \ac{GLM} is mostly used as a intermediary tool:
@@ -680,11 +682,12 @@ Note that a comparison of these models is valid, as they are nested.
 We can then calcuate the \emph{(residual) deviance} $D_m$ of the model $m$ using
 the log-likelihood $\mathcal{L}^*_s$ of the saturated model
 and the log-likelihood $\mathcal{L}^*_m$ of the fitted model $m$.
-By definition, the likelihood of the saturated model is exactly $1$.
+By definition, the likelihood of the saturated model is exactly $1$
+(and hence, its log-likelihood is $0$).
 Hence, the deviance of a model is simply an expression of its likelihood:
 
 \begin{equation}
-    \label{sec:Factorization:sub:GLM:eq:deviance}
+    \label{ch:Factorization:sub:GLM:eq:deviance}
     D_m ~:=~ 2 \cdot ( \mathcal{L}^*_s - \mathcal{L}^*_m ) ~=~ -2 \cdot \mathcal{L}^*_m
 \end{equation}
 
@@ -694,12 +697,12 @@ Consequently, the residual deviance is always larger than or equal to zero, bein
 % The residual deviance is analogous to (and, indeed, is a generalization of) the residual sum of squares for a linear model.
 The deviance of a model is an analogous generalization of the residual sum of squares for a linear model.
 That is, in the case of linear regression, which assumes normally distributed errors with constant variance,
-the residual deviance is equal to the residual sum of squares: %sum of squared residuals:
+the residual deviance is calculated as: %equal to the residual sum of squares: %sum of squared residuals:
 % that is, the differences of the prediction from the regression line:
 
 \begin{equation}
-    \label{sec:Factorization:sub:GLM:eq:regression}
-    D_m ~=~ \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+    \label{ch:Factorization:sub:GLM:eq:regression}
+    D_m ~=~ \sum_{i=1}^{n} \delta_i^2 ~=~ \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
 %     D_m ~=~ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
 \end{equation}
 
@@ -714,7 +717,12 @@ The null deviance hence serves as a benchmark of how much the model $m$ in quest
 improves the fitness by taking the predictors $X$ into account.
 The null model only uses the intercept $\beta_0$ to predict the values $y$. %$\hat{y}$,
 Hence, in linear regression, the residuals of the null model are the differences from the mean $\bar{y}$,
-and its deviance is equivalent to the total sum of squares of the data $Y$.
+and its deviance is equivalent to the total sum of squares of the data $Y$:
+
+\begin{equation}
+    \label{ch:Factorization:sub:GLM:eq:null_deviance}
+    D_n ~=~ \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
+\end{equation}
 
 Often, the model comparison is done via the $R^2$ statistic,
 which is a generalization of the determination coefficient in linear regression,
@@ -724,7 +732,7 @@ That is, for our purposes, we define the fitness $\omega$ of a model $m$ as:
 % by comparing the null deviance $D_n$ to the deviance $D_m$ of the model:
 
 \begin{equation}
-    \label{sec:Factorization:sub:GLM:eq:deviancedifference}
+    \label{ch:Factorization:sub:GLM:eq:deviancedifference}
 %     \omega ~=~ 2 \cdot ( \mathcal{L}^*_s - \mathcal{L}^*_n ) - 2 \cdot ( \mathcal{L}^*_s - \mathcal{L}^*_m )
     \omega ~:=~ D_n - D_m
 \end{equation}
@@ -745,7 +753,7 @@ Consequently, $\omega \geq 0$, with $\omega = 0$ only if the model $m$ is equiva
 Intuitively, $\omega$ measures how much better the model $m$ is for predicting the response variable $Y$
 using the explanatory variables $X$, than just predicting the mean value $\bar{Y}$.
 This value hence serves as our measure of ``how well'' the model is able to predict the data,
-and is the objective funcation that is used in Phylofactorization and in Placement-Factorization.
+and is the objective function that is used in Phylofactorization and in Placement-Factorization.
 
 For example, again, for linear regression with normally distributed errors and constant variance,
 this can be computed by summing squared differences:
@@ -753,7 +761,7 @@ this can be computed by summing squared differences:
 % and the residual deviance is the mean of squared differences from the regression line:
 
 \begin{equation}
-    \label{sec:Factorization:sub:GLM:eq:ObjectiveFunction}
+    \label{ch:Factorization:sub:GLM:eq:ObjectiveFunction}
 %     \operatorname{VAR}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \bar{y}_i \right)^2 \\
 %     \operatorname{MSE}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
     \omega %~=~ D_n - D_m %\sigma^2(y) - \delta^2(y)
@@ -769,6 +777,8 @@ In practice, these terms can be divided by the number of samples $n$
 without altering their suitability as an objective function to be maximized in Placement-Factorization.
 In that case, the objective function becomes equal to the difference of the variance of the data
 and the mean squared error of the prediction.
+This suggests an alternative interpretation of $\omega$ as being a measure
+that expresses how much of the variance in the data can be explained by the predictor variables.
 
 % \todo{go on about what that is, and how gaussian residuals with fixed variance are assumed, and density function, etc...}
 % in our simple linear regression, this simplifies to the difference between the variance of the balances
@@ -782,7 +792,7 @@ and the mean squared error of the prediction.
 % ------------------------------------------------
 
 \paragraph{Usage of GLMs with Balances and in Placement-Factorization}
-\label{sec:Factorization:sub:Methods:sub:GLMs:par:Balances}
+\label{ch:Factorization:sec:Methods:sub:GLMs:par:Balances}
 
 As stated before, the ILR transform for compositional data,
 and hence balances as defined in \secref{ch:Balances:sec:Methods:sub:ILRTransform},
@@ -791,20 +801,20 @@ This allows to use them as the response variable in a \ac{GLM},
 using a normal (Gaussian) error distribution with an identiy link function.
 In Placement-Factorization, we predict balances using the per-sample meta-data as explanatory variables.
 That is, a \ac{GLM} is estimated separately for each edge of the tree,
-using the respective balances of all samples at that edge.
+predicting the respective balances of all samples at that edge.
 By maximizing the objective function $\omega$ across all edges, we hence express the following:
 We are looking for the edge where the balances are most predictable when taking the meta-data into account,
 compared to simply using their mean as a predictor.
 % not well explained by their mean,
 % but by a model that takes the meta-data into account.
 As we assume a normal distribution for the balances,
-\eqnref{sec:Factorization:sub:GLM:eq:ObjectiveFunction} describes the compuation that we use to evaluate the objective function.
+\eqnref{ch:Factorization:sub:GLM:eq:ObjectiveFunction} describes the compuation that we use to evaluate the objective function.
 
 In \secref{ch:Balances:sec:Results:sub:EdgeCorrelation}, we described several pitfalls of balances
 that are due to the mathematical properties of geometric means.
 This prohibits for example to use balances \emph{without} taxon weighting
 as input for our Edge Correlation (\secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}).
-However, when used in \acp{GLM} as described here, these issues \emph{do not} arise:
+However, when used in \acp{GLM} as described here, these issues do not arise:
 The winning edge is chosen to maximize the difference between the null deviance and the deviance of the model.
 That difference is small for clades with almost no mass (such as the ones affected by the geometric mean issues),
 so that the value of the objective function for such edges is lower than for edges with more mass.
@@ -849,9 +859,9 @@ Hence, the factorization does not incorrectly identify these low-abundance clade
 % ======================================================================================================================
 
 \subsection{Method Comparison}
-\label{sec:Factorization:sub:Methods:sub:MethodComparison}
+\label{ch:Factorization:sec:Methods:sub:MethodComparison}
 % \subsection{Phylofactorization for Phylogenetic Placements}
-% \label{sec:Factorization:sub:Methods:sub:PhylofactorPlacements}
+% \label{ch:Factorization:sec:Methods:sub:PhylofactorPlacements}
 
 In summary, Phylofactorization and our adaptation Placement-Factorization
 identify edges of the phylogeny that exhibit a predictable relationship between changes in meta-data variables and
@@ -960,7 +970,7 @@ Hence, we focus on the results obtained with all three meta-data features taken 
 % ------------------------------------------------
 
 \paragraph{Comparison to Phylofactorization}
-\label{sec:Factorization:sub:Evaluation:sub:BVDataset:par:Comparison}
+\label{ch:Factorization:sec:Evaluation:sub:BVDataset:par:Comparison}
 
 For comparison with the original method, we clustered the dataset into OTUs using two different OTU clustering methods,
 \toolname{vsearch} \cite{Rognes2016} and \toolname{swarm} \cite{Mahe2014,Mahe2015},
@@ -1113,7 +1123,7 @@ but not in the first two iterations.
 % ------------------------------------------------
 
 \paragraph{Visualization of the Objective Function}
-\label{sec:Factorization:sub:Evaluation:sub:BVDataset:par:VizObjective}
+\label{ch:Factorization:sec:Evaluation:sub:BVDataset:par:VizObjective}
 
 Above, we have compared Placement-Factorizaiton \emph{without} taxon weighting to the original Phylofactorization,
 which currently does not support any taxon weighting schemes.
@@ -1256,7 +1266,7 @@ The figure hence shows that factoring out an edge actually removes nested depene
 % ------------------------------------------------
 
 \paragraph{Further Assessment}
-\label{sec:Factorization:sub:Evaluation:sub:BVDataset:par:FurtherAssessment}
+\label{ch:Factorization:sec:Evaluation:sub:BVDataset:par:FurtherAssessment}
 
 To further assess how the samples are split by individual factors,
 we used the balances at each iteration/factor as an ordination of the data, as suggested in \citeay{Washburne2017a},
@@ -1355,7 +1365,7 @@ which alleviates this issue.
 % \figref{fig:pf_bv_place_ilr_ordination} hence serves as a caveat for the limitations of this type of visualization:
 
 % We later show a novel way for visualizing balances in the \ac{HMP} dataset that can help to understand
-% the balances of all factors in \secref{sec:Factorization:sub:Evaluation:sub:HMPDataset:par:FullDataset}.
+% the balances of all factors in \secref{ch:Factorization:sec:Evaluation:sub:HMPDataset:par:FullDataset}.
 %In the absence of additional meta-data other than health status of the \ac{BV} dataset however,
 %these novel visualization would not yield any further helpful information here, which is why we introduce them later.
 
@@ -1404,7 +1414,7 @@ to the underlying \toolname{Silva} taxonomy \cite{Quast2013,Yilmaz2014} that was
 % ------------------------------------------------
 
 \paragraph{Comparison to Phylofactorization}
-\label{sec:Factorization:sub:Evaluation:sub:OralFecalHMPDataset:par:Comparison}
+\label{ch:Factorization:sec:Evaluation:sub:OralFecalHMPDataset:par:Comparison}
 
 Despite these differences, Placement-Factorization yielded factors that are similar to the ones found by Phylofactorization.
 We again used Placement-Factorization \emph{with} and \emph{without} taxon weighting,
@@ -1515,7 +1525,7 @@ The influence of uncertainty in the phylogeny is further discussed in \citeay{Wa
 % ------------------------------------------------
 
 \paragraph{Factor Ordination}
-\label{sec:Factorization:sub:Evaluation:sub:OralFecalHMPDataset:par:Ordination}
+\label{ch:Factorization:sec:Evaluation:sub:OralFecalHMPDataset:par:Ordination}
 
 Next, we investigated how well the factors found by Placement-Factorization separate oral from fecal samples.
 To this end, we again employed the balances of the winning edge of each factor for an ordination visualization \cite{Washburne2017a},
@@ -1663,7 +1673,7 @@ shown in \figref{fig:hmp_pf_of_600_factor_ordination:sub:2d_without_taxon_weight
 % ------------------------------------------------
 
 % \paragraph{Full Dataset}
-% \label{sec:Factorization:sub:Evaluation:sub:FullHMPDataset:par:FullDataset}
+% \label{ch:Factorization:sec:Evaluation:sub:FullHMPDataset:par:FullDataset}
 
 % We moreover used the full \ac{HMP} dataset to conduct some in-depth analyses of our adaptation,
 % and to showcase some novel types of visualizations.
@@ -1874,7 +1884,7 @@ which can be thought of as placing abundances along branches of the tree instead
 and (b) suggesting a novel visualization for the objective function value at each edge of the reference tree,
 which helps in the interpretation of the factors being split in each iteration.
 Furthermore, we explored several advantages of using a fixed reference tree instead of a tree inferred from OTUs
-in \secref{sec:Factorization:sub:Methods:sub:MethodComparison}.
+in \secref{ch:Factorization:sec:Methods:sub:MethodComparison}.
 We leave the adaptation of some of the original concepts of Phylofactorization to phylogenetic placements
 as future work, such as binned phylogenetic units (BPUs), stopping criteria for the iterations,
 as well as further experimentation with different objective functions and aggregation and contrast functions
