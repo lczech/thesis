@@ -193,13 +193,13 @@ Then, we present some ideas for adapting existing machine learning techniques to
 In \chpref{ch:Visualization}, we described methods for visualizing the phylogenetic placement of large metagenomic datasets.
 The methods allow to detect differences between samples (\emph{Edge Dispersion}),
 as well as correlations with per-sample meta-data (\emph{Edge Correlation}),
-and are thus intended for similar use cases as the established Edge PCA \citep{Matsen2011a}.
+and are thus intended for similar use cases as the established Edge PCA \cite{Matsen2011a}.
 However, our novel methods directly visualize important features of the samples (and their meta-data)
 on the underlying reference tree.
 This allows for interpreting them in a phylogenetic context.
 Furthermore, in \chpref{ch:Clustering}, we introduced clustering methods for metagenomic samples
 (\emph{Phylogenetic $k$-means} and \emph{Imbalance $k$-means}),
-which serve a similar purpose as Squash Clustering \citep{Matsen2011a},
+which serve a similar purpose as Squash Clustering \cite{Matsen2011a},
 but are better suited for larger datasets due to their fixed output size.
 % The presented methods can also be combined, allowing
 
@@ -207,7 +207,7 @@ In \chpref{ch:Balances}, we introduced an adaptation of the Phylogenetic ILR tra
 to phylogenetic placements.
 Our adaptation uses a fixed reference tree (instead of a tree inferred from the OTUs present in the data),
 and allows to place sequences along the branches of the tree (instead of only at its tips).
-% Balances are conceptually similar to edge imbalances, which are used in Edge PCA \citep{Matsen2011a} and in our Edge Correlation.
+% Balances are conceptually similar to edge imbalances, which are used in Edge PCA \cite{Matsen2011a} and in our Edge Correlation.
 % and are an approach to contend with the compositional nature of metagenomic data.
 % A further approach to contend with the compositional nature of metagenomic data are
 % the node-based balances using the isometric log-ratio of OTU abundances \cite{Silverman2017,Washburne2017a}
@@ -472,7 +472,7 @@ This entails the challenge to simplify the visualization and only show relevant 
 for example by highlighting branches of the reference tree that exhibit a high correlation with other branches.
 % Such methods might then be
 
-Throughout this thesis, we used the \acf{BV} \cite{Srinivasan2012} and the \acf{HMP} \citep{Huttenhower2012,Methe2012}
+Throughout this thesis, we used the \acf{BV} \cite{Srinivasan2012} and the \acf{HMP} \cite{Huttenhower2012,Methe2012}
 datasets as examples for health-related applications of our methods.
 Many of the above research questions are also interesting from a medical point of view,
 and can be readily applied to other human datasets for assessing health status.

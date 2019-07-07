@@ -40,7 +40,7 @@ for inferring a reference tree is typically conducted manually.
 This constitutes a major challenge and hindrance for studying such environments with placement methods.
 
 This limitation also concerns the use of phylogenetic placement for taxonomic assignment.
-In studies that specifically look for certain kinds of organisms, e.g, protists \citep{Mahe2017},
+In studies that specifically look for certain kinds of organisms, e.g, protists \cite{Mahe2017},
 it usually suffices to use a taxonomy covering the organisms of interest,
 potentially including outgroups from more distantly related species.
 As metagenomic analyses become cheaper,
@@ -528,7 +528,7 @@ This therefore represents a phylogenetically informed sequence filtering method
 as an alternative to plain sequence similarity.
 % See also Section \nameref{sec:Postprocessing:sub:Visualization}.
 % We applied a similar approach before % (using manually selected reference sequences)
-% in order to work with \acp{QS} which were not covered well in reference databases \citep{Mahe2017}.
+% in order to work with \acp{QS} which were not covered well in reference databases \cite{Mahe2017}.
 % \todo{Damn, I keep on citing our paper over and over again... we already did everything in there!}
 % \todo{Also, the sentence can also be left out -- the paper was already cited three sentences ago.}
 
@@ -536,7 +536,7 @@ Secondly, using specific clade trees for lower level taxonomic clades offers the
 that is necessary for downstream analyses and for biological reasoning.
 It is, for example, possible to use manually curated ``expert'' trees for each clade of interest
 at the second level.
-% This approach is currently being tested in the context of the \toolname{UniEuk} project \citep{Berney2017}.
+% This approach is currently being tested in the context of the \toolname{UniEuk} project \cite{Berney2017}.
 
 In this setup, the \ac{BT} is only used for pre-classification,
 and can, for example, use our \ac{PhAT} method as presented in \secref{ch:AutomaticTrees:sec:Methods:sub:PhAT}.
@@ -569,15 +569,15 @@ Apart from the \ac{RT} size, handling the sheer number of \acp{QS}
 also induces computational limitations for conducting phylogenetic placements.
 Most metagenomic studies publish their data in unprocessed formats,
 which are sometimes filtered to contain only reads from certain barcoding or marker regions.
-For instance, they store the raw sequencing output in \fileformat{fasta} \citep{Pearson1988}
-or \fileformat{fastq} \citep{Cock2009} format (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:GenomeSequencing}).
+For instance, they store the raw sequencing output in \fileformat{fasta} \cite{Pearson1988}
+or \fileformat{fastq} \cite{Cock2009} format (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:GenomeSequencing}).
 Those data often contain duplicates of exactly identical sequences, both {\em within} and {\em across} samples.
 % As identical sequences are treated exactly the same in phylogenetic placement,
 % de-duplication can rigorously reduce the computational cost.
 Identical sequences are however treated the same in phylogenetic placement algorithms
 and therefore induce unnecessary computational overhead.
 Furthermore, sample sizes, that is, the number of sequences per sample, can vary by several orders of magnitude.
-For example, the ``HM16STR'' dataset of the \acf{HMP} \citep{Huttenhower2012,Methe2012}
+For example, the ``HM16STR'' dataset of the \acf{HMP} \cite{Huttenhower2012,Methe2012}
 contains an average of \num{12 911} sequences per sample,
 but also an outlier sample with \num{0} sequences and one with \num{403 211} sequences.
 If the placement algorithm is parallelized over samples, this leads to an uneven load balance across compute nodes.
@@ -624,9 +624,9 @@ Given an \ac{RT} and its underlying alignment,
 the \ac{QS} chunks are then aligned to the reference multiple sequence alignment,
 and subsequently placed on the \ac{RT}, using a typical placement pipeline
 as explained in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PipelineAndComputation}.
-% using programs such as  \toolname{PaPaRa} \citep{Berger2012,Berger2011a}
-% or \toolname{hmmalign} \citep{Eddy1998,Eddy2009},
-% for example by \toolname{pplacer}, \toolname{RAxML-EPA} or \toolname{EPA-ng} \citep{Matsen2010,Berger2011,Barbera2018}.
+% using programs such as  \toolname{PaPaRa} \cite{Berger2012,Berger2011a}
+% or \toolname{hmmalign} \cite{Eddy1998,Eddy2009},
+% for example by \toolname{pplacer}, \toolname{RAxML-EPA} or \toolname{EPA-ng} \cite{Matsen2010,Berger2011,Barbera2018}.
 % \todo{all the above are already cited in the introduction. they take up space here, but omitting them is also not fitting...}
 In the last step, which we call \emph{unchunkify},
 the resulting per-chunk placement result files in combination with the per-sample abundance counts
@@ -638,13 +638,13 @@ the gain in parallel efficiency depends on the ratio of smallest to largest samp
 This approach allows to analyze datasets that are orders of magnitude larger than in previous published studies.
 For example, in 2012, an analysis of \acf{BV} data
 placed a total of \num{426 612} sequences, thereof \num{15 060} unique,
-on an \ac{RT} with \num{796} tips \citep{Srinivasan2012}.
+on an \ac{RT} with \num{796} tips \cite{Srinivasan2012}.
 Using a prototype version of our implementation,
 we were able to analyze a neotropical soils dataset with \num{50 118 536} total sequences, thereof \num{10 567 804} unique,
-with an \ac{RT} comprising \num{512} taxa \citep{Mahe2017}.
+with an \ac{RT} comprising \num{512} taxa \cite{Mahe2017}.
 To demonstrate the scalability of our method,
 we also analyzed datasets with up to \num{116 520 289} total sequences, thereof \num{63 221 538} unique,
-from the \ac{HMP} \citep{Huttenhower2012,Methe2012}, using \acp{RT} with up to \num{2 059} tips.
+from the \ac{HMP} \cite{Huttenhower2012,Methe2012}, using \acp{RT} with up to \num{2 059} tips.
 % a  =  63,221,538  *  2,059  =  130,173,146,742
 % b  =      15,060  *    796  =       11,987,760
 % a / b  =  10,859
@@ -668,8 +668,8 @@ See \appref{ch:EmpiricalDatasets} for an overview of the datasets used in our ev
 \label{ch:AutomaticTrees:sec:Evaluation:sub:ReferenceTreeSetup}
 
 To test the \acf{PhAT} method,
-we used the ``SSU Ref NR 99'' sequences of the \toolname{Silva} database \citep{Quast2013} version 123.1
-and the corresponding taxonomic framework \citep{Yilmaz2014}.
+we used the ``SSU Ref NR 99'' sequences of the \toolname{Silva} database \cite{Quast2013} version 123.1
+and the corresponding taxonomic framework \cite{Yilmaz2014}.
 The database contains \num{598 470} aligned sequences from all three domains of life,
 classified into \num{11 860} distinct taxonomic labels,
 and mainly contains bacterial sequences.
@@ -781,8 +781,8 @@ Givens the four sets of consensus sequences
 (the \taxonname{General} sequences, as well as the three domain-specific sequences),
 we then inferred unconstrained and constrained maximum likelihood trees,
 running 50 independent tree searches for each tree and subsequently selecting the best-scoring tree.
-Unconstrained trees were inferred using \toolname{RAxML~8.2.8} \citep{Stamatakis2014}.
-Constrained trees were inferred with \toolname{Sativa~0.9-55} \citep{Kozlov2016},
+Unconstrained trees were inferred using \toolname{RAxML~8.2.8} \cite{Stamatakis2014}.
+Constrained trees were inferred with \toolname{Sativa~0.9-55} \cite{Kozlov2016},
 which internally again relies on \toolname{RAxML},
 and offers a convenient way to transform a taxonomy into a constraint tree.
 The unconstrained trees best adhere to the phylogenetic signal of the sequences
@@ -794,7 +794,7 @@ In total, our setup yields eight distinct \acp{RT} for evaluation:
 the \taxonname{General} tree, the three domain trees, and the respective taxonomically constrained variants.
 \figref{fig:clades} shows the unconstrained \taxonname{Bacteria} tree as an example.
 
-The relative Robinson-Foulds distances \citep{Robinson1981}
+The relative Robinson-Foulds distances \cite{Robinson1981}
 (see \secref{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:TreeProperties})
 between the four pairs of trees (unconstrained versus constrained) range between \num{45.8}\% and \num{49.7}\%.
 These differences probably occur because our trees span diverse clades,
@@ -839,21 +839,21 @@ and should hence be preferred in cases where congruence with the taxonomy is not
 \textbf{Tree Topology Significance Tests.}
 Here, we report typical significance tests comparing
 the four pairs of unconstrained (U) and constrained (C) trees used in our evaluation.
-The tests were performed with \toolname{IQ-TREE v1.5.6} \citep{Nguyen2015a}
+The tests were performed with \toolname{IQ-TREE v1.5.6} \cite{Nguyen2015a}
 under the ``GTR+G'' model (see \secref{ch:Foundations:sec:MLTreeInference:sub:ModelsOfSeqEvol:par:TimeReversibleModels} and
 \secref{ch:Foundations:sec:MLTreeInference:sub:FurtherAspects:par:RateHeterogeneity};
 the ``+G'' stands here for the $\Gamma$ model of rate heterogeneity),
-using \num{10 000} resamplings for the RELL method \citep{Kishino1990}.
+using \num{10 000} resamplings for the RELL method \cite{Kishino1990}.
 The table shows that the unconstrained trees fit the sequence data significantly better
 in all four cases and for all test statistics.
 \\
 Columns are as follows.
 logL and deltaL: log likelihood score and difference in log likelihood scores between constrained and unconstrained tree.
-bp: bootstrap proportion using RELL method \citep{Kishino1990}.
-p-(W)KH: p-value of the one sided and the weighted Kishino-Hasegawa test \citep{Kishino1989}.
-p-(W)SH: p-value of the (weighted) Shimodaira-Hasegawa test \citep{Shimodaira1999}.
-c-ELW: Expected Likelihood Weight \citep{Strimmer2002}.
-p-AU: p-value of approximately unbiased (AU) test \citep{Shimodaira2002}.
+bp: bootstrap proportion using RELL method \cite{Kishino1990}.
+p-(W)KH: p-value of the one sided and the weighted Kishino-Hasegawa test \cite{Kishino1989}.
+p-(W)SH: p-value of the (weighted) Shimodaira-Hasegawa test \cite{Shimodaira1999}.
+c-ELW: Expected Likelihood Weight \cite{Strimmer2002}.
+p-AU: p-value of approximately unbiased (AU) test \cite{Shimodaira2002}.
 }
 \label{tab:TreeTopologyTests}
 {
@@ -908,9 +908,9 @@ we placed the respective subset of the \toolname{Silva} database species sequenc
 As the sequences in \toolname{Silva} are already aligned to each other, no alignment step was necessary for this.
 We further removed sites consisting entirely of gaps from the alignment because they contain no phylogenetic signal.
 This was done to reduce the memory footprint of downstream analysis steps.
-Phylogenetic placement was conducted using \toolname{EPA-ng} \citep{Barbera2018}.
+Phylogenetic placement was conducted using \toolname{EPA-ng} \cite{Barbera2018}.
 % which is substantially faster and more scalable
-% than \toolname{RAxML-EPA} \citep{Berger2011} and \toolname{pplacer} \citep{Matsen2010}.
+% than \toolname{RAxML-EPA} \cite{Berger2011} and \toolname{pplacer} \cite{Matsen2010}.
 
 % The accuracy of one sequence placement is measured by the distance from the placement location to the correct branch.
 We quantify the placement accuracy for a sequence by the distance to its expected placement branch.
@@ -1055,7 +1055,7 @@ Average distances of the placed sequences to their respective expected branch ar
 in numbers of branches (Discrete) and in branch length units (Continuous), as explained in the text.
 Furthermore, ``Exp. Br. Hits'' shows how often the most probable placement was located exactly on the expected branch.
 Lastly, the average expected distance between placement locations (EDPL) is shown.
-The EDPL is the sum of the pairwise distances between the placements of a sequence weighted by their probability \citep{Matsen2010}.
+The EDPL is the sum of the pairwise distances between the placements of a sequence weighted by their probability \cite{Matsen2010}.
 }
 \label{tab:ReferenceTreesOverview}
 {
@@ -1115,7 +1115,7 @@ This is corroborated by the short average distances reported in \tabref{tab:Refe
 Furthermore, the average expected distance between placement locations (EDPL) \cite{Matsen2010} is low,
 indicating that the placements of a specific sequence mostly cluster in a small neighborhood of the tree.
 We observed that errors occur mostly in parts of the tree with short branches.
-This might be explained by the inability of 16S SSU sequences to properly resolve certain clades \citep{Janda2007}.
+This might be explained by the inability of 16S SSU sequences to properly resolve certain clades \cite{Janda2007}.
 Also, the placement likelihood differences are small between neighboring, short branches,
 such that the placement signal is fuzzy.
 
@@ -1142,8 +1142,8 @@ As outlined in the method description (see \secref{ch:AutomaticTrees:sec:Methods
 we represent clade diversity via majority rule consensus sequences.
 To assess the impact of the consensus method on the placement accuracy,
 we repeated the above evaluation using alternative consensus methods.
-In particular, we used Cavener's method \citep{Cavener1987,Cavener1991a},
-and threshold consensus sequences \citep{Day1992a,Day1992}.
+In particular, we used Cavener's method \cite{Cavener1987,Cavener1991a},
+and threshold consensus sequences \cite{Day1992a,Day1992}.
 As shown in \figref{fig:consensi_backbone}, we found little difference between the methods.
 
 \begin{figure}[hpbt]
@@ -1176,14 +1176,14 @@ As shown in \figref{fig:consensi_backbone}, we found little difference between t
     \caption[Effect of alternative consensus sequence methods on accuracy]{
         \textbf{Effect of alternative consensus sequence methods on accuracy.}
         In the main evaluation of our \ac{PhAT} method,
-        we use reference trees and alignments based on majority rule consensus sequences \citep{May1952,Day1992a}
+        we use reference trees and alignments based on majority rule consensus sequences \cite{May1952,Day1992a}
         of the \toolname{Silva} database sequences.
         Here, we evaluate the effect of using alternative consensus sequence methods
         on phylogenetic placement accuracy.
 %         The evaluation method is described in the text.
         In addition to \subref{fig:consensi_backbone:sub:majorities} majority rule consensus, we tested
-        \subref{fig:consensi_backbone:sub:cavener} Cavener's method \citep{Cavener1987,Cavener1991a},
-        as well as threshold consensus sequences \citep{Day1992a,Day1992}
+        \subref{fig:consensi_backbone:sub:cavener} Cavener's method \cite{Cavener1987,Cavener1991a},
+        as well as threshold consensus sequences \cite{Day1992a,Day1992}
         using thresholds of 50\%, 60\%, 70\%, 80\%, and 90\%, of which two are shown in
         \subref{fig:consensi_backbone:sub:50_threshold} and \subref{fig:consensi_backbone:sub:90_threshold}.
         The three remaining threshold methods exhibit accuracies that lie almost exactly in between the shown plots,
@@ -1205,7 +1205,7 @@ Furthermore, we used random initial starting trees for the maximum likelihood tr
 Hence, the obtained reference trees (not shown) differ substantially from each other.
 Across the corresponding trees of the tested consensus methods,
 that is, when comparing, e.\,g., the \taxonname{Bacteria} trees obtained with different consensus methods to each other,
-we observed an average relative Robinson-Foulds (RF) distance \citep{Robinson1981} of 49.5\%;
+we observed an average relative Robinson-Foulds (RF) distance \cite{Robinson1981} of 49.5\%;
 see \secref{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:TreeProperties} for details on the RF distance.
 This is similar to our findings depicted above, e.g., in \figref{fig:constraints_backbone}.
 For the different consensus methods, again,
@@ -1328,9 +1328,9 @@ using the same taxonomy as constraint for the tree thus might also improve the p
 As a final remark, we implicitly assumed the taxonomic label of each sequence to be correct.
 That is, in the evaluations, we measured the accuracy of the placements
 using the taxonomic labels of the sequences in \toolname{Silva} as an indicator of the expected branch of each sequence.
-However, errors are expected due to incongruity between the taxonomy and the phylogeny \citep{Moreira2000},
-as well as due to taxonomically mislabeled sequences \citep{Kozlov2016}.
-For example, \toolname{Sativa} \citep{Kozlov2016},
+However, errors are expected due to incongruity between the taxonomy and the phylogeny \cite{Moreira2000},
+as well as due to taxonomically mislabeled sequences \cite{Kozlov2016}.
+For example, \toolname{Sativa} \cite{Kozlov2016},
 % which evaluated the same version of the \toolname{Silva} database that we used,
 found \num{9 934} mislabeled sequences in the \toolname{Silva} database.
 Furthermore, \num{17 452} sequences contain one of ``incertae'', ``unclassified'' or ``unknown'' in their taxonomic name,
@@ -1354,8 +1354,8 @@ This shows that our trees are robust to such potentially erroneous sequences.
 Therefore, we decided to only report the unfiltered results in the above evaluations.
 
 % Thus, we have to assume the taxonomic label of each sequence to be correct.
-% However, errors are expected due to incongruence between the taxonomy and the phylogeny \citep{Moreira2000},
-% as well as due to taxonomically mislabeled sequences \citep{Kozlov2016}.
+% However, errors are expected due to incongruence between the taxonomy and the phylogeny \cite{Moreira2000},
+% as well as due to taxonomically mislabeled sequences \cite{Kozlov2016}.
 % Furthermore, sequences containing ``incertae'', ``unclassified'' or ``unknown'' in their name
 % indicate that those sequences might not be reliable.
 % In total, there are \num{25 910} (or \num{4.3}\%) such dubious sequences in version 123.1 of the \toolname{Silva} database.
@@ -1378,7 +1378,7 @@ Instead, we assess if the \acp{PhAT} yield meaningful quantitative results for t
 To this end, we placed two already well-studied empirical metagenomic amplicon barcoding datasets
 (see \appref{ch:EmpiricalDatasets} for their details) on our unconstrained \taxonname{Bacteria} tree.
 To assess the placement results obtained from the \ac{PhAT},
-we performed Squash Clustering and Edge PCA \citep{Matsen2011a} post-analyses
+we performed Squash Clustering and Edge PCA \cite{Matsen2011a} post-analyses
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}) on the placement results.
 
 % First, we test the behavior of the unconstrained \taxonname{Bacteria} tree obtained via our \ac{PhAT} method
@@ -1388,11 +1388,11 @@ we performed Squash Clustering and Edge PCA \citep{Matsen2011a} post-analyses
 \label{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:BV}
 
 We used an empirical sequence dataset of the vaginal microbiome of 220 women
-with a total of \num{426 612} sequences \citep{Srinivasan2012} for this evaluation.
+with a total of \num{426 612} sequences \cite{Srinivasan2012} for this evaluation.
 For details on the dataset and its processing, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV}.
 The original study showed associations between the presence of certain bacterial species
 and the diagnosis of \acf{BV}, a condition caused by changes in the vaginal microbiome.
-In the study, the Nugent score \citep{Nugent1991} was used as a clinical diagnostic criterion for \ac{BV}.
+In the study, the Nugent score \cite{Nugent1991} was used as a clinical diagnostic criterion for \ac{BV}.
 This score ranges from \num{0} (healthy) to \num{10} (severe illness).
 We placed the sequences of the dataset on their original tree and on our unconstrained \taxonname{Bacteria} tree,
 and reproduce some of the results from the original study
@@ -1403,7 +1403,7 @@ The results reveal that the \ac{PhAT} reproduces certain aspects of the original
 based on custom \acp{RT} with manually selected reference sequences,
 at least to the extent that is expected from its phylogenetic resolution.
 
-First, we conducted Squash Clustering \citep{Matsen2011a}
+First, we conducted Squash Clustering \cite{Matsen2011a}
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering})
 of the samples placed on the two trees.
 The resulting hierarchical cluster trees of the samples are shown in \figref{fig:bv_squash}.
@@ -1440,7 +1440,7 @@ However, there is a major difference in the lower half of the trees:
 While \subref{fig:bv_squash:sub:squash_orig} shows some small branch lengths and even a separated sub-clade
 of samples with low Nugent score,
 these branches have a length of virtually zero in \subref{fig:bv_squash:sub:squash_art}.
-As shown in \citep{Srinivasan2012}, the healthy patients are divided into two classes,
+As shown in \cite{Srinivasan2012}, the healthy patients are divided into two classes,
 based on the presence of two species of \taxonname{Lactobacillus}.
 The original reference tree contains sequences of those species, and can thus distinguish between them.
 Our broad \taxonname{Bacteria} tree however
@@ -1449,7 +1449,7 @@ yielding a negligible KR distance (\secref{ch:Foundations:sec:PhylogeneticPlacem
 between the samples.
 Although this finding is expected, it serves as an example for the limits of our method.
 
-Second, we conducted an Edge PCA \citep{Matsen2011a}
+Second, we conducted an Edge PCA \cite{Matsen2011a}
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA})
 of the samples.
 The resulting scatter plots are shown in \figref{fig:bv_edgepca}.
@@ -1505,7 +1505,7 @@ are suitable for the dataset to be placed.
 
 Next, we tested the unconstrained \taxonname{Bacteria} tree generated by our \ac{PhAT} method
 for placing and analyzing a large sequence dataset.
-For this, we use the Human Microbiome Project (HMP) \citep{Huttenhower2012,Methe2012} data,
+For this, we use the Human Microbiome Project (HMP) \cite{Huttenhower2012,Methe2012} data,
 and selected \num{9192} samples from different body sites with a total of 117 million sequences.
 For details on the dataset and its processing, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:HMP}.
 The sequences were placed on the tree, and subsequently analyzed with two different methods,
@@ -1524,7 +1524,7 @@ as shown in \figref{fig:hmp_mds_epca}.
     \end{subfigure}
     \caption[Assessment of a \acs{PhAT} for large dataset analyses]{
         \textbf{Assessment of a \acs{PhAT} for large dataset analyses.}
-        Sequences from the HMP dataset \citep{Huttenhower2012,Methe2012} were placed
+        Sequences from the HMP dataset \cite{Huttenhower2012,Methe2012} were placed
         on our unconstrained \taxonname{Bacteria} tree, and analyzed with two analysis methods.
         In subfigure \subref{fig:hmp_mds_epca:sub:mds}, we visualized the pairwise KR distances between all samples,
         using a two-dimensional \acf{MDS}.
@@ -1539,19 +1539,19 @@ as shown in \figref{fig:hmp_mds_epca}.
 
 \todo{try 3d?!}
 
-% The phylogenetic Kantorovich-Rubinstein (KR) distance \citep{Matsen2011a,Evans2012} between two samples,
+% The phylogenetic Kantorovich-Rubinstein (KR) distance \cite{Matsen2011a,Evans2012} between two samples,
 % also known as the Earth Mover's distance,
 % measures how much placement ``mass'' has to be moved by how much along the branches of the tree
 % in order to transform one sample into the other.
-% It is a generalization of the UniFrac distance \citep{Lozupone2005,Lozupone2007a}.
+% It is a generalization of the UniFrac distance \cite{Lozupone2005,Lozupone2007a}.
 
 First, we computed the pairwise KR distance matrix
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR}) between all samples.
 This high-dimensional matrix was then embedded into the plot by performing \acf{MDS}.
-\ac{MDS} \citep{Mardia1978,Krzanowski1994,Everitt2010} is a dimensionality reduction technique that
+\ac{MDS} \cite{Mardia1978,Krzanowski1994,Everitt2010} is a dimensionality reduction technique that
 finds an embedding of a distance matrix into lower dimensions (in this case, \num{2} dimensions),
 while, at the same time, preserving higher dimensional distances as well as possible.
-Second, we again performed Edge PCA \citep{Matsen2011a}
+Second, we again performed Edge PCA \cite{Matsen2011a}
 (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}) on the samples.
 
 Both subfigures show that the tree, despite only representing higher taxonomic levels,
@@ -1573,10 +1573,10 @@ for obtaining a taxonomic profile of a set of samples in conjunction with phylog
 We emphasize though that taxonomic assignment and profiling are neither the focus of \acp{PhAT},
 nor the intended standard use case of phylogenetic placement.
 
-To perform the evaluation, we conducted parts of the \toolname{CAMI} Challenge \citep{Sczyrba2017},
+To perform the evaluation, we conducted parts of the \toolname{CAMI} Challenge \cite{Sczyrba2017},
 which is a community-driven effort to assess taxonomic profiling methods using a common set of benchmark data sets.
 To assess the feasibility of using trees generated with \ac{PhAT} to obtain taxonomic profiling of microbiome data,
-we utilized the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \citep{Bremges2018}.
+we utilized the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \cite{Bremges2018}.
 See \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut} for details on our processing of this dataset.
 In short, we phylogenetically placed the reads of the 16S region of the dataset
 % (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics})
@@ -1584,12 +1584,12 @@ on our unconstrained and constrained \taxonname{Bacteria} trees.
 % The sequences of the 16S region make up \num{\approx 0.08}\% of the total dataset.
 We then used this placement data to taxonomically label the reads
 based on the underlying \toolname{Silva} taxonomy of the trees,
-in analogy to the method used by \toolname{Sativa} \citep{Kozlov2016}.
+in analogy to the method used by \toolname{Sativa} \cite{Kozlov2016}.
 
 Unfortunately, the \toolname{CAMI} Challenge requires taxonomic assignments
-that conform with the \toolname{NCBI} taxonomy \citep{Sayers2009,Benson2009}.
-As our reference tree is however based on the \toolname{Silva} taxonomy \citep{Yilmaz2014},
-we thus had to compute a mapping between the two taxonomies. %, which introduces some incongruences \citep{Balvociute2017}.
+that conform with the \toolname{NCBI} taxonomy \cite{Sayers2009,Benson2009}.
+As our reference tree is however based on the \toolname{Silva} taxonomy \cite{Yilmaz2014},
+we thus had to compute a mapping between the two taxonomies. %, which introduces some incongruences \cite{Balvociute2017}.
 To this end, we developed a dedicated mapping procedure to, in a best effort approach,
 map our results to \toolname{NCBI} taxonomic names and IDs.
 The mapping is based on the \textit{loose mapping} procedure by \citeay{Balvociute2017}.
@@ -1601,7 +1601,7 @@ By initiating this procedure for each taxonomic path from its root downwards,
 we ensure that all placement masses are taken into account.
 
 This mapping is a major disadvantage of our approach when using a \toolname{Silva}-based reference,
-as the \toolname{Silva} and \toolname{NCBI} taxonomies are far from congruent \citep{Balvociute2017}.
+as the \toolname{Silva} and \toolname{NCBI} taxonomies are far from congruent \cite{Balvociute2017}.
 Also note that our reference tree is limited to the 16S rDNA region.
 This substantially reduces the volume of data we can evaluate;
 in this particular test, only \num{\approx 0.08}\% of the total mouse gut data was identified as belonging to the 16S region
@@ -1609,7 +1609,7 @@ in this particular test, only \num{\approx 0.08}\% of the total mouse gut data w
 This means that our taxonomic profiling only uses a small fraction of the available data.
 
 The resulting per-read assignment was then used to generate a taxonomic profile of the data.
-We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OPAL} \citep{Sczyrba2017}
+We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OPAL} \cite{Sczyrba2017}
 to compare our approach to competing software and the ``gold standard'' result for the data set.
 
 We here show the most important \toolname{OPAL} results:
@@ -1627,7 +1627,7 @@ We here show the most important \toolname{OPAL} results:
 \caption[CAMI Scores and Ranks]{
     \textbf{CAMI Scores and Ranks.}
     The table shows the scores and ranks of different tools evaluated with data from, and following the protocol of,
-    the 2nd \toolname{CAMI} challenge \citep{Sczyrba2017,Bremges2018}.
+    the 2nd \toolname{CAMI} challenge \cite{Sczyrba2017,Bremges2018}.
     Here, we compare the taxonomic assignment and profiling based on our \acp{PhAT}
     to the tools that took part in the 2nd \toolname{CAMI} challenge.
     For this, we used the unconstrained and constrained \taxonname{Bacteria} tree,
@@ -1761,7 +1761,7 @@ We here show the most important \toolname{OPAL} results:
         \textbf{CAMI Profiling Results.}
         The figure compares the taxonomic %assignment and
         profiling conducted with our \taxonname{Bacteria} trees
-        to the tools of the 2nd \toolname{CAMI} challenge \citep{Sczyrba2017,Bremges2018}.
+        to the tools of the 2nd \toolname{CAMI} challenge \cite{Sczyrba2017,Bremges2018}.
         The unconstrained and constrained tree are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
 %         \\
         Subfigure \subref{fig:cami_performance:sub:relative} shows the \emph{relative} performance of the tools
@@ -1838,7 +1838,7 @@ We here show the most important \toolname{OPAL} results:
 %     \caption[CAMI Alpha Diversity]{
 %         \textbf{CAMI Alpha Diversity.}
 %         The figure shows the alpha diversity as estimated by different tools evaluated
-%         with data from, and following the protocol of, the 2nd CAMI challenge \citep{Sczyrba2017,Bremges2018}.
+%         with data from, and following the protocol of, the 2nd CAMI challenge \cite{Sczyrba2017,Bremges2018}.
 %         Here, we compare the taxonomic assignment and profiling conducted with our trees
 %         to the tools that took part in the 2nd CAMI challenge.
 %         For this, we used the unconstrained and constrained \taxonname{Bacteria} trees,
@@ -1871,7 +1871,7 @@ Therefore, our method yields reasonable accuracy for taxonomic assignment and pr
 
 We selected five bacterial clades to evaluate \ac{PhAT} accuracy on smaller clades,
 as well as to assess some properties of the Multilevel Placement approach.
-The same clades were already scrutinized in \toolname{Sativa} \citep{Kozlov2016}.
+The same clades were already scrutinized in \toolname{Sativa} \cite{Kozlov2016}.
 \figref{fig:clades} shows the unconstrained \taxonname{Bacteria} tree from the previous evaluations,
 with the branches of these five test clades highlighted.
 
@@ -1936,7 +1936,7 @@ The results are shown in \figref{fig:multilevel}.
     \caption[Accuracy of the \acsp{PhAT} of five bacterial sub-clades]{
         \textbf{Accuracy of the \acsp{PhAT} of five bacterial sub-clades.}
         We used five sub-clades of the \taxonname{Bacteria} in \toolname{Silva},
-        which were already scrutinized in \citep{Kozlov2016},
+        which were already scrutinized in \cite{Kozlov2016},
         to asses the placement accuracy of our \acp{PhAT} for less diverse sets of sequences.
         These five clades are also highlighted in \figref{fig:clades};
         see there for a description of the clades.
@@ -2044,14 +2044,14 @@ is around \num{0.4}, which is indicated by the end of the red line in the lower 
 On the other hand, the \taxonname{Firmicutes} generally have the lowest accuracy.
 In \figref{fig:clades}, which shows the unconstrained \taxonname{Bacteria} tree,
 the \taxonname{Firmicutes} clade exhibits many paraphyletic clades,
-which is a known issue \citep{Parks2018}.
+which is a known issue \cite{Parks2018}.
 This indicates that there is a high incongruence
 between the \taxonname{Firmicutes} taxonomy and phylogeny in \toolname{Silva},
 which might explain why the \taxonname{Firmicutes} score worst in \figref{fig:multilevel}.
 
 These results are likely due to the inability of 16S SSU sequences to properly resolve lower taxonomic levels
-\citep{Mignard2006,Petti2007,Janda2007}.
-For example, Table~2 of \citep{Janda2007} lists \num{10} bacterial genera
+\cite{Mignard2006,Petti2007,Janda2007}.
+For example, Table~2 of \cite{Janda2007} lists \num{10} bacterial genera
 that are known to be hard to identify using 16S sequences.
 These genera account for \num{7.9}\% of the \num{2846} taxa
 that are represented by the five bacterial trees tested here.
@@ -2086,11 +2086,11 @@ Thus, for multilevel placement, they will be assigned to the correct second leve
 More specifically, the \taxonname{Firmicutes} perform worst,
 as only 94.7\% of the \taxonname{Firmicute} sequences are placed into the corresponding correct clade.
 This can be explained by the high amount of paraphyly of this clade, as mentioned above,
-which is a known issue \citep{Parks2018}. % found a fitting fresh preprint thanks to Alexey!
+which is a known issue \cite{Parks2018}. % found a fitting fresh preprint thanks to Alexey!
 The sequences of the other four clades we tested achieve a clade identification accuracy exceeding 99\%.
 This shows that a high overlap of the clades with with the \ac{BT} yields high accuracy.
 In other words, second level clade trees should be represented by multiple branches in the backbone tree.
-% We already used this in \citep{Mahe2017}.
+% We already used this in \cite{Mahe2017}.
 
 % how many sequences were placed in the expected clades?
 % from /home/lucas/Projects/bacardi/11_consensus_seqs/06_subclades
@@ -2160,13 +2160,13 @@ clade-specific \acp{PhAT} can be inferred.
 If species-level resolution is required, we recommend that the sequences are inspected by an expert,
 in order to confirm that the tree is appropriate for the data to be placed on it.
 Furthermore, as our automated approach inevitably suffers from errors in the database it is based on,
-we recommend using \toolname{Sativa} \citep{Kozlov2016}
+we recommend using \toolname{Sativa} \cite{Kozlov2016}
 to identify potentially mislabeled sequences in the respective database.
 % Representing whole clades by single consensus sequences furthermore
 % might hide diversity in the clades and thus hinders to reason about results at deeper taxonomic levels.
 % the above is already implicitly stated in previous sentences, so not needed again...
 One should also keep in mind that phylogenetic placement
-does not necessarily provide resolution at the \taxonname{species} level \citep{Dunthorn2014}.
+does not necessarily provide resolution at the \taxonname{species} level \cite{Dunthorn2014}.
 %Another potential disadvantage of this approach is that it relies on aligned sequences
 %with taxonomic labels, which might not be readily available in all sequence databases.
 

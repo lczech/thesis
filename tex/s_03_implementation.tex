@@ -81,7 +81,7 @@ The methods described in this paper are implemented via four sub-commands:
 \begin{itemize}
     \item \texttt{phat}: Phylogenetic Automatic (Reference) Tree method.
           The command expects a taxonomy file and a sequence file of a sequence database,
-          e.g., \toolname{Silva} \citep{Quast2013,Yilmaz2014},
+          e.g., \toolname{Silva} \cite{Quast2013,Yilmaz2014},
           as well as the target number of consensus sequences to be generated for the intended phylogeny.
           The result is a \texttt{fasta} file with consensus sequences representing taxonomic clades.
           The command can be further customized, e.g., by changing the consensus sequence method,
@@ -117,7 +117,7 @@ The methods described in this paper are implemented via four sub-commands:
           While this is not the main focus of this work, we briefly introduce this method here.
           The command uses a taxonomic labeling of the tips of the reference tree
           to annotate all inner branches of the tree with the longest common taxonomic label
-          for the induced subtree of the inner branch, in analogy to \toolname{Sativa} \citep{Kozlov2016}.
+          for the induced subtree of the inner branch, in analogy to \toolname{Sativa} \cite{Kozlov2016}.
           Then, each query sequence in the provided \texttt{jplace} files
           is taxonomically assigned according to the labels of the branches where it does have placement mass.
           This can subsequently either be used for taxonomic assignment of the query sequences themselves,

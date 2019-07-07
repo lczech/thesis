@@ -166,7 +166,7 @@ which then have to be \emph{assembled} to build the final genome sequence.
 In the last decades, a variety of novel \emph{high-throughput sequencing} (HTS) technologies
 have been developed \cite{Pettersson2009,Reuter2015,Goodwin2016}.
 In particular, \emph{Next Generation Sequencing} (NGS) technologies \cite{Logares2012,Mardis2013}
-have revolutionized biology by transforming it into a data-driven and compute-intense discipline \citep{Escobar-Zepeda2015}.
+have revolutionized biology by transforming it into a data-driven and compute-intense discipline \cite{Escobar-Zepeda2015}.
 In recent years, \emph{Third} and \emph{Fourth Generation} technologies
 have lead to even more substantial improvements \cite{Pareek2011,Niedringhaus2011,Mignardi2014,Heather2016}.
 The costs of these technologies are decreasing faster than Moore's law \cite{Moore1965,Wetterstrand2018},
@@ -183,13 +183,13 @@ The result of \ac{DNA} sequencing is a textual representation of the order of nu
 Although this representation ignores the physical and chemical properties of the respective molecules,
 it is helpful in many applications, and allows to leverage existing algorithms.
 Each contiguous sequence coming from the sequencing machine is called a \emph{read}.
-Reads are typically stored in the \fileformat{fastq} file format \citep{Cock2009}.
+Reads are typically stored in the \fileformat{fastq} file format \cite{Cock2009}.
 Because of the pairing of nucleobases, both \ac{DNA} strands can be sequenced.
 These so-called \emph{paired-end} reads provide a means of error correction
 and can be merged to form a final sequence representation \cite{Zhang2014}.
 The sequence representation of a read consists of
 the characters \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, and \nucleobase{T}.
-The resulting set of sequences is stored in formats such as the \fileformat{fasta} file format \citep{Pearson1988}.
+The resulting set of sequences is stored in formats such as the \fileformat{fasta} file format \cite{Pearson1988}.
 Due to the pairing of nucleobases,
 the length of a \ac{DNA} sequence is measured in \emph{base pairs} (abbreviated \si{\basepair}):
 \SI{1}{\basepair} represents one character in the file.
@@ -213,7 +213,7 @@ There are however many (microbial) organisms that cannot be cultured in the labo
 and are hence hard to sequence with this technique.
 Apart from being cheaper, high-throughput sequencing machines also ``digest'' all genetic material given to them.
 They thus allow for directly studying microbial samples
-that have been extracted from their environment \citep{Morgan2010,Edwards2013,Sunagawa2013a}.
+that have been extracted from their environment \cite{Morgan2010,Edwards2013,Sunagawa2013a}.
 This enables to study environments such as
 water \cite{Karsenti2011,Giner2016,Gran-Stadniczenko2017},
 soil \cite{Dupont2016,Mahe2017},
@@ -321,7 +321,7 @@ An alternative to using PCR for obtaining reads from barcode regions is as follo
 First, shotgun sequencing is used to obtain reads from the entire genome of the organisms in the sample.
 These reads are then filtered to only contain reads from the target region, e.g., the 16S region for \taxonname{bacteria},
 which capture the diversity of the sample without bias.
-Such an approach are for example the so-called \textsubscript{mi}tags \citep{Logares2014}.
+Such an approach are for example the so-called \textsubscript{mi}tags \cite{Logares2014}.
 
 Because of the ubiquity of the 16S and 18S rDNA regions in organisms and, consequently, in sequencing studies,
 many databases provide reference sequences of these marker regions for known species.
@@ -409,8 +409,8 @@ In these studies, one often first calculates (or is given) an MSA of the referen
 and then successively aligns the environmental sequences against this MSA.
 This is because calculating an MSA for millions or billions of sequences from scratch is too expensive even for modern tools.
 Hence, specialized algorithms for this use case have been developed,
-such as \toolname{PaPaRa} \citep{Berger2011a,Berger2012} and
-\toolname{hmmalign}, which is a subprogram of the \toolname{HMMER} suite \citep{Eddy1998,Eddy2009}.
+such as \toolname{PaPaRa} \cite{Berger2011a,Berger2012} and
+\toolname{hmmalign}, which is a subprogram of the \toolname{HMMER} suite \cite{Eddy1998,Eddy2009}.
 
 % ======================================================================================================================
 %     Consensus Sequences
@@ -424,7 +424,7 @@ it is often convenient to ``summarize'' homologous characters in form of a \emph
 Such a sequence is typically calculated based on the relative character frequencies per alignment site.
 It then represents typical features and motifs of the input sequence set.
 
-The most straight-forward method is to construct \emph{majority rule consensus} sequences \citep{May1952,Day1992a},
+The most straight-forward method is to construct \emph{majority rule consensus} sequences \cite{May1952,Day1992a},
 where each site is represented by the most frequent character at that site.
 \figref{fig:msa} shows a corresponding example below the MSA on the right hand side.
 In order to also include information from the less frequent characters at a site in the consensus sequence,
@@ -435,11 +435,11 @@ this site can be represented by the ambiguity character \nucleobase{R}.
 See \tabref{tab:AmbiguityCharacters} for the full list of character representations.
 
 Using ambiguity characters allows for more involved consensus methods.
-For example, \emph{threshold consensus} sequences \citep{Day1992a,Day1992} include the most frequent characters
+For example, \emph{threshold consensus} sequences \cite{Day1992a,Day1992} include the most frequent characters
 that are needed to achieve some given frequency threshold per site,
 and represent these characters by their ambiguity character.
 Furthermore, many methods based on fixed thresholds have been proposed,
-such as Cavener's method \citep{Cavener1987,Cavener1991a};
+such as Cavener's method \cite{Cavener1987,Cavener1991a};
 see \citeay{Day1992a} for a review and comparison.
 
 It is also possible (yet not common) to directly use the relative per-site character frequencies
@@ -1244,7 +1244,7 @@ Each tip CLV expresses the likelihoods of observing each of the characters $c \i
 % \nucleobase{A}, \nucleobase{C}, \nucleobase{G}, \nucleobase{T}
 In principle, these can be the actual likelihoods of the characters at the corresponding alignment site of the input data.
 Hence, uncertainty in the sequencing process can be incorporated into the computations \cite{Kozlov2018}.
-% which is for example present in the \fileformat{fastq} file format \citep{Cock2009}.
+% which is for example present in the \fileformat{fastq} file format \cite{Cock2009}.
 However, this uncertainty is often not available in empirical datasets.
 Thus, tip nodes are usually initialized with ``pseudo-CLVs'',
 where for instance a nucleobase \nucleobase{A} in the alignment yields CL(\nucleobase{A})~$:= 1$,
@@ -1470,8 +1470,8 @@ without the need to resolve relationships between the \acp{QS}.
 In the most common use case, the \acp{QS} are reads or amplicons from environmental samples.
 Most often barcoding regions or marker genes such as 16S or 18S are used
 (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}),
-but there also exist studies that use different, or even a set of, marker genes \citep{Sunagawa2013a}.
-Furthermore, other types of sequences such as \textsubscript{mi}tags \citep{Logares2014} can be used.
+but there also exist studies that use different, or even a set of, marker genes \cite{Sunagawa2013a}.
+Furthermore, other types of sequences such as \textsubscript{mi}tags \cite{Logares2014} can be used.
 
 The \ac{RT} and the reference sequences it represents are typically assembled by the user
 so that they capture the expected species diversity in the samples.
@@ -1697,7 +1697,7 @@ if the query sequences are sufficiently similar to the reference sequences.
 Furthermore, \toolname{BLAST} might yield suboptimal results \cite{Shah2018},
 and the best \toolname{BLAST} hit does often \emph{not} represent the most closely related species \cite{Koski2001}.
 This is particularly true for environments where available reference databases do not exhibit
-sufficient taxon coverage \citep{Mahe2017}.
+sufficient taxon coverage \cite{Mahe2017}.
 Moreover, as insufficient taxon coverage cannot be detected by methods that are based on sequence similarity,
 they can potentially bias downstream analyses.
 
@@ -1741,13 +1741,13 @@ or to obtain taxonomic assignments \cite{Nguyen2014,Kozlov2016}.
 
 Furthermore, phylogenetic placement also allows for more elaborate downstream analyses.
 Firstly, the reference tree usually offers a higher resolution than simple per-taxon abundance counts,
-and the amount of mapped \acp{QS} per branch can be directly visualized on the \ac{RT} \citep{Mahe2017},
+and the amount of mapped \acp{QS} per branch can be directly visualized on the \ac{RT} \cite{Mahe2017},
 as shown in \secref{ch:Visualization:sec:Motivation}.
-Secondly, established methods such as Edge PCA and Squash Clustering \citep{Matsen2011a},
+Secondly, established methods such as Edge PCA and Squash Clustering \cite{Matsen2011a},
 which we introduce in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods},
 allow for identifying subtle differences between distinct samples,
 thus enabling comparative studies directly based on phylogenetic placement.
-Lastly, we proposed novel methods for visualizing and clustering phylogenetic placement data \citep{Czech2019-analysis},
+Lastly, we proposed novel methods for visualizing and clustering phylogenetic placement data \cite{Czech2019-analysis},
 which we describe in \chpref{ch:Visualization} and \chpref{ch:Clustering}.
 Another typical task in metagenomic studies is to unravel diversity within the samples,
 which can be conducted using phylogenetic placement, as outlined in \chpref{ch:ConclusionFutureDirections}.
@@ -1955,7 +1955,7 @@ the weights can be set in accordance with the used normalization strategy (as ex
 When working with absolute abundances, the weights can be set to the total number of \acp{QS} per sample;
 for relative abundances, the weights are set to $1$.
 The above calculation can also be trivially extended to more than two samples to get their average placement mass.
-Squashing is also a central technique of Squash Clustering \citep{Matsen2011a}, which we introduce below in
+Squashing is also a central technique of Squash Clustering \cite{Matsen2011a}, which we introduce below in
 \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering},
 and which also shows a larger example of squashing in \figref{fig:squashing}.
 There, the weights represent the influence of sample clusters during an agglomerative hierarchical clustering algorithm.
@@ -2238,7 +2238,7 @@ As we later compare our novel methods to these existing ones, we briefly introdu
 \paragraph{Edge PCA}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA}
 
-% Edge PCA \citep{Matsen2011a} is a dimensionality reduction method for phylogenetic placement data,
+% Edge PCA \cite{Matsen2011a} is a dimensionality reduction method for phylogenetic placement data,
 % which can visualize differences between samples.
 
 The \emph{edge principal components analysis} (Edge PCA) \cite{Matsen2011a}
@@ -2271,7 +2271,7 @@ An example of this is shown later in \figref{fig:epca}.
 \paragraph{Squash Clustering}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}
 
-% \emph{Squash Clustering} \citep{Matsen2011a} is a hierarchical clustering method for phylogenetic placement data.
+% \emph{Squash Clustering} \cite{Matsen2011a} is a hierarchical clustering method for phylogenetic placement data.
 
 \todo{show similarity to concept of } \cite{Death2002}
 
