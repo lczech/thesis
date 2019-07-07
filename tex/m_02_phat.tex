@@ -67,7 +67,7 @@ but also the pre- and post-processing, than, for instance, similarity-based meth
 
 % First, we introduce a method to automatically construct representative sequences from databases to infer reference phylogenies.
 % Second, we present an approach for conducting large-scale phylogenetic placements on nested phylogenies.
-% Third, we describe a preprocessing pipeline that allows for handling huge sequence data sets.
+% Third, we describe a preprocessing pipeline that allows for handling huge sequence datasets.
 % Our experiments on empirical data show that our methods substantially accelerate the workflow and
 % yield highly accurate placement results.
 
@@ -728,10 +728,10 @@ in order to make sure that the evaluation also works if such ``outgroups'' are i
 % For each set except the \taxonname{Archaea}, the recursive expansion of taxonomic clades was applied to obtain
 % approximately \num{2 000} (\taxonname{General})
 % and \num{1800} (\taxonname{Bacteria}, \taxonname{Eukaryota}) consensus reference sequences.
-The assembly of these four data sets required a total of
+The assembly of these four datasets required a total of
 about \SI{30}{\minute} of runtime and \SI{10}{\giga\byte} of memory on a standard laptop computer.
 This includes counting alignment characters, calculating entropies and constructing consensus sequences.
-The resulting data set and tree sizes, as well as the fraction of sequences from each domain that the \acp{PhAT} contain
+The resulting dataset and tree sizes, as well as the fraction of sequences from each domain that the \acp{PhAT} contain
 are shown in \tabref{tab:TaxonomicComposition}.
 % An overview of the tree sizes is shown in \tabref{tab:TaxonomicComposition}.
 
@@ -1574,9 +1574,9 @@ We emphasize though that taxonomic assignment and profiling are neither the focu
 nor the intended standard use case of phylogenetic placement.
 
 To perform the evaluation, we conducted parts of the \toolname{CAMI} Challenge \cite{Sczyrba2017},
-which is a community-driven effort to assess taxonomic profiling methods using a common set of benchmark data sets.
+which is a community-driven effort to assess taxonomic profiling methods using a common set of benchmark datasets.
 To assess the feasibility of using trees generated with \ac{PhAT} to obtain taxonomic profiling of microbiome data,
-we utilized the \taxonname{mouse gut} data set of the 2nd \toolname{CAMI} Challenge \cite{Bremges2018}.
+we utilized the \taxonname{mouse gut} dataset of the 2nd \toolname{CAMI} Challenge \cite{Bremges2018}.
 See \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut} for details on our processing of this dataset.
 In short, we phylogenetically placed the reads of the 16S region of the dataset
 % (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics})
@@ -1610,7 +1610,7 @@ This means that our taxonomic profiling only uses a small fraction of the availa
 
 The resulting per-read assignment was then used to generate a taxonomic profile of the data.
 We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OPAL} \cite{Sczyrba2017}
-to compare our approach to competing software and the ``gold standard'' result for the data set.
+to compare our approach to competing software and the ``gold standard'' result for the dataset.
 
 We here show the most important \toolname{OPAL} results:
 \tabref{tab:cami_rankings} shows the scores and ranks of our approach compared to the other \toolname{CAMI} participants;
