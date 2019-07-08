@@ -8,26 +8,29 @@
 \paperbox{
     This chapter is partially based on the peer-reviewed publications:
 }{\paperart \paperpppp}{
-    \textbf{Contributions:} Lucas Czech... Alexandros Stamatakis...
+    \textbf{Contributions:} Lucas Czech... Pierre Barbera... Alexandros Stamatakis...
 }
 
-We used three % four
+Throughout this thesis, we used several real-world empirical datasets to evaluate our methods.
+We here present details on these datasets and their respective preprocessing.
+The datasets are as follows:
+% We used three % four
 % Neptrops got kicked out. One result of the neotrop paper was that the sequences are hyper diverse, so no good clusters.
 % Furthermore, there is not much meta-data. So not a good dataset for either of the methods...
-real world datasets to evaluate our methods:
+% real world datasets to evaluate our methods:
 
-\begin{itemize}
+\begin{enumerate}
     \item   \acf{BV} \cite{Srinivasan2012}.
             This small dataset was already analyzed with phylogenetic placement in the original publication.
             We used it as an example of an established study to compare our results to.
             It has \num{220} samples with a total of \num{15 060} unique sequences.
-    \item   \acf{NTS} \cite{Mahe2017}.
-            \todo{check}
-            We already analyzed this medium-sized dataset in its publication and found that
-            the sequences are highly diverse and not well covered in existing reference databases.
-            This was a particular challenge for classical approaches for metagenomic studies.
-            It is thus used as an example of a difficult dataset here.
-            It contains \num{154} samples with \num{10 567 804} unique sequences in total.
+%     \item   \acf{NTS} \cite{Mahe2017}.
+%             \todo{check}
+%             We already analyzed this medium-sized dataset in its publication and found that
+%             the sequences are highly diverse and not well covered in existing reference databases.
+%             This was a particular challenge for classical approaches for metagenomic studies.
+%             It is thus used as an example of a difficult dataset here.
+%             It contains \num{154} samples with \num{10 567 804} unique sequences in total.
     \item   \acf{TO} \cite{Karsenti2011,Sunagawa2015,Guidi2016}.
             This world-wide sequencing effort of the open oceans provides a rich set of meta-data,
             such as geographic location, temperature, and salinity.
@@ -39,77 +42,105 @@ real world datasets to evaluate our methods:
             It contains \num{9192} samples from different body sites with a total of \num{63 221 538} unique sequences.
             There is additional meta-data such as age and medical history, which is available upon special request.
             We only used the publicly available meta-data.
-    \item   \todo{mouse gut}
-\end{itemize}
+    \item   Mouse Gut \cite{Sczyrba2017,Bremges2018}.
+            This small dataset is part of the 2nd \toolname{CAMI} Challenge \cite{Bremges2018},
+            which is a community-driven effort to assess taxonomic profiling methods using a common set of benchmark datasets.
+            We solely used this dataset for the taxonommic evaluation of our \ac{PhAT} method in
+            \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}.
+\end{enumerate}
 
-Details of the datasets (download links, data statistics, data preprocessing, etc.)
-are provided in \todo{S1 Text}. %Supplementary Section \nameref{supp:sec:DetailsEmpiricalDatasets}.
-At the time of writing, about one year after we initially downloaded the data,
+These datasets represent a wide range of environments, number of samples, and sequence lengths;
+see \tabref{tab:MetagenomicDatasetsOverview} for details.
+% Details of the datasets (download links, data statistics, data preprocessing, etc.) are provided below.
+%Supplementary Section \nameref{supp:sec:DetailsEmpiricalDatasets}.
+At the time of writing, about two years after we initially downloaded the data,
 the \ac{TO} repository has grown to \num{1 170} samples,
 while the \ac{HMP} even published a second phase and now comprises \num{23 666} samples of the 16S region.
-This further emphasizes the need for scalable methods to analyze such data.
+This further emphasizes the need for scalable methods to analyze such data (such as the ones presented in this work).
 
-These datasets represent a wide range of environments, number of samples, and sequence lengths.
-We use them to evaluate our methods and to exemplify which method is applicable to what kind of data.
-To this end, the sequences of the datasets were placed on appropriate phylogenetic \acp{RT} as explained
-in \todo{S1 Text}, in order to obtain phylogenetic placements that our methods can be applied to.
-In the following, we present the respective results, and also compare our methods to other methods
-where applicable.
-As the amount and type of available meta-data differs for each dataset,
-we could not apply all methods to all datasets.
-Lastly, we also report the run-time performance of our methods on these data.
+\begin{table}[b]
+\caption[Overview of the dataset dimensions]{
+\textbf{Overview of the dataset dimensions.}
+The ``Samples'' column shows how many metagenomic samples were used in our evaluations.
+This might differ from the number of available samples due to filtering as explaind in the text.
+The subsequent two columns show the number of total sequences over these samples,
+and the number of unique sequences therein.
+Note that for the Mouse Gut dataset, the number of total sequences is also reported after the filtering
+as explained in \secref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}.
+The last column shows the average length of all sequences in the dataset.
+}
+\label{tab:MetagenomicDatasetsOverview}
+{
+    \begin{center}
+    \begin{tabular}{lrrrr}
+    \toprule
+    Dataset             & Samples &     Total Seqs. &     Unique Seqs. & Avg. Length \\
+    \midrule
+    Bacterial Vaginosis &     220 &         426,612 &           15,060 &         226 \\
+%     Neotropical Soils   &     154 &      50,118,536 &       10,567,804 &         364 \\
+    Tara Oceans         &     370 &      49,023,231 &       27,697,007 &         128 \\
+    Human Microbiome    &   9,194 &     118,701,818 &       63,221,538 &         413 \\
+    Mouse Gut           &      64 &         620,882 &          616,405 &         240 \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+}
+\end{table}
 
-The analyses and figures presented here were conducted on distinct reference alignments and trees.
+% \begin{table}[htb]
+% \caption[Overview of the dataset dimensions]{
+% \textbf{Overview of the dataset dimensions.}
+% The ``Samples'' columns show how many metagenomic samples there were in the originally downloaded data and
+% how many of those we actually used for our experiments after filtering out spurious ones.
+% The columns ``Filtered Sample Sizes'' show how many sequences each of the filtered samples has.
+% The ``Sequence Count'' columns show the total number of sequences in the filtered samples, and how many of them are unique.
+% The columns ``Sequence Length'' show statistics of the length of the sequences.
+% Lastly, the ``Chunks'' column shows into how many chunks of size \num{50 000} the samples were distributed.
+% }
+% \label{tab:MetagenomicDatasetsOverview}
+% {
+%     \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+%     \begin{center}
+%     \begin{tabular}{l|rr|rrr|rr|rrr|r}
+%                         & \mc{2}{c|}{Samples}                      & \mc{3}{c|}{Filtered Sample Sizes}                 & \mc{2}{c|}{Filtered Sequence Count}   & \mc{3}{c|}{Filtered Sequence Length}              & \mc{1}{r}{} \\
+%     Dataset             & \mc{1}{r}{Source} & \mc{1}{r|}{Filtered} & \mc{1}{r}{Min} & \mc{1}{r}{Max} & \mc{1}{r|}{Avg} & \mc{1}{r}{Total} & \mc{1}{r|}{Unique} & \mc{1}{r}{Min} & \mc{1}{r}{Max} & \mc{1}{r|}{Avg} & Chunks \\
+%     \hline
+%     Bacterial Vaginosis &                   &                  220 &                &                &                 &          426,612 &             15,060 &                &                &             226 &      1 \\
+%     Neotropical Soils   &                   &                  154 &                &                &                 &       50,118,536 &         10,567,804 &                &                &             364 &    212 \\
+%     Tara Oceans         &                   &                  370 &                &                &                 &       49,023,231 &         27,697,007 &                &                &             128 &    554 \\
+%     Human Microbiome    &             9,815 &                9,194 &                &                &                 &      118,701,818 &         63,221,538 &                &                &             413 &  1,265 \\
+%     \end{tabular}
+%     \end{center}
+% }
+% \end{table}
+
+We use these datasets to evaluate our methods and to exemplify which method is applicable to what kind of data.
+To this end, the sequences of the datasets were placed on appropriate reference trees,
+in order to obtain phylogenetic placements that our methods can be applied to.
+% The analyses and figures presented here were conducted on distinct reference alignments and trees.
 Firstly, for the \ac{BV} dataset, we used the original set of reference sequences, and re-inferred a tree on them.
-Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method \cite{Czech2018-phat}
+Secondly, for the \ac{TO}, \ac{HMP}, and mouse gut datasets,
+we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method (\chpref{ch:AutomaticTrees})
 to construct sets of suitable reference sequences from the \toolname{Silva} database \cite{Quast2013,Yilmaz2014}.
-We used the 90\% threshold consensus sequences;
-see \citeay{Czech2018-phat} for details.
 
 For all analyses, we used the following software setup:
-Unconstrained maximum likelihood trees were inferred using \toolname{RAxML v8.2.8} \cite{Stamatakis2014}.
+Unconstrained maximum likelihood trees were inferred using \toolname{RAxML~v8.2.8} \cite{Stamatakis2014}.
 % Didn't use any constrained trees in this paper. Thus, don't need the following:
 % Constrained trees were inferred with \toolname{Sativa 0.9-55} \cite{Kozlov2016},
 % which internally again relies on \toolname{RAxML},
 % and offers a convenient way to turn a taxonomy into a constraint tree.
 For aligning reads against reference alignments and reference trees,
-we used a custom \texttt{\acs{MPI}} wrapper for \toolname{PaPaRa 2.0} \cite{Berger2011a,Berger2012},
-which we made available at \cite{PaPaRaMPI}.
-We then applied the \texttt{chunkify} procedure as explained in \citeay{Czech2018-phat}
+we used a custom \texttt{\acs{MPI}} wrapper for \toolname{PaPaRa~2.0} \cite{Berger2011a,Berger2012},
+which we also made freely available \cite{PaPaRaMPI}.
+We then applied the \texttt{chunkify} procedure (\secref{ch:AutomaticTrees:sec:Methods:sub:DataPreprocessing})
 to split the sequences into chunks of unique sequences prior to conducting the phylogenetic placement,
 in order to minimize processing time.
 Phylogenetic placement was conducted using \toolname{EPA-ng} \cite{Barbera2018},
 which is a faster and more scalable phylogenetic placement implementation
 than \toolname{RAxML-EPA} \cite{Berger2011} and \toolname{pplacer} \cite{Matsen2010}.
-Lastly, given the per-chunk placement files produced by \toolname{EPA-ng}, we executed the \texttt{unchunkify} procedure of \citeay{Czech2018-phat}
-to obtain per-sample placement files. These subsequently served as the input data for the methods presented here.
-
-\begin{table}[htb]
-\caption[Overview of the dataset dimensions]{
-\textbf{Overview of the dataset dimensions.}
-The ``Samples'' columns show how many metagenomic samples there were in the originally downloaded data and
-how many of those we actually used for our experiments after filtering out spurious ones.
-The columns ``Filtered Sample Sizes'' show how many sequences each of the filtered samples has.
-The ``Sequence Count'' columns show the total number of sequences in the filtered samples, and how many of them are unique.
-The columns ``Sequence Length'' show statistics of the length of the sequences.
-Lastly, the ``Chunks'' column shows into how many chunks of size \num{50 000} the samples were distributed.
-}
-\label{tab:MetagenomicDatasetsOverview}
-{
-    \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-    \begin{center}
-    \begin{tabular}{l|rr|rrr|rr|rrr|r}
-                        & \mc{2}{c|}{Samples}                      & \mc{3}{c|}{Filtered Sample Sizes}                 & \mc{2}{c|}{Filtered Sequence Count}   & \mc{3}{c|}{Filtered Sequence Length}              & \mc{1}{r}{} \\
-    Dataset             & \mc{1}{r}{Source} & \mc{1}{r|}{Filtered} & \mc{1}{r}{Min} & \mc{1}{r}{Max} & \mc{1}{r|}{Avg} & \mc{1}{r}{Total} & \mc{1}{r|}{Unique} & \mc{1}{r}{Min} & \mc{1}{r}{Max} & \mc{1}{r|}{Avg} & Chunks \\
-    \hline
-    Bacterial Vaginosis &                   &                  220 &                &                &                 &          426,612 &             15,060 &                &                &             226 &      1 \\
-    Neotropical Soils   &                   &                  154 &                &                &                 &       50,118,536 &         10,567,804 &                &                &             364 &    212 \\
-    Tara Oceans         &                   &                  370 &                &                &                 &       49,023,231 &         27,697,007 &                &                &             128 &    554 \\
-    Human Microbiome    &             9,815 &                9,194 &                &                &                 &      118,701,818 &         63,221,538 &                &                &             413 &  1,265 \\
-    \end{tabular}
-    \end{center}
-}
-\end{table}
+Lastly, given the per-chunk placement files produced by \toolname{EPA-ng}, we executed the \texttt{unchunkify} procedure
+(\secref{ch:AutomaticTrees:sec:Methods:sub:DataPreprocessing}) to obtain per-sample placement files.
+These subsequently served as the input data for the methods presented in this work.
 
 % ======================================================================================================================
 %     Bacterial Vaginosis
@@ -118,8 +149,9 @@ Lastly, the ``Chunks'' column shows into how many chunks of size \num{50 000} th
 \section{Bacterial Vaginosis}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:BV}
 
-We used the Bacterial Vaginosis dataset \cite{Srinivasan2012} in order to compare our novel methods to
-existing ones such as Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}.
+We used the \acf{BV} dataset \cite{Srinivasan2012} as an example of a well-designed study in order to
+compare our novel methods to existing ones such as Edge PCA and Squash Clustering \cite{Matsen2011a,Evans2012}
+(\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}).
 The dataset contains metabarcoding sequences of the vaginal microbiome of \num{220} women,
 and was kindly provided by Sujatha Srinivasan.
 This small dataset with a total of \num{426 612} query sequences, thereof \num{15 060} unique,
@@ -127,60 +159,55 @@ was already analyzed with phylogenetic placement methods in the original publica
 We re-inferred the reference tree of the original publication using the original alignment,
 which contains \num{797} reference sequences specifically selected to represent the vaginal microbiome.
 As the query sequences were already prepared,
-no further preprocessing was applied prior to phylogenetic placement.
-The available per-sample quantitative meta-data for this dataset comprises
+no further preprocessing was applied prior to alignment and phylogenetic placement.
+The query sequences of the dataset were then aligned to our re-inferred reference tree and alignment,
+and subsequently placed on the tree.
+% as well as to the reference alignment of the original publication and our re-inferred tree.
+The available per-sample quantitative meta-data for this dataset comprise
 the Nugent score \cite{Nugent1991}, the value of Amsel's criteria \cite{Amsel1983}, and the vaginal pH value.
 We used all three meta-data types in our analyses.
 
-\todo{ from art: }
+% \paragraph{Evaluation of the Phylogenetic Automatic (Reference) Trees}
+% \label{supp:sec:DetailsEmpiricalDatasets:sub:BV:par:PhAT}
 
-For testing the accuracy of our unconstrained \taxonname{Bacteria} tree on real data,
-we used a vaginal microbiome dataset of 220 women \citep{Srinivasan2012},
-which was provided by Sujatha Srinivasan.
-See \figref{fig:bv_squash} and \figref{fig:bv_edgepca} for the respective results.
-This small dataset with a total of \num{426 612} query sequences, thereof \num{15 060} unique,
-was already analyzed with phylogenetic placement methods in the original publication.
-We used it as an example of a well-designed study to assess our results using an \ac{PhAT} as reference tree.
-In addition to the \taxonname{Bacteria} \ac{PhAT},
-we re-inferred the reference tree of the original publication using their alignment,
-again using \toolname{RAxML~8.2.8} \citep{Stamatakis2014}.
-The query sequences of the dataset were then aligned to our reference tree and alignment,
-as well as to the reference alignment of the original publication and our re-inferred tree.
-For aligning, we used a custom \texttt{\acs{MPI}} wrapper of \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012},
-which we made available at \citep{PaPaRaMPI}.
-Finally, the query sequences were placed on these trees using \toolname{EPA-ng} \citep{Barbera2018},
-and the analyses were subsequently performed as explained in \figref{fig:bv_squash} and \figref{fig:bv_edgepca}.
-\todo{the above is not up to date!}
+We first used the \ac{BV} dataset for testing the accuracy of the unconstrained \taxonname{Bacteria} tree
+obtained from the \ac{PhAT} method; see \secref{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:BV} for details,
+and see \figref{fig:bv_squash} and \figref{fig:bv_edgepca} for the respective results.
+For this evaluation, we also placed the \ac{BV} dataset on the \taxonname{Bacteria} tree,
+and compared the results obtained from analyses such as Edge PCA and Squash Clustering
+to the results obtained on the original reference tree.
+Next, we used the \ac{BV} dataset throughout Chapters \ref{ch:Visualization} to \ref{ch:Balances} for evaluating our methods.
+% \chpref{ch:Visualization} \chpref{ch:Balances}
+% \paragraph{Evaluation of Placement-Factorization}
+% \label{supp:sec:DetailsEmpiricalDatasets:sub:BV:par:PlacementFactorization}
 
-\todo{pf}
-
-
-For our comparison of Placement-Factorization to the original Phylofactorization \cite{Washburne2017a},
-we furthermore conducted OTU clustering of the sequences, using two different methods:
+Finally, for our comparison of Placement-Factorization to the original Phylofactorization \cite{Washburne2017a}
+in \secref{ch:Factorization:sec:Evaluation:sub:BVDataset},
+we conducted OTU clustering of the \ac{BV} sequences, using two different methods:
 We used \toolname{vsearch v2.9.1} \cite{Rognes2016} as well as \toolname{swarm v2.2.2} \cite{Mahe2014,Mahe2015}
 to obtain two sets of OTU clusters.
 We filtered the OTU table to remove low abundance OTUs, by only keeping those that appear in more than 10\% of the samples.
 In order to assign each OTU to a fitting taxonomic path,
-we used the \toolname{assign} command of our toll \toolname{gappa}.
+we used the \toolname{assign} command of our toll \toolname{gappa} \cite{Czech2019-genesis-gappa},
+see \secref{ch:PipelineImplementation:sub:Commands}.
 To this end, we placed the OTUs on the BV reference tree mentioned above,
 in order to obtain taxonomic assignments for the OTUs
 that are in line with the taxonomic labels used in our other analyses of the dataset.
-Each set of OTUs was subsequently aligned with \toolname{MAFFT v7.310} \cite{Katoh2002,Katoh2013},
+Each set of OTU sequences was subsequently aligned with \toolname{MAFFT v7.310} \cite{Katoh2002,Katoh2013},
 using the \toolname{L-INS-i} strategy \cite{Katoh2005}.
 Finally, we inferred an OTU tree for each set, using the recent \toolname{RAxML-NG v0.7.0} \cite{Kozlov2018a}.
-These two OTU trees were then used with the meta-data for conducting an analysis with \toolname{Phylofactor},
+These two OTU trees were then used with the meta-data for conducting an analysis with \toolname{Phylofactor} \cite{Washburne2017a},
 based on the excellent tutorials at \url{https://github.com/reptalex/phylofactor}.
-The results for the first ten factors for each of these two trees is for example shown in S3~Table of the supplement.
-
+% The results for the first ten factors for each of these two trees is for example shown in S3~Table of the supplement.
 
 % ======================================================================================================================
 %     Neotropical Soils
 % ======================================================================================================================
 
-\section{Neotropical Soils}
-\label{supp:sec:DetailsEmpiricalDatasets:sub:NTS}
-
-\todo{actually never used in any of the evaluations...}
+% \section{Neotropical Soils}
+% \label{supp:sec:DetailsEmpiricalDatasets:sub:NTS}
+%
+% \todo{actually never used in any of the evaluations...}
 
 % ======================================================================================================================
 %     Tara Oceans
@@ -189,39 +216,45 @@ The results for the first ten factors for each of these two trees is for example
 \section{Tara Oceans}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:Tara}
 
+% Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method \cite{Czech2018-phat}
+% to construct sets of suitable reference sequences from the \toolname{Silva} database \cite{Quast2013,Yilmaz2014}.
+% We used the 90\% threshold consensus sequences;
+% see \citeay{Czech2018-phat} for details.
+
 The \acf{TO} dataset \cite{Karsenti2011,Sunagawa2015,Guidi2016}
-that we used here contains amplicon sequences of protists,
+that we used in this work contains amplicon sequences of protists,
 and is available at \url{https://www.ebi.ac.uk/ena/data/view/PRJEB6610}.
 % Seawater was filtered from different depths to retain small and large cell sizes (Protists Organisms).
 % The DNA was extracted and amplified by PCR.
-At the time of download, there were \num{370} samples available
-with a total of \num{49 023 231} sequences.
+At the time of download (2016-09-20), there were \num{370} samples available with a total of \num{49 023 231} sequences.
 As the available data are raw \texttt{fastq} files,
-we followed \cite{FredsMetabarcodingPipeline} to generate cleaned per-sample \texttt{fasta} files.
-For this, we used our tool \toolname{PEAR} \cite{Zhang2014} to merge the paired-end reads;
+we followed \citeay{FredsMetabarcodingPipeline} to generate cleaned per-sample \texttt{fasta} files.
+For this, we used the tool \toolname{PEAR} \cite{Zhang2014} to merge the paired-end reads;
 \toolname{cutadapt} \cite{Martin2011} for trimming tags as well as forward and reverse primers;
 and \toolname{vsearch} \cite{Rognes2016} for filtering erroneous sequences and
 generating per-sample \texttt{fasta} files.
 We filtered out sequences below \SI{95}{bps} and above \SI{150}{bps}, to remove potentially erroneous sequences.
 No further preprocessing (such as chimera detection) was applied.
+
 This resulted in a total of \num{48 036 019} sequences, thereof \num{27 697 007} unique.
 The sequences were then used for phylogenetic placement as explained above.
-We placed the sequences on the unconstrained \taxonname{Eukaryota} reference tree obtained via our \ac{PhAT} method \cite{Czech2018-phat},
-which comprises \num{2 059} taxa, thereof \num{1 795} eukaryotic sequences.
-The remaining \num{264} taxa are \taxonname{Archaea} and \taxonname{Bacteria},
-and were included as a broad outgroup.
+% We placed the sequences on the unconstrained \taxonname{Eukaryota} reference tree obtained via our \ac{PhAT} method \cite{Czech2018-phat},
+% which comprises \num{2 059} taxa, thereof \num{1 795} eukaryotic sequences.
+% The remaining \num{264} taxa are \taxonname{Archaea} and \taxonname{Bacteria},
+% and were included as a broad outgroup.
 The \ac{TO} dataset has a rich variety of per-sample meta-data features;
-in the context of this paper, we mainly focus on quantitative features such as
+in the context of this work, we mainly focus on quantitative features such as
 temperature, salinity, as well as oxygen, nitrate and chlorophyll content of the water.
 Furthermore, each sample has meta-data features indicating the date, longitude and latitude, depth, etc.~of the sampling location.
-This data might be interesting for further correlation analyses based on geographical information.
-We did not use them here, as for example longitude and latitude would require a more involved method
-that also accounts for, e.g., ocean currents.
-Furthermore, geographical coordinates yield pairwise distances between samples,
-which are not readily usable with our correlation analysis.
-Lastly, in order to use features such as the date, that is, in order to analyze samples over time,
-the same sampling locations would need to be visited at different times during the year,
-which is not the case for the Tara Oceans expedition.
+This data might be interesting for further correlation analyses based on geographical information,
+as mentioned in \chpref{ch:ConclusionFutureDirections}.
+% We did not use them here, as for example longitude and latitude would require a more involved method
+% that also accounts for, e.g., ocean currents.
+% Furthermore, geographical coordinates yield pairwise distances between samples,
+% which are not readily usable with our correlation analysis.
+% Lastly, in order to use features such as the date, that is, in order to analyze samples over time,
+% the same sampling locations would need to be visited at different times during the year,
+% which is not the case for the Tara Oceans expedition.
 
 % ======================================================================================================================
 %     Human Microbiome Project
@@ -230,9 +263,19 @@ which is not the case for the Tara Oceans expedition.
 \section{Human Microbiome Project}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:HMP}
 
-We used the \acf{HMP} dataset \cite{Huttenhower2012,Methe2012} for testing the scalability of our methods.
+% Secondly, for the \ac{TO} and \ac{HMP} datasets, we used our Phylogenetic Automatic (Reference) Tree \ac{PhAT} method \cite{Czech2018-phat}
+% to construct sets of suitable reference sequences from the \toolname{Silva} database \cite{Quast2013,Yilmaz2014}.
+% We used the 90\% threshold consensus sequences;
+% see \citeay{Czech2018-phat} for details.
+
+We used the \acf{HMP} dataset \cite{Huttenhower2012,Methe2012} as an example of a large-scale dataset,
+and hence also for testing the scalability of our methods.
 In particular, we used the ``HM16STR'' data of the initial phase ``HMP1'',
 which are available from \url{http://www.hmpdacc.org/hmp/}.
+Each sample is labeled with one of \num{18} human body site locations where it was sampled.
+This is the only publicly available meta-data feature.
+See \tabref{tab:hmp_data_overview} for an overview of those labels.
+
 The dataset consists of trimmed 16S rRNA sequences of the \texttt{V1V3}, \texttt{V3V5}, and \texttt{V6V9} regions.
 The data are further divided into a ``by\_sample'' set and a ``healthy'' set,
 which we merged in order to obtain one large dataset, with a total of \num{9 811} samples.
@@ -241,59 +284,28 @@ as well as \num{605} samples that had fewer than \num{1 500} sequences,
 because we considered them as defective or unreliable outliers.
 % because they lack enough detail for properly measuring the KR distance,
 Finally, we also removed \num{2} samples that did not have a valid body site label assigned to them.
-This resulted in a set of \num{9192} samples
+This resulted in a set of \num{9 192} samples
 containing a total of \num{118 702 967} sequences with an average length of \SI{413}{bps}.
 From these samples, sequences with a length of less than \SI{150}{bps}
 as well as sequences longer than \SI{540}{bps} were removed,
 as we considered them potentially erroneous.
 No further preprocessing (such as chimera detection) was applied.
+
 This resulted in a total of \num{116 520 289} sequences, of which \num{63 221 538} were unique.
-We then used the unconstrained \taxonname{Bacteria} tree of our \ac{PhAT} method \cite{Czech2018-phat} for phylogenetic placement.
+We then used the unconstrained \taxonname{Bacteria} tree of our \ac{PhAT} method \cite{Czech2018-phat}
+for phylogenetic placement;
+see \secref{ch:AutomaticTrees:sec:Evaluation:sub:ReferenceTreeSetup} for details.
 The tree comprises \num{1 914} taxa, thereof \num{1 797} bacterial sequences.
 The remaining \num{117} taxa are \taxonname{Archaea} and \taxonname{Eukaryota},
 and were included as a broad outgroup.
-Each sample is labeled with one of \num{18} human body site locations where it was sampled.
-This is the only publicly available meta-data feature.
-% See Table~\ref{tab:hmp_data_overview} for an overview of those labels.
+% This placement result 
 
-\todo{ from art: }
-
-We used the \acf{HMP} dataset \citep{Huttenhower2012,Methe2012} for further testing our methods
-(see Figure~\ref{fig:hmp_mds_epca}).
-In particular, we used the ``HM16STR'' data of their initial phase ``HMP1'',
-which are available from \url{http://www.hmpdacc.org/hmp/}.
-The dataset consists of trimmed 16S rRNA sequences of the \texttt{V1V3}, \texttt{V3V5}, and \texttt{V6V9} regions.
-Each sample of the dataset is labeled with the human body site where it was obtained.
-See Table~\ref{tab:hmp_data_overview} for an overview of those labels.
-The data are further divided into a ``by\_sample'' set and a ``healthy'' set,
-which we merged in order to obtain one large dataset, with a total of \num{9 811} samples.
-We then removed \num{10} samples that were larger than \SI{70}{\mega\byte}
-as well as \num{605} samples that had fewer than \num{1 500} sequences,
-because we considered them as outliers,
-% because they lack enough detail for properly measuring the KR distance,
-and finally \num{2} samples that did not have a valid body site label assigned to them.
-This resulted in a set of \num{9192} samples
-containing a total of \num{118 702 967} sequences with an average length of \SI{413}{bps}.
-From these samples, sequences with a length less than \SI{150}{bps}
-as well as sequences longer than \SI{540}{bps} were removed.
-No further preprocessing (e.g., chimera detection) was applied.
-This resulted in a total of \num{116 520 289} sequences, of which \num{63 221 538} were unique.
-These were split into \num{1 265} chunks of size \num{50 000} each, which were subsequently aligned to and
-placed on the unconstrained \taxonname{Bacteria} tree with \num{2 059} tips using the steps explained above.
-The chunk placements were then transformed again into per-sample placement files,
-before finally running the steps explained in Figure~\ref{fig:hmp_mds_epca}.
-% see mapseq paper for another example of hmp processing description
-
-\todo{pf}
-
-
-For our re-analysis of the oral/fecal dataset of the original Phylofactorization \cite{Washburne2017a},
-we used the test data provided at \url{https://github.com/reptalex/phylofactor}.
-We modified the scripts to produce \num{10} factors instead of the default of using their stopping criterion,
-in order to be comparable to our implementation and results.
-For the comparison with our Placement-Factorization, we selected a suitable oral/fecal subset of the \ac{HMP} dataset
-as described in the main text.
-
+% For our re-analysis of the oral/fecal dataset of the original Phylofactorization \cite{Washburne2017a},
+% we used the test data provided at \url{https://github.com/reptalex/phylofactor}.
+% We modified the scripts to produce \num{10} factors instead of the default of using their stopping criterion,
+% in order to be comparable to our implementation and results.
+% For the comparison with our Placement-Factorization, we selected a suitable oral/fecal subset of the \ac{HMP} dataset
+% as described in the main text.
 
 % --------------------------------------------
 %     HMP Dataset Labels
@@ -302,14 +314,16 @@ as described in the main text.
 \begin{table}[htb]
 \caption[HMP Dataset Overview]{
 \textbf{HMP Dataset Overview.}
-The table lists the \num{18} body site labels used by the Human Microbiome Project (HMP) \citep{Huttenhower2012,Methe2012},
+The table lists the \num{18} body site labels used by the Human Microbiome Project (HMP) \cite{Huttenhower2012,Methe2012},
 and a ``translation'' into the corresponding body region.
-We used this dataset to evaluate the applicability of typical analysis methods for phylogenetic placement
-using our \acp{PhAT}, see \secref{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:HMP} for details.
-Furthermore, we evaluated our $k$-means clustering methods on this dataset,
-as described in \secref{ch:Clustering:sec:Results:sub:HMPDataset}.
+% We used this dataset to evaluate the applicability of typical analysis methods for phylogenetic placement
+% using our \acp{PhAT}, see \secref{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:HMP} for details.
+% Furthermore, we evaluated our $k$-means clustering methods on this dataset,
+% as described in \secref{ch:Clustering:sec:Results:sub:HMPDataset}.
 % In order to simplify the visualization in \figref{fig:hmp_mds_epca},
-In these evaluations,
+% In these evaluations,
+For simplicity, in the evaluations in \secref{ch:AutomaticTrees:sec:Evaluation:sub:EmpiricalDatasets:par:HMP} and
+\secref{ch:Clustering:sec:Results:sub:HMPDataset},
 we summarized some of the labels into eight location groups, as shown in the third column.
 The last column lists how many samples from each body site were used in our evaluation.
 }
@@ -339,6 +353,7 @@ The last column lists how many samples from each body site were used in our eval
         Mid Vagina                      & Vagina            & Vagina            & 298   \\
         Posterior Fornix                & Vagina            & Vagina            & 301   \\
 %         N/A                             &                   &                   & 2     \\
+        \midrule
         Sum                             &                   &                   & 9192  \\
         \bottomrule
     \end{tabular}
@@ -353,38 +368,30 @@ The last column lists how many samples from each body site were used in our eval
 \section{Mouse Gut}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}
 
-This dataset was used for the eval of tax assign in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}
-
-CAMI Challenge \citep{Sczyrba2017}.
-The CAMI Challenge is a community-driven effort to assess taxonomic profiling methods
-using a common set of benchmark data sets.
-
-
-we utilized the \taxonname{mouse gut} data set of the 2nd CAMI Challenge \citep{Bremges2018}.
-
-
-More specifically, we used the unpaired HiSeq reads of the mouse gut data set from CAMI,
+We utilized the \taxonname{mouse gut} dataset of the 2nd \toolname{CAMI} Challenge \cite{Sczyrba2017,Bremges2018}
+to evaluate the accuracy of our \ac{PhAT} trees for taxonomic assigment
+in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}.
+More specifically, we used the unpaired HiSeq reads of the mouse gut dataset from CAMI,
 which comprises \num{64} samples of simulated reads.
-The preprocessing involved read de-interleaving following \cite{DeinterleaveFastq},
-paired-end read merging using \toolname{PEAR} \citep{Zhang2014},
-as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \citep{Rognes2016}.
+The preprocessing involved read de-interleaving following \citeay{DeinterleaveFastq},
+paired-end read merging using \toolname{PEAR} \cite{Zhang2014},
+as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \cite{Rognes2016}.
 This yielded a total of \num{800 341 409} reads.
 As our trees are based on small ribosomal subunit sequences,
 we also performed read filtering to obtain reads from the 16S rDNA region
 (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}).
-This filtering was performed using the protocol of \cite{Logares2014},
-which relies on \toolname{HMMER} \citep{Eddy1998,Eddy2009}, and respective profiles for the 16S rDNA locus.
-We performed a global identity based de-replication step on the resulting reads that yielded \num{616 405} query sequences.
+This filtering was performed using the protocol of \citeay{Logares2014},
+which relies on \toolname{HMMER} \cite{Eddy1998,Eddy2009}, and respective profiles for the 16S rDNA locus.
+We performed a global identity based de-replication step on the resulting reads
+that yielded \num{616 405} unique query sequences.
 We aligned these query sequences to our \taxonname{Bacteria} reference alignment
-using \toolname{PaPaRa~2.0} \citep{Berger2011a,Berger2012}.
+using \toolname{PaPaRa~2.0} \cite{Berger2011a,Berger2012}.
 We then performed phylogenetic placement of the aligned query sequences onto the unconstrained and constrained reference trees,
-respectively, using \toolname{EPA-ng} \citep{Barbera2018}.
+respectively, using \toolname{EPA-ng} \cite{Barbera2018}.
 We performed de-de-replication to obtain per-sample data again, %on the \texttt{jplace} file,
 resulting in \num{64} \texttt{jplace} files (one per original sample) with placements of the 16S rDNA sequences,
 for each of the two trees.
-
-
 Finally, we performed taxonomic assignment and taxonomic profiling of the per-sample results
-using the \texttt{assign} command implemented in \toolname{gappa},
-which works analogously to the method used in \toolname{Sativa} \citep{Kozlov2016}.
+using the \texttt{assign} command implemented in \toolname{gappa} \cite{Czech2019-genesis-gappa},
+which works analogously to the method used in \toolname{Sativa} \cite{Kozlov2016}.
 Its basic steps are described in \appref{ch:PipelineImplementation}.
