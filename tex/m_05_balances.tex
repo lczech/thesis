@@ -115,10 +115,10 @@ as used by the PhILR transform \cite{Silverman2017}.
 \label{ch:Balances:sec:Methods}
 
 In \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}, 
-we briefly outlined the inherently compositional nature of metagenomic sequence data \cite{Gloor2017}.
+we briefly outlined the inherently compositional nature of metagenomic sequence data \cite{Gloor2017,Quinn2018}.
 For a thorough discussion of the implications of this, see \citeay{Silverman2017}.
 One solution is to transform the data into an unconstrained space that is not compositional.
-This can, for example, be achieved via the Isometric Log-Ratio (ILR) transform \cite{Egozcue2003},
+This can, for example, be achieved via the Isometric Log-Ratio (ILR) transform \cite{Egozcue2003,Quinn2018},
 which, given a compositional space, creates a new coordinate system with an orthonormal basis \cite{Egozcue2005}.
 The ILR transform requires a sequential binary partitioning of the underlying original space \cite{Pawlowsky-Glahn2015}.
 As suggested in \citeay{Silverman2017},
@@ -358,7 +358,8 @@ In that case, the weights for edge $j$ are computed as follows:
 Here, $n$ is the number of samples, $\tilde{c}_j$ is the vector of absolute masses at edge $j$ across all samples,
 and $\tilde{x}_j$ the vector of relative masses at edge $j$ across all samples, both of length $n$.
 That is, these measures use the masses of all $n$ samples;
-consequently, we here use columns instead of rows of the edge masses matrix of \figref{fig:masses_imbalances:sub:Matrices},
+consequently, we here use columns instead of rows of the edge masses matrix of \figref{fig:balances:sub:masses}
+(which is identical to \figref{fig:masses_imbalances:sub:Matrices}),
 where each column is used for the weights of the corresponding edge.
 The resulting edge weights $\bm{p}$ are then fixed and used across the balance computation of all samples.
 
