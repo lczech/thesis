@@ -1,87 +1,122 @@
 % ######################################################################################################################
-%         Pipeline and Implementation
+%         Software Implementation
 % ######################################################################################################################
 
 \cleardoublepage
 
-\chapter{Pipeline and Implementation}
+\chapter{Software Implementation}
 \label{ch:PipelineImplementation}
 
 \paperbox{
-    This chapter is based on the peer-reviewed publications:
-}{\paperart \paperpppp}{
-    \textbf{Contributions:} Lucas Czech... Alexandros Stamatakis...
+    This chapter is based on excerpts from the following publications:
+%     This chapter is based on excerpts from the peer-reviewed publications:
+}{\paperart \paperpppp \papergenesis}{
+    \textbf{Contributions:} All text relevant for this chapter was written by Lucas Czech.
+    All figures in this chapter were created by Lucas Czech.
 }
 
-\todo{rename chapter to ``Genesis and Gappa''?}
+In this work, we presented several novel methods for analyzing and visualizing phylogenetic placement data.
+In order to test these methods, evaluate their results, and produce the respective figures shown here,
+we implemented all of these methods as part of our software library \toolname{genesis}.
+Furthermore, for end users who want to apply our methods to their own data,
+we provide a tool called \toolname{gappa}, which offers a command line interface with sufficient options for most needs.
+In this chapter, we briefly introduce \toolname{genesis} and the relevant commands of \toolname{gappa}.
+For more details, see our application note that describes both tools \cite{Czech2019-genesis-gappa}.
 
-\todo{add genesis and gappa logos. because we can.}
+\toolname{genesis} and \toolname{gappa} are freely available under GPLv3
+at \url{http://github.com/lczech/genesis} and \url{http://github.com/lczech/gappa}.
+They are already used as an integral part
+in several of our previous publications and programs \cite{Mahe2017,Barbera2018,Zhou2017,Czech2018-phat,Czech2019-analysis}.
+Furthermore, \toolname{gappa} is used as part of the \toolname{PICRUSt2} pipeline \cite{Douglas2019},
+which however is not developed or maintained by us.
+These use cases hence prove the flexibility and usefulness of our tools for research and development purposes.
 
-\todo{maybe post the whole draft of the genesis/gappa paper here?}
+\vspace*{1.5em}
+\includegraphics[width=\linewidth]{pdf/logos.pdf}
+% \vspace*{0.5em}
 
-\todo{maybe add the pipleline and other supporting texts from the papers here}
+% ======================================================================================================================
+%     Features of Genesis
+% ======================================================================================================================
 
-gappa and genesis are used in our software, proving its ...
-which was created as part of the \toolname{PICRUSt2} pipeline \cite{Douglas2019},
+\section{Overview of Genesis}
+\label{ch:PipelineImplementation:sub:Genesis}
 
+% \includegraphics[width=0.6\linewidth]{pdf/genesis_logo.pdf}
+
+When developing scientific software, there are several important, yet often times competing design objectives:
+(a) Most users require a fast and simple application for analysing their data,
+(b) some power users desire customization, e. g., via scripting etc., and
+(c) developers require a flexible toolkit for rapid prototyping.
+At the same time, with the on-going data growth,
+the implementation needs to be scalable and efficient with respect to both, memory, and execution times.
+We aimed to meet all of the above objectives.
+To this end, \toolname{genesis} is written in \texttt{C++11}, using a modern, modular, and function-centric software design.
+
+\toolname{genesis} is a highly flexible library for reading, manipulating, and evaluating phylogenetic data,
+and in particular phylogenetic placement data.
+It has a simple and straight forward API, but is also computationally highly efficient.
+Typical tasks such as parsing and writing files, iterating over the elements of a data structure,
+and other frequently used functions are mostly one-liners
+that integrate well with modern \texttt{C++} and its standard library \texttt{STL}.
+Where possible, the library is multi-threaded,
+allowing for fully leveraging the computational power of multi-core systems.
+Hence, \toolname{genesis} allows for scalable parsing and processing of huge datasets.
+The functionality is divided into loosely coupled modules,
+which are described in more detail in the application note \cite{Czech2019-genesis-gappa} and the online documentation.
+
+We evaluate the code quality, the runtime behavior, and the memory requirements
+for conducting typical tasks such as file parsing and data processing in the application note \cite{Czech2019-genesis-gappa}.
+We find that \toolname{genesis} has the overall best code quality score compared to other scientific codes written in C or C++.
+It is also consistently faster than all evaluated Python and R libraries in our tests.
 
 % \begin{figure}[!htb]
 %     \centering
-     \includegraphics[width=0.6\linewidth]{pdf/genesis_logo.pdf}
+%      \includegraphics[width=\linewidth]{pdf/logos.pdf}
+%     \caption[Genesis and gappa logos.]{
+%         \textbf{Genesis and Gappa logos.}
+%     }
+%     \label{fig:genesis_logo}
+% \end{figure}
+
+% \begin{figure}[!htb]
+%     \centering
+%      \includegraphics[width=0.6\linewidth]{pdf/genesis_logo.pdf}
 %     \caption[Ordination of the first two factors of the \ac{BV} dataset]{
 %         \textbf{Ordination of the first two factors of the \ac{BV} dataset.}
 %     }
 %     \label{fig:genesis_logo}
 % \end{figure}
 
+% ======================================================================================================================
+%     Commands of Gappa
+% ======================================================================================================================
 
-\includegraphics[width=0.6\linewidth]{pdf/gappa_logo.pdf}
+\section{Commands of Gappa}
+\label{ch:PipelineImplementation:sub:Commands}
 
-The methods described here are implemented in our tool \toolname{gappa},
-which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}.
-\toolname{gappa} internally uses our C++ library \toolname{genesis},
-which offers functionality for working with phylogenies and phylogenetic placement data,
-and also contains methods to work with taxonomies, sequences and many other data types.
-\toolname{genesis} is also freely available under GPLv3 at \url{http://github.com/lczech/genesis}.
+% \includegraphics[width=0.6\linewidth]{pdf/gappa_logo.pdf}
 
-\toolname{gappa} offers a command line interface for conducting typical tasks when working with phylogenetic placements.
-The methods that we described here are implemented via the following sub-commands:
+The flexibility of a library such as \toolname{genesis} is primarily useful for method developers.
+For most users, it is however more convenient to offer a simple interface for typical, frequent tasks.
+To this end, we have developed the command line program \toolname{gappa}, which we present in the following.
+% \toolname{gappa} utilizes \toolname{genesis} to perform common data management and analysis tasks with a high efficiency. 
 
-\begin{itemize}
-    \item \texttt{dispersion}: The command takes a set of jplace files (called samples), and calculates and visualizes
-        the Edge Dispersion per edge of the reference tree.
-    \item \texttt{correlation}: The command takes a set of jplace samples, as well as a table containing metadata
-        features for each sample. It then calculates and visualizes the Edge Correlation with the metadata features per
-        edge of the reference tree.
-    \item \texttt{phylogenetic-kmeans} and \texttt{imbalance-kmeans}: Performs $k$-means clustering of a set of jplace
-        files according to our methods.
-    \item \texttt{squash} and \texttt{edgepca}: Reimplementations of the two existing methods \cite{Matsen2011a,Evans2012}.
-\end{itemize}
+\toolname{gappa} is short for ``Genesis Applications for Phylogenetic Placement Analyses''.
+Its original purpose was to implement and make available the methods we presented in this work,
+see also \citeay{Czech2018-phat} and \citeay{Czech2019-analysis}.
+\toolname{gappa} has since been substantially extended and 
+now also contains a multitude of other auxiliary commands,
+as well as re-implementations of some prominent methods of \toolname{guppy} \cite{Matsen2010}.
+These re-implementations are far more computationally efficient than the original,
+which was necessary in order to be able to apply them for the large datasets that we used in this work.
 
-These are the \toolname{gappa} commands that are relevant for this paper.
-The tool also offers additional commands that are useful for phylogenetic placement data, such as visualization or filtering.
-At the time of writing this manuscript, \toolname{gappa} is under active development,
-with more functions planned in the near future.
-Lastly, we provide prototype implementations, scripts, data, and other tools
-used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.
-
-
-\todo{ART:}
-
-An implementation of the methods described here is freely available in our tool \toolname{gappa},
-which is published under GPLv3 at \url{http://github.com/lczech/gappa}.
-\toolname{gappa} is based on our C++ library \toolname{genesis},
-which offers functionality concerning phylogenies and phylogenetic placement data,
-but also has functions to work with sequences, taxonomies and many other data types.
-\toolname{genesis} is also published under GPLv3 and is available at \url{http://github.com/lczech/genesis}.
-
-\toolname{gappa} offers a command line interface for typical tasks of working with phylogenetic placements.
-The methods described in this paper are implemented via four sub-commands:
+The methods that we described in this work are implemented via the following sub-commands of \toolname{gappa}:
 
 \begin{itemize}
-    \item \texttt{phat}: Phylogenetic Automatic (Reference) Tree method.
+    \item \texttt{phat}: Phylogenetic Automatic (Reference) Tree method, see \secref{ch:AutomaticTrees:sec:Methods:sub:PhAT}.
           The command expects a taxonomy file and a sequence file of a sequence database,
-          e.g., \toolname{Silva} \cite{Quast2013,Yilmaz2014},
+          e.\,g., \toolname{Silva} \cite{Quast2013,Yilmaz2014},
           as well as the target number of consensus sequences to be generated for the intended phylogeny.
           The result is a \texttt{fasta} file with consensus sequences representing taxonomic clades.
           The command can be further customized, e.g., by changing the consensus sequence method,
@@ -90,7 +125,8 @@ The methods described in this paper are implemented via four sub-commands:
           It can also output additional info files that allow to inspect details of the calculations,
           like the number of sequences and their entropy per clade.
     \item \texttt{extract}: Extract/collect placements in specific sub-clades of the tree.
-          The command performs the main step of the multilevel placement approach.
+          The command performs the main step of the multilevel placement approach,
+          see \secref{ch:AutomaticTrees:sec:Methods:sub:MultilevelPlacement}.
           Its input is a set of \texttt{jplace} files containing placements on the backbone tree,
           as well as a file listing the clade name that each taxon of the backbone tree belongs to.
           For each clade, it then writes a new \texttt{jplace} file,
@@ -104,7 +140,8 @@ The methods described in this paper are implemented via four sub-commands:
           These can then be used for the second level placement on separate clade-specific trees.
     \item \texttt{chunkify}: Split a set of \texttt{fasta} files into chunks of equal size,
           and write abundance maps.
-          The command re-names the sequences using a configurable hash function (MD5, SHA1 or SHA256),
+          This is the first step of the preprocessing pipeline as described in \secref{ch:AutomaticTrees:sec:Methods:sub:DataPreprocessing}.
+          The command re-names the sequences using a configurable hash function (\texttt{MD5}, \texttt{SHA1} or \texttt{SHA256}),
           and de-duplicates across all input sequences.
           Its output are chunk files of sequences, as well as an abundance map file for each input sequences file.
           The sequence chunk files can then be used to perform phylogenetic placement
@@ -113,7 +150,8 @@ The methods described in this paper are implemented via four sub-commands:
           and generate a \texttt{jplace} for each original sequence file, including the correct abundances.
           This command is the second step of the \texttt{chunkify} command, and reverts its effect,
           so that the resulting \texttt{jplace} files are as if they were created using the original sequence files.
-    \item \texttt{assign}: Perform taxonomic assignment using phylogenetic placements.
+    \item \texttt{assign}: Perform taxonomic assignment using phylogenetic placements,
+          which was used for the evaluation in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}.
           While this is not the main focus of this work, we briefly introduce this method here.
           The command uses a taxonomic labeling of the tips of the reference tree
           to annotate all inner branches of the tree with the longest common taxonomic label
@@ -122,12 +160,68 @@ The methods described in this paper are implemented via four sub-commands:
           is taxonomically assigned according to the labels of the branches where it does have placement mass.
           This can subsequently either be used for taxonomic assignment of the query sequences themselves,
           or to obtain a taxonomic profile of one or more samples.
+    \item \texttt{dispersion}: The command implements Edge Dispersion
+          as described in \secref{ch:Visualization:sec:Methods:sub:EdgeDispersion}.
+          It takes a set of \texttt{jplace} files (the samples) as input, and calculates and visualizes
+          the Edge Dispersion per edge of the reference tree.
+          For this, it offers different modes to measure the dispersion, such as the standard deviation
+          or the coefficient of variation, and log-scaled variants thereof, as explained in the main text.
+    \item \texttt{correlation}: This command implements Edge Correlation,
+          see \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}.
+          The command takes a set of \texttt{jplace} samples, as well as a table containing meta-data features for each sample.
+          It then calculates and visualizes the Edge Correlation with the metadata features per
+          edge of the reference tree.
+          The command offers options to chose the type of values to use (masses or imbalances),
+          as well as the correlation measure (Pearson Correlation Coefficient or Spearman's Rank Correlation Coefficient).
+    \item \texttt{phylogenetic-kmeans} and \texttt{imbalance-kmeans}: Performs $k$-means clustering of a set of \texttt{jplace}
+          files according to the methods described in \secref{ch:Clustering:sec:Methods:sub:PhylogeneticKmeans}
+          and \secref{ch:Clustering:sec:Methods:sub:ImbalanceKmeans}.
+          The commands output information such as the cluster assignments and visualizations of the centroid trees,
+          but also allow for clustering with different values for $k$ in order to create, e.\,g.,
+          the data for Elbow plots.
+    \item \texttt{placement-factorization}:
+          Performs our adaptation of Phylofactorization \cite{Washburne2017a} to phylogenetic placement data
+          as explained in \secref{ch:Factorization:sec:Methods:sub:Phylofactor}, and outputs all relevant analysis results.
+          The command takes a set of \texttt{jplace} samples as well as a per-sample meta-data table,
+          and computes a given number of phylogenetic factors.
+          The meta-data can be of many different types, such as numerical or boolean values, or categorical data.
+          It outputs all relevant data and visualizations as shown in this work,
+          for example, the edges that are factored out in each step, as well as the visualization of the
+          values of the objective function on the reference tree.
+    \item \texttt{squash} and \texttt{edgepca}:
+          Re-implementations of the two existing methods \cite{Matsen2011a,Evans2012} as introduced
+          in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}.
+          As mentioend above, the original implementation in \toolname{guppy} was not efficient enough for conducting
+          the large scale analyses that we needed for this work.
+          We hence offer these commands in \toolname{gappa}, which scale to larger datasets.
 \end{itemize}
 
-These are the commands of \toolname{gappa} relevant for this paper,
-but it also offers more commands that are useful when working with phylogenetic placements.
-For details on the commands, and additional potentially useful commands,
-see the \toolname{gappa} documentation at \url{https://github.com/lczech/gappa/wiki}.
-At the time of writing, it is under active development, and more functions are planned for the near future.
-Furthermore, we provide prototype implementations, scripts, data and other tools
-used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.
+These are the \toolname{gappa} commands that are relevant in the context of this work.
+For more details and a full list of the available commands, see \url{http://github.com/lczech/gappa}.
+Furthermore, we provide prototype implementations, scripts, data, and other tools
+used for the tests and figures in this work at \url{http://github.com/lczech/placement-methods-paper}.
+
+% These are the \toolname{gappa} commands that are relevant in the context of this work.
+% The tool also offers additional commands that are useful for phylogenetic placement data, such as visualization or filtering.
+% At the time of writing this manuscript, \toolname{gappa} is under active development,
+% with more functions planned in the near future.
+% Lastly, we provide prototype implementations, scripts, data, and other tools
+% used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.
+
+% An implementation of the methods described here is freely available in our tool \toolname{gappa},
+% which is published under GPLv3 at \url{http://github.com/lczech/gappa}.
+% \toolname{gappa} is based on our C++ library \toolname{genesis},
+% which offers functionality concerning phylogenies and phylogenetic placement data,
+% but also has functions to work with sequences, taxonomies and many other data types.
+% \toolname{genesis} is also published under GPLv3 and is available at \url{http://github.com/lczech/genesis}.
+
+% \toolname{gappa} offers a command line interface for typical tasks of working with phylogenetic placements.
+% The methods described in this paper are implemented via four sub-commands:
+
+% These are the commands of \toolname{gappa} relevant for this paper,
+% but it also offers more commands that are useful when working with phylogenetic placements.
+% For details on the commands, and additional potentially useful commands,
+% see the \toolname{gappa} documentation at \url{https://github.com/lczech/gappa/wiki}.
+% At the time of writing, it is under active development, and more functions are planned for the near future.
+% Furthermore, we provide prototype implementations, scripts, data and other tools
+% used for the tests and figures in this paper at \url{http://github.com/lczech/placement-methods-paper}.
