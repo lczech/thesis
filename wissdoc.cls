@@ -432,7 +432,11 @@
 \usepackage{lscape}
 \usepackage{rotating}
 \usepackage{pdfpages}
-\usepackage{acronym}
+
+%\usepackage{acronym}
+\usepackage[nolist]{acronym}
+%\usepackage[nohyperlinks,nolist]{acronym}
+
 %\usepackage{wasysym}
 % \usepackage{bbding}
 % \usepackage{todonotes}

@@ -65,10 +65,10 @@
 \include{tex/f_00_titlepage}
 \blankpage
 
-\include{tex/f_01_abstract}
+\include{tex/f_01_declaration}
 \blankpage
 
-\include{tex/f_02_declaration}
+\include{tex/f_02_abstract}
 \blankpage
 
 \include{tex/f_03_acknowledgment}
@@ -104,52 +104,74 @@
 
 \pdfbookmark{List of Acronyms}{listofacronyms}
 \chapter*{List of Acronyms}
-\begin{acronym}
-%     \setlength{\itemsep}{-\parsep}
 
+% The definition we use in the wissdoc class is as follows:
+% \usepackage[nolist]{acronym}
+% Hence, no list is printed, because it looks ugly. We want a table instead.
+% Unfortunately, we have to make this in our own, which means, repeating everything...
+% So first, we define all acros, then we manually make a nice table of them. See below.
+% Furthermore, the acronym package does have some issues with hyperlinks,
+% which we can only get rid of by manually adding hyperlink targets to each line... Stupid.
+
+\begin{acronym}
 %     \acro{BLAST}[BLAST]{Basic Local Alignment Search Tool}
 %     \acro{BLO}[BLO]{Branch Length Optimization}
-
-    \acro{DNA}{Deoxyribonucleic Acid}
-    \acro{NGS}{Next Generation Sequencing}
-    \acro{MSA}{Multiple Sequence Alignment}
-
-    \acro{CLV}{Conditional Likelihood Vector}
-    \acro{FPA}{Felsenstein Pruning Algorithm}
-
-    \acro{OTU}{Operational Taxonomic Unit}
-
-    \acro{RA}{reference alignment}
-    \acro{RT}{reference tree}
-    \acro{QS}{query sequence}
-
-    \acro{BT}{backbone tree}
-    \acro{CT}{clade tree}
-
-    \acro{MPI}{Message Passing Interface}
     \acro{API}{Application Programming Interface}
-
-
-    \acro{LWR}{likelihood weight ratio}
-    \acro{KR}{Kantorovich-Rubinstein (Distance)}
-
-%     \acro{ART}[ART]{automatic reference tree}
-    \acro{PhAT}{Phylogenetic Automatic (Reference) Tree}
-
-    \acro{PCA}{Principal Components Analysis}
-    \acro{MDS}{Multidimensional Scaling}
-    \acro{GLM}{Generalized Linear Model}
-
+    \acro{BT}{Backbone Tree}
     \acro{BV}{Bacterial Vaginosis}
-    \acro{NTS}{Neotropical Soils}
-    \acro{TO}{Tara Oceans}
+    \acro{CLV}{Conditional Likelihood Vector}
+    \acro{CT}{Clade Tree}
+    \acro{DNA}{Deoxyribonucleic Acid}
+    \acro{FPA}{Felsenstein Pruning Algorithm}
+    \acro{GLM}{Generalized Linear Model}
     \acro{HMP}{Human Microbiome Project}
+    \acro{KR}{Kantorovich-Rubinstein (Distance)}
+    \acro{LWR}{Likelihood Weight Ratio}
+    \acro{MDS}{Multidimensional Scaling}
+    \acro{MPI}{Message Passing Interface}
+    \acro{MSA}{Multiple Sequence Alignment}
+    \acro{NGS}{Next Generation Sequencing}
+    \acro{OTU}{Operational Taxonomic Unit}
+    \acro{PCA}{Principal Components Analysis}
+    \acro{PhAT}{Phylogenetic Automatic (Reference) Tree}
+    \acro{QS}{Query Sequence}
+    \acro{RA}{Reference Alignment}
+    \acro{RT}{Reference Tree}
+    \acro{TO}{Tara Oceans}
 \end{acronym}
-\todo{No List! Make table instead!}
-% \usepackage[nolist]{acronym}
-\blankpage
 
-%     \acroplural{QS}[QSs]{query sequences}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{ll}
+    \vadjust pre{\hypertarget{API}{}}    \textbf{ \acs{API} }  & \acl{API}  \\
+    \vadjust pre{\hypertarget{BT}{}}     \textbf{ \acs{BT} }   & \acl{BT}   \\
+    \vadjust pre{\hypertarget{BV}{}}     \textbf{ \acs{BV} }   & \acl{BV}   \\
+    \vadjust pre{\hypertarget{CLV}{}}    \textbf{ \acs{CLV} }  & \acl{CLV}  \\
+    \vadjust pre{\hypertarget{CT}{}}     \textbf{ \acs{CT} }   & \acl{CT}   \\
+    \vadjust pre{\hypertarget{DNA}{}}    \textbf{ \acs{DNA} }  & \acl{DNA}  \\
+    \vadjust pre{\hypertarget{FPA}{}}    \textbf{ \acs{FPA} }  & \acl{FPA}  \\
+    \vadjust pre{\hypertarget{GLM}{}}    \textbf{ \acs{GLM} }  & \acl{GLM}  \\
+    \vadjust pre{\hypertarget{HMP}{}}    \textbf{ \acs{HMP} }  & \acl{HMP}  \\
+    \vadjust pre{\hypertarget{KR}{}}     \textbf{ \acs{KR} }   & \acl{KR}   \\
+    \vadjust pre{\hypertarget{LWR}{}}    \textbf{ \acs{LWR} }  & \acl{LWR}  \\
+    \vadjust pre{\hypertarget{MDS}{}}    \textbf{ \acs{MDS} }  & \acl{MDS}  \\
+    \vadjust pre{\hypertarget{MPI}{}}    \textbf{ \acs{MPI} }  & \acl{MPI}  \\
+    \vadjust pre{\hypertarget{MSA}{}}    \textbf{ \acs{MSA} }  & \acl{MSA}  \\
+    \vadjust pre{\hypertarget{NGS}{}}    \textbf{ \acs{NGS} }  & \acl{NGS}  \\
+    \vadjust pre{\hypertarget{OTU}{}}    \textbf{ \acs{OTU} }  & \acl{OTU}  \\
+    \vadjust pre{\hypertarget{PCA}{}}    \textbf{ \acs{PCA} }  & \acl{PCA}  \\
+    \vadjust pre{\hypertarget{PhAT}{}}   \textbf{ \acs{PhAT} } & \acl{PhAT} \\
+    \vadjust pre{\hypertarget{QS}{}}     \textbf{ \acs{QS} }   & \acl{QS}   \\
+    \vadjust pre{\hypertarget{RA}{}}     \textbf{ \acs{RA} }   & \acl{RA}   \\
+    \vadjust pre{\hypertarget{RT}{}}     \textbf{ \acs{RT} }   & \acl{RT}   \\
+    \vadjust pre{\hypertarget{TO}{}}     \textbf{ \acs{TO} }   & \acl{TO}   \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+% Make sure that everything is reset again,
+% so that it appears normally when first used in the main text!
+\acresetall
+
+\blankpage
 
 % ------------------------------------------
 %    Main Part
