@@ -110,29 +110,15 @@ hence require efficient and scalable software implementations.
 % \section{Objective and Contribution}
 % \label{ch:Introduction:sec:ObjectiveContribution}
 
-\section{Contribution and Overview}
+\section{Scientific Contribution}
 \label{ch:Introduction:sec:ContributionOverview}
-
-\todo{rename to just contrib or scientific contrib? rename following to structure and overview?}
 
 This thesis makes several contributions to the field of computational phylogenetics,
 specifically regarding phylogenetic placements as well as analyzing and visualizing the resulting data.
-In particular, we introduce multiple novel methods to overcome the issues and limitations described above.
-We described the methods in two already peer-reviewed publications \cite{Czech2018-phat,Czech2019-analysis},
+In particular, we introduce multiple novel methods to overcome the issues and limitations explained above.
+We described the methods in two already peer-reviewed open-access publications \cite{Czech2018-phat,Czech2019-analysis},
 and made their data and scripts available at \url{http://github.com/lczech/placement-methods-paper}.
-% phat \cite{Czech2018}
-% vis clust \cite{Czech2018a}
-% \citeauthor{Czech2018} and \citeauthor{Czech2018a} and \citeauthor{Czech2018,Czech2018a}
-
-\todo{maybe move to structure?! or at least add balacnes and phylofactgor here as well!}
-
-Firstly, we describe an automated approach for obtaining suitable reference trees for phylogenetic placement,
-as well as pre-processing pipelines to accelerate and enable
-phylogenetic placement of large metagenomic datasets (\chpref{ch:AutomaticTrees}).
-Secondly, we introduce methods to visualize such large datasets
-in order to detect patterns within the data and correlations with per-sample meta-data (\chpref{ch:Visualization}).
-Lastly, we present an approach for clustering metagenomic samples (\chpref{ch:Clustering}),
-by measuring similarity between samples in terms of the species diversity they contain.
+More details on the contribution of each method to the research community are provided in the respective chapters.
 
 Apart from the two publications on which this thesis is based,
 we published a review on several software tools for visualizing phylogenetic trees \cite{Czech2017-tree-viewers}.
@@ -158,14 +144,13 @@ for which we conducted phylogenetic tree reconstructions for a diverse set of \n
 as well as a study of \taxonname{Microsopirida} and \taxonname{Cryptomycota} \cite{Bass2018a},
 to which we contributed phylogenetic placement analyses
 in order to resolve some branches in the phylogenetic tree of these groups of microbial \taxonname{Eukaryotes}.
-% \todo{Mention the current projects as well?:}
 An ongoing large-scale endeavor is the UniEuk project \cite{Berney2017},
 which aims to offer a unified reference database for the \taxonname{Eukaryotes}.
 For UniEuk, we provided consultancy and helped in planning workflows and pipelines.
 Furthermore, for its sub-project EukBank,
 we conducted preliminary phylogenetic analyses of their entire metagenomic database as a showcase for other researchers.
 In a current empirical data analysis project,
-we develop tools for analyzing a dataset of microbial \taxonname{Eukaryotes} \cite{Jamy2019a}. \todo{update reference}
+we develop tools for analyzing a dataset of microbial \taxonname{Eukaryotes} \cite{Jamy2019a}.
 The goal is to show that novel sequencing technologies that yield longer sequences per run
 can improve taxonomic and phylogenetic analyses compared to other sequencing technologies.
 Lastly, we are currently working on an empirical dataset of \taxonname{Dinoflagellates},
@@ -190,8 +175,6 @@ For details on the software implementations, see \appref{ch:PipelineImplementati
 We also published an application note \cite{Czech2019-genesis-gappa},
 which describes \toolname{genesis} and \toolname{gappa} in detail,
 and evaluates their runtime and memory requirements in comparison to analoguous software.
-\todo{ref to final genesis/gappa paper, if finished in time.}
-\todo{maybe use some text from the paper abstract here.}
 
 Moreover, we contributed to several other open-source bioinformatics software projects.
 We helped to develop an efficient approach for merging so-called \emph{paired-end reads}
@@ -219,38 +202,47 @@ in order to estimate the species diversity of metagenomic sequence samples based
 see also \chpref{ch:ConclusionFutureDirections}.
 
 % A full list of our publications is also available in \appref{ch:Publications}.
-
 % tree clustering workshop?
 
 % ######################################################################################################################
 %         Structure and Overview
 % ######################################################################################################################
 
-\section{Structure}
+\section{Structure and Overview}
 \label{ch:Introduction:sec:StructureOverview}
 
 The remainder of this thesis is structured as follows.
-First, we introduce the general concepts and existing methods
-of computational phylogenetics and phylogenetic placement in \chpref{ch:Foundations}.
-Then, in Chapters \ref{ch:AutomaticTrees}--\ref{ch:Clustering}, we describe the aforementioned novel methods
-for conducting and analyzing phylogenetic placements.
+Initially, we introduce the general concepts and existing methods
+of computational phylogenetics and phylogenetic placement (\chpref{ch:Foundations}).
+In subsequent chapters, we describe our novel methods for conducting and analyzing phylogenetic placements:
+Firstly, we describe an automated approach for obtaining suitable reference trees for phylogenetic placement,
+as well as pre-processing pipelines to accelerate and enable
+phylogenetic placement of large metagenomic datasets (\chpref{ch:AutomaticTrees}).
+Secondly, we introduce methods to visualize such large datasets
+in order to detect patterns within the data and correlations with per-sample meta-data (\chpref{ch:Visualization}).
+Then, we present an approach for clustering metagenomic samples (\chpref{ch:Clustering}),
+by measuring similarity between samples in terms of the species diversity they contain.
+In between, we describe an adaptation of a novel type of data representation
+to phylogenetic placement data (\chpref{ch:Balances}).
+Lastly, we present an adaptation of a recent method called Phylofactorization
+to phylogenetic placement data (\chpref{ch:Factorization}),
+which allows to find parts of a given reference tree
+that are meaningful with respect to meta-data features collected per environmental sample.
+Finally, we conclude and discuss potential directions of future work (\chpref{ch:ConclusionFutureDirections}).
 
-\todo{split the above sentence into more refined versions explaining each chapter.}
+We furthermore provide additional supporting information (\appref{ch:SupportingInformation}),
+an overview of the empirical datasets used for our evaluations and their pre-processing (\appref{ch:EmpiricalDatasets}),
+as well as some information on our software implementation (\appref{ch:PipelineImplementation}).
 
-\todo{balances and phylofactorization. maybe also mention them in the introduction.}
+% Most of the above chapters are derived either fully or in part from parts of two of our publications,
+% namely \citeay{Czech2018-phat} and \citeay{Czech2019-analysis}.
+% Each chapter states the contributions and other relevant background information in its beginning;
+% we here briefly summarize these.
 
-Finally, we conclude and discuss potential directions of future work in \chpref{ch:ConclusionFutureDirections}.
+% this thesis is mainly derived from two publications.
+% we mark each chapter with the respective publicaation that it is based on.
+% here we briefly summarize the contributes to each publication, in order to avoid repeating this information later.
 
-
-
-this thesis is mainly derived from two publications.
-we mark each chapter with the respective publicaation that it is based on.
-here we briefly summarize the contributes to each publication, in order to avoid repeating this information later.
-
-
-\todo{add more (sub) titles to figures that have subfigure. some of them are currently only named a and b, but could use some proper titles!}
-
-\todo{change my citations from bioRxiv to the proper journals}
 
 \todo{normalize all uses of e.g. to use \\eg = e./,g., and make sure that the command does not need brackets... do the same for other abbrevs: cf, ie and what not}
 
