@@ -15,6 +15,9 @@
 %     All text relevant for this chapter was written by Lucas Czech.
 %     All figures in this chapter were created by Lucas Czech.
     All text and figures in this chapter were created by Lucas Czech.
+    The software described here, \toolname{genesis} and \toolname{gappa}, was developed and written by Lucas Czech,
+    with the exception of the \toolname{gappa} command \texttt{assign},
+    which was mainly developed and written by Pierre Barbera.
 }
 
 In this work, we presented several novel methods for analyzing and visualizing phylogenetic placement data.
@@ -193,8 +196,8 @@ The methods that we described in this work are implemented via the following sub
     \item \texttt{squash} and \texttt{edgepca}:
           Re-implementations of the two existing methods \cite{Matsen2011a,Evans2012} as introduced
           in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}.
-          As mentioend above, the original implementation in \toolname{guppy} was not efficient enough for conducting
-          the large scale analyses that we needed for this work.
+          As mentioend above, the original implementation in \toolname{guppy} \cite{Matsen2010}
+          was not efficient enough for conducting the large scale analyses that we needed for this work.
           We hence offer these commands in \toolname{gappa}, which scale to larger datasets.
 \end{itemize}
 
