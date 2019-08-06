@@ -1991,8 +1991,11 @@ A larger example for the full \ac{RT} is shown in \figref{fig:masses_imbalances:
 
 % An example of the imbalance calculation is shown in \figref{fig:masses_imbalances:sub:ReferenceTree}.
 The edge imbalance relates the masses on the two sides of an edge to each other.
-This implicitly captures the \ac{RT} topology and reveals information about its clades.
-Furthermore, this transformation can reveal differences in the placement mass distribution
+They directly compare the two sides of an edge and thus take all of the tree into account.
+This implicitly captures the \ac{RT} topology and reveals information about its clades,
+which further implies that a change in the underlying mass distribution affects the imbalance of all edges in the tree.
+
+The transformation into imbalances can reveal differences in the placement mass distribution
 of nearby branches of the tree.
 This is in contrast to the KR distance (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances:par:KR} below),
 which yields low values for masses that are close to each other on the tree.
@@ -2000,40 +2003,41 @@ Note that %for normalized samples with unit total mass,
 the imbalance of a leaf edge is simply the total mass of the tree minus the mass of the edge.
 It thus contains mostly irrelevant information and can often be omitted.
 
-\todo{this was moved in the paper. maybe move it here, too. or at least, rework as needed!}
-
 The concept of edge imbalances has similarity with
-the Phylogenetic Isometric Log-Ratio (PhILR) transformation \cite{Silverman2017}
-and with Phylogenetic Factorization (Phylo\-Factor) \cite{Washburne2017a}.
-In these approaches, a \emph{balance} between the OTU abundances in the two subtrees below a node
+the Phylogenetic Isometric Log-Ratio (PhILR) transformation \cite{Silverman2017}.
+In this approach, a \emph{balance} between the OTU abundances in the two subtrees below a node
 of a rooted binary phylogenetic tree is calculated.
-This balance thus expresses which of the two subtree has more OTUs in it.
-Comparing the per-node balance across samples allows to find nodes that change with respect to the balance,
-indicating ``factors'' that explain differences between the samples in terms of the phylogeny.
-The transformation into balances yields orthogonal components, which are not compositional,
+This balance thus expresses which of the two subtrees has more OTUs in it.
+The transformation into balances yields orthogonal components, which are not compositional.
+Thereby, balances alleviate the normalization issues described above,
+% (\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}),
 and can hence be used with many standard analysis methods.
+Balances can also be computed for the two sides of a tree induced by an edge,
+suggesting the conceptual similarity to imbalances.
+We hence developed an adaptation of the concept to phylogenetic placement data,
+which we present in \chpref{ch:Balances}.
 
-Furthermore, the Balance Trees method \cite{Morton2017} also calculates
-the balance of nodes using the isometric log-ratio of OTU abundances.
-However, instead of using a phylogenetic tree, it assumes any binary partitioning of the OTUs
-(e.\,g., obtained from a UPGMA clustering \cite{Legendre1998} of the OTUs based on a meta-data feature).
-These nodes thus correspond to particular meta-data values,
-allowing statements about the changes in OTU abundances that occur with changing environmental variables.
+% Furthermore, the Balance Trees method \cite{Morton2017} also calculates
+% the balance of nodes using the isometric log-ratio of OTU abundances.
+% However, instead of using a phylogenetic tree, it assumes any binary partitioning of the OTUs
+% (e.\,g., obtained from a UPGMA clustering \cite{Legendre1998} of the OTUs based on a meta-data feature).
+% These nodes thus correspond to particular meta-data values,
+% allowing statements about the changes in OTU abundances that occur with changing environmental variables.
 %value thresholds that separate distinct samples.
 
-The two main differences between balances and the edge imbalances described here are as follows.
-Firstly, balances are calculated for the two subtrees below a node,
-which expects a rooted tree, and ignores the remainder of the tree.
-Edge imbalances are calculated per edge instead of per node, and do not need a rooted tree.
-They directly compare the two sides of an edge and thus take all of the tree into account.
-This further implies that a change in the underlying mass distribution affects the imbalance of all edges in the tree,
-which is not the case for node balances.
-% Hence, the previously mentioned caveats apply.
-Secondly, balances are based on a tree that connects the OTUs that are present in a set of samples.
-Such trees need to be inferred or built for each set of OTUs anew, hindering comparisons across studies.
-% Edge imbalances use phylogenetic placement, and thus have a fixed reference tree that can be re-used.
-Edge imbalances use a fixed reference tree that provides additional phylogenetic information,
-and that can be used in a production setting were novel sequences arrive after building the tree.
+% The two main differences between balances and the edge imbalances described here are as follows.
+% Firstly, balances are calculated for the two subtrees below a node,
+% which expects a rooted tree, and ignores the remainder of the tree.
+% Edge imbalances are calculated per edge instead of per node, and do not need a rooted tree.
+% They directly compare the two sides of an edge and thus take all of the tree into account.
+% This further implies that a change in the underlying mass distribution affects the imbalance of all edges in the tree,
+% which is not the case for node balances.
+% % Hence, the previously mentioned caveats apply.
+% Secondly, balances are based on a tree that connects the OTUs that are present in a set of samples.
+% Such trees need to be inferred or built for each set of OTUs anew, hindering comparisons across studies.
+% % Edge imbalances use phylogenetic placement, and thus have a fixed reference tree that can be re-used.
+% Edge imbalances use a fixed reference tree that provides additional phylogenetic information,
+% and that can be used in a production setting were novel sequences arrive after building the tree.
 
 \paragraph{Placement Data Matrices}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:PlacementDataMatrices}
@@ -2294,7 +2298,7 @@ as shown in \figref{fig:squashing}.
         By squashing, a cluster of (similar) samples can be summarized and visualized.
         For simplicity, we here show the masses per edge and visualize them as branch widths.
         In practice however, each placement location of each query sequence is considered individually.
-        The Figure is based on the similar Figure 3/2 of \cite{Matsen2011a}; see there for more details on squashing.
+        The Figure is based on the similar Figure 3/2 of \citeay{Matsen2011a}; see there for more details on squashing.
     }
     \label{fig:squashing}
 \end{figure}
