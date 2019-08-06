@@ -309,7 +309,7 @@ Finally, the current count of how many candidates we have already selected is up
 By expanding clades with high entropy, we descend into the lower ranks of the taxonomy.
 On average, this decreases the entropy,
 because low ranking clades generally tend to contain more similar sequences.
-% Thus, we obtain a list of candidate clades that have a low entropy, i.e., similar sequences.
+% Thus, we obtain a list of candidate clades that have a low entropy, i.\,e., similar sequences.
 This process is repeated until our list contains approximately as many candidate clades
 as the desired target count of reference sequences, which is provided as input.
 As the sizes of expanded clades can vary substantially, the target count cannot always be met exactly.
@@ -453,8 +453,8 @@ Each \ac{CT} is associated with the set of branches of a specific \ac{BT} clade.
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=0.75\linewidth]{multilevel_placement.pdf}
-    \caption[Multilevel Placement]{
-        \textbf{Multilevel Placement.}
+    \caption[Multilevel placement]{
+        \textbf{Multilevel placement.}
         The left shows a backbone tree (BT); the right shows two clade trees (CTs) in orange and green.
         Branches in the BT that are associated with a CT are marked in its color.
         The trees ``overlap'' each other, meaning that each CT is represented by multiple branches in the BT.
@@ -488,8 +488,8 @@ if more than a given threshold value of placement mass is placed within the clad
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=0.85\linewidth]{workflow_multilevel.pdf}
-    \caption[Multilevel Pipeline for Phylogenetic Placement]{
-        \textbf{Multilevel Pipeline for Phylogenetic Placement.}
+    \caption[Multilevel pipeline for phylogenetic placement]{
+        \textbf{Multilevel pipeline for phylogenetic placement.}
         The figure exemplifies the input and output of the multilevel placement approach as explained in the text.
         The yellow boxes correspond to the three steps of the workflow.
         See \figref{fig:pipeline_placement} for a description of the typical placement pipeline.
@@ -759,7 +759,6 @@ The \taxonname{Archaea}, being a small enough clade, did not have a target size,
 }
 \end{table}
 
-\todo{ref to implementation / gappa here?}
 Our implementation of the method contains some further details that are worth mentioning for reproducibility:
 It is possible to constrain the maximal size of clades
 in order to not build a consensus sequence for an overly large clade,
@@ -832,8 +831,8 @@ and should hence be preferred in cases where congruence with the taxonomy is not
 \begin{landscape}
 \begin{table}[htb]
 \vspace*{1em}
-\caption[Tree Topology Significance Tests]{
-\textbf{Tree Topology Significance Tests.}
+\caption[Tree topology significance tests]{
+\textbf{Tree topology significance tests.}
 Here, we report typical significance tests comparing
 the four pairs of unconstrained (U) and constrained (C) trees used in our evaluation.
 The tests were performed with \toolname{IQ-TREE v1.5.6} \cite{Nguyen2015a}
@@ -956,8 +955,8 @@ are provided in \tabref{tab:ReferenceTreesOverview}.
         \label{fig:constraints_backbone:sub:branch_constr}
     \end{subfigure}
 %     Weighted distances to expected edges for
-    \caption[Induced Placement Accuracy on the \acsp{PhAT}]{
-        \textbf{Induced Placement Accuracy on the unconstrained and constrained \acfp{PhAT}.}
+    \caption[Induced placement accuracy on the \acsp{PhAT}]{
+        \textbf{Induced placement accuracy on the unconstrained and constrained \acfp{PhAT}.}
         We evaluated the accuracy of our \acp{PhAT} by placing sequences
         and measuring the weighted distances to their respective expected placement branches.
         The figure shows the cumulative frequencies of number of sequences versus distances,
@@ -1204,7 +1203,7 @@ Across the corresponding trees of the tested consensus methods,
 that is, when comparing, e.\,g., the \taxonname{Bacteria} trees obtained with different consensus methods to each other,
 we observed an average relative Robinson-Foulds (RF) distance \cite{Robinson1981} of 49.5\%;
 see \secref{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees:par:TreeProperties} for details on the RF distance.
-This is similar to our findings depicted above, e.g., in \figref{fig:constraints_backbone}.
+This is similar to our findings depicted above, e.\,g., in \figref{fig:constraints_backbone}.
 For the different consensus methods, again,
 the accuracy for the respective constrained variants of the trees (data not shown)
 does not change substantially compared to the accuracy obtained for the unconstrained trees shown in \figref{fig:consensi_backbone}.
@@ -1219,7 +1218,7 @@ place 82--83\% of the sequences on the expected branch.
 As a general trend, the \taxonname{Archaea}, being the smallest tree, tend to have the highest accuracy.
 On the other hand, the \taxonname{Bacteria}, 
 for which there is by far the largest amount of sequences in \toolname{Silva}, perform worst.
-This changes for high consensus thresholds. %, e.g., \figref{fig:consensi_backbone:sub:90_threshold}.
+This changes for high consensus thresholds. %, e.\,g., \figref{fig:consensi_backbone:sub:90_threshold}.
 At high thresholds, many sites contain ambiguity characters that blur the phylogenetic signal.
 The \taxonname{General} tree, representing the highest diversity, is most affected by this,
 as can be seen in the last two plots 
@@ -1230,7 +1229,7 @@ as can be seen in the last two plots
 
 For the above evaluations of the \ac{PhAT} method,
 we used some form of consensus sequence representation for the clades of the taxonomy,
-see e.g., \figref{fig:constraints_backbone} and \figref{fig:consensi_backbone}.
+see e.\,g., \figref{fig:constraints_backbone} and \figref{fig:consensi_backbone}.
 However, we also tested how the method behaves when using actual representative sequences from the database instead
 to represent the taxonomic clades.
 This aims to avoid unnecessary blur of the phylogenetic signal, and other potential drawbacks of consensus sequences.
@@ -1301,7 +1300,7 @@ The resulting accuracy is worse in all cases.
 That is, on average, the sequences were placed further away from their respective expected branch.
 We suspect that this is (i) because single sequences do not capture the diversity of their clade
 as well as consensus sequences,
-and (ii) because they do not incorporate as much biological information (e.g., in form of ambiguity characters).
+and (ii) because they do not incorporate as much biological information (e.\,g., in form of ambiguity characters).
 We conclude that using consensus sequences to represent clades in our \ac{PhAT} approach is more accurate
 and hence the preferrable approach.
 
@@ -1534,8 +1533,6 @@ as shown in \figref{fig:hmp_mds_epca}.
     \label{fig:hmp_mds_epca}
 \end{figure}
 
-\todo{try 3d?!}
-
 % The phylogenetic Kantorovich-Rubinstein (KR) distance \cite{Matsen2011a,Evans2012} between two samples,
 % also known as the Earth Mover's distance,
 % measures how much placement ``mass'' has to be moved by how much along the branches of the tree
@@ -1610,8 +1607,8 @@ We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OP
 to compare our approach to competing software and the ``gold standard'' result for the dataset.
 
 We here show the most important \toolname{OPAL} results:
-\tabref{tab:cami_rankings} shows the scores and ranks of our approach compared to the other \toolname{CAMI} participants;
-\figref{fig:cami_performance} compares the tools based on different error metrics.%;
+\figref{fig:cami_performance} compares the tools based on different error metrics;
+\tabref{tab:cami_rankings} shows the scores and ranks of our approach compared to the other \toolname{CAMI} participants.
 % % \figref{fig:cami_alpha_diversity} finally shows how the tools compare with respect to their estimation of diversity,
 % in comparison to the gold standard ground truth.
 % \figref{fig:cami_performance_relative} and \figref{fig:cami_performance_absolute}
@@ -1621,8 +1618,8 @@ We here show the most important \toolname{OPAL} results:
 \clearpage % Flush earlier floats (otherwise order might not be correct)
 \begin{landscape}
 \begin{table}[htbp]
-\caption[CAMI Scores and Ranks]{
-    \textbf{CAMI Scores and Ranks.}
+\caption[CAMI scores and ranks]{
+    \textbf{CAMI scores and ranks.}
     The table shows the scores and ranks of different tools evaluated with data from, and following the protocol of,
     the 2nd \toolname{CAMI} challenge \cite{Sczyrba2017,Bremges2018}.
     Here, we compare the taxonomic assignment and profiling based on our \acp{PhAT}
@@ -1741,8 +1738,8 @@ We here show the most important \toolname{OPAL} results:
 %     CAMI Performance
 % -----------------------------------------
 
-\afterpage{
-\clearpage % Flush earlier floats (otherwise order might not be correct)
+% \afterpage{
+% \clearpage % Flush earlier floats (otherwise order might not be correct)
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=0.94\linewidth]{cami_performance.pdf}
@@ -1754,8 +1751,8 @@ We here show the most important \toolname{OPAL} results:
         \phantomcaption
         \label{fig:cami_performance:sub:absolute}
     \end{subfigure}
-    \caption[CAMI Profiling Results]{
-        \textbf{CAMI Profiling Results.}
+    \caption[CAMI profiling results]{
+        \textbf{CAMI profiling results.}
         The figure compares the taxonomic %assignment and
         profiling conducted with our \taxonname{Bacteria} trees
         to the tools of the 2nd \toolname{CAMI} challenge \cite{Sczyrba2017,Bremges2018}.
@@ -1778,7 +1775,7 @@ We here show the most important \toolname{OPAL} results:
     }
     \label{fig:cami_performance}
 \end{figure}
-} %afterpage
+% } %afterpage
 
 % -----------------------------------------
 %     CAMI Relative Performance
@@ -1846,9 +1843,6 @@ We here show the most important \toolname{OPAL} results:
 % \end{figure}
 % % } %afterpage
 
-% \afterpage{\clearpage}
-\todo{the order of the table and figures is messed up, and the figures of the following section interfere... :-(}
-
 The resolution of the assignment is limited by the taxonomy used when running the \ac{PhAT} method,
 that is, we could not assign reads at \taxonname{Species} level.
 % Despite the aforementioned caveats of taxonomic profiling using phylogenetic placements in the \toolname{CAMI} setting,
@@ -1871,6 +1865,9 @@ as well as to assess some properties of the Multilevel Placement approach.
 The same clades were already scrutinized in \toolname{Sativa} \cite{Kozlov2016}.
 \figref{fig:clades} shows the unconstrained \taxonname{Bacteria} tree from the previous evaluations,
 with the branches of these five test clades highlighted.
+
+% Fucking LaTeX loses figures if we do not include this ugly clear page here...
+\clearpage
 
 \begin{figure}[hpbt]
     \centering
@@ -1899,6 +1896,8 @@ with the branches of these five test clades highlighted.
     }
     \label{fig:clades}
 \end{figure}
+
+\clearpage
 
 \paragraph{Subclade Accuracy}
 \label{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement:par:SubcladeAccuracy}
@@ -1958,8 +1957,6 @@ The results are shown in \figref{fig:multilevel}.
 % and how many in the second level alignments.}
 % \todo{list how many taxa the general tree has for each clade, and how big each clade tree is -- that is, list the number of overlapping taxa.}
 % \todo{table of tree sizes? see supp fig}
-
-\todo{maybe add a table similar to \tabref{tab:ReferenceTreesOverview}, listing sizes and accuracy etc.}
 
 % \begin{table}[htbp]
 % \caption[Subclade sizes and accuracy]{
@@ -2136,8 +2133,6 @@ The accuracy on the second level is slightly worse when using \acp{PhAT} as \acp
 
 We presented methods and algorithms to facilitate and accelerate
 phylogenetic placement of large environmental sequencing studies. % sets of sequence samples.
-\todo{ref to implementation section in the supplement!}
-
 The \acf{PhAT} method (\secref{ch:AutomaticTrees:sec:Methods:sub:PhAT}) provides a means
 for automatically obtaining suitable reference trees by using the taxonomy of large sequence databases.
 Using the \toolname{Silva} database as a test case,
@@ -2151,7 +2146,7 @@ As we showed, \acp{PhAT} can also be used to obtain taxonomic assignments and pr
 in conjunction with phylogenetic placement (\secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}).
 % If necessary, the selected sequences can then be refined by an expert.
 % that is: use an ART, place, successively refine the selection of reference taxa in the regions needed for the dataset
-% e.g.: in the neotrop project, we didn't expect marine sequences first...
+% e.\,g.: in the neotrop project, we didn't expect marine sequences first...
 To capture clade diversity with finer resolution, for example for a second placement level,
 clade-specific \acp{PhAT} can be inferred.
 If species-level resolution is required, we recommend that the sequences are inspected by an expert,
@@ -2193,7 +2188,6 @@ Firstly, the potentially large number of query sequences, and secondly, their un
 Both can be solved by using a broad ``all-of-life'' backbone tree for pre-classification,
 and subsequently distributing the second-level placement to different compute nodes.
 
-\todo{implementation note (alexis: no) and ref to supplement (alexis: yes)!}
 % The methods presented here are implemented as part of our \toolname{gappa} tool,
 % which is freely available under GPLv3 at \url{http://github.com/lczech/gappa}
 % (see \secref{ch:PipelineImplementation} for an overview of the corresponding commands).
@@ -2237,7 +2231,7 @@ and subsequently distributing the second-level placement to different compute no
 % the set of query sequences, as well as the association between the \acp{CT} and the branches of the \ac{BT},
 % which is cumbersome to encapsulate into one program.
 % We might implement a full pipeline for this in the future.
-% \todo{c.f. Pierre. Also, there is a large overlap with the EPA+PTP pipeline.}
+% \todo{c.\,f. Pierre. Also, there is a large overlap with the EPA+PTP pipeline.}
 
 % ======================================================================================================================
 %     Workflow

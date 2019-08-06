@@ -629,7 +629,7 @@ Balances are conceptually similar to edge imbalances, exhibit similar properties
 and can be used for similar types of analyses.
 % hence combining previously existing concepts from different 
 % of OTU-based balances with placement-based edge imbalances.
-Hence, with this adaptation, we helped to bridge the methodological gap 
+Hence, with this adaptation, we helped to bridge the methodological gap
 between OTU-based and placement-based approaches to analysing metagenomic data.
 This might lead to future development of novel methods and adaptations,
 with the intention of obtaining a better, more complete picture of metagenomic data,
@@ -645,14 +645,26 @@ as the entire original sequence data can be used.
 Furthermore, using a fixed reference tree instead of one inferred from the OTUs present in a set of samples
 enables comparative studies across datasets.
 
+A drawback of both balances and imbalances in the context of phylogenetic placements
+is that the edges leading to tips of the reference tree do not have meaningful values.
+This is because they measure differences between masses on the two sides of the edge
+(of which tip edges only have one), while ignoring the mass on the respective edge itself.
+For most forms of analysis, this does not pose a concerning issue, as the trees are usually large enough
+to have enough edges that can be used in the downstream steps.
+% In particular in cases where the tree contains several strains from the same species,
+% the tip edges do not carry much information anyway.
+% We note however that this might also have effects on the quality of the placements themselves,
+% for example in terms of their likelihood weight ratios, which might be distributed across the tips,
+% leading to a blurred signal in the analyses.
+Still, we see potential for future improvement of the concepts of balances and imbalances
+by expanding their definition to also yield meaningful values for tip edges.
+A simple approach for example would be to declare all placement mass on an edge
+to be on the distal (away from the root) side of the edge.
+We however did not assess the implications of this approach for the mathematical consistency of the methods yet.
+
 In the context of this work, balances are used as an intermediary tool
 in order to describe a set of samples in the context of a reference tree.
 In this chapter, we evaluated some basic analysis and visualization techniques in order to show
 that balances yield consistent results on empirical datasets compared to concepts such as edge imbalances.
 In the following chapter, we introduce Placement-Factorization,
 which uses balances as a description of clades of the reference tree.
-
-
-\todo{use tip edges as well: make them ``outside''. but would have to check implications of this inconsistency. would be different from both phylofactor and original def of edge imbalances}
-
-

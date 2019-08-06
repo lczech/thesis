@@ -325,7 +325,7 @@ and the contrasts $C_e$ as dependent variables whose relationship with $Z$ is as
 Then, the selected phylogenetic factors correspond to edges
 where a change in $Z$ most strongly predicts a change in $C_e$ across the samples,
 that is, where the effect of the (independent) meta-data variables
-on the (dependent) underlying data (e.g., per-clade abundances) is most pronounced.
+on the (dependent) underlying data (e.\,g., per-clade abundances) is most pronounced.
 We show an example in \figref{fig:balance_factors}.
 
 \begin{figure}[!htb]
@@ -339,8 +339,8 @@ We show an example in \figref{fig:balance_factors}.
         \phantomcaption
         \label{fig:balance_factors:sub:good}
     \end{subfigure}
-    \caption[Examples of relationships between independent and dependent variables]{
-        \textbf{Examples of relationships between independent and dependent variables.}
+    \caption[Exemplary relationships between independent and dependent variables]{
+        \textbf{Exemplary relationships between independent and dependent variables.}
         The figure shows simulated examples of the relationship between the latitude
         where some (hypothetical) oceanic samples were taken from
         and the balance of two edges of a reference tree for these samples.
@@ -956,7 +956,7 @@ that we observed in \secref{ch:Balances:sec:Results:sub:EdgeCorrelation}.
 \subsection{BV dataset}
 \label{ch:Factorization:sec:Evaluation:sub:BVDataset}
 
-We analyzed the \ac{BV} dataset \cite{Srinivasan2012} with our Placement-Factorization with and without taxon weighting,
+We analyzed the \acf{BV} dataset \cite{Srinivasan2012} with our Placement-Factorization with and without taxon weighting,
 using balances for aggregating and contrasting, and \acp{GLM} for the objective function.
 See \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV} for details on the dataset.
 As \acp{GLM} support multiple predictors at the same time,
@@ -1010,9 +1010,9 @@ Lastly, the normalized mutual information \cite{Vinh2010} between the three vari
 71\% and 81\%, further showing that they mostly find the same clades.
 
 \begin{table}[!tbp]
-\caption[First ten factors of the \ac{BV} dataset found by Phylofactorization]{
+\caption[First ten factors of the \acs{BV} dataset found by Phylofactorization]{
 % \caption{
-\textbf{First ten factors of the \ac{BV} dataset found by Phylofactorization.}
+\textbf{First ten factors of the \acs{BV} dataset found by Phylofactorization.}
 In this table, we compare our Placement-Factorization of the \ac{BV} dataset
 to the results from the original Phylofactorization.
 The table lists the taxa in the clades that were split by the first \num{10} factors in each variant,
@@ -1155,8 +1155,8 @@ where each edge is colored by the value of the objective function at that edge.
         \phantomcaption
         \label{fig:pf_bv_place_tw_ovs:sub:second}
     \end{subfigure}
-    \caption[Objective values of Placement-Factorization with taxon weighting of the \acs{BV} dataset]{
-        \textbf{Objective values of Placement-Factorization with taxon weighting of the \ac{BV} dataset.}
+    \caption[Objective function values of Placement-Factorization with taxon weighting of the \acs{BV} dataset]{
+        \textbf{Objective function values of Placement-Factorization with taxon weighting of the \ac{BV} dataset.}
         Here, we show the values of the objective function for each inner edge,
         for the first two factors found by Placement-Factorization \emph{with} taxon weights of the \ac{BV} dataset.
         The winning edge of each iteration is marked by a black arrow.

@@ -26,8 +26,7 @@ For small samples, it is possible to mark individual placement locations on the 
 as offered for example by \toolname{iTOL} \cite{Letunic2016},
 or even to create a tree where the most probable placement per \acf{QS} is attached as a new branch,
 as implemented in the \toolname{guppy} tool from the \toolname{pplacer} suite \cite{Matsen2010},
-\toolname{RAxML-EPA} \cite{Berger2011,Stamatakis2014}, and our tool \toolname{gappa}.
-\todo{link to supplement or paper, or something}
+\toolname{RAxML-EPA} \cite{Berger2011,Stamatakis2014}, and our tool \toolname{gappa} \cite{Czech2019-genesis-gappa}.
 For larger samples, one can alternatively display the per-edge placement mass,
 either by adjusting the line widths of the edges according to their mass, or by using a color scale,
 as offered in \toolname{ggtree} \cite{Yu2017}, \toolname{guppy}, and \toolname{gappa}.
@@ -144,7 +143,7 @@ as explained in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementPr
 For example, if samples represent different locations, one might prefer to use normalized masses,
 as comparing relative abundances is common for this type of data.
 On the other hand, if samples from the same location are combined
-(e.g., from different points in time, or different size fractions),
+(e.\,g., from different points in time, or different size fractions),
 it might be preferable to use absolute abundances instead,
 so that the total number of sequences per sample can be visualized.
 
@@ -366,7 +365,7 @@ Bacterial Vaginosis (BV) is a disease of the vagina
 that manifests itself in form of an abnormal vaginal microbiome \cite{Srinivasan2012}.
 
 The connection between the Nugent score and the abundance of placements on particular edges
-was already explored by \citeay{Matsen2011a}, but only visualized indirectly (i.e., not on the \ac{RT} itself).
+was already explored by \citeay{Matsen2011a}, but only visualized indirectly (i.\,e., not on the \ac{RT} itself).
 For example, Figure~6 of the original study \cite{Matsen2011a}
 plots the first two Edge PCA components colorized by the Nugent score.
 We recalculated this figure for comparison, and show it later in \figref{fig:kmeans_all:sub:epca_ns}.

@@ -241,13 +241,11 @@ is called \emph{metagenomics} \cite{Oulas2015}.
 A first step in metagenomic studies often consists in characterizing the reads obtained from an environment
 with respect to \emph{reference sequences} of known species \cite{Hug2016}.
 Reads that are similar to (parts of) these reference sequences can be assigned to them,
-while reads with low similarity to known sequences might originate from novel, undescribed species \cite{Temperton2012}.
+while reads with low similarity to known sequences might originate from novel, undescribed species \cite{Temperton2012,Peabody2015}.
 Key tasks in metagenomic studies are the identification and classification of the anonymous reads (``Who is there?''),
-and their functional annotation (``What are they doing?'') \cite{Desai2012,Lindgreen2016}.
+and their functional annotation (``What are they doing?'') \cite{Desai2012,Peabody2015,Lindgreen2016}.
 Typical pipelines for both tasks are summarized in \figref{fig:metaseq_pipeline}
 and described in more detail in the following.
-
-\todo{cite} \cite{Peabody2015}: ``Evaluation of shotgun metagenomics sequence classification methods using in silico and in vitro simulated communities''
 
 \begin{figure}[hpbt!]
     \centering
@@ -317,27 +315,27 @@ to create a sufficient number of copies of these regions for sequencing \cite{Ba
 The resulting reads are then de-replicated again, which results in sequences called \emph{amplicons}.
 The PCR amplification process however is known to introduce biases \cite{Logares2014,Brown2017}.
 For example, the relative abundances of the final amplicons
-do not necessarily reflect the original ratio of the input gene regions \cite{Kanagawa2003},
+do not necessarily reflect the original ratio of the input gene regions \cite{Kanagawa2003,Li2015a},
 which can be problematic in comparative studies
 (see also \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing}).
 Still, this inexpensive method is commonly used in practice, particularly for the 16S and 18S rDNA regions.
+We later discuss implications and solutions to normalizing these abundances
+in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}.
 
 An alternative to using PCR for obtaining reads from barcode regions is as follows.
 First, shotgun sequencing is used to obtain reads from the entire genome of the organisms in the sample.
-These reads are then filtered to only contain reads from the target region, e.g., the 16S region for \taxonname{bacteria},
+These reads are then filtered to only contain reads from the target region, e.\,g., the 16S region for \taxonname{bacteria},
 which capture the diversity of the sample without bias.
 Such an approach are for example the so-called \textsubscript{mi}tags \cite{Logares2014}.
 
 Because of the ubiquity of the 16S and 18S rDNA regions in organisms and, consequently, in sequencing studies,
 many databases provide reference sequences of these marker regions for known species.
 The reads or amplicons obtained from an environmental sample can then be employed
-to estimate the composition and diversity of the microbial community \cite{Hugerth2017},
+to estimate the composition and diversity of the microbial community \cite{Peabody2015,Hugerth2017},
 for example by comparison against the known species in databases.
 
-\todo{foreshadow OTUS here?!}
-
-\todo{add stuff about exponential stuff with PCA, how that affects abundances, see also normalization}
-\todo{also, talk about copy number bias etc}
+% \todo{add stuff about exponential stuff with PCA, how that affects abundances, see also normalization}
+% \todo{also, talk about copy number bias etc}
 
 % ======================================================================================================================
 %     Sequence Alignments
@@ -502,10 +500,7 @@ We further discuss these questions later in the context of this work in
 For broad-scale ecological studies however, which is what we are mostly interested here,
 the obtained results are mostly consistent across these variants \cite{Glassman2018}.
 
-\todo{maybe mention tree inferred from otus somewhere later?}
-
-\todo{could be placed here, or above for meta-g analyses, or below in the placement normalization/compositional part. or all of these places:}
-\cite{Li2015a}: ``Microbiome, Metagenomics, and High-Dimensional Compositional Data Analysis''
+% \todo{maybe mention tree inferred from otus somewhere later?}
 
 % ######################################################################################################################
 %         Tree of Life
@@ -534,7 +529,7 @@ is widely employed for classifying and naming organisms, as well as understandin
 % However, \taxonname{bacteria} have the ability of horizontal gene transfer,
 % where genetic information is transferred between unrelated organisms.
 
-\todo{messy biology paper? Tawfik2010}
+% \todo{messy biology paper? Tawfik2010}
 % biology is messy: https://www.ncbi.nlm.nih.gov/pubmed/20852602
 
 % ======================================================================================================================
@@ -770,8 +765,8 @@ for instance is defined as the number of bipartitions that are unique to either 
 This unweighted, absolute distance is often used when comparing phylogenies.
 There also exists weighted and relative variants, as well as a variant called \emph{branch score} \cite{Kuhner1994},
 which also takes the branch lengths of the trees into account.
-
-\todo{also mention iternode scores and our quartet scores?}
+There are also further measures to assess the incongruence between trees,
+such as as the \emph{internode certainty} \cite{Salichos2013,Zhou2017}.
 
 A set of taxa is \emph{monophyletic},
 if there is a bipartition of the tree that separates these taxa from all other taxa of the tree.
@@ -796,18 +791,15 @@ For example, in a rectangular tree, as shown in \figref{fig:tree_vis_options:sub
 branch lengths are easier to read and compare,
 while a circular tree, as shown in \figref{fig:tree_vis_options:sub:circular}, can fit more taxa in the same drawing area.
 
-Taxonomy and phylogeny serve a related, but different purpose:
+Taxonomy and phylogeny serve a related, but different purpose \cite{Hinchliff2015}:
 While the former is a system of classification,
 the latter describes the evolutionary history.
 However, there is a correspondence between a taxonomy and a rooted phylogeny:
 Inner nodes of the tree constitute older evolutionary relationships,
 which are represented by the higher ranks of the taxonomy.
 \figref{fig:tree_of_life:sub:woese} shows such a correspondence for the three domains of life.
-It is however possible that the taxa at one rank of the taxonomy are not monophyletic in the phylogenetic tree.
+It is however possible that the taxa at one rank of the taxonomy are not monophyletic in the phylogenetic tree \cite{Hinchliff2015}.
 In this case, the two are \emph{incongruent}.
-
-\todo{use paper?: Synthesis of phylogeny and taxonomy into a comprehensive tree of life}
-\todo{maybe also Parks2018 and papers cite in there?}
 
 % particularly considering that the genes might evolve differently from the species or from what the taxonomy says
 
@@ -1459,7 +1451,7 @@ without the need to resolve relationships between the \acp{QS}.
 % to the most closely related branches of a fixed \acf{RT} based on known reference sequences.
 % Phylogenetic placement uses a fixed \acf{RT} based on known reference sequences to compute a mapping
 % of \acfp{QS} to the branches of the tree that are most closely related to the \ac{QS}.
-% This mapping classifies the \acp{QS} (e.g., sequences from a metagenomic study) into a phylogenetic context
+% This mapping classifies the \acp{QS} (e.\,g., sequences from a metagenomic study) into a phylogenetic context
 
 % ======================================================================================================================
 %     Pipeline and Computation
@@ -1593,8 +1585,8 @@ that are closely related to the \ac{QS}.
 \begin{figure}[hpbt]
     \centering
     \includegraphics[width=.6\linewidth]{tree_epa.pdf}
-    \caption[Phylogenetic Placement of a Query Sequence]{
-        \textbf{Phylogenetic Placement of a Query Sequence.}
+    \caption[Phylogenetic placement of a query sequence]{
+        \textbf{Phylogenetic placement of a query sequence.}
         Each branch of the reference tree is tested as a potential insertion position, called a \emph{placement}
         (blue dots; pendant lengths are ignored here).
         Note that placements have a specific position on their branch, due to the branch length optimization process.
@@ -1665,7 +1657,7 @@ as the ones with low \acp{LWR} are mostly irrelevant for post-analysis methods.
 % In summary, the result of a phylogenetic placement analysis is a mapping of the \acp{QS} in a sample
 % to positions on the branches of the \ac{RT}.
 % Each such position, along with the corresponding \ac{LWR}, is called a placement of the \ac{QS}.
-% The result of phylogenetic placement is a mapping of each \ac{QS} (e.g., environmental reads)
+% The result of phylogenetic placement is a mapping of each \ac{QS} (e.\,g., environmental reads)
 % to positions on the branches of the \ac{RT}, amended by probabilities in form of their likelihood weight ratios.
 % Each \ac{QS} is thus represented by its placement positions, which are also called its placements.
 % along with the respective likelihood weight ratios.f
@@ -1776,8 +1768,6 @@ genome and metagenome analysis as in \toolname{PhyloSift} \cite{Darling2014},
 taxonomic identification and phylogenetic profiling as in \toolname{TIPP} \cite{Nguyen2014}, and
 identification and correction of taxonomically mislabeled sequences as in \toolname{Sativa} \cite{Kozlov2016}.
 
-\todo{PhyloPhlAn?!} \verb|https://www.nature.com/articles/ncomms3304?origin=ppub|
-
 % these tools combine 1,010 more citations (as of 2018-07-01)
 
 % ======================================================================================================================
@@ -1787,23 +1777,26 @@ identification and correction of taxonomically mislabeled sequences as in \tooln
 \subsection{Placement Processing}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing}
 
-When placing multiple environmental samples, for instance, from different geographical locations,
-typically, the same \ac{RT} is used, in order to allow for comparing the phylogenetic composition of these samples.
-\todo{better transition}
+Phylogenetic placement is a useful tool to investigate the microbial composition and diversity
+of a set of distinct environmental samples.
+When placing multiple samples, for instance, from different geographical locations, or different human patients,
+typically, the same \ac{RT} is used, in order to facilitate the comparison of the phylogenetic composition of these samples.
+There are furthermore several other considerations to take into account before running downstream analysis methods,
+some of which we discuss in the following.
 
 \paragraph{Normalization}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:Normalization}
 
-\todo{better transition}
-In this context, it is important to consider how to properly normalize the samples.
+Firstly, it is important to consider how to properly normalize the samples.
 Normalization is required as the sample size (often also called library size),
 that is, the number of sequences per sample, can vary by several orders of magnitude within one study.
 This is due to technical aspects of the sequencing process, such as efficiency variations,
 or biases introduced by the amplification process,
 as explained in \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}.
-As a consequence, metagenomic sequence data are inherently compositional \cite{Gloor2017,Quinn2018},
+As a consequence, metagenomic sequence data are inherently compositional \cite{Li2015a,Gloor2017,Quinn2018},
 which can lead to spurious statistical analyses \cite{Aitchison1986,Jackson1997,Tsilimigras2016,Gloor2016a}.
-This impedes statistical analyses of the data and hence needs to be considered in all analysis steps \cite{Silverman2017,Quinn2018}.
+This impedes statistical analyses of the data
+and hence needs to be considered in all analysis steps \cite{Li2015a,Silverman2017,Quinn2018}.
 
 We here briefly outline common types of problems due to normalization that also affect phylogenetic placement data.
 Selecting an appropriate normalization strategy constitutes a general problem in many metagenomic studies.
@@ -1821,8 +1814,6 @@ by constructing \acfp{OTU}, as introduced in \secref{ch:Foundations:sec:Sequence
 and hence greatly decreases the computational cost of placement analyses.
 Lastly, one may completely disregard the abundances (which correspond to the \emph{multiplicities} of placements)
 of the placed sequences, reads, or OTUs, and only be interested in their presence/absence when comparing samples.
-
-\todo{more on comp data and spurious results, see silverman2017}
 
 All of the above analysis strategies are also applicable to phylogenetic placement,
 e.\,g., by placing OTUs instead of sequences.
@@ -2166,8 +2157,8 @@ Hence, the KR distance operates on normalized samples; that is, it compares rela
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{kr_linear.pdf}
-    \caption[Linear KR Distance]{
-        \textbf{Linear KR Distance.}
+    \caption[Linear KR distance]{
+        \textbf{Linear KR distance.}
         Distribution A is transformed into distribution B by moving mass along the axis,
         while keeping track of the moved distances.
         The dark blocks represent the masses being moved along the grid.
@@ -2223,8 +2214,6 @@ corresponds to the physical interpretation of mass movements.
 \subsection{Existing Analysis Methods}
 \label{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods}
 
-\todo{make pca and upgma acros!}
-
 The pairwise KR distance matrices between metagenomic samples as introduced
 in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances} above
 can be used in conjunction with general-purpose data analysis methods,
@@ -2278,13 +2267,13 @@ An example of this is shown later in \figref{fig:epca}.
 
 % \emph{Squash Clustering} \cite{Matsen2011a} is a hierarchical clustering method for phylogenetic placement data.
 
-\todo{show similarity to concept of } \cite{Death2002}
-
 A fundamental task for a set of metagenomic samples consists in
 finding clusters of samples that are similar to each other according to some distance measure, such as the KR distance.
 Standard linkage-based clustering methods like \mbox{UPGMA} % mbox avoids hyphenation
 are solely based on the distances between samples,
 that is, they calculate the distances between clusters as a function of pairwise sample distances.
+Other methods such as Multivariate Regression Trees \cite{Death2002} can take environmental per-sample meta-data
+into account, but do not make use of the phylogenetic information provided by, e.\,g., a reference tree.
 
 In contrast, \emph{Squash Clustering} \cite{Matsen2011a} is a method that
 also takes the intrinsic structure of phylogenetic placement data into account.
@@ -2298,8 +2287,8 @@ as shown in \figref{fig:squashing}.
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.95\linewidth]{squashing.pdf}
-    \caption[Squashing of Edge Masses]{
-        \textbf{Squashing of Edge Masses.}
+    \caption[Squashing of edge masses]{
+        \textbf{Squashing of edge masses.}
         Two trees are merged (\emph{squashed}) by calculating the weighted average
         of the respective mass distributions on their branches.
         By squashing, a cluster of (similar) samples can be summarized and visualized.
@@ -2324,15 +2313,15 @@ and branch lengths correspond to KR distances between clusters.
 % This results in a hierarchical clustering tree of samples that has meaningful, and hence interpretable, branch lengths:
 % The distances in the cluster tree correspond to the KR distance between merged samples.
 Thus, in each step, Squash Clustering operates on the same type of data, namely, mass distributions on the fixed \ac{RT}.
-\todo{next sentence was added from the paper. see if fitting:}
-In the beginning, each item considered in the clustering is one sample,
+In the beginning, each data item considered in the clustering is one sample,
 while later steps of the clustering operate on the merged (squashed) samples.
 % until only one large cluster remains that combines all samples.
 Each inner node of the clustering tree represents a set of merged/squashed samples.
 Examples of such cluster trees are shown later on in \figref{fig:bv_squash} and \figref{fig:cluster_kmeans_trees}.
 % An exemplary clustering tree is shown later in \figref{fig:squash_edgepca:sub:squash}.
 Furthermore, as the inner nodes of the cluster tree are again mass distributions,
-they can be visualized, and thus allow for interpreting the features of each set of merged samples.
+they can be visualized, and thus allow for interpreting the features of each set of merged samples;
+we show a similar visualization later in \figref{fig:centroids}.
 
 % Moved to Clustering chapter:
 % Remark:

@@ -286,7 +286,7 @@ see Section \secref{ch:Clustering:sec:Results:sub:Performance} for details.
 %     Finding k
 % ======================================================================================================================
 
-\subsection{Finding appropriate values for \texorpdfstring{$k$}{k}}
+\subsection{Finding Appropriate Values for \texorpdfstring{$k$}{k}}
 \label{ch:Clustering:sec:Methods:sub:FindingK}
 
 A commonly criticized general downside of $k$-means clustering is
@@ -319,7 +319,7 @@ Moreover, for a quantitative evaluation of the clusterings,
 we used the $k$ that arose from the number of distinct categories or labels based on the available meta-data for the data.
 % that is, the number of distinct categories our data is known to belong to.
 For example, the samples of the \ac{HMP} dataset are labeled with \num{18} distinct body sites,
-describing where each sample was taken from, c.f.~\figref{fig:hmp_kmeans_all_18}.
+describing where each sample was taken from, c.\,f.~\figref{fig:hmp_kmeans_all_18}.
 
 % ######################################################################################################################
 %         Results
@@ -874,12 +874,12 @@ Calculating this matrix is quadratic in the number of samples,
 and is thus expensive for large datasets.
 For example, in order to calculate the matrix for the \ac{BV} dataset with \num{220} samples,
 \toolname{guppy} can only use a single core and required \SI{86}{\minute}.
-Our KR distance implementation \todo{ref to implementation/genesis?} is faster and also supports multiple cores.
+Our KR distance implementation is faster and also supports multiple cores.
 It only needed \SI{90}{\second} on a single core; almost half of this time is used for reading input files.
 When using \num{32} cores, the matrix calculation itself only took \SI{8}{\second}.
 This allows to process larger datasets:
 The distance matrix of the \ac{HMP} dataset with \num{9 192} samples placed on a tree with \num{3 824} branches
-for instance took less than \SI{10}{\hour} to calculate using \num{16} cores \todo{ref to implementation/genesis!}.
+for instance took less than \SI{10}{\hour} to calculate using \num{16} cores.
 In contrast, \toolname{guppy} needed \num{43} days for this dataset.
 As the KR distance is used in Squash Clustering, our re-implementation of this method
 is also orders of magnitude faster than the original \toolname{guppy} implementation.
@@ -889,8 +889,8 @@ as explained in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementPr
 The performance and the effects of binning on the distance values are shown in \tabref{tab:hmp_binning_error}.
 
 \begin{table}[htb]
-\caption[Effect of Branch Binning on the KR Distance of the HMP Dataset]{
-    \textbf{Effect of Branch Binning on the KR Distance of the HMP Dataset.}
+\caption[Effect of branch binning on the KR distance of the HMP dataset]{
+    \textbf{Effect of branch binning on the KR distance of the HMP dataset.}
     Here we show the effect of per-branch placement binning
     on the run-time and on the resulting relative error when calculating the pairwise KR distance matrix between samples,
     by example of the Human Microbiome Project (HMP) \cite{Huttenhower2012,Methe2012} dataset
