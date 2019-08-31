@@ -73,7 +73,8 @@ which are described in more detail in the application note \cite{Czech2019-genes
 We evaluate the code quality, the runtime behavior, and the memory requirements
 for conducting typical tasks such as file parsing and data processing in the application note \cite{Czech2019-genesis-gappa}.
 We find that \toolname{genesis} has the overall best code quality score compared to other scientific codes written in C or C++.
-It is also consistently faster than all evaluated Python and R libraries in our tests.
+It is also consistently faster than all evaluated Python and R libraries in our tests,
+and in most of the tests, more memory efficient as well.
 
 % \begin{figure}[!htb]
 %     \centering
@@ -103,7 +104,7 @@ It is also consistently faster than all evaluated Python and R libraries in our 
 % \includegraphics[width=0.6\linewidth]{pdf/gappa_logo.pdf}
 
 The flexibility of a library such as \toolname{genesis} is primarily useful for method developers.
-For most users, it is however more convenient to offer a simple interface for typical, frequent tasks.
+For most users, it is however more convenient to have a simple interface for typical, frequent tasks.
 To this end, we have developed the command line program \toolname{gappa}, which we present in the following.
 % \toolname{gappa} utilizes \toolname{genesis} to perform common data management and analysis tasks with a high efficiency. 
 
@@ -120,7 +121,7 @@ The methods that we described in this work are implemented via the following sub
 
 \begin{itemize}
     \item \texttt{phat}: Phylogenetic Automatic (Reference) Tree method, see \secref{ch:AutomaticTrees:sec:Methods:sub:PhAT}.
-          The command expects a taxonomy file and a sequence file of a sequence database,
+          The command expects a taxonomy file and an alignment file from a sequence database,
           e.\,g., \toolname{Silva} \cite{Quast2013,Yilmaz2014},
           as well as the target number of consensus sequences to be generated for the intended phylogeny.
           The result is a \texttt{fasta} file with consensus sequences representing taxonomic clades.
@@ -157,9 +158,9 @@ The methods that we described in this work are implemented via the following sub
           so that the resulting \texttt{jplace} files are as if they were created using the original sequence files.
     \item \texttt{assign}: Perform taxonomic assignment using phylogenetic placements,
           which was used for the evaluation in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}.
-          While this is not the main focus of this work, we briefly introduce this method here.
+%           While this is not the main focus of this work, we briefly introduce this method here.
           The command uses a taxonomic labeling of the tips of the reference tree
-          to annotate all inner branches of the tree with the longest common taxonomic label
+          to annotate all inner branches with the longest common taxonomic label
           for the induced subtree of the inner branch, in analogy to \toolname{Sativa} \cite{Kozlov2016}.
           Then, each query sequence in the provided \texttt{jplace} files
           is taxonomically assigned according to the labels of the branches where it does have placement mass.

@@ -12,10 +12,11 @@
 \paperbox{
     This chapter is derived from the peer-reviewed open-access publication:
 }{\paperart}{
-    Text, figures, and tables in this chapter were created by Lucas Czech, unless explicitly stated otherwise.
+    The text, figures, and tables in this chapter were created by Lucas Czech, with the following exception:
+%     , unless explicitly stated otherwise.
     Pierre Barbera conducted the processing and analysis of the CAMI Challenge data
-    in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling},
-    and helped to write the text of that section.
+    as described in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling},
+    and helped to write the part of the above publication on which that section is based.
 }
 
 % ######################################################################################################################
@@ -39,7 +40,7 @@ This constitutes a major challenge and hindrance for studying such environments 
 This limitation also concerns the use of phylogenetic placement for taxonomic assignment.
 In studies that specifically look for certain kinds of organisms, e.g, protists \cite{Mahe2017},
 it usually suffices to use a taxonomy covering the organisms of interest,
-potentially including outgroups from more distantly related species.
+potentially including some outgroups from more distantly related species to also catch outliers.
 As metagenomic analyses become cheaper,
 it is however to be expected that researchers want to target more than one group of organisms within one study.
 Particularly in cases where the environment contains a yet unknown diversity of organisms,
@@ -95,7 +96,7 @@ Creating and maintaining databases of such reference sequences constitutes a lab
 Moreover, this approach is impractical for highly diverse samples that comprise sequences from many taxonomic clades,
 or samples obtained from unexplored environments, where it is yet unknown which reference sequences are necessary.
 Lastly, even if a large \ac{RT} is available,
-the visualization of placements on such an \ac{RT} might be confusing and thus hard to interpret.
+the visualization of placements on such a large \ac{RT} might be confusing and thus hard to interpret.
 
 The \ac{RT} used for phylogenetic placement should ideally
 (a) cover all major taxonomic groups that occur in the \acp{QS},
@@ -141,7 +142,7 @@ It represents the taxonomic clades and is then used to infer an \ac{RT} for cond
     \includegraphics[width=\linewidth]{workflow_phat.pdf}
     \caption[PhAT pipeline]{
         \textbf{PhAT pipeline.}
-        The Figure shows how our PhAT method is used to obtain a reference tree for phylogenetic placement
+        The figure shows how our PhAT method is used to obtain a reference tree for phylogenetic placement
         using a database of reference sequences and their associated taxonomy as input.
     }
     \label{fig:workflow_phat}
@@ -157,6 +158,8 @@ It represents the taxonomic clades and is then used to infer an \ac{RT} for cond
 \paragraph{Sequence Entropy}
 \label{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:SequenceEntropy}
 
+Firstly, the approach requires a measure to assess the similarity of a set of sequences to each other,
+that is, their ensemble similarity.
 Conventional methods for sequence similarity are often based on edit distance
 and other pairwise comparison methods \cite{Needleman1970,Smith1981,Altschul1990}.
 This however necessitates to transform the pairwise distances to some form of ensemble measure
@@ -164,7 +167,7 @@ that describes the similarity of all sequences to each other, for which there is
 There also exist methods that describe genetic variation and
 nucleotide diversity of sets of sequences \cite{Nei1979,Blaisdell1986} which could be used for this purpose.
 
-We here use entropy \cite{Shannon1951} to define a measure
+Instead, we here use entropy \cite{Shannon1951} to define a measure
 for quantifying the ensemble similarity of a set $s$ of sequences.
 % We here use entropy for measuring ensemble similarity of a set of sequences.
 % We define a measure to quantify the ensemble similarity of a set $s$ of sequences,
@@ -238,15 +241,15 @@ This severely limits the types of useful post-analyses that can be executed;
 we did therefore not explore this approach.
 
 Instead, we use the taxonomic information (see \secref{ch:Foundations:sec:TreeOfLife:sub:TaxonomyNomenclature})
-of the sequence database to identify potential candidate groups of sequences
+of the sequence data\-base to identify potential candidate groups of sequences
 that could be represented by a consensus sequence (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:ConsensusSequences}).
 We interpret a taxonomy as a sequence labeling, where similar sequences have related labels.
 Thus, a taxonomy represents a pre-classification of similar sequences that can be exploited to group them.
 For instance, \figref{fig:tax_entropy} shows six sequences (S1--S6),
-which the underlying database has classified into a clade of the taxonomy,
+which the underlying database has classified into the \taxonname{Calyptosporidae} clade of the taxonomy,
 and which thus form a group of related sequences.
-Note that this assumes that the taxonomic classification is correct for most sequences \cite{Kozlov2016}.
-We assess this problem later in \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:FurtherAspectsAndObservations}.
+Note that this assumes that the taxonomic classification is correct for most sequences \cite{Kozlov2016};
+we assess this problem later in \secref{ch:AutomaticTrees:sec:Evaluation:sub:Accuracy:par:FurtherAspectsAndObservations}.
 % The impact of taxonomic mislabels and spurious sequences is absorbed by using consensus sequences.
 The goal is then to find clades/groups of sequences that represent the diversity of the database.
 
@@ -369,7 +372,7 @@ The above process yields a set of consensus reference sequences which capture th
 %Once the sequence grouping is completed, the taxonomy is not longer needed.
 % Note that the taxonomy is not longer used at this point.
 Once we have identified the consensus sequences, which are already aligned to each other,
-we can use them to infer a maximum likelihood tree, which we call a \emph{Phylogenetic Automatic (Reference) Tree} (PhAT).
+we can use them to infer a maximum likelihood tree, which is the resulting \emph{Phylogenetic Automatic (Reference) Tree} (PhAT).
 \acused{PhAT}
 As each consensus sequence is associated with a taxonomic clade,
 the corresponding taxonomic path can be used to label the tips of the tree.
@@ -442,7 +445,7 @@ we use a smaller, but taxonomically broader \ac{BT} for pre-classifying the \acp
 and a set of refined \acp{CT} for the final, more accurate placements (second level).
 These \acp{CT} comprise the reference sequences that are of interest for a particular study.
 For example, if a study is concerned with \taxonname{Apicomplexa} and \taxonname{Cercozoa},
-a broad \taxonname{Eukaryotes} \ac{BT} can be used for the first level,
+a broad \taxonname{Eukaryota} \ac{BT} can be used for the first level,
 and two respective \acp{CT} for the second level, in analogy to \cite{Mahe2017}.
 % The decisions about which \acp{CT} are needed to represent the \acp{QS} of a study,
 % which reference sequences to use for the \ac{BT} and \acp{CT},
@@ -450,7 +453,7 @@ and two respective \acp{CT} for the second level, in analogy to \cite{Mahe2017}.
 % are up to the design of the study.
 Each \ac{CT} is associated with the set of branches of a specific \ac{BT} clade.
 
-\begin{figure}[hpbt]
+\begin{figure}[pbt]
     \centering
     \includegraphics[width=0.75\linewidth]{multilevel_placement.pdf}
     \caption[Multilevel placement]{
@@ -597,12 +600,12 @@ Each unique sequence is assigned an identifier,
 and a list of abundance counts for each sequence in a sample is computed.
 This way, each strictly identical sequence is only processed once in the downstream steps.
 
-\begin{figure}[hpbt]
+\begin{figure}[pbt]
     \centering
     \includegraphics[width=\linewidth]{workflow_chunkify.pdf}
     \caption[Pre-processing pipeline for phylogenetic placement]{
         \textbf{Pre-processing pipeline for phylogenetic placement.}
-        The Figure shows our pre-processing pipeline that improves both speed and parallel efficiency
+        The figure shows our pre-processing pipeline that improves both speed and parallel efficiency
         of the phylogenetic placement computation.
         The gains are achieved by re-distributing and de-duplicating the query sequences of all samples
         into chunks of equal size prior to the placement computation.
@@ -639,7 +642,7 @@ on an \ac{RT} with \num{796} tips \cite{Srinivasan2012}.
 Using a prototype version of our implementation,
 we were able to analyze a neotropical soils dataset with \num{50 118 536} total sequences, thereof \num{10 567 804} unique,
 with an \ac{RT} comprising \num{512} taxa \cite{Mahe2017}.
-To demonstrate the scalability of our method,
+Furthermore, to demonstrate the scalability of our method, and for the evaluation of the methods presented in later chapters,
 we also analyzed datasets with up to \num{116 520 289} total sequences, thereof \num{63 221 538} unique,
 from the \ac{HMP} \cite{Huttenhower2012,Methe2012}, using \acp{RT} with up to \num{2 059} tips.
 % a  =  63,221,538  *  2,059  =  130,173,146,742
@@ -647,8 +650,13 @@ from the \ac{HMP} \cite{Huttenhower2012,Methe2012}, using \acp{RT} with up to \n
 % a / b  =  10,859
 This corresponds to %a factor of \num{10 859}
 a computational effort that is four orders of magnitude greater than for the \ac{BV} study.
-See \appref{ch:EmpiricalDatasets} for an overview of the datasets used in our evaluation.
 % See Section \nameref{sec:Evaluation} for details.
+For an overview and further details on the datasets used in our evaluation, see \appref{ch:EmpiricalDatasets}.
+% The improvements presented here were necessary in order to process and place these datasets in manageable time,
+Without the improvements presented here, these datasets could not have been processed and placed in manageable time.
+As we use the placement results of these datasets on the \acp{PhAT} in the evaluations of later chapters,
+these improvements represent necessary preprocessing steps for this work,
+and for large analyses using phylogenetic placement in general.
 
 % ######################################################################################################################
 %         Evaluation and Results
@@ -707,7 +715,7 @@ a \taxonname{General} set (``all of life''),
 as well as separate sets for the domains \taxonname{Archaea}, \taxonname{Bacteria}, and \taxonname{Eukaryota}.
 The target sizes for the recursive expansion of taxonomic clades
 (see \secref{ch:AutomaticTrees:sec:Methods:sub:PhAT:par:SequenceGrouping})
-where chosen to be large enough to cover the diversity well,
+were chosen to be large enough to cover the diversity well,
 while still being computationally feasible and visually interpretable for the subsequent steps.
 The target size for the \taxonname{General} tree was set to \num{2 000} taxa,
 while the \taxonname{Bacteria} and \taxonname{Eukaryota} tree were targeting \num{1 800} domain-specific taxa,
@@ -896,7 +904,7 @@ As the consensus sequences are derived from the taxonomy, all terminal branches 
 These labels thus identify the expected placement position for each species sequence.
 For example, sequences \texttt{S1-6} in \figref{fig:tax_entropy}
 are represented by the consensus sequence for the \taxonname{Calyptosporidae} clade,
-which is shown below the \num{6} sequences in the Figure.
+which is shown below the \num{6} sequences in the figure.
 They are thus expected to be placed onto the \taxonname{Calyptosporidae} branch in the \ac{RT}.
 
 In order to conduct this accuracy evaluation,
@@ -1417,7 +1425,7 @@ The resulting hierarchical cluster trees of the samples are shown in \figref{fig
     \end{subfigure}
     \caption[Assessment of a \acs{PhAT} for conducting Squash Clustering]{
         \textbf{Assessment of a \acs{PhAT} for conducting Squash Clustering.}
-        The Figure compares the hierarchical clustering trees resulting from a Squash Clustering analysis
+        The figure compares the hierarchical clustering trees resulting from a Squash Clustering analysis
         (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering})
         using \subref{fig:bv_squash:sub:squash_art}  our unconstrained \taxonname{Bacteria} \acs{PhAT} and
         \subref{fig:bv_squash:sub:squash_orig} the original reference tree of \citeay{Srinivasan2012}.
@@ -1433,10 +1441,10 @@ The resulting hierarchical cluster trees of the samples are shown in \figref{fig
 The general features of the two cluster trees are comparable,
 indicating that our tree is able to distinguish between healthy and sick patients.
 However, there is a major difference in the lower half of the trees:
-While \subref{fig:bv_squash:sub:squash_orig} shows some small branch lengths and even a separated sub-clade
+While \figref{fig:bv_squash:sub:squash_orig} shows some small branch lengths and even a separated sub-clade
 of samples with low Nugent score,
-these branches have a length of virtually zero in \subref{fig:bv_squash:sub:squash_art}.
-As shown in \cite{Srinivasan2012}, the healthy patients are divided into two classes,
+these branches have a length of virtually zero in \figref{fig:bv_squash:sub:squash_art}.
+As shown in \citeay{Srinivasan2012}, the healthy patients are divided into two classes,
 based on the presence of two species of \taxonname{Lactobacillus}.
 The original reference tree contains sequences of those species, and can thus distinguish between them.
 Our broad \taxonname{Bacteria} tree however
@@ -1463,7 +1471,7 @@ The resulting scatter plots are shown in \figref{fig:bv_edgepca}.
     \end{subfigure}
     \caption[Assessment of a \acs{PhAT} for conducting Edge PCA]{
         \textbf{Assessment of a \acs{PhAT} for conducting Edge PCA.}
-        The Figure compares the scatter plots resulting from an Edge PCA
+        The figure compares the scatter plots resulting from an Edge PCA
         (see \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:EdgePCA})
         using \subref{fig:bv_edgepca:sub:edgepca_art} our unconstrained \taxonname{Bacteria} \acs{PhAT} and
         \subref{fig:bv_edgepca:sub:edgepca_orig} the original reference tree of \citeay{Srinivasan2012}.
@@ -1477,9 +1485,10 @@ The resulting scatter plots are shown in \figref{fig:bv_edgepca}.
 The scatter plots show that the \ac{PhAT} is able to separate samples by their Nugent score, that is, to classify them
 into healthy (left, blue items) and sick patients (right, red items).
 However, as with Squash Clustering, samples that only differ in placements at the species level
-are not separated from each other in the Edge PCA plot.
+are not separated from each other in the Edge PCA plot of \figref{fig:bv_edgepca:sub:edgepca_art}.
 Hence, the two classes of healthy patients do again not exhibit
-the separation based on the two \taxonname{Lactobacillus} species that is apparent when using the original reference tree.
+the separation based on the two \taxonname{Lactobacillus} species that is apparent when using the original reference tree
+as in \figref{fig:bv_edgepca:sub:edgepca_orig}.
 Thus, the samples with low Nugent score form one blob in \figref{fig:bv_edgepca:sub:edgepca_art}.
 % cannot be classified using a broad, high-level tree such as our \taxonname{Bacteria} tree.
 
@@ -1501,7 +1510,7 @@ are suitable for the dataset to be placed.
 
 Next, we tested the unconstrained \taxonname{Bacteria} tree generated by our \ac{PhAT} method
 for placing and analyzing a large sequence dataset.
-For this, we use the Human Microbiome Project (HMP) \cite{Huttenhower2012,Methe2012} data,
+For this, we used the Human Microbiome Project (HMP) \cite{Huttenhower2012,Methe2012} data,
 and selected \num{9192} samples from different body sites with a total of 117 million sequences.
 For details on the dataset and its processing, see \appref{supp:sec:DetailsEmpiricalDatasets:sub:HMP}.
 The sequences were placed on the tree, and subsequently analyzed with two different methods,
@@ -1550,7 +1559,7 @@ Second, we again performed Edge PCA \cite{Matsen2011a}
 
 Both subfigures show that the tree, despite only representing higher taxonomic levels,
 suffices to separate different body site regions from each other.
-Even different oral regions are mostly separated, although there seems to be quite some overlap.
+Even different oral regions are mostly separated, although there is quite some overlap.
 % Similar to \figref{fig:bv_edgepca:sub:edgepca_orig}, the plot forms a triangle of samples,
 % roughly separated by body site regions.
 We hence conclude that our \ac{PhAT} is capable of analyzing such datasets and that it yields useful results.
@@ -1564,12 +1573,19 @@ We hence conclude that our \ac{PhAT} is capable of analyzing such datasets and t
 
 Here, we assess how \acp{PhAT} perform when used
 for obtaining a taxonomic profile of a set of samples in conjunction with phylogenetic placement.
+Taxonomic profiling is the prediction of the taxonomic identities and their relative abundances of sequences
+from samples obtained via shotgun sequencing (\secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics});
+it does not result in taxonomic assignments for individual sequences (although this can be an intermediate step),
+but yields a summary of the abundances of different taxa in the samples \cite{Meyer2019}.
 We emphasize though that taxonomic assignment and profiling are neither the focus of \acp{PhAT},
 nor the intended standard use case of phylogenetic placement.
 
+% from OPAL paper:
+% Taxonomic metagenome profilers predict the taxonomic identities and relative abundances of microorganisms of a microbial community from shotgun sequence samples. In contrast to taxonomic binning, profiling does not result in assignments for individual sequences, but derives a summary of the presence and relative abundance of different taxa in microbial community.
+
 To perform the evaluation, we conducted parts of the \toolname{CAMI} Challenge \cite{Sczyrba2017},
 which is a community-driven effort to assess taxonomic profiling methods using a common set of benchmark datasets.
-To assess the feasibility of using trees generated with \ac{PhAT} to obtain taxonomic profiling of microbiome data,
+To assess the feasibility of using trees generated with \ac{PhAT} to obtain taxonomic profiles of microbiome data,
 we utilized the \taxonname{mouse gut} dataset of the 2nd \toolname{CAMI} Challenge \cite{Bremges2018}.
 See \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut} for details on our processing of this dataset.
 In short, we phylogenetically placed the reads of the 16S region of the dataset
@@ -1586,7 +1602,7 @@ As our reference tree is however based on the \toolname{Silva} taxonomy \cite{Yi
 we thus had to compute a mapping between the two taxonomies. %, which introduces some incongruences \cite{Balvociute2017}.
 To this end, we developed a dedicated mapping procedure to, in a best effort approach,
 map our results to \toolname{NCBI} taxonomic names and IDs.
-The mapping is based on the \textit{loose mapping} procedure by \citeay{Balvociute2017}.
+The mapping is based on the \textit{loose mapping} procedure of \citeay{Balvociute2017}.
 More specifically, we tried to map taxonomic paths to their name, rank, and ID in the \toolname{NCBI} taxonomy,
 if we find a name-based match between the two.
 When this fails, the phylogenetic placement mass assigned to a taxonomic path by our approach
@@ -1602,9 +1618,24 @@ in this particular test, only \num{\approx 0.08}\% of the total mouse gut data w
 (see also \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}).
 This means that our taxonomic profiling only uses a small fraction of the available data.
 
+% from OPAL paper:
+% The assessed profilers were CommonKmers (corresponding to MetaPalette 1.0.0) [2, 42], CAMIARKQuikr 1.0.0 [43], abbreviated Quikr (a combination of Quikr [8], ARK [9], and SEK [10]), TIPP 2.0.0 [12], Metaphlan 2.2.0 [5], MetaPhyler 1.25 [6], mOTU 1.1 [7], and FOCUS 0.31 adapted for CAMI [4]. 
+
 The resulting per-read assignment was then used to generate a taxonomic profile of the data.
-We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OPAL} \cite{Sczyrba2017}
-to compare our approach to competing software and the ``gold standard'' result for the dataset.
+We used the \toolname{CAMI} evaluation tool for taxonomic profilers \toolname{OPAL} \cite{Sczyrba2017,Meyer2019}
+to compare our approach to competing software on the ``gold standard'' result for the dataset.
+\toolname{OPAL} assesses the performance of a set of tools relative to each other.
+We compared our approach to the profilers that were tested in the original publications \cite{Sczyrba2017,Meyer2019},
+which are:
+\toolname{CommonKmers} (corresponding to \toolname{MetaPalette} 1.0.0) \cite{Koslicki2016,MetaPalettev100},
+\toolname{CAMIARKQuikr} 1.0.0 \cite{CAMIARKQuikrv100} (which is a combination of
+\toolname{Quikr} \cite{Koslicki2013}, \toolname{ARK} \cite{Koslicki2015}, and \toolname{SEK} \cite{Chatterjee2014},
+and abbreviated here as \toolname{Quikr}),
+\toolname{TIPP} 2.0.0 \cite{Nguyen2014},
+\toolname{MetaPhlAn} 2.2.0 \cite{Segata2012},
+\toolname{MetaPhyler} 1.25 \cite{Liu2011},
+\toolname{mOTU} 1.1 \cite{Sunagawa2013a}, and
+\toolname{FOCUS} 0.31 adapted for CAMI \cite{Silva2014}.
 
 We here show the most important \toolname{OPAL} results:
 \figref{fig:cami_performance} compares the tools based on different error metrics;
@@ -1613,6 +1644,7 @@ We here show the most important \toolname{OPAL} results:
 % in comparison to the gold standard ground truth.
 % \figref{fig:cami_performance_relative} and \figref{fig:cami_performance_absolute}
 % Furthermore, the full OPAL output can be accessed at \url{http://github.com/lczech/placement-methods-paper}.
+Details on the error metrics and their interpretation are explained in the \toolname{OPAL} publication \cite{Meyer2019}.
 
 \afterpage{
 \clearpage % Flush earlier floats (otherwise order might not be correct)
@@ -1633,10 +1665,11 @@ We here show the most important \toolname{OPAL} results:
     and Weighted Unifrac Error (abbreviated here as WUE).
     For each metric, the comparative scores of the tools are shown, as well as their rankings, relative to each other.
     Also, the total sum of scores and the total rank are shown, which add up the values of the four metrics.
-    The procedure of the scoring and ranking is explained in detail in the Online Supplement of \cite{Sczyrba2017}.
+    The procedure of the scoring and ranking is explained in detail in the Online Supplement of \citeay{Sczyrba2017}.
     \\
     Despite the caveats and limitations that are explained in the text,
-    using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the middle of the field for all metrics.
+    using our \acp{PhAT} trees to obtain a taxonomic profile yields rankings in the middle of the field for all metrics,
+    even when comparing them to tools dedicated to the purpose of taxonomic profiling.
 }
 \label{tab:cami_rankings}
 {
@@ -1646,15 +1679,15 @@ We here show the most important \toolname{OPAL} results:
                        & \multicolumn{2}{c}{Total} & \multicolumn{2}{c}{Recall} & \multicolumn{2}{c}{Precision} & \multicolumn{2}{c}{L1 NE} & \multicolumn{2}{c}{WUE} \\
         Tool           & Sum & Rank & Score & Rank & Score & Rank & Score & Rank & Score & Rank \\
         \midrule
-        Metaphlan           &   1814    &   1   &   958     &   3   &  75       &   1   &  731      &   2   & 50    &   1   \\
-        MetaPhyler          &   2995    &   2   &   314     &   1   &  2119     &   7   &  322      &   1   & 240   &   5   \\
-        CommonKmers         &   3333    &   3   &   1448    &   6   &  409      &   2   &  1318     &   7   & 158   &   3   \\
-        mOTU                &   3751    &   4   &   1703    &   8   &  488      &   3   &  1260     &   5   & 300   &   6   \\
-        \textbf{PhAT (C)}   &   3784    &   5   &   1202    &   4   &  1116     &   4   &  1280     &   6   & 186   &   4   \\
-        \textbf{PhAT (U)}   &   3933    &   6   &   1436    &   5   &  1153     &   5   &  1208     &   4   & 136   &   2   \\
-        TIPP                &   4263    &   7   &   892     &   2   &  2126     &   8   &  930      &   3   & 315   &   7   \\
-        FOCUS               &   6153    &   8   &   2079    &   9   &  1636     &   6   &  2018     &   8   & 420   &   8   \\
-        Quikr               &   6838    &   9   &   1488    &   7   &  2398     &   9   &  2453     &   9   & 499   &   9   \\
+        \toolname{MetaPhlAn}           &   1814    &   1   &   958     &   3   &  75       &   1   &  731      &   2   & 50    &   1   \\
+        \toolname{MetaPhyler}          &   2995    &   2   &   314     &   1   &  2119     &   7   &  322      &   1   & 240   &   5   \\
+        \toolname{CommonKmers}         &   3333    &   3   &   1448    &   6   &  409      &   2   &  1318     &   7   & 158   &   3   \\
+        \toolname{mOTU}                &   3751    &   4   &   1703    &   8   &  488      &   3   &  1260     &   5   & 300   &   6   \\
+        \textbf{PhAT (C)}              &   3784    &   5   &   1202    &   4   &  1116     &   4   &  1280     &   6   & 186   &   4   \\
+        \textbf{PhAT (U)}              &   3933    &   6   &   1436    &   5   &  1153     &   5   &  1208     &   4   & 136   &   2   \\
+        \toolname{TIPP}                &   4263    &   7   &   892     &   2   &  2126     &   8   &  930      &   3   & 315   &   7   \\
+        \toolname{FOCUS}               &   6153    &   8   &   2079    &   9   &  1636     &   6   &  2018     &   8   & 420   &   8   \\
+        \toolname{Quikr}               &   6838    &   9   &   1488    &   7   &  2398     &   9   &  2453     &   9   & 499   &   9   \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -1742,7 +1775,7 @@ We here show the most important \toolname{OPAL} results:
 % \clearpage % Flush earlier floats (otherwise order might not be correct)
 \begin{figure}[hpbt]
     \centering
-    \includegraphics[width=0.94\linewidth]{cami_performance.pdf}
+    \includegraphics[width=0.918\linewidth]{cami_performance.pdf}
     \begin{subfigure}{0pt}
         \phantomcaption
         \label{fig:cami_performance:sub:relative}
@@ -1755,7 +1788,8 @@ We here show the most important \toolname{OPAL} results:
         \textbf{CAMI profiling results.}
         The figure compares the taxonomic %assignment and
         profiling conducted with our \taxonname{Bacteria} trees
-        to the tools of the 2nd \toolname{CAMI} challenge \cite{Sczyrba2017,Bremges2018}.
+        to the tools of the 2nd \toolname{CAMI} challenge \cite{Sczyrba2017,Bremges2018},
+        and was created with the \toolname{OPAL} tool \cite{Meyer2019}.
         The unconstrained and constrained tree are abbreviated here as ``PhAT (U)'' and ``PhAT (C)'', respectively.
 %         \\
         Subfigure \subref{fig:cami_performance:sub:relative} shows the \emph{relative} performance of the tools
@@ -1847,11 +1881,14 @@ The resolution of the assignment is limited by the taxonomy used when running th
 that is, we could not assign reads at \taxonname{Species} level.
 % Despite the aforementioned caveats of taxonomic profiling using phylogenetic placements in the \toolname{CAMI} setting,
 Furthermore, as mentioned, we were only able to use a small fraction of the reads (16S) and had to use incongruent taxonomies.
-Despite all these additional layers of complexity and potential error sources, 
+Despite all these additional layers of complexity and potential error sources,
 we find that the performance of our approach is in the mid-range of the tools evaluated by \toolname{CAMI}.
 Note that this is a comparison to dedicated tools for taxonomic profiling,
 which also typically can assign more of the available reads.
 Therefore, our method yields reasonable accuracy for taxonomic assignment and profiling.
+
+% Fucking LaTeX loses figures if we do not include this ugly clear page here...
+% \clearpage
 
 % ======================================================================================================================
 %     Multilevel Placement
@@ -1867,7 +1904,7 @@ The same clades were already scrutinized in \toolname{Sativa} \cite{Kozlov2016}.
 with the branches of these five test clades highlighted.
 
 % Fucking LaTeX loses figures if we do not include this ugly clear page here...
-\clearpage
+% \clearpage
 
 \begin{figure}[hpbt]
     \centering
@@ -1897,12 +1934,12 @@ with the branches of these five test clades highlighted.
     \label{fig:clades}
 \end{figure}
 
-\clearpage
+% \clearpage
 
 \paragraph{Subclade Accuracy}
 \label{ch:AutomaticTrees:sec:Evaluation:sub:MultilevelPlacement:par:SubcladeAccuracy}
 
-First, using the \toolname{Silva} sequences and sub-taxonomies of these five clades,
+First, using the \toolname{Silva} sequences and sub-taxonomies of these five clades as input,
 we built unconstrained and constrained \acp{PhAT}.
 We then conducted the same accuracy analysis as explained before on the resulting ten trees.
 That is, we placed the \toolname{Silva} sequences of the five clades onto their respective \acp{PhAT}
@@ -1932,7 +1969,7 @@ The results are shown in \figref{fig:multilevel}.
     \caption[Accuracy of the \acsp{PhAT} of five bacterial sub-clades]{
         \textbf{Accuracy of the \acsp{PhAT} of five bacterial sub-clades.}
         We used five sub-clades of the \taxonname{Bacteria} in \toolname{Silva},
-        which were already scrutinized in \cite{Kozlov2016},
+        which were already scrutinized in \citeay{Kozlov2016},
         to asses the placement accuracy of our \acp{PhAT} for less diverse sets of sequences.
         These five clades are also highlighted in \figref{fig:clades};
         see there for a description of the clades.
@@ -2045,7 +2082,7 @@ which might explain why the \taxonname{Firmicutes} score worst in \figref{fig:mu
 
 These results are likely due to the inability of 16S SSU sequences to properly resolve lower taxonomic levels
 \cite{Mignard2006,Petti2007,Janda2007}.
-For example, Table~2 of \cite{Janda2007} lists \num{10} bacterial genera
+For example, Table~2 of \citeay{Janda2007} lists \num{10} bacterial genera
 that are known to be hard to identify using 16S sequences.
 These genera account for \num{7.9}\% of the \num{2846} taxa
 that are represented by the five bacterial trees tested here.
@@ -2075,7 +2112,7 @@ Thus, we used the unconstrained \taxonname{Bacteria} \ac{BT} again,
 and assessed how many sequences were placed in the clades shown in \figref{fig:clades}.
 Of the \num{450 313} sequences in \toolname{Silva} in these clades, % that belong to one of these clades,
 98.0\% were placed (most likely placement) into a branch of their corresponding clade.
-Thus, for multilevel placement, they will be assigned to the correct second level \acf{CT}.
+Thus, for multilevel placement, they will be assigned to the correct second level \ac{CT}.
 % This is expected, as these clades represent high taxonomic ranks. % everything else would mean that EPA is not doing anything reasonable at all...
 More specifically, the \taxonname{Firmicutes} perform worst,
 as only 94.7\% of the \taxonname{Firmicute} sequences are placed into the corresponding correct clade.
@@ -2181,7 +2218,7 @@ and thus ensures monophyly of these clades.
 Furthermore, for the practical applicability and relevance of this approach, 
 we refer to our results presented in \citeay{Mahe2017}.
 
-Apart from exploring read data from unknown environments,
+Apart from exploring sequence data from unknown environments,
 we see online services as a potential additional application of our methods.
 A web service that offers phylogenetic placement of user-submitted sequences is confronted with two issues:
 Firstly, the potentially large number of query sequences, and secondly, their unknown provenance.

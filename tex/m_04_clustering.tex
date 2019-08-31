@@ -20,13 +20,13 @@
 \section{Background and Motivation}
 \label{ch:Clustering:sec:Motivation}
 
-Given a set of metagenomic sequence samples (see \secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}),
+Given a set of metagenomic sequence samples (\secref{ch:Foundations:sec:SequenceAnalysis:sub:Metagenomics}),
 and a distance measure between them (\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:Distances}),
 a fundamental task consists in clustering samples that are similar to each other.
-For example, Squash Clustering performs agglomerative hierarchical clustering of samples,
-as introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}.
+For example, Squash Clustering performs agglomerative hierarchical clustering of samples
+(\secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods:par:SquashClustering}).
 It is based on the phylogenetic placement of the \acfp{QS} of the samples on a \acf{RT},
-and employs the KR distance to assess sample similarity.
+and employs the \emph{Kantorovich-Rubinstein} (KR) distance \cite{Matsen2011a,Evans2012} to assess sample similarity.
 An example of the resulting clustering tree is shown in \figref{fig:squash_edgepca:sub:squash}.
 
 For large datasets, producing a clustering tree can however considered to be a downside of Squash Clustering,
@@ -55,9 +55,9 @@ the clustering result becomes hard to inspect and visually interpret.
         \subref{fig:squash_edgepca:sub:pca} PCA on the pairwise KR distance matrix between samples,
         and \subref{fig:squash_edgepca:sub:epca} Edge PCA,
         using the \acf{BV} dataset \cite{Srinivasan2012}.
-        The Subfigures are recalculations of Figure~1(A) of \citeay{Srinivasan2012},
+        The subfigures are recalculations of Figure~1(A) of \citeay{Srinivasan2012},
         and Figures~4 and 3 of \citeay{Matsen2011b}, respectively.
-        All Subfigures represent samples as colored dots according to their respective Nugent score,
+        All subfigures represent samples as colored dots according to their respective Nugent score,
         which indicates the severeness of the \ac{BV} infection of the samples/patients.
 %         In \subref{fig:squash_edgepca:sub:squash}, we added coloring to the samples (tips) of the cluster tree for convenience.
         See \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:ExistingMethods} for a description of the methods,
@@ -194,7 +194,7 @@ Lastly, the centroids are updated to represent
 the average mass distribution of all samples that are currently assigned to them.
 This iterative process alternates between improving the assignments and improving the centroids.
 Thus, the main difference to normal $k$-means in the $\mathbb{R}^d$ vector space is the use of phylogenetic information:
-Instead of euclidean distances on vectors, we use the KR distance,
+Instead of Euclidean distances on vectors, we use the KR distance,
 and instead of averaging vectors to obtain centroids, we use the average mass distribution on the tree.
 
 The process is repeated until it converges,
@@ -346,8 +346,8 @@ We placed the samples of the \ac{BV} dataset \cite{Srinivasan2012}
 on the re-inferred reference tree of their original reference sequences
 to test whether our methods work as expected.
 To this end, we ran both Phylogenetic $k$-means and Imbalance $k$-means on the \ac{BV} dataset,
-and compare the results to the existing analysis of the data in \cite{Srinivasan2012} and \cite{Matsen2011a}.
-We chose $k:=3$, inspired by the findings of \cite{Srinivasan2012}.
+and compare the results to the existing analyses of the data \cite{Srinivasan2012,Matsen2011a}.
+We chose $k:=3$, inspired by the findings of \citeay{Srinivasan2012}.
 There, they distinguish between subjects affected by Bacterial Vaginosis and healthy subjects,
 and further separate the healthy ones into two categories depending on the dominating clade in the vaginal microbiome,
 which is either \taxonname{Lactobacillus iners} or \taxonname{Lactobacillus crispatus}.
@@ -358,7 +358,7 @@ The number of clusters is also evaluated using the Elbow method later in \secref
 For each of the \num{220} samples of the dataset, we hence obtained two cluster assignments:
 First, by using Phylogenetic $k$-means, we obtained the cluster assignment \emph{PKM}.
 Second, by using Imbalance $k$-means, we obtained assignment \emph{IKM}.
-In the following figures, the samples are represented by colored circles:
+In the following figures, the samples are represented by colored dots:
 red, green, and blue show the cluster assignments \emph{PKM},
 while purple, orange, and gray show the cluster assignments \emph{IKM}.
 We use two different color sets for the two methods, in order to make them distinguishable at first glance.
@@ -401,7 +401,7 @@ This allows for a direct comparison between our novel and the existing methods.
         % Sub (A)
         \subref{fig:cluster_kmeans_trees:sub:mass_tree}
         Hierarchical cluster tree of the samples, using Squash Clustering.
-        The tree is a recalculation of Figure~1(A) of \cite{Srinivasan2012}.
+        The tree is a recalculation of Figure~1(A) of \citeay{Srinivasan2012}.
         Each leaf represents a sample; branch lengths are KR distances.
         We added color coding for the samples, using \emph{PKM}.
         The lower half of the red samples are mostly healthy individuals,
@@ -494,7 +494,7 @@ It is apparent that both methods separate the same samples from each other.
         as found by our $k$-means variants (first two columns), and by the Nugent score of the samples (third column).
         The Nugent score is included to allow comparison of the health status of patients with the clustering results.
         Figures~\subref{fig:kmeans_all:sub:pca_ns} and \subref{fig:kmeans_all:sub:epca_ns} are recalculations of
-        Figures~4 and 3 of \cite{Matsen2011b}, respectively.
+        Figures~4 and 3 of \citeay{Matsen2011b}, respectively.
     }
     \label{fig:kmeans_all}
 \end{figure}
@@ -721,7 +721,7 @@ as described later in \secref{ch:Clustering:sec:Results:sub:ElbowMethod}.
         as shown in \tabref{tab:hmp_data_overview}.
 %         for the list of how the original body site labels were aggregated.
         %for the cluster assignment where $k$ is set to the original number of labels;
-        Each row represents a body group; each column one of the \num{8} clusters found by the algorithm.
+        Each row represents a body site group; each column one of the \num{8} clusters found by the algorithm.
 %         The color values indicate how many samples of a body site were assigned to each cluster.
         Some of the body sites are again clearly separated,
         while particularly the samples from the oral region are distributed over different clusters.
@@ -808,14 +808,14 @@ in order to find an appropriate number of clusters in a dataset \cite{Thorndike1
         They were clustered using Phylogenetic $k$-means (first column),
         and Imbalance $k$-means (second column), respectively.
         Accordingly, \subref{fig:elbows:sub:bv_phylo} and \subref{fig:elbows:sub:hmp_phylo} use the KR distance,
-        while \subref{fig:elbows:sub:bv_imb} and \subref{fig:elbows:sub:hmp_imb} use the euclidean distance
+        while \subref{fig:elbows:sub:bv_imb} and \subref{fig:elbows:sub:hmp_imb} use the Euclidean distance
         to measure the variance.
         Orange circles mark potential elbow points.
     }
     \label{fig:elbows}
 \end{figure}
 
-The plots for the \ac{BV} dataset in Figures \ref{fig:elbows:sub:bv_phylo} and \ref{fig:elbows:sub:bv_imb}
+The plots for the \ac{BV} dataset in Figures~\ref{fig:elbows:sub:bv_phylo} and \ref{fig:elbows:sub:bv_imb}
 show elbows at $k:=2$ and $3$, respectively, which are marked with orange circles.
 % exhibit clear elbow points candidates for $k$
 These values are consistent with previous findings, c.\,f.~Figures~\ref{fig:cluster_kmeans_trees} and \ref{fig:kmeans_all}.
@@ -846,7 +846,7 @@ although we did not test them here.
 
 The complexity of Phylogenetic $k$-means is in $\mathcal{O}(k \cdot i \cdot n \cdot e)$,
 with $k$ clusters, $i$ iterations, and $n$ samples, and $e$ being the number of tree edges,
-which corresponds to the number of dimensions in standard euclidean $k$-means.
+which corresponds to the number of dimensions in standard Euclidean $k$-means.
 As the centroids are randomly initialized, the number of iterations can vary;
 in our tests, it was mostly below \num{100}.
 For the \ac{BV} dataset with \num{220} samples and a reference tree with \num{1 590} edges, using $k:=3$,
@@ -859,7 +859,7 @@ which took \num{46} iterations and ran in \SI{2.7}{\hour} on \num{16} cores, usi
 In contrast to this, Imbalance $k$-means neither needs to conduct any expensive tree traversals,
 % and does not need to store each individual placement,
 nor take single placement locations into account,
-but instead operates on compact vectors with one entry per edge, using euclidean distances.
+but instead operates on compact vectors with one entry per edge, using Euclidean distances.
 It is hence several orders of magnitude faster than Phylogenetic $k$-means, and only needs a fraction of the memory.
 For example, using again $k:=18$ for the \ac{HMP} dataset,
 the algorithm executed \num{75} iterations in \SI{2}{\second}.
@@ -956,7 +956,7 @@ Phylogenetic $k$-means uses the KR distance to assess sample similarity,
 and hence yields cluster assignments that are consistent with Squash Clustering.
 Imbalance $k$-means on the other hand is based on edge imbalances,
 and thus yields assignments that are consistent with Edge PCA, which also uses edge imbalances.
-Furthermore, Imbalance $k$-means operates in the euclidean space instead of using mass distributions on trees.
+Furthermore, Imbalance $k$-means operates in the Euclidean space instead of using mass distributions on trees.
 It is therefore several orders of magnitude faster than Phylogenetic $k$-means
 and can hence be applied to extremely large datasets.
 
@@ -969,7 +969,7 @@ could be explored for clustering metagenomic sequence samples.
 
 The main challenge when adopting such methods to phylogenetic placement data consists in making them phylogeny-aware.
 That is, they have to be extended to this type of data by
-using mass distributions on trees instead of operating on $\mathbb{R}^d$ vectors in the euclidean space,
+using mass distributions on trees instead of operating on $\mathbb{R}^d$ vectors in the Euclidean space,
 %as the underlying space in which the data is modeled.
 and using appropriate distance measures such as the KR distance to assess sample similarity.
 % The necessary adaptations in the clustering algorithms are not always \todo{what?}

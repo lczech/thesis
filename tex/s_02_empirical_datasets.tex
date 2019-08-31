@@ -8,7 +8,7 @@
 \paperbox{
     This chapter is derived from parts of the following peer-reviewed open-access publications:
 }{\paperart \paperpppp}{
-    Text and tables in this chapter were created by Lucas Czech, unless explicitly stated otherwise.
+    Text and tables in this chapter were created by Lucas Czech, with the following exception:
     Pierre Barbera conducted the processing and analysis of the CAMI Challenge data
     as described in \appref{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut},
     and helped to write the text of that section.
@@ -117,7 +117,7 @@ The last column shows the average length of all sequences in the dataset.
 % }
 % \end{table}
 
-We use these datasets to evaluate our methods and to exemplify which method is applicable to what kind of data.
+We used these datasets to evaluate our methods and to exemplify which method is applicable to what kind of data.
 To this end, the sequences of the datasets were placed on appropriate reference trees,
 in order to obtain phylogenetic placements that our methods can be applied to.
 % The analyses and figures presented here were conducted on distinct reference alignments and trees.
@@ -187,18 +187,18 @@ Next, we used the \ac{BV} dataset throughout Chapters \ref{ch:Visualization} to 
 Finally, for our comparison of Placement-Factorization to the original Phylofactorization \cite{Washburne2017a}
 in \secref{ch:Factorization:sec:Evaluation:sub:BVDataset},
 we conducted OTU clustering of the \ac{BV} sequences, using two different methods:
-We used \toolname{vsearch v2.9.1} \cite{Rognes2016} as well as \toolname{swarm v2.2.2} \cite{Mahe2014,Mahe2015}
+We used \toolname{VSEARCH v2.9.1} \cite{Rognes2016} as well as \toolname{swarm v2.2.2} \cite{Mahe2014,Mahe2015}
 to obtain two sets of OTU clusters.
 We filtered the OTU table to remove low abundance OTUs, by only keeping those that appear in more than 10\% of the samples.
 In order to assign each OTU to a fitting taxonomic path,
 we used the \toolname{assign} command of our toll \toolname{gappa} \cite{Czech2019-genesis-gappa},
-see \secref{ch:PipelineImplementation:sub:Commands}.
+see \appref{ch:PipelineImplementation:sub:Commands}.
 To this end, we placed the OTUs on the BV reference tree mentioned above,
 in order to obtain taxonomic assignments for the OTUs
 that are in line with the taxonomic labels used in our other analyses of the dataset.
 Each set of OTU sequences was subsequently aligned with \toolname{MAFFT v7.310} \cite{Katoh2002,Katoh2013},
 using the \toolname{L-INS-i} strategy \cite{Katoh2005}.
-Finally, we inferred an OTU tree for each set, using the recent \toolname{RAxML-NG v0.7.0} \cite{Kozlov2018a}.
+Finally, we inferred an OTU tree for each set, using the recent \toolname{RAxML-NG v0.7.0} \cite{Kozlov2019a}.
 These two OTU trees were then used with the meta-data for conducting an analysis with \toolname{Phylofactor} \cite{Washburne2017a},
 based on the excellent tutorials at \url{https://github.com/reptalex/phylofactor}.
 % The results for the first ten factors for each of these two trees is for example shown in S3~Table of the supplement.
@@ -234,7 +234,7 @@ As the available data are raw \texttt{fastq} files,
 we followed \citeay{FredsMetabarcodingPipeline} to generate cleaned per-sample \texttt{fasta} files.
 For this, we used the tool \toolname{PEAR} \cite{Zhang2014} to merge the paired-end reads;
 \toolname{cutadapt} \cite{Martin2011} for trimming tags as well as forward and reverse primers;
-and \toolname{vsearch} \cite{Rognes2016} for filtering erroneous sequences and
+and \toolname{VSEARCH} \cite{Rognes2016} for filtering erroneous sequences and
 generating per-sample \texttt{fasta} files.
 We filtered out sequences below \SI{95}{bps} and above \SI{150}{bps}, to remove potentially erroneous sequences.
 No further preprocessing (such as chimera detection) was applied.
@@ -295,8 +295,8 @@ as we considered them potentially erroneous.
 No further preprocessing (such as chimera detection) was applied.
 
 This resulted in a total of \num{116 520 289} sequences, of which \num{63 221 538} were unique.
-We then used the unconstrained \taxonname{Bacteria} tree of our \ac{PhAT} method \cite{Czech2018-phat}
-for phylogenetic placement;
+For most of the evaluation, we then used the unconstrained \taxonname{Bacteria} tree
+of our \ac{PhAT} method \cite{Czech2018-phat} for phylogenetic placement;
 see \secref{ch:AutomaticTrees:sec:Evaluation:sub:ReferenceTreeSetup} for details.
 The tree comprises \num{1 914} taxa, thereof \num{1 797} bacterial sequences.
 The remaining \num{117} taxa are \taxonname{Archaea} and \taxonname{Eukaryota},
@@ -371,14 +371,14 @@ The last column lists how many samples from each body site were used in our eval
 \section{Mouse Gut}
 \label{supp:sec:DetailsEmpiricalDatasets:sub:MouseGut}
 
-We utilized the \taxonname{mouse gut} dataset of the 2nd \toolname{CAMI} Challenge \cite{Sczyrba2017,Bremges2018}
+We utilized the \taxonname{Mouse Gut} dataset of the 2nd \toolname{CAMI} Challenge \cite{Sczyrba2017,Bremges2018}
 to evaluate the accuracy of our \ac{PhAT} trees for taxonomic assigment
 in \secref{ch:AutomaticTrees:sec:Evaluation:sub:TaxonomicAssignmentProfiling}.
-More specifically, we used the unpaired HiSeq reads of the mouse gut dataset from CAMI,
+More specifically, we used the unpaired HiSeq reads of the dataset, %mouse gut dataset from CAMI,
 which comprises \num{64} samples of simulated reads.
 The preprocessing involved read de-interleaving following \citeay{DeinterleaveFastq},
 paired-end read merging using \toolname{PEAR} \cite{Zhang2014},
-as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH2} \cite{Rognes2016}.
+as well as quality filtering and conversion to \texttt{fasta} using \toolname{VSEARCH} v2 \cite{Rognes2016}.
 This yielded a total of \num{800 341 409} reads.
 As our trees are based on small ribosomal subunit sequences,
 we also performed read filtering to obtain reads from the 16S rDNA region
@@ -393,7 +393,7 @@ We then performed phylogenetic placement of the aligned query sequences onto the
 respectively, using \toolname{EPA-ng} \cite{Barbera2018}.
 We performed de-de-replication to obtain per-sample data again, %on the \texttt{jplace} file,
 resulting in \num{64} \texttt{jplace} files (one per original sample) with placements of the 16S rDNA sequences,
-for each of the two trees.
+for each of the two trees (constrained and unconstrained).
 Finally, we performed taxonomic assignment and taxonomic profiling of the per-sample results
 using the \texttt{assign} command implemented in \toolname{gappa} \cite{Czech2019-genesis-gappa},
 which works analogously to the method used in \toolname{Sativa} \cite{Kozlov2016}.

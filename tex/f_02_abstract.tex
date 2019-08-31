@@ -1,8 +1,13 @@
 \selectlanguage{ngerman}
 %\begin{abstract}
+
+% \pdfbookmark{Zusammenfassung}{Zusammenfassung}
+% \section*{Zusammenfassung}
+% \vspace*{1em}
+
 \pdfbookmark{Zusammenfassung}{Zusammenfassung}
-\section*{Zusammenfassung}
-\vspace*{1em}
+\chapter*{Zusammenfassung}
+\markboth{Zusammenfassung}{Zusammenfassung}
 
 Die DNS (englisch: DNA) bildet die vererbbare Grundlage allen bekannten Lebens auf dem Planeten.
 Entsprechend wichtig ist ihre ``Entschl\"usselung'' f\"ur die Biologie im Allgemeinen,
@@ -19,17 +24,17 @@ Diese Wissenschaft wird Phylogenetik, und die resultierenden Strukturen phylogen
 H\"aufig basieren diese B\"aume auf dem Vergleich von DNS-Sequenzen der Arten,
 mit der Idee, dass Arten mit \"ahnlicher DNS auch im Baum nah beieinander liegen.
 Die Berechnung eines solchen Baumes aus DNS-Daten kann als Optimierungsproblem formuliert werden,
-und ist durch die stetig wachsende Menge an Daten daher f\"ur die Informatik eine Herausforderung.
+das durch die stetig wachsende Menge an Daten f\"ur die Informatik eine Herausforderung darstellt.
 % Gerade f\"ur die Mikrobiologie, die sich unter anderem mit
 Aktuell besch\"aftigt sich die Mikrobiologie zum Beispiel mit der Erkundung und Erforschung von Proben (Samples),
-die aus Wasser, dem Erdreich, und \"ahnlichen Umgebungen gewonnen wurden:
-Welche mikrobischen Arten, Bakterien und andere Einzeller, bewohnen diese Proben?
+die aus Meereswasser, dem Erdreich, dem menschlichen K\"orper, und \"ahnlichen Umgebungen gewonnen wurden:
+Welche mikrobischen Arten, Bakterien und andere Einzeller, bewohnen diese Umgebungen und Proben?
 Das zugeh\"orige Forschungsfeld ist die Meta-Genetik.
 Einen verl\"asslichen Stammbaum f\"ur die aber-millionen an Sequenzen aus solchen Proben zu errechnen
 ist praktisch unm\"oglich.
 Eine Alternative bietet die phylogenetische Platzierung der Sequenzen auf einem gegebenen Referenz-Baum von bekannten Arten
 (so genanntes phylogenetisches Placement):
-Hierbei wird ein Baum aus Referenz-Sequenzen bekannter Arten gew\"ahlt,
+Hierbei wird ein Stammbaum aus Referenz-Sequenzen bekannter Arten gew\"ahlt,
 der m\"oglichst viel der in den Proben zu erwartenden Artenvielfalt abdeckt,
 und dann f\"ur jede Sequenz aus den Proben die n\"achste Verwandtschaft innerhalb des Baumes bestimmt.
 Dies resultiert in einer Zuordnung von Sequenzen auf die Positionen verwandter Arten im Referenz-Baum.
@@ -77,11 +82,11 @@ F\"ur gro\ss{}e Datens\"atze mit hunderten und tausenden von einzlnen Proben sto
 f\"ur diesen Einsatzzweck, wie zum Beispiel das so genannte Squash Clustering, an ihre Grenzen.
 Wir haben daher die $k$-means-Methode derart erweitert, dass sie f\"ur Placement-Daten genutzt werden kann.
 Dazu pr\"asentieren wir zwei Methoden, \emph{Phylogenetic $k$-means} und \emph{Imbalance $k$-means},
-die verschiedene Distanzma\ss{}e (KR-Distanz, und ein weiteres geeignetes Ma\ss{}) nutzen,
+die verschiedene Distanzma\ss{}e zwischen Proben (KR-Distanz, und ein weiteres geeignetes Ma\ss{}) nutzen,
 um B\"aume mit \"ahnlichen Verteilungen von platzierten Sequenzen zu gruppieren.
 Sie betrachten jede Probe als einen Datenpunkt,
 und nutzen die zugrunde liegende Struktur des Referenz-Baumes f\"ur die Berechnungen.
-Mit dieser Methode k\"onnen auch Datens\"atze mit zehntausenden Proben verarbeitet werden,
+Mit diesen Methoden k\"onnen auch Datens\"atze mit zehntausenden Proben verarbeitet werden,
 und Clusterings und \"Ahnlichkeiten von Proben erkannt und visualisiert werden.
 
 Wir haben au\ss{}erdem ein Konzept namens \emph{Balances} f\"ur Placement-Daten adaptiert,
@@ -96,9 +101,9 @@ Insbesondere aus mathematischer Sicht sind Balances f\"ur die Analyse interessan
 da sie problematische Artefakte aufgrund der kompositionellen Natur meta-genetischer Daten beheben.
 Im Zuge dieser Arbeit dienen Balances haupts\"achlich als Zwischenschritt zur Daten-Repr\"asentation.
 
-Eine Anwendung von Balances ist die so genannte \emph{Phylo-Factorization}.
+Eine Anwendung von Balances ist die so genannte \emph{Phylofactorization}.
 Diese recht neue Methode teilt einen gegebenen Baum derart in Sub-B\"aume ein,
-dass jeder Sub-Baum eine Gruppe von Arten darstellt, die in Bezug auf gegebene Meta-Daten pro Probe eine Rolle spielt.
+dass jeder Sub-Baum eine Gruppe von Arten darstellt, die in Bezug auf gegebene Meta-Daten pro Probe relevant sind.
 Dadurch k\"onnen beispielsweise Gruppen identifiziert werden,
 deren evolution\"are Merkmale sich in Abh\"angigkeit von Meta-Daten wie pH-Wert angepasst haben im Vergleich zu anderen Gruppen.
 Dies ist \"ahnlich zur oben genannten Edge Correlation, aber kann zum einen durch geschickte mathematische Ans\"atze
@@ -109,7 +114,7 @@ als auch f\"ur Weiterentwicklungen und Erg\"anzungen f\"ur verwandte Fragestellu
 Wir haben diese Methode f\"ur Placement-Daten adaptiert und erweitert,
 und stellen diese Variante, genannt \emph{Placement-Factorization}, vor.
 Im Zuge dieser Adaption haben wir au\ss{}erdem verschiedene erg\"anzende Berechnungen und Visalisierungen entwickelt,
-die auch f\"ur die urspr\"ungliche Phylo-Factorization n\"utzlich sind.
+die auch f\"ur die urspr\"ungliche Phylofactorization n\"utzlich sind.
 
 Alle genannten neuen Methoden wurden ausf\"uhrlich getestet
 in Bezug auf ihre Eignung zur Erforschung von mikrobiologischen Zusammenh\"angen.
@@ -123,7 +128,7 @@ vorgestellt, und die Ergebnisse dargestellt.
 Alle Tests zeigen, dass unsere Methoden auf den getesteten Datens\"atzen zu Resultaten f\"uhren,
 die konsistent mit anderen Analysen sind, und geeignet sind, um neue biologische Erkenntnisse zu gewinnen.
 
-S\"amtliche hier vorgestellten Methoden sind implementiert in unserer Software-Biblio\-thek \toolname{genesis},
+S\"amtliche hier vorgestellten Methoden sind in unserer Software-Bibliothek \toolname{genesis} implementiert,
 die wir im Zuge dieser Arbeit entwickelt haben.
 Die Bibliothek ist in modernem \texttt{C++11} geschrieben, hat einen modularen und funktions-orientierten Aufbau,
 ist auf Speichernutzung und Rechengeschwindigkeit optimiert, und nutzt vorhandene Multi-Prozessor-Umgebungen.
@@ -136,7 +141,7 @@ Das Tool stellt einen einfachen Kommandozeilen-Zugriff auf die vorhandenen Analy
 und bietet ausreichend Optionen f\"ur die Analysen der meisten End-Anwender.
 
 Im abschlie\ss{}enden Kapitel wagen wir einen Ausblick in weitere Forschungsm\"oglichkeiten im Bereich der
-Methoden-Entwicklung f\"ur Meta-Genetik im Allgemeinen, und der placement-basierten Methoden im Speziellen.
+Methoden-Entwicklung f\"ur meta-genetische Fragestellungen im Allgemeinen, und der placement-basierten Methoden im Speziellen.
 Wir benennen verschiedene Herausforderungen in Bezug auf die Nutzbarkeit solcher Methoden f\"ur Anwender
 und ihrer Skalierbarkeit f\"ur immer gr\"o\ss{}er werdende Datens\"atze.
 Au\ss{}erdem schlagen wir verschiedene weitergehende Ans\"atze vor,
@@ -151,9 +156,14 @@ bei deren Beantwortung unsere Methoden in Zukunft helfen k\"onnen.
 
 \selectlanguage{english}
 %\begin{abstract}
+
+% \pdfbookmark{Abstract}{Abstract}
+% \section*{Abstract}
+% \vspace*{1em}
+
 \pdfbookmark{Abstract}{Abstract}
-\section*{Abstract}
-\vspace*{1em}
+\chapter*{Abstract}
+\markboth{Abstract}{Abstract}
 
 The DNA is the hereditary basis of all known life on the planet.
 Deciphering this ``code of life'' is hence of key importance for biology in general,
@@ -162,35 +172,34 @@ The last few decades have seen rapid technological advances in DNA sequencing,
 with no slowdown of this trend being in sight.
 Research in biology hence has high demand for computational methods,
 both with respect to storage and processing of these huge datasets,
-and to analysis and visualization thereof.
+and with respect to analysis and visualization thereof.
 
-A basic question is that of the tree of life, which describes the evolutionary relationship between species.
-This field of science is called phylogenetics, and resulting structures are called phylogenetic trees.
+A basic concept in biology is that of the tree of life, which describes the evolutionary relationship between species.
+The respective field of science is called phylogenetics, and the resulting structures are called phylogenetic trees.
 Often, these trees are based on the comparison of DNA sequences of the species,
 and are build on the idea that species with similar sequences are located on nearby branches of the tree.
-The inferrence of such a tree based on DNA data can be formulated as an optimization problem,
-and poses a challange for computer science due to the ever increasing amount of available data.
+The inference of such a tree based on DNA data can be formulated as an optimization problem,
+that poses a challenge for computer science due to the ever increasing amount of available data.
 For example, a current directive in micro-biology is to investigate the composition of samples
-taken from environments such as water or soil:
-Which microbial species, bacteria and other single cellular organisms, are present in these samples?
+taken from environments such as ocean water, soil, or the human body:
+Which microbial species, bacteria and other single cellular organisms, are present in these environments and samples?
 This field of research is called meta-genomics.
 It is infeasible to compute a robust phylogenetic tree for the millions of sequences obtained from such samples.
-An alternative approach is the so called phylogenetic placement of the sequences on a given reference tree
-of known species:
+An alternative approach is the so called phylogenetic placement of the sequences on a reference tree:
 Given a tree of reference sequences of known species that covers the expected diversity in the samples as much as possible,
-the evolutionary relation of the sequences in the samples to the reference tree is determined.
+the evolutionary relationship of the sequences in the samples to the reference tree is determined.
 This yields a mapping from sequences to positions of related species in the reference tree.
 This mapping can also be understood as a distribution of sequences on the tree:
 This interpretation allows for example to visualize
 which species (and their next of kin) are frequently present in the samples.
 
 In this work, we developed novel methods for pre- and post-processing, analysis, and visualization
-of phylogenetic placement of DNA sequences.
+of phylogenetic placement of sequences.
 Firstly, we present a method to automatically obtain a suitable reference tree to be used for placement.
 The method is called \emph{PhAT} (Phylogenetic Automatic (Reference) Trees),
 and uses databases of known DNA sequences in order to determine suitable reference sequences.
 The trees produced by PhAT are for example useful when the expected species diversity in the samples is not yet known:
-In this case, a broad tree that covers many of the known species, can help to discover novel, unknown species.
+In this case, a broad tree that covers many known species can help to discover novel, unknown species.
 In the same chapter, we also present two auxiliary methods that accelerate and enable the process and the computations
 needed for the placement of very large datasets.
 On the one hand, we present Multilevel-Placement, that uses a divide-and-conquer approach to split large reference trees
@@ -221,11 +230,11 @@ For large datasets with hundreds to thousands of distinct samples,
 existing methods for this purpose, such as the so called Squash Clustering, reach their scalability limits.
 We thus extended the $k$-means method to be applicable to placement data.
 To this end, we present two methods, \emph{Phylogenetic $k$-means} and \emph{Imbalance $k$-means},
-that use two different distance measures (KR distance, and another suitable measure)
+that use two different distance measures between samples (KR distance, and another suitable measure)
 to cluster trees with similar distributions of placed sequences.
 These methods regard each sample as a distinct data item,
 and use the underlying structure of the reference tree for the computations.
-This method can be applied to datasets with tens of thousands of samples,
+These methods can be applied to datasets with tens of thousands of samples,
 in order to find clusters and similarities between samples, and visualize these.
 
 Furthermore, we adapted a concept called \emph{Balances} to placement data,
@@ -239,7 +248,7 @@ Balances are in particular helpful from a mathematical standpoint,
 as they circumvent problematic artifacts due to the compositional nature of meta-genomic data.
 In this work, balances are mainly used as an intermediate step for data representation purposes.
 
-One application of balances is the so called \emph{Phylo-Factorization}.
+One application of balances is the so called \emph{Phylofactorization}.
 This relatively recent method splits a given tree into a set of sub-trees
 so that each sub-tree represents a group of species that are relevant with respect to the meta-data features
 of the given samples.
@@ -248,11 +257,11 @@ in comparison to other groups.
 This is similar to the Edge Correlation method mentioned above,
 but further allows to incorporate several meta-data features at once and can find nested groups of species,
 by leveraging mathematical approaches such as Generalized Linear Models.
-The underlying concepts of Phylo-Factorization are versatile both for data analysis
+The underlying concepts of Phylofactorization are versatile both for data analysis
 as well as for extension and adaptation to releated research questions.
 We have adapted the method to placement data, and present this variant, which we call \emph{Placement-Factorization}.
 Additionally, we developed several auxiliary computations and visualizations of the results
-that are also useful for the original Phylo-Factorization.
+that are also useful for the original Phylofactorization.
 
 All mentioned novel methods were extensively tested with respect to their suitability for discovering biological knowledge.
 To this end, we used several DNA sequence datasets from water and soil, as well as from the human body,

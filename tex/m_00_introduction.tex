@@ -46,7 +46,7 @@ which constitutes a major challenge for conducting computational analyses of the
     \caption[Sequencing costs per Mbp and per genome]{
         \textbf{Sequencing costs per Mbp and per genome.}
         The cost for DNA sequencing have decreased substantially in the past 15 years.
-        The Figure shows the cost per mega-basepair (Mbp) of DNA (red line, left y-axis)
+        The figure shows the cost per mega-basepair (Mbp) of DNA (red line, left y-axis)
         as well as the cost per human-sized genome of $\approx$\,\num{3}\,Gbp (blue line, right y-axis).
         A basepair represents one character in the DNA.
         Note the logarithmic scaling of the y-axes.
@@ -61,7 +61,7 @@ which constitutes a major challenge for conducting computational analyses of the
     \label{fig:sequencing_costs}
 \end{figure}
 
-In particular, these high-throughout technologies allow to directly sequence DNA contained in samples
+In particular, these high-throughput technologies allow to directly sequence DNA contained in samples
 that have been extracted from environments such as water, soil, or the human gut.
 This results in so-called \emph{metagenomic} sequences,
 that is, anonymous DNA sequences from the (microbial) organisms that were present in the environmental sample.
@@ -118,12 +118,13 @@ specifically regarding phylogenetic placements as well as analyzing and visualiz
 In particular, we introduce multiple novel methods to overcome the issues and limitations explained above.
 We described the methods in two already peer-reviewed open-access publications \cite{Czech2018-phat,Czech2019-analysis},
 and made their data and scripts available at \url{http://github.com/lczech/placement-methods-paper}.
-More details on the contribution of each method to the research community are provided in the respective chapters.
+We provide an overview of these methods in \secref{ch:Introduction:sec:StructureOverview};
+more details on the contribution of each method to the research community are provided in the respective chapters.
 
 Apart from the two publications on which this thesis is based,
 we published a review on several software tools for visualizing phylogenetic trees \cite{Czech2017-tree-viewers}.
 In this publication, we investigated whether certain types of per-branch and per-node meta-data of phylogenetic trees
-were correctly displayed in \num{20} distinct tree visualization tools.
+were correctly displayed in \num{20} distinct widely used tree visualization tools.
 % particularly when first modifying the tree topology.
 We found that most of the tested tools exhibited problems or undocumented behavior and
 did not properly support the \fileformat{Newick} file format for phylogenetic trees.
@@ -141,16 +142,16 @@ as well as of some visualization techniques (\secref{ch:Visualization:sec:Motiva
 
 Further data analysis studies that we contributed to include the 1KITE project \cite{Misof2014} (\url{http://1kite.org}),
 for which we conducted phylogenetic tree reconstructions for a diverse set of \num{1500} insects,
-as well as a study of \taxonname{Microsopirida} and \taxonname{Cryptomycota} \cite{Bass2018a},
+as well as a study of \taxonname{Microsporidia} and \taxonname{Cryptomycota} \cite{Bass2018a},
 to which we contributed phylogenetic placement analyses
-in order to resolve some branches in the phylogenetic tree of these groups of microbial \taxonname{Eukaryotes}.
+in order to resolve some branches in the phylogenetic tree of these groups of microbial \taxonname{Eukaryota}.
 An ongoing large-scale endeavor is the UniEuk project \cite{Berney2017},
-which aims to offer a unified reference database for the \taxonname{Eukaryotes}.
+which aims to offer a unified reference database for the \taxonname{Eukaryota}.
 For UniEuk, we provided consultancy and helped in planning workflows and pipelines.
 Furthermore, for its sub-project EukBank,
 we conducted preliminary phylogenetic analyses of their entire metagenomic database as a showcase for other researchers.
 In a current empirical data analysis project,
-we develop tools for analyzing a dataset of microbial \taxonname{Eukaryotes} \cite{Jamy2019a}.
+we develop tools for analyzing a dataset of microbial \taxonname{Eukaryota} \cite{Jamy2019a}.
 The goal is to show that novel sequencing technologies that yield longer sequences per run
 can improve taxonomic and phylogenetic analyses compared to other sequencing technologies.
 Lastly, we are currently working on an empirical dataset of \taxonname{Dinoflagellates},
@@ -176,7 +177,7 @@ We also published an application note \cite{Czech2019-genesis-gappa},
 which describes \toolname{genesis} and \toolname{gappa} in detail,
 and evaluates their runtime and memory requirements in comparison to analoguous software.
 
-Moreover, we contributed to several other open-source bioinformatics software projects.
+Moreover, we contributed to several other open-source bioinformatics pipelines and software projects.
 We helped to develop an efficient approach for merging so-called \emph{paired-end reads}
 and provided SIMD (single instruction, multiple data) implementations using \texttt{SSE} and \texttt{AVX} instructions
 to accelerate the merging algorithm \cite{Flouri2017}.
@@ -220,8 +221,8 @@ as well as pre-processing pipelines to accelerate and enable
 phylogenetic placement of large metagenomic datasets (\chpref{ch:AutomaticTrees}).
 Secondly, we introduce methods to visualize such large datasets
 in order to detect patterns within the data and correlations with per-sample meta-data (\chpref{ch:Visualization}).
-Then, we present an approach for clustering metagenomic samples (\chpref{ch:Clustering}),
-by measuring similarity between samples in terms of the species diversity they contain.
+Then, we present an approach for clustering metagenomic samples
+by measuring similarity between samples in terms of the species diversity they contain (\chpref{ch:Clustering}).
 In between, we describe an adaptation of a novel type of data representation
 to phylogenetic placement data (\chpref{ch:Balances}).
 Lastly, we present an adaptation of a recent method called Phylofactorization
@@ -241,16 +242,3 @@ as well as some information on our software implementation (\appref{ch:PipelineI
 % this thesis is mainly derived from two publications.
 % we mark each chapter with the respective publicaation that it is based on.
 % here we briefly summarize the contributes to each publication, in order to avoid repeating this information later.
-
-
-% \todo{search for all abbreviations used and add them to the acro list. also, check Pierre's MA, and Alexey's and Andre's Diss for needed acronyms!}
-% 
-% \todo{list of acronyms!} see andre, add MB/GB, PCA, BV, TO, HMP, etc
-% 
-% \todo{for re-calculated figures, add the author name. instead of saying ``recalc of fig x of [abc]'', say ``recalc of fig x of bla et al [abc]''!}
-% 
-% \todo{unify spelling of taxa: sometimes, we use lower case bacteria, sometimes upper cased, etc. sometimes eukaryota, somtimes Eukaryotes...}
-% 
-% \todo{para vs poly phyletic!}
-% 
-% \todo{make sure to update the bioRxiv preprints to the actual publications! not only here, but everywhere! my papers, quartet, epa, etc}

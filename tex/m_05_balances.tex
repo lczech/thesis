@@ -9,7 +9,7 @@
     This chapter is derived from parts of the peer-reviewed open-access publication:
 }{\paperpppp}{
     All text and figures in this chapter were created by Lucas Czech.
-    Mathematical descisions of the balances and taxon weighting scheme emerged from discussion with Justin Silverman.
+    Mathematical decisions of the balances and taxon weighting scheme emerged from discussion with Justin Silverman.
 }
 
 % \todo{distance measures, nhd, simulations, mantel test}
@@ -31,7 +31,7 @@ the Phylogenetic Isometric Log-Ratio (\emph{PhILR}) transformation and balances 
 as well as Phylogenetic Factorization (\emph{Phylofactorization}) \cite{Washburne2017a}.
 These methods use a tree inferred from the OTU sequences of the samples (instead of a fixed reference tree),
 and annotate the abundances of OTUs per sample on the tips of this tree (instead of placement masses on the branches).
-The methods use these data to draw conclusions about compositional changes in clades of the tree in different samples,
+The methods use these data to draw conclusions about compositional changes of OTU abundances in clades of the tree in different samples,
 as well as relationships of per-clade OTU abundances with environmental meta-data variables.
 See \secref{ch:Foundations:sec:SequenceAnalysis:sub:OTUs} for details on OTU clustering of metagenomic samples.
 
@@ -40,12 +40,12 @@ See \secref{ch:Foundations:sec:SequenceAnalysis:sub:OTUs} for details on OTU clu
 % two disjoint sets of tips (for example, the two subtrees below a given inner node of the tree).
 
 In both of these approaches, a \emph{balance} between OTU abundances in two subtrees of the underlying tree is computed.
-This is a measure of contrast that expresses which of the two subtrees comprises more OTUs.
+This is a measure of contrast that expresses which of the two subtrees comprises more OTUs in a sample.
 In the PhILR transform  \cite{Silverman2017}, these balances are computed
 for the two subtrees below each inner node of a rooted binary tree,
 while ignoring abundances in the respective remainder of the tree.
 In Phylofactorization however, these balances are computed
-for the two subtrees that are induced by the edges of the tree \cite{Washburne2017a}.
+for the two subtrees that are induced by the splits/edges of the tree \cite{Washburne2017a}.
 This is highly similar to the concept of edge imbalances 
 that we introduced in \secref{ch:Foundations:sec:PhylogeneticPlacement:sub:PlacementProcessing:par:EdgeImbalances}.
 Note that despite sharing a similar name and exhibiting conceptual similarities,
@@ -121,7 +121,7 @@ One solution is to transform the data into an unconstrained space that is not co
 This can, for example, be achieved via the Isometric Log-Ratio (ILR) transform \cite{Egozcue2003,Quinn2018},
 which, given a compositional space, creates a new coordinate system with an orthonormal basis \cite{Egozcue2005}.
 The ILR transform requires a sequential binary partitioning of the underlying original space \cite{Pawlowsky-Glahn2015}.
-As suggested in \citeay{Silverman2017},
+As suggested by \citeay{Silverman2017},
 a bifurcating phylogenetic tree (e.\,g., our \ac{RT}) represents such a partitioning,
 which also provides a meaningful way of interpreting the resulting coordinates.
 This so-called \emph{Phylogenetic ILR} (PhILR) transform yields an ILR coordinate system
@@ -157,7 +157,7 @@ along with the per-branch placements of the sequences in the sample are given.
 The per-edge placements of the sample are represented by a vector $\bm{c}$ of size $m$, 
 containing the absolute (not normalized) edge masses, where $m$ is the number of edges in the tree.
 In other words, our input is a single row (one sample)
-of the edge masses matrix, as shown in \figref{fig:masses_imbalances:sub:Matrices}.
+of the edge masses matrix, as shown in \figref{fig:balances:sub:masses}. % \figref{fig:masses_imbalances:sub:Matrices}.
 % as well as an $m \times n$ data matrix $X$ for $m$ edges of the tree and $n$ samples,
 % containing the absolute per-edge masses of the placed sequences in each sample,
 The absolute masses are transformed into relative abundances as described in %Section \nameref{sec:Introduction:sub:Masses}:
@@ -177,8 +177,14 @@ In our adaptation, this weighting scheme is accordingly changed to \emph{per edg
 Unfortunately, the nomenclature of existing publications
 (namely, \citeay{Matsen2011a} and \citeay{Silverman2017}) creates a conflict here:
 These weights are not to be confused with our terminology of likelihood weights and edge masses.
+Hence, in order to avoid confusion, and in line with the original terminology,
+we also call them \emph{taxon weights} here, although they here refer to edges instead of taxa.
 
-The default case of edge weights $\bm{p} = ( 1, \ldots, 1 )$ represents no weighting,
+% Accordingly, we mostly call them \emph{edge weights} here, except for when referring to the original definition.
+% Although we here apply weights to edges instead of taxa at the tips of the tree,
+% whenever we need to refer to the original definition, we also call them ``taxon weights''.
+
+The default case of taxon weights $\bm{p} = ( 1, \ldots, 1 )$ represents no weighting,
 where each edge equally contributes to the balance,
 while any $\bm{p} \neq ( 1, \ldots, 1 )$ is a generalized form of the ILR transform \cite{Silverman2017}.
 We later describe an appropriate choice of weights
@@ -209,7 +215,7 @@ Then, the balance $y^*$ between the sets $R$ and $S$ is computed as:
 %                 \log \frac{ \operatorname{gm}( R ) }{ \operatorname{gm}( S ) }
 % \end{equation}
 % where $\bm{y}_R$ and $\bm{y}_S$ are the subsets of masses on the edges of $R$ and $S$, respectively,
-% $\bm{p}_R$ and $\bm{p}_S$ the corresponding subsets of edge weights, and
+% $\bm{p}_R$ and $\bm{p}_S$ the corresponding subsets of taxon weights, and
 
 The first term is a scaling term that, for a given edge, is constant across all samples.
 It ensures unit length of the ILR basis elements, and uses the sums of weights in $\bm{p}$:
@@ -237,7 +243,8 @@ Note that if $\bm{p} = ( 1, \ldots, 1 )$, % we get $Y = C$ and $\nu_R = |\, \bm{
 represents the original ILR transform without a weighting scheme \cite{Egozcue2003},
 \eqnref{ch:Balances:sec:Methods:eq:WeightSums} equals the number of edges in $R$ and $S$, respectively,
 and \eqnref{ch:Balances:sec:Methods:eq:GeometricMean} is the standard (unweighted) geometric mean.
-We show an example of the balance computation in \figref{fig:balances}.
+We show an example of the balance computation in \figref{fig:balances},
+which results in what we call the \emph{balance matrix}.
 
 \begin{figure}[!htb]
     \centering
@@ -327,12 +334,12 @@ The PhILR also allows for incorporating two distinct weighting schemes for the b
 one based on taxon abundances, and one based on the branch lengths of the underlying phylogeny \cite{Silverman2017}.
 As mentioned above, we implemented the former, while leaving the latter as future work.
 
-We here describe how to adapt the taxon weights of \cite{Silverman2017} to our placement-based approach,
-that is, how an appropriate vector $\bm{p}$ of edge weights can be constructed.
+We here describe how to adapt the taxon weights of \citeay{Silverman2017} to our placement-based approach,
+that is, how an appropriate vector $\bm{p}$ of taxon weights for the edges can be constructed.
 Originally, this taxon weighting scheme down-weighs the influence of low abundant taxa \cite{Silverman2017},
 which are known to be less reliable and more variable \cite{Good1956}.
 Here, we accordingly down weigh edges with low placement mass, for the same reasons.
-We follow the approach of \cite{Silverman2017}, and construct the edge weights by multiplicatively combining two terms:
+We follow the approach of \citeay{Silverman2017}, and construct the taxon weights by multiplicatively combining two terms:
 
 \begin{enumerate}
     \item A measure for the central tendency of the absolute edge masses, for example, their mean across all samples.
@@ -361,7 +368,7 @@ That is, these measures use the masses of all $n$ samples;
 consequently, we here use columns instead of rows of the edge masses matrix of \figref{fig:balances:sub:masses}
 (which is identical to \figref{fig:masses_imbalances:sub:Matrices}),
 where each column is used for the weights of the corresponding edge.
-The resulting edge weights $\bm{p}$ are then fixed and used across the balance computation of all samples.
+The resulting taxon weights $\bm{p}$ are then fixed and used across the balance computation of all samples.
 
 % this corresponds to taxon weights of \cite{Silverman2017}.
 % as we consider masses on edges instead of abundances at the tips of the tree, we use the term edge weights instead of taxon weights here.
@@ -393,7 +400,7 @@ for descriptions of the datasets.
 As balances are conceptually similar to edge imbalances, we perform analogous evaluations.
 To this end, we computed the per-edge balance for all edges of the \ac{BV} reference tree, across all \num{220} samples.
 That is, for each edge, we computed the balance between the two subtrees induced by the edge.
-This yields a matrix that we call \emph{balance matrix}, as shown in \figref{fig:balances:sub:balances},
+This yields the \emph{balance matrix}, as shown in \figref{fig:balances:sub:balances},
 which corresponds to the imbalance matrix used for Edge PCA, c.\,f. \figref{fig:masses_imbalances:sub:Matrices}.
 Hence, a natural first visualization of the balances is to analyze their principal components,
 that is, to compute the PCA of the balance matrix.
@@ -588,10 +595,12 @@ The reason that the insensitivity of the geometric mean to the presence of singu
 leads to the majority of spuriously anti-correlated edges is as follows:
 If most values are small, so will be their geometric mean, even if a few very large values are also present.
 As can be seen in \figref{fig:heat_tree} and \figref{fig:all_dispersions},
-the clades that exhibit a high anti-correlation here (red) have low placement mass with a low variance.
+the clades that exhibit a high anti-correlation (red) in \figref{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting}
+have low placement mass with a low variance.
 Hence, the geometric mean of the masses in these clades is consistently low across samples,
 which means that the numerator of the log-ratio in the balances computation has little effect on the correlation.
-This implies that the denominator, which represents the rest of the tree, drives the anti-correlations seen here.
+This implies that the denominator, which represents the rest of the tree,
+drives the anti-correlations seen in \figref{fig:bv_place_edge_balances_correlation:sub:without_taxon_weighting}.
 Women affected by \ac{BV} show a presence of several different bacterial clades,
 while healthy women without \ac{BV} almost exclusively have high presence
 of one of two types of \taxonname{Lactobacillus} \cite{Srinivasan2012}.
@@ -638,7 +647,7 @@ by combining the strengths of both the OTU-based and the placement-based approac
 As balances are a transformation that yields orthogonal components (one for each node or branch of the tree),
 issues pertaining to the normalization of compositional data do not arise.
 With samples being represented as a vector of balances,
-numerous standard tools for data visualization, ordination, and clustering in the euclidean space
+numerous standard tools for data visualization, ordination, and clustering in the Euclidean space
 can be readily applied to phylogenetic placement data.
 Applying these methods to placements instead of OTUs allows for more detailed analyses,
 as the entire original sequence data can be used.

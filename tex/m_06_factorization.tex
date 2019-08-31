@@ -11,7 +11,7 @@
     All text, tables, and figures in this chapter were created by Lucas Czech.
     During the revision of the above publication, reviewer Michael Robeson suggested to compare our methods
     of Chapters \ref{ch:Visualization}--\ref{ch:Clustering} to Phylofactorization,
-    and thereby inspired this chapter.
+    and thereby inspired this and the previous chapter (Chapters \ref{ch:Balances}--\ref{ch:Factorization}).
     Furthermore, a lot of mathematical understanding and many design choices emerged from discussion with Alex Washburne.
 }
 
@@ -315,7 +315,9 @@ with $Z$ potentially containing multiple columns (one for each meta-data feature
 In order to identify the winning edge $e^*$ of an iteration (the \emph{phylofactor}),
 the function is evaluated for all edges, and the edge maximizing $\omega$ is selected.
 The choice of the objective function depends on the research question at hand;
-see \citeay{Washburne2017a} and \citeay{Washburne2018} for a thorough discussion.
+see \citeay{Washburne2018}
+% see \citeay{Washburne2017a} %and \citeay{Washburne2018}
+for a thorough discussion.
 
 Our implementation is as general as the original Phylofactorization \cite{Washburne2017a},
 in that it allows for an arbitrary objective function.
@@ -412,7 +414,7 @@ and the deviance obtained from the \ac{GLM}.
 % The null deviance can be understood as the deviation from the mean value of the balances.
 This difference %between null deviance and deviance of the model
 expresses how much better the model explains the balances than just predicting them from their mean.
-For details on the usage of \acp{GLM} for Phylofactorization, see \cite{Washburne2017a}.
+For details on the usage of \acp{GLM} for Phylofactorization, see \citeay{Washburne2017a}.
 
 % In S3~Text, we also describe %how to assess how well a \ac{GLM} fits/predicts the data,
 % how to evaluate a \ac{GLM} for our purposes here, that is, how to use it to obtain a value for $\omega$.
@@ -433,17 +435,17 @@ and within \acp{GLM} as presented here.
 % and to Phylofactorization and Placement-Factorization as presented here.
 
 Lastly, we note that depending on the research question, other objective functions can be used,
-see \cite{Washburne2017a,Washburne2018} for some examples.
+see \citeay{Washburne2017a} for some examples.
 For instance, simple test statistics such as the variation in $C_e$ explained by regression on $Z$ can be used.
 Furthermore, instead of predicting contrasts from meta-data, one could be interested in the opposite,
 that is, predicting a meta-data variable given the per-sample contrasts.
 In this case, the maximization of the objective function yields edges that best predict a certain feature of the data;
-this is suitable for identifying clades that can serve as a bio-indicator.
+this is suitable for identifying clades that can serve as a bio-indicator, i.\,e., in order to predict diseases.
 Using \acp{GLM} for this allows to model any type of meta-data variable;
 for example, the binary information encoded in presence/absence data can be predicted using logistic regression.
 While our implementation supports all those use cases,
 they have been explored and discussed before \cite{Washburne2017a,Washburne2019}.
-For the sake of simplicity, we focus on linear (gaussian) modeling of $C_e \sim Z$,
+For the sake of simplicity, we hence focus on linear (gaussian) modeling of $C_e \sim Z$,
 that is, predicting balances from meta-data.
 
 % ======================================================================================================================
@@ -471,13 +473,13 @@ as opposed to the \emph{generalized} linear model that we discuss here, which ar
 Hence, sometimes, the latter is abbriviated as GLIM instead \cite{McCullagh1989}.
 The \ac{GLM} is a generalization of linear regression that allows
 % \acp{GLM} generalize from linear regression by allowing
-(a) for the response variable to have an arbitrary error distribution model
+(a) for the response variable to have an arbitrary distribution
 (instead of a normal distribution, which is implicitly assumed in linear regression),
 and (b) for an arbitrary function of the response variable---called the \emph{link function}---%
 to vary linearly with the predicted values (instead of the response variable itself varying linearly).
 In the context of the \ac{GLM},
-the independent variables (e.\,g., $Z$) are called the \emph{predictor variables} or \emph{explanatory variables},
-while the dependent variable (e.\,g., $C_e$) is called the \emph{response variable}.
+the independent variables (e.\,g., the meta-data $Z$) are called the \emph{predictor variables} or \emph{explanatory variables},
+while the dependent variable (e.\,g., the contrasts $C_e$) is called the \emph{response variable}.
 The goal is then to best predict the (single) response variable from the (multiple) explanatory variables.
 
 %  by allowing the magnitude of the variance of each measurement to be a function of its predicted value
@@ -501,8 +503,10 @@ a \emph{random component}, a \emph{systematic component}, and a \emph{link compo
 
 The random component specifies the probability distribution of $Y$ (conditioned on $X$);
 it is also called the \emph{error} or \emph{noise model}.
-For example, in linear regression, we assume $Y$ to deviate from the prediction by a normally distributed error,
-while in logistic regression, the deviation is assumed to be binomially distributed.
+For example, in linear regression, we assume $Y$ to %deviate from the prediction by a normally distributed error,
+be generated from a normal distribution,
+while in logistic regression, %the deviation is assumed to be binomially distributed.
+the distribution is assumed to be binomial.
 
 The systematic component specifies the linear combination $\eta$ of the predictors $X$
 using the (unknown) parameters $\beta$:
@@ -537,7 +541,8 @@ there is a \emph{canonical} link function for each member of the family.
 For example, for the normal distribution, $g$ is the identity function,
 while for a binomial distribution, $g$ is often set to the logit (log-odds) function.
 
-The expected value of $Y$ is usually estimated as the mean value of $Y$, meaning that $\mathbb{E}(Y|X) = \mu$.
+The expected value of $Y$ is usually assumed to be the mean value $\mu$ of the distribution of $Y$\hspace{-0.2em},
+meaning that $\mathbb{E}(Y|X) = \mu$.
 The full model is then given by:
 
 \begin{equation}
@@ -569,10 +574,10 @@ In short, a \ac{GLM} uses a transformed (via the link function) linear combinati
 \paragraph{Different Types of Data}
 \label{ch:Factorization:sec:Methods:sub:GLMs:par:Data}
 
-As described above, the \ac{GLM} uses the link function to allow for non-linear behaviour of the response variable $Y$.
+As described above, the \ac{GLM} uses the link function to allow for non-linear behaviour of the response variable $Y$\hspace{-0.2em}.
 However, as evident from \eqnref{ch:Factorization:sub:GLM:eq:eta},
-the predictor variables are linearily combined to form $\eta$.
-Note that this does not necessarily impose a linear relationship with $Y$:
+the predictor variables $X$ are linearily combined to form $\eta$.
+Note that this does not necessarily impose a linear relationship of $X$ with $Y$:
 % Note that this does not mean that their relationship with $Y$ has to be linear as well:
 The predictor variables can be arbitrarily transformed prior to their usage in the \ac{GLM},
 for example, by taking their logarithm, or using their reciprocal values.
@@ -598,7 +603,7 @@ between a given response variable and multiple explanatory variables.
 
 % In order to estimate the parameters $\beta$ for some given data $X$ and $Y$,
 % the residuals need to be minimized.
-For given data $X$ and $Y$, and a link function $g$, the model is fit to the data by estimating the parameters $\beta$.
+For given data $X$ and $Y$\hspace{-0.1em}, and a link function $g$, the model is fit to the data by estimating the parameters $\beta$.
 This optimization is typically conducted via a maximum likelhood estimation,
 using for example the Iterative Reweighted Least Squares (IRLS) method \cite{Burrus2012}.
 The IRLS method is an instance of Newton's method \cite{Ypma1995}
@@ -621,7 +626,7 @@ are called the \emph{residuals} $\delta$ of the regression for each data point $
 
 \begin{equation}
     \label{ch:Factorization:sub:GLM:eq:residuals}
-    \delta = y - \hat{y}
+    \delta_i = Y_i - \hat{Y}_i
 \end{equation}
 
 As the \ac{GLM} is optimized to minimize the (squared) difference of these values,
@@ -648,11 +653,17 @@ In other words, we want to assess \emph{how well} the model is able fit the data
 % that is, the difference between the response value $y$ and the predicted value $\hat{y}$.
 % Model fit: R 2, residual analysis, F-statistic
 
+% Similar to the vis chapter, we need a custom bar length for the Y to look good...
+% https://tex.stackexchange.com/a/22134/171851
+% \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+% \newcommand{\barredy}{\mkern 1mu\overline{\mkern-1mu{}Y\mkern1mu}\mkern-1mu\;\!}
+\newcommand{\barredy}{\mkern 1.5mu\overline{\mkern-1.5mu{}Y\mkern-1.5mu}\mkern 1.5mu}
+
 The fitness of a model $m$ can be assessed by comparing it to the \emph{saturated model} and the \emph{null model}.
 On the one hand, the saturated model is an abstract model that has as many estimated parameters as data points $n$,
 and hence (by definition) obtains a perfect fit of the data.
 On the other hand, the null model only has one free parameter $\beta_0$, the \emph{intercept},
-which is optimized by simply predicting the mean $\beta_0 = \bar{Y}$ for all values.
+which is optimized by simply predicting the mean $\beta_0 = \barredy$ for all values.
 We exemplify and summarize these concepts in \figref{fig:logistic_regression}.
 Note that a comparison of these models is valid, as they are nested.
 
@@ -687,7 +698,7 @@ the log-likelihood $\mathcal{L}^*_s$ of the saturated model
 and the log-likelihood $\mathcal{L}^*_m$ of the fitted model $m$.
 By definition, the likelihood of the saturated model is exactly $1$
 (and hence, its log-likelihood is $0$).
-Hence, the deviance of a model is simply an expression of its likelihood:
+Thus, the deviance of a model is simply an expression of its likelihood:
 
 \begin{equation}
     \label{ch:Factorization:sub:GLM:eq:deviance}
@@ -705,8 +716,8 @@ the residual deviance is calculated as: %equal to the residual sum of squares: %
 
 \begin{equation}
     \label{ch:Factorization:sub:GLM:eq:regression}
-    D_m ~=~ \sum_{i=1}^{n} \delta_i^2 ~=~ \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
-%     D_m ~=~ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+    D_m ~=~ \sum_{i=1}^{n} \delta_i^2 ~=~ \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2
+%     D_m ~=~ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{Y}_i \right)^2
 \end{equation}
 
 % from https://bookdown.org/egarpor/SSS2-UC3M/logreg-deviance.html
@@ -718,13 +729,13 @@ that is, the residual deviance of the null model.
 The null model can be understood as the worst model, being fitted without any predictors.
 The null deviance hence serves as a benchmark of how much the model $m$ in question
 improves the fitness by taking the predictors $X$ into account.
-The null model only uses the intercept $\beta_0$ to predict the values $y$. %$\hat{y}$,
-Hence, in linear regression, the residuals of the null model are the differences from the mean $\bar{y}$,
+The null model only uses the intercept $\beta_0$ to predict the values $Y$. %$\hat{y}$,
+Hence, in linear regression, the residuals of the null model are the differences from the mean $\barredy$\hspace{-0.3em},
 and its deviance is equivalent to the total sum of squares of the data $Y$:
 
 \begin{equation}
     \label{ch:Factorization:sub:GLM:eq:null_deviance}
-    D_n ~=~ \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
+    D_n ~=~ \sum_{i=1}^{n} \left( Y_i - \barredy \right)^2
 \end{equation}
 
 Often, the model comparison is done via the $R^2$ statistic,
@@ -754,7 +765,7 @@ and hence its deviance greater or equal to the deviance of $m$.
 Consequently, $\omega \geq 0$, with $\omega = 0$ only if the model $m$ is equivalent to the null model.
 %did not improve the prediction at all compared to the null model.
 Intuitively, $\omega$ measures how much better the model $m$ is for predicting the response variable $Y$
-using the explanatory variables $X$, than just predicting the mean value $\bar{Y}$.
+using the explanatory variables $X$, than just predicting the mean value $\barredy$.
 This value hence serves as our measure of ``how well'' the model is able to predict the data,
 and is the objective function that is used in Phylofactorization and in Placement-Factorization.
 
@@ -765,17 +776,17 @@ this can be computed by summing squared differences:
 
 \begin{equation}
     \label{ch:Factorization:sub:GLM:eq:ObjectiveFunction}
-%     \operatorname{VAR}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \bar{y}_i \right)^2 \\
+%     \operatorname{VAR}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \barredy_i \right)^2 \\
 %     \operatorname{MSE}(y) &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
     \omega %~=~ D_n - D_m %\sigma^2(y) - \delta^2(y)
-    ~=~ \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
-    ~-~ \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+    ~=~ \sum_{i=1}^{n} \left( Y_i - \barredy \right)^2
+    ~-~ \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2
 %     \omega &= \operatorname{VAR}(y) - \operatorname{MSE}(y) \\ \\
-%       &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \bar{y} \right)^2
+%       &= \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \barredy \right)^2
 %        - \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
 \end{equation}
 
-with $\bar{y}$ being the mean, and $\hat{y}_i$ being the predicted values.
+with $\barredy$ being the mean, and $\hat{Y}_i$ being the predicted values.
 In practice, these terms can be divided by the number of samples $n$
 without altering their suitability as an objective function to be maximized in Placement-Factorization.
 In that case, the objective function becomes equal to the difference of the variance of the data
@@ -805,16 +816,17 @@ using a normal (Gaussian) error distribution with an identiy link function.
 In Placement-Factorization, we predict balances using the per-sample meta-data as explanatory variables.
 That is, a \ac{GLM} is estimated separately for each edge of the tree,
 predicting the respective balances of all samples at that edge.
-By maximizing the objective function $\omega$ across all edges, we hence express the following:
-We are looking for the edge where the balances are most predictable when taking the meta-data into account,
-compared to simply using their mean as a predictor.
+By maximizing the objective function $\omega$ across all edges, we hence are looking for the edge
+where the balances are most predictable from their meta-data. %when taking the meta-data into account,
+% compared to simply using their mean as a predictor.
 % not well explained by their mean,
 % but by a model that takes the meta-data into account.
 As we assume a normal distribution for the balances,
 \eqnref{ch:Factorization:sub:GLM:eq:ObjectiveFunction} describes the compuation that we use to evaluate the objective function.
 
 In \secref{ch:Balances:sec:Results:sub:EdgeCorrelation}, we described several pitfalls of balances
-that are due to the mathematical properties of geometric means.
+that are due to the mathematical properties of geometric means,
+such as its insensitivity to singular large values.
 This prohibits for example to use balances \emph{without} taxon weighting
 as input for our Edge Correlation (\secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}).
 However, when used in \acp{GLM} as described here, these issues do not arise:
@@ -822,6 +834,8 @@ The winning edge is chosen to maximize the difference between the null deviance 
 That difference is small for clades with almost no mass (such as the ones affected by the geometric mean issues),
 so that the value of the objective function for such edges is lower than for edges with more mass.
 Hence, the factorization does not incorrectly identify these low-abundance clades as potential factors.
+This can also be seen in our visualization of the values of the objective function,
+as for example shown later in \figref{fig:pf_bv_place_tw_ovs}.
 
 % Note that when used with \acp{GLM}, such as in Phylofactorization (see \chpref{ch:Factorization}), these issues do not arise:
 % The usage of balances in Placement-Factorization is further explored in the next section.
@@ -956,7 +970,7 @@ that we observed in \secref{ch:Balances:sec:Results:sub:EdgeCorrelation}.
 \subsection{BV dataset}
 \label{ch:Factorization:sec:Evaluation:sub:BVDataset}
 
-We analyzed the \acf{BV} dataset \cite{Srinivasan2012} with our Placement-Factorization with and without taxon weighting,
+We analyzed the \acf{BV} dataset \cite{Srinivasan2012} with our Placement-Factori\-zation with and without taxon weighting,
 using balances for aggregating and contrasting, and \acp{GLM} for the objective function.
 See \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV} for details on the dataset.
 As \acp{GLM} support multiple predictors at the same time,
@@ -966,7 +980,7 @@ We also tested with only the Nugent score to be consistent with our previous ana
 and to asses the robustness of the method with respect to the specific choice of meta-data features.
 We observe only minor differences in the ordering of the identified factors,
 that is, which clades were ``winning'' in which iteration.
-Hence, we focus on the results obtained with all three meta-data features taken into account.
+Hence, we here focus on the results obtained with all three meta-data features taken into account.
 
 % ------------------------------------------------
 %     Comparison to Phylofactorization
@@ -976,7 +990,7 @@ Hence, we focus on the results obtained with all three meta-data features taken 
 \label{ch:Factorization:sec:Evaluation:sub:BVDataset:par:Comparison}
 
 For comparison with the original method, we clustered the dataset into OTUs using two different OTU clustering methods,
-\toolname{vsearch} \cite{Rognes2016} and \toolname{swarm} \cite{Mahe2014,Mahe2015},
+\toolname{VSEARCH} \cite{Rognes2016} and \toolname{swarm} \cite{Mahe2014,Mahe2015},
 and inferred two trees from these OTU clusterings.
 We used two distinct OTU clustering methods to asses how they affect factorization;
 see \appref{supp:sec:DetailsEmpiricalDatasets:sub:BV} for details on these preprocessing steps.
@@ -986,22 +1000,22 @@ We compare the results of Placement-Factorization to our previous analyses of th
 as well as to the original Phylofactorization on the two alternative OTU trees.
 
 In \tabref{tab:bv_phylofactor_clades}, we compare the clades found by the two Phylofactorization variants
-(with \toolname{vsearch} and with \toolname{swarm})
+(with \toolname{VSEARCH} and with \toolname{swarm})
 to the clades found by Placement-Factorization \emph{without} taxon weighting.
 % The latter are also visualized on the \ac{BV} reference tree in \figref{fig:factors_tree}.
 As shown in \figref{fig:heat_tree} and in the original study of the dataset \cite{Srinivasan2012},
 there are multiple different taxa that are associated with \acl{BV}.
-That is, there are several clades or branches of our reference tree
+That is, there are several clades or branches of the reference tree
 where the placement mass differs between healthy and sick patients.
-It is thus expected that a phylo-factorization of these data exhibits some variation in the exact clade found,
+It is thus expected that a Phylofactorization of these data exhibits some variation in the clades being found,
 depending on the preprocessing and exact settings being used.
 Still, \tabref{tab:bv_phylofactor_clades} shows that---apart from ordering---the factored clades
 are mostly consistent across variants, and consistent with previous findings.
 All of the taxa found by the \toolname{swarm}-based Phylofactorization and by our Placement-Factorization,
 as well as all taxa except some of the \taxonname{Streptococcus}
-found as part of the first factor of the \toolname{vsearch}-based Phylofactorization,
+found as part of the first factor of the \toolname{VSEARCH}-based Phylofactorization,
 were already shown to play important roles for this dataset \cite{Srinivasan2012}.
-The inclusion of \taxonname{Streptococcus} in the \toolname{vsearch} variant is due to
+The inclusion of \taxonname{Streptococcus} in the \toolname{VSEARCH} variant is due to
 an inner edge that has a slightly higher value of the objective function
 than the actually more relevant edges leading to the \taxonname{Lactobacillus} clade.
 We observed a similar behavior of large clades being split with our implementation when using taxon weights,
@@ -1016,8 +1030,8 @@ Lastly, the normalized mutual information \cite{Vinh2010} between the three vari
 In this table, we compare our Placement-Factorization of the \ac{BV} dataset
 to the results from the original Phylofactorization.
 The table lists the taxa in the clades that were split by the first \num{10} factors in each variant,
-using \toolname{vsearch} and \toolname{swarm} for the OTU clustering of the data.
-% namely \toolname{vsearch} \cite{Rognes2016} and \toolname{swarm} \cite{Mahe2014,Mahe2015}.
+using \toolname{VSEARCH} and \toolname{swarm} for the OTU clustering of the data.
+% namely \toolname{VSEARCH} \cite{Rognes2016} and \toolname{swarm} \cite{Mahe2014,Mahe2015}.
 As the original implementation does not support taxon weighting, we also do not use it here.
 % The table shows the clades split by the first \num{10} factors found by each variant.
 See also \figref{fig:factors_tree} for a visualization of the clades found by our adaptation (right-most column).
@@ -1038,9 +1052,9 @@ See also \figref{fig:factors_tree} for a visualization of the clades found by ou
     \begin{center}
     \begin{tabular}{rlll}
         \toprule
-%         Factor    &  Original (swarm)  & Original (vsearch)           & Adaptation   \\
-%              &  Phylofactorization (vsearch)          & Phylofactorization (swarm)        & Placement-Factorization   \\
-             &  Original (vsearch)          & Original (swarm)        & Placement-Factorization   \\
+%         Factor    &  Original (swarm)  & Original (VSEARCH)           & Adaptation   \\
+%              &  Phylofactorization (VSEARCH)          & Phylofactorization (swarm)        & Placement-Factorization   \\
+             &  Original (\toolname{VSEARCH})          & Original (\toolname{swarm})        & Placement-Factorization   \\
         \midrule
 \rc{}   1    & Lactobacillus crispatus,     & Sneathia sanguinegens,  & Lactobacillus crispatus,   \\
 \rc{}        & Lactobacillus jensenii,      & Leptotrichia amnionii   & Lactobacillus jensenii,    \\
@@ -1114,8 +1128,8 @@ The clades being split are also consistent with previous analyses of the dataset
 as all taxa found by the first ten factors of Placement-Factorization
 were also found to be relevant in the context of \acl{BV} in \cite{Srinivasan2012}.
 % However, our method as well as the \toolname{swarm}-based Phylofactorization did not
-% except for the \toolname{vsearch}-based Phylofactorization, the
-However, the \toolname{vsearch}-based Phylofactorization is the only evaluated variant
+% except for the \toolname{VSEARCH}-based Phylofactorization, the
+However, the \toolname{VSEARCH}-based Phylofactorization is the only evaluated variant
 that split the \taxonname{Lactobacillus} clade in the first factor
 and further \taxonname{Lactobacillus crispatus} from \taxonname{Lactobacillus iners} in the second factor.
 The \toolname{swarm}-based variant and our Placement-Factorization without taxon weighting also identified these clades,
@@ -1136,7 +1150,7 @@ and is hence more consistent with existing analyses of the dataset.
 However, due to small differences in the value of the objective function,
 the winning edge of the first iteration
 is chosen to be relatively basal in the tree, meaning that a large clade is factored out.
-We observed a similar behavior with the \toolname{vsearch}-based Phylofactorization;
+We observed a similar behavior with the \toolname{VSEARCH}-based Phylofactorization,
 as can be seen by the long list of taxa of the first factor in \tabref{tab:bv_phylofactor_clades}.
 In order to identify the provenance of this effect and to correctly interpret the factors,
 we developed a novel visualization of the results:
@@ -1159,7 +1173,7 @@ where each edge is colored by the value of the objective function at that edge.
         \textbf{Objective function values of Placement-Factorization with taxon weighting of the \ac{BV} dataset.}
         Here, we show the values of the objective function for each inner edge,
         for the first two factors found by Placement-Factorization \emph{with} taxon weights of the \ac{BV} dataset.
-        The winning edge of each iteration is marked by a black arrow.
+        The winning edge of each iteration is marked by a black arrow, and the resulting clade is marked with a black arc.
         See also \figref{fig:pf_bv_place_no_tw_ovs} for the version of this visualization \emph{without} taxon weights.
     }
     \label{fig:pf_bv_place_tw_ovs}
@@ -1170,7 +1184,7 @@ involved in identifying the winning edge of a specific iteration:
 The objective function of the first iteration in \figref{fig:pf_bv_place_tw_ovs:sub:first} for instance
 yields high values for the path towards the \taxonname{Lactobacillus} clade, consistent with previous findings.
 Random variability however leads to the first iteration splitting a larger clade
-than expected when using taxon weighting, marked with an arrow.
+than expected when using taxon weighting; the winning edge is marked with an arrow.
 % By observing the whole set taxa of this clade, it would not be obvious that this factor is mostly concerning
 This obfuscates the fact that this factor is mostly concerning the \taxonname{Lactobacillus} clade,
 and not so much the remaining taxa in that clade.
@@ -1189,7 +1203,7 @@ and allows to identify the parts of a factored clade that are most relevant to t
 To address this issue of random variability, a proper statistical test of the significance of each winning edge
 compared to the other edges evaluated in the iteration could be employed.
 This is connected to the idea of \emph{confidence regions} of each factor on the tree,
-as presented in \cite{Washburne2019}, which we discuss later.
+as presented in \citeay{Washburne2019}, which we discuss later.
 %, but leave this as future work.
 Note that in the second iteration in \figref{fig:pf_bv_place_tw_ovs:sub:second},
 the tree clearly shows the distinction between the two relevant clades of \taxonname{Lactobacillus} again,
@@ -1299,9 +1313,9 @@ albeit the differences in the respective plot shapes are pronounced.
         Samples are again colored by their Nugent score, with \num{0} being the healthy patients,
         and \num{10} being the patients with severe \ac{BV}.
         See \figref{fig:pf_bv_place_tw_ovs} for the (winning) edges that correspond to the axes
-        in \subref{fig:pf_bv_place_ilr_ordination:sub:with_taxon_weighting} (with taxon weighting),
+        in Subfigure \subref{fig:pf_bv_place_ilr_ordination:sub:with_taxon_weighting} (with taxon weighting),
         and see \figref{fig:factors_tree} and \tabref{tab:bv_phylofactor_clades}
-        for the edges corresponding to the axes in \subref{fig:pf_bv_place_ilr_ordination:sub:without_taxon_weighting}
+        for the edges corresponding to the axes in Subfigure \subref{fig:pf_bv_place_ilr_ordination:sub:without_taxon_weighting}
         (without taxon weighting).
 %         explain signs and magnitudes along the axes: denominator, small clades
 %         auto const balances = mass_balance( data, p_indices, s_indices );
@@ -1342,7 +1356,7 @@ while the diseased patients with high Nugent score show abundances in several cl
 and as an example of the limitations of this type of plot.
 These plots were suggested in \citeay{Washburne2017a} as an additional way of depicting
 how the factors separate samples according to meta-data features, see their Figure~5(a).
-Note that such visualizations can only reasonably visualize the first two or three factors,
+Note that such scatter plots can only reasonably visualize the first two or three factors,
 which is why they are now discontinued in the original Phylofactorization
 (pers.~comm. with A.~Washburne on 2019-01-16).
 
@@ -1388,13 +1402,14 @@ which alleviates this issue.
 \subsection{Oral/Fecal Subset of the HMP dataset}
 \label{ch:Factorization:sec:Evaluation:sub:OralFecalHMPDataset}
 
-We here show the analysis of a subset of the \acf{HMP} dataset \cite{Huttenhower2012,Methe2012},
+We here show an analysis of a subset of the \acf{HMP} dataset \cite{Huttenhower2012,Methe2012},
 in order to compare Placement-Factorization to findings of the original Phylofactorization
 on a similar dataset \cite{Washburne2017a}.
 See \appref{supp:sec:DetailsEmpiricalDatasets:sub:HMP} for details on the dataset and its preprocessing.
 
-The original publication of Phylofactorization used a dataset comprising oral and fecal samples from the human microbiome
-as one of their case studies \cite{Caporaso2011}, see Figure~4 and Supplementary Figures S3--S8 of \citeay{Washburne2017a}.
+The original publication of Phylofactorization used a dataset from \citeay{Caporaso2011} as one of their case studies,
+which comprises oral and fecal samples from the human microbiome.
+See Figure~4 and Supplementary Figures~S3--S8 of \citeay{Washburne2017a} for the original analysis with Phylofactorization.
 For our comparison, we selected a suitable subset of the \ac{HMP} dataset: % \cite{Huttenhower2012,Methe2012}:
 In particular, we selected all \num{600} stool samples of the dataset,
 as well as \num{600} randomly chosen samples from the mouth region,
@@ -1462,7 +1477,7 @@ This is most likely an artifact of the differing trees being used in the factori
 Furthermore, 95\% of the taxa found by Placement-Factorization \emph{without} taxon weighting
 were also part of the clades \emph{with} taxon weighting.
 
-In particular, the larger clades found by variant with taxon weights
+In particular, the larger clades found by the variant with taxon weights
 are shown as green edges in \figref{fig:multi_factors_tree}.
 % finds larger clades than the other two.
 % We already observed a similar behavior with the \ac{BV} dataset. %, as explained in \figref{fig:pf_bv_place_tw_ovs}.
@@ -1482,7 +1497,7 @@ They are polyphyletic here, as our tree has more reference taxa from that group.
 %a mismatching topology between the original OTU tree of the oral/fecal dataset of \cite{Washburne2017a} and our reference tree shown here.
 
 Most of the remaining factors found by Phylofactorization are part of the gray branches
-of the two large clades in \figref{fig:multi_factors_tree},
+of the two large clades in the upper half of \figref{fig:multi_factors_tree},
 which are the clades that were found by all three variants.
 % that were not picked by our variants.
 Similarly, our variants found many nested factors (factors that further split a factor of a previous iteration):
@@ -1506,7 +1521,7 @@ More importantly, despite their differences,
 all variants produce factors that are well suited for separating oral from fecal samples,
 as further shown in the next section below. %later in \figref{fig:hmp_pf_of_600_factor_ordination}.
 
-The actual differences in taxa (such as the \taxonname{Proteobacteria} not found by our variants)
+The actual differences in taxa (such as the \taxonname{Proteobacteria} not being found by our variants)
 serve as a caveat for the importance of the underlying reference tree:
 Differences in topology will inevitably be reflected in different factors,
 which might in turn suggest a different interpretation of results.
@@ -1574,7 +1589,7 @@ and \subref{fig:hmp_pf_of_600_factor_ordination:sub:10d_without_taxon_weighting}
         Moreover, in order to examine how well further factors of later iterations split the data,
         we here employ a visualization of phylofactors, which we call \emph{balance swarm plots},
         by plotting the balances of each factor individually.
-        This type of per-factor visualization is similar to, e.\,g., Figure~4 of \cite{Washburne2019}.
+        This type of per-factor visualization is similar to, e.\,g., Figure~4 of \citeay{Washburne2019}.
         Subfigures \subref{fig:hmp_pf_of_600_factor_ordination:sub:10d_with_taxon_weighting} and
         \subref{fig:hmp_pf_of_600_factor_ordination:sub:10d_without_taxon_weighting} show the first ten factors
         (PF1--PF10), again with and without taxon weighting, respectively.
@@ -1865,7 +1880,7 @@ Hence, we conclude that Placement-Factorization is well suited even for very lar
 
 In this chapter, we presented an adaption of Phylofactorization \cite{Washburne2017a,Washburne2019}
 to phylogenetic placement data, which we call \emph{Placement-Factorization}.
-Placement-Factorization identifies branches of the reference tree, called \emph{phylogenetic factors},
+Placement-Factoriza\-tion identifies branches of the reference tree, called \emph{phylogenetic factors},
 that exhibit a relationship with environmental meta-data features, that is,
 branches along which putative functional traits might have arisen in conjunction with changes in environmental variables.
 This factorization of the tree can be used as an ordination tool to visualize
@@ -1873,7 +1888,9 @@ how samples are separated by changes along the factors,
 and as a dimensionality-reduction tool \cite{Washburne2017a}.
 It thus complements Edge Correlation (see \secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation}), %that identifies branches
 % that drive patterns and relationships between samples and their environmental meta-data variables,
-but further allows to identify nested dependencies within sub-clades of the reference tree.
+in that it further allows to identify nested dependencies within sub-clades of the reference tree,
+and that it can take multiple meta-data features into account at once,
+however without the immediate visualization of the direction of the correlation/dependency with these features.
 
 % We showed that our adaption yields results that are consistent with previous methods and findings.
 % summarize bv results
@@ -1896,7 +1913,7 @@ Based on our findings and experiments,
 we conjecture that these concepts should be readily applicable to our Placement-Factorization.
 
 In contrast to the original Phylofactorization \cite{Washburne2017a}, our implementation also supports
-the taxon weigting scheme used in the balances compuation, as explained in \secref{ch:Balances:sec:Methods:sub:EdgeWeights}.
+the taxon weighting scheme used in the balances computation, as explained in \secref{ch:Balances:sec:Methods:sub:EdgeWeights}.
 We find that Placement-Factorization \emph{without} taxon weighting
 behaves similar to the original Phylofactorization (which also does not employ a taxon weighting scheme),
 while Placement-Factorization \emph{with} taxon weighting

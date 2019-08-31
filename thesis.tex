@@ -6,8 +6,8 @@
 
 \newcommand{\myname}{Lucas~Czech}
 \newcommand{\mycity}{Neuss}
-% \newcommand{\mytitle}{Novel Methods for Post-Processing Evolutionary Data Using Machine Learning Techniques}
 \newcommand{\mytitle}{Novel Methods for\\Analyzing and Visualizing\\Phylogenetic Placements}
+% \newcommand{\mytitle}{Novel Methods for Post-Processing Evolutionary Data Using Machine Learning Techniques}
 % \newcommand{\myinstitute}{Institute for Program Structures\\and Data Organization (IPD)}
 
 \newcommand{\reviewerone}{Prof.~Dr.~Alexandros~Stamatakis}
@@ -15,9 +15,10 @@
 \newcommand{\advisorone}{}
 \newcommand{\advisortwo}{}
 
-\newcommand{\timestart}{July 1, 2014}
-\newcommand{\timeend}{June 30, 2019}
-\newcommand{\submissiontime}{June 30, 2019}
+% \newcommand{\timestart}{July 1, 2014}
+% \newcommand{\timeend}{June 30, 2019}
+% \newcommand{\submissiontime}{\todo{June 30, 2019}}
+\newcommand{\submissiontime}{XX.YY.ZZZZ}
 \newcommand{\submissionlocation}{Karlsruhe}
 
 \author{\myname}
@@ -102,78 +103,107 @@
 % {\parskip 0pt\listofalgorithms}
 % \blankpage
 
+% Make a chapter heading without adding it to the table of contents.
+% But mark it so that the correct text appears in the page heading of the following page.
 \pdfbookmark{List of Acronyms}{listofacronyms}
 \chapter*{List of Acronyms}
+\markboth{List of Acronyms}{List of Acronyms}
 
 % The definition we use in the wissdoc class is as follows:
 % \usepackage[nolist]{acronym}
 % Hence, no list is printed, because it looks ugly. We want a table instead.
 % Unfortunately, we have to make this in our own, which means, repeating everything...
 % So first, we define all acros, then we manually make a nice table of them. See below.
-% Furthermore, the acronym package does have some issues with hyperlinks,
-% which we can only get rid of by manually adding hyperlink targets to each line... Stupid.
+% Furthermore, as we want the acronyms to have hyperlinks to this list,
+% we need to manually add hyperlink targets to each line... Stupid, but works.
+% If someone (Pierre, I'm looking at you!) wants to reuse this LaTeX template,
+% maybe considering to use a different acronym package from the very start.
 
 \begin{acronym}
 %     \acro{BLAST}[BLAST]{Basic Local Alignment Search Tool}
 %     \acro{BLO}[BLO]{Branch Length Optimization}
     \acro{API}{Application Programming Interface}
+    \acro{bp}{Base Pair}
     \acro{BT}{Backbone Tree}
     \acro{BV}{Bacterial Vaginosis}
     \acro{CLV}{Conditional Likelihood Vector}
     \acro{CT}{Clade Tree}
     \acro{DNA}{Deoxyribonucleic Acid}
+    \acro{EDPL}{Expected Distance between Placement Locations}
     \acro{FPA}{Felsenstein Pruning Algorithm}
+    \acro{GB}{Giga-Byte}
     \acro{GLM}{Generalized Linear Model}
+    \acro{GTR}{Generalized Time-Reversible (Model)}
     \acro{HMP}{Human Microbiome Project}
     \acro{KR}{Kantorovich-Rubinstein (Distance)}
     \acro{LWR}{Likelihood Weight Ratio}
+    \acro{MB}{Mega-Byte}
+    \acro{MC}{Markov Chain}
     \acro{MDS}{Multidimensional Scaling}
+    \acro{ML}{Maximum Likelihood}
     \acro{MPI}{Message Passing Interface}
     \acro{MSA}{Multiple Sequence Alignment}
     \acro{NGS}{Next Generation Sequencing}
     \acro{OTU}{Operational Taxonomic Unit}
     \acro{PCA}{Principal Component Analysis}
+    \acro{PCR}{Polymerase Chain Reaction}
     \acro{PhAT}{Phylogenetic Automatic (Reference) Tree}
     \acro{QS}{Query Sequence}
     \acro{RA}{Reference Alignment}
+    \acro{RF}{Robinson-Foulds (Distance)}
+    \acro{RNA}{Ribonucleic Acid}
+    \acro{rRNA}{Ribosomal Ribonucleic Acid}
     \acro{RT}{Reference Tree}
+    \acro{SSU}{Short Subunit}
     \acro{TO}{Tara Oceans}
     \acro{UPGMA}{Unweighted Pair Group Method with Arithmetic Mean}
 \end{acronym}
 
 \renewcommand{\arraystretch}{1.45}
 \begin{longtable}[l]{ll}
-    \vadjust pre{\hypertarget{API}{}}    \textbf{ \acs{API} }  & \acl{API}  \\
-    \vadjust pre{\hypertarget{BT}{}}     \textbf{ \acs{BT} }   & \acl{BT}   \\
-    \vadjust pre{\hypertarget{BV}{}}     \textbf{ \acs{BV} }   & \acl{BV}   \\
-    \vadjust pre{\hypertarget{CLV}{}}    \textbf{ \acs{CLV} }  & \acl{CLV}  \\
-    \vadjust pre{\hypertarget{CT}{}}     \textbf{ \acs{CT} }   & \acl{CT}   \\
-    \vadjust pre{\hypertarget{DNA}{}}    \textbf{ \acs{DNA} }  & \acl{DNA}  \\
-    \vadjust pre{\hypertarget{FPA}{}}    \textbf{ \acs{FPA} }  & \acl{FPA}  \\
-    \vadjust pre{\hypertarget{GLM}{}}    \textbf{ \acs{GLM} }  & \acl{GLM}  \\
-    \vadjust pre{\hypertarget{HMP}{}}    \textbf{ \acs{HMP} }  & \acl{HMP}  \\
-    \vadjust pre{\hypertarget{KR}{}}     \textbf{ \acs{KR} }   & \acl{KR}   \\
-    \vadjust pre{\hypertarget{LWR}{}}    \textbf{ \acs{LWR} }  & \acl{LWR}  \\
-    \vadjust pre{\hypertarget{MDS}{}}    \textbf{ \acs{MDS} }  & \acl{MDS}  \\
-    \vadjust pre{\hypertarget{MPI}{}}    \textbf{ \acs{MPI} }  & \acl{MPI}  \\
-    \vadjust pre{\hypertarget{MSA}{}}    \textbf{ \acs{MSA} }  & \acl{MSA}  \\
-    \vadjust pre{\hypertarget{NGS}{}}    \textbf{ \acs{NGS} }  & \acl{NGS}  \\
-    \vadjust pre{\hypertarget{OTU}{}}    \textbf{ \acs{OTU} }  & \acl{OTU}  \\
-    \vadjust pre{\hypertarget{PCA}{}}    \textbf{ \acs{PCA} }  & \acl{PCA}  \\
-    \vadjust pre{\hypertarget{PhAT}{}}   \textbf{ \acs{PhAT} } & \acl{PhAT} \\
-    \vadjust pre{\hypertarget{QS}{}}     \textbf{ \acs{QS} }   & \acl{QS}   \\
-    \vadjust pre{\hypertarget{RA}{}}     \textbf{ \acs{RA} }   & \acl{RA}   \\
-    \vadjust pre{\hypertarget{RT}{}}     \textbf{ \acs{RT} }   & \acl{RT}   \\
-    \vadjust pre{\hypertarget{TO}{}}     \textbf{ \acs{TO} }   & \acl{TO}   \\
-    \vadjust pre{\hypertarget{UPGMA}{}}     \textbf{ \acs{UPGMA} }   & \acl{UPGMA}   \\
+    \vadjust pre{\hypertarget{API}{}}    \acs{API}      & \acl{API}     \\
+    \vadjust pre{\hypertarget{bp}{}}     \acs{bp}       & \acl{bp}      \\
+    \vadjust pre{\hypertarget{BT}{}}     \acs{BT}       & \acl{BT}      \\
+    \vadjust pre{\hypertarget{BV}{}}     \acs{BV}       & \acl{BV}      \\
+    \vadjust pre{\hypertarget{CLV}{}}    \acs{CLV}      & \acl{CLV}     \\
+    \vadjust pre{\hypertarget{CT}{}}     \acs{CT}       & \acl{CT}      \\
+    \vadjust pre{\hypertarget{DNA}{}}    \acs{DNA}      & \acl{DNA}     \\
+    \vadjust pre{\hypertarget{EDPL}{}}   \acs{EDPL}     & \acl{EDPL}    \\
+    \vadjust pre{\hypertarget{FPA}{}}    \acs{FPA}      & \acl{FPA}     \\
+    \vadjust pre{\hypertarget{GB}{}}     \acs{GB}       & \acl{GB}      \\
+    \vadjust pre{\hypertarget{GLM}{}}    \acs{GLM}      & \acl{GLM}     \\
+    \vadjust pre{\hypertarget{GTR}{}}    \acs{GTR}      & \acl{GTR}     \\
+    \vadjust pre{\hypertarget{HMP}{}}    \acs{HMP}      & \acl{HMP}     \\
+    \vadjust pre{\hypertarget{KR}{}}     \acs{KR}       & \acl{KR}      \\
+    \vadjust pre{\hypertarget{LWR}{}}    \acs{LWR}      & \acl{LWR}     \\
+    \vadjust pre{\hypertarget{MB}{}}     \acs{MB}       & \acl{MB}      \\
+    \vadjust pre{\hypertarget{MC}{}}     \acs{MC}       & \acl{MC}      \\
+    \vadjust pre{\hypertarget{MDS}{}}    \acs{MDS}      & \acl{MDS}     \\
+    \vadjust pre{\hypertarget{ML}{}}     \acs{ML}       & \acl{ML}      \\
+    \vadjust pre{\hypertarget{MPI}{}}    \acs{MPI}      & \acl{MPI}     \\
+    \vadjust pre{\hypertarget{MSA}{}}    \acs{MSA}      & \acl{MSA}     \\
+    \vadjust pre{\hypertarget{NGS}{}}    \acs{NGS}      & \acl{NGS}     \\
+    \vadjust pre{\hypertarget{OTU}{}}    \acs{OTU}      & \acl{OTU}     \\
+    \vadjust pre{\hypertarget{PCA}{}}    \acs{PCA}      & \acl{PCA}     \\
+\end{longtable}
+\begin{longtable}[l]{ll}
+    \vadjust pre{\hypertarget{PCR}{}}    \acs{PCR}      & \acl{PCR}     \\
+    \vadjust pre{\hypertarget{PhAT}{}}   \acs{PhAT}     & \acl{PhAT}    \\
+    \vadjust pre{\hypertarget{QS}{}}     \acs{QS}       & \acl{QS}      \\
+    \vadjust pre{\hypertarget{RA}{}}     \acs{RA}       & \acl{RA}      \\
+    \vadjust pre{\hypertarget{RF}{}}     \acs{RF}       & \acl{RF}      \\
+    \vadjust pre{\hypertarget{RNA}{}}    \acs{RNA}      & \acl{RNA}     \\
+    \vadjust pre{\hypertarget{rRNA}{}}   \acs{rRNA}     & \acl{rRNA}    \\
+    \vadjust pre{\hypertarget{RT}{}}     \acs{RT}       & \acl{RT}      \\
+    \vadjust pre{\hypertarget{SSU}{}}    \acs{SSU}      & \acl{SSU}     \\
+    \vadjust pre{\hypertarget{TO}{}}     \acs{TO}       & \acl{TO}      \\
+    \vadjust pre{\hypertarget{UPGMA}{}}  \acs{UPGMA}    & \acl{UPGMA}   \\
 \end{longtable}
 \renewcommand{\arraystretch}{1}
 
 % Make sure that everything is reset again,
 % so that it appears normally when first used in the main text!
 \acresetall
-
-\blankpage
 
 % ------------------------------------------
 %    Main Part
@@ -237,11 +267,12 @@
 % \mbox{}
 
 % ------------------------------------------
-%    Special Requirements
+%    Special Requirements for KIT
 % ------------------------------------------
 
 % \includepdf[pages=-]{ext/publications}
 \include{tex/s_04_publications}
+\includepdf[pages=-]{ext/cv-2019-08}
 
 % ------------------------------------------
 %    Indices

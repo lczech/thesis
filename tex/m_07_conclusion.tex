@@ -7,7 +7,7 @@
 \label{ch:ConclusionFutureDirections}
 
 \paperbox{
-    This chapter mostly contains original contributions by Lucas Czech.
+    This chapter mostly contains original contributions by Lucas Czech written for this thesis.
     Some of the text is however derived from the concluding sections of the peer-reviewed open-access publication:
 }{\paperpppp}{
 %     In particular, we adapted the summaries and future directions of our methods to the context of this chapter.
@@ -168,7 +168,7 @@ For standard functions such as file processing and most internal computations,
 it can use our highly efficient \texttt{C++} implementations,
 which relies on multi-threading via \texttt{OpenMP} (Open Multi-Processing)
 where appropriate to allow usage of the available compute cores.
-The modular and (hopefully) clear \acs{API} of \toolname{genesis} further allows its use in production code,
+The modular and (hopefully) clear \acs{API} of \toolname{genesis} further allows it to be used in production code,
 % as evident by its use in \toolname{gappa} and the quartet-based tree distance measure that we contributed to \cite{Zhou2017}.
 as evident by its use in several of our publications
 \cite{Mahe2017,Barbera2018,Zhou2017,Czech2018-phat,Czech2019-analysis,Czech2019-genesis-gappa}.
@@ -226,7 +226,7 @@ issues like the normalization of compositional data
 % Furthermore, using a fixed reference tree %instead of one inferred from the OTUs present in a set of samples
 % allows comparative studies across datasets.
 As we showed, with samples being represented as a vector of balances,
-many standard tools for visualization, ordination, and clustering of data in the euclidean space
+many standard tools for visualization, ordination, and clustering of data in the Euclidean space
 can be readily applied to phylogenetic placement data.
 % Lastly, visualizations similar to Edge Correlation (\secref{ch:Visualization:sec:Methods:sub:EdgeCorrelation})
 % can be achieved with such data, by relating the balance per node with meta-data features.
@@ -329,7 +329,7 @@ In such models, data on the nodes of the graph is propagated across the graph du
 This allows to exploit the additional information encoded in the graph.
 This could be used for phylogenetic trees as well, using the tree as a fixed graph,
 and the distribution of phylogenetic placements as the data that the system is trained on.
-A very recent and promising idea is to embed the evolutionary information of phylogenetic trees into the euclidean space,
+A very recent and promising idea is to embed the evolutionary information of phylogenetic trees into the Euclidean space,
 and then use convolutional neural networks (CNNs) on the resulting matrices
 to analyze the underlying data \cite{Fioravanti2018,Reiman2017,Reiman2018}.
 These methods are able to accurately predict meta-data features of a set of metagenomic samples,
@@ -359,7 +359,7 @@ They however assume that the given fixed reference tree on which the placement i
 % In all methods that we presented here, the reference tree is generally assumed to be fixed.
 As discussed in \secref{ch:Foundations:sec:TreeOfLife:sub:PhylogeneticTrees},
 the ``true'' tree of life is unknowable \cite{Haber2005}.
-Consequently, alternative OTU clusterings and alternative trees would simply collapse nodes at different depths
+In an ideal world, alternative OTU clusterings and alternative trees would simply collapse nodes at different depths
 (pers.~comm. with A.~Washburne on 2019-03-01, c.\,f. \secref{ch:Factorization:sec:Evaluation:sub:OralFecalHMPDataset:par:Comparison}).
 Due to uncertainty in both the OTU clustering and the tree inference however, errors are introduced.
 
@@ -453,7 +453,7 @@ the available datasets were shown to not exhibit such biogeographical patterns \
 
 Instead of location, time is also used for comparing metagenomic samples.
 In such studies, the same location is sampled at different points in time,
-thus allowing to investigate the dynamics, variations, and (potentially) periodic patterns
+thus allowing to investigate the dynamics, variations, and (potentially) seasonal periodic patterns
 experienced in the microbial communities across time \cite{Costello2009,Faust2015}.
 This is typically assessed using the taxonomic composition of the samples.
 By extending such methods to phylogenetic placements,

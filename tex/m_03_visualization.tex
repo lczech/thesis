@@ -133,7 +133,7 @@ On the left hand side of \figref{fig:heat_tree}, note the two particularly dark 
 which are the major species associated with a healthy vaginal microbiome \cite{Srinivasan2012}.
 This can also be seen on the right hand side of the figure,
 where the high abundance of \taxonname{Lactobacillus} in healthy patients
-is visible in the lower part of the matrix,
+is visible as red stripes in the lower part of the matrix,
 while the diseased patients exhibit high placement masses at several other taxa \cite{Srinivasan2012}.
 
 Such visualizations directly depict the placement masses on the tree.
@@ -372,7 +372,7 @@ We recalculated this figure for comparison, and show it later in \figref{fig:kme
 
 In contrast to this, our Edge Correlation measure directly reveals
 the connection between the Nugent score and placements on the reference tree:
-The clade on the left hand side of the tree, to which the red and orange branches lead,
+The clade on the left hand side of the tree, to which the red and orange branches lead in \figref{fig:var_cor:sub:ei_var},
 are \taxonname{Lactobacillus iners} and \taxonname{Lactobacillus crispatus}, respectively,
 which were identified in \citeay{Srinivasan2012} to be associated with a healthy vaginal microbiome.
 Thus, their presence in a sample is anti-correlated with the Nugent score, which is lower for healthy individuals.
@@ -386,7 +386,7 @@ The dark branches with high deviation in \figref{fig:var_cor:sub:em_varl} repres
 attached to either highly correlated (blue) or anti-correlated (red) paths \figref{fig:var_cor:sub:ei_var}.
 This indicates that edges that have a high dispersion
 also exhibit variation in placement mass between samples of different Nugent score.
-This indicates that both methods reveal the clades that are relevant for discriminating among the samples of this dataset.
+Both methods hence reveal the clades that are relevant for discriminating among the samples of this dataset.
 
 We further compared our methods to the visualization of Edge PCA components on the reference tree.
 To this end, we recalculated Figures~4 and 5 of \citeay{Matsen2011a},
@@ -406,7 +406,7 @@ with a high abundance of placements in either of the two relevant \taxonname{Lac
 %     Edge PCA
 % -----------------------------------------
 
-\begin{figure}[hpbt]
+\begin{figure}[pbt]
     \centering
     \vspace*{1em}
     \includegraphics[width=\linewidth]{epca.pdf}
@@ -472,7 +472,7 @@ with a high abundance of placements in either of the two relevant \taxonname{Lac
     \end{subfigure}
     \caption[Examples of variants of Edge Dispersion]{
         \textbf{Examples of variants of Edge Dispersion.}
-        The Figure shows further visualizations of Edge Dispersion on the \ac{BV} dataset.
+        The figure shows further visualizations of Edge Dispersion on the \ac{BV} dataset.
 %         We re-analyzed the \ac{BV} dataset to show variants of our Edge Dispersion method.
         All subfigures highlight the same branches and clades as found by other methods such as Edge PCA.
 %         The method is useful as a first exploratory tool to detect placement heterogeneity across samples.
@@ -522,7 +522,7 @@ it is striking that one outlier edge, marked with an arrow, is dominating the va
 and thereby hiding the values on less variable edges.
 This outlier occurs for the species \taxonname{Prevotella bivia} in one of the \num{220} samples,
 where \num{2 781} out of \num{2 782} sequences in the sample have some placement mass on that branch.
-Upon close examination, this outlier can also be seen in Figure~1D of \cite{Srinivasan2012},
+Upon close examination, this outlier can also be seen in Figure~1D of \citeay{Srinivasan2012},
 but is less apparent there.
 Thus, our novel visualization can help to detect such outlier samples.
 In \figref{fig:all_dispersions:sub:em_varc} and \subref{fig:all_dispersions:sub:em_iod},
@@ -597,7 +597,7 @@ Lastly, we conducted Edge Correlation visualizations using additional meta-data 
 that are available for the \ac{BV} dataset,
 in order to further confirm the consistency of our methods with existing results.
 In particular, we visualize the correlation with Amsel's criteria \cite{Amsel1983} and the vaginal pH value
-in \figref{fig:amsel_ph}, both of which were already used in \cite{Srinivasan2012} as additional indicators of Bacterial Vaginosis.
+in \figref{fig:amsel_ph}, both of which were already used in \citeay{Srinivasan2012} as additional indicators of Bacterial Vaginosis.
 We again found similar correlations as for the Nugent score.
 
 % -----------------------------------------
@@ -628,9 +628,9 @@ We again found similar correlations as for the Nugent score.
         Here, we use additional meta-data features of the \ac{BV} dataset
         to show that Edge Correlation yields consistent results with existing methods.
         In particular, we calculated Spearman's Coefficient with Amsel's criteria \cite{Amsel1983}
-        in subfigures \subref{fig:amsel_ph:sub:amsel_em} and \subref{fig:amsel_ph:sub:amsel_ei},
+        in Subfigures \subref{fig:amsel_ph:sub:amsel_em} and \subref{fig:amsel_ph:sub:amsel_ei},
         as well as with the vaginal pH value
-        in subfigures \subref{fig:amsel_ph:sub:ph_em} and \subref{fig:amsel_ph:sub:ph_ei}.
+        in Subfigures \subref{fig:amsel_ph:sub:ph_em} and \subref{fig:amsel_ph:sub:ph_ei}.
         Both features were also used in \citeay{Srinivasan2012} as additional indicators of Bacterial Vaginosis.
         The figures are almost identical to the ones shown in \figref{fig:all_nugent};
         that is, they yield results that are consistent with the previously used Nugent score,
@@ -654,7 +654,7 @@ as described in \secref{ch:AutomaticTrees:sec:Evaluation:sub:ReferenceTreeSetup}
 % as provided by our Automatic Reference Tree method \cite{Czech2018}.
 The meta-data features of the \ac{TO} dataset that best fit for our methods are the sensor values for
 chlorophyll, nitrate, and oxygen concentration, as well as the salinity and temperature of the water samples.
-Other available meta-data features such as longitude and latitude are available for the dataset;
+Other available meta-data features such as longitude and latitude where each sample was taken are available for the dataset;
 in particular, latitude can be used as an indicator for species diversity \cite{Sunagawa2015}.
 As species diversity is however a concept that is distinct from species abundances
 (here represented as the placement masses per branch),
@@ -819,7 +819,7 @@ drive changes in the abundances of species.
 % The variants of the methods presented here are hence best used in combination with each other.
 
 The methods are currently limited to correlations with singular continuous value meta-data features.
-In their current form however, they do not allow for more challenging analyses,
+In their current form, they hence do not allow for more challenging analyses,
 such as finding patterns and correlations that depend on multiple features at once,
 or taking more complex data into account, such as the geographical distribution of samples.
 
@@ -841,6 +841,7 @@ In particular, \acp{GLM} allow to take different types of meta-data variables
 Quantifications of how well the model fits the data can be visualized per edge of the tree,
 as for instance shown later in \secref{ch:Factorization:sec:Evaluation:sub:BVDataset:par:VizObjective},
 which can reveal relationships between multiple variables of different types with per-edge masses or imbalances.
+This poses an interesting and promising extension to the methods presented in this chapter.
 When using \acp{GLM} however, the direction of the relationship is not immediately visible
 (for instance, whether a variable is positively or negatively correlated with edge masses),
 and it is more challenging to assess which meta-data variables are more influential than others
