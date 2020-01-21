@@ -1443,10 +1443,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.11534204"
-     inkscape:cx="4178.3736"
+     inkscape:cx="2184.3045"
      inkscape:cy="2022.3206"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1871"
      inkscape:window-height="1056"
@@ -1470,7 +1470,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39891,7 +39891,7 @@
            width="3160"
            id="rect43957" /></flowRegion><flowPara
          style="font-size:133.33332825px"
-         id="flowPara43961">(b)  Factor 2 ( Second Iteration)</flowPara></flowRoot>  </g>
+         id="flowPara43961">(b)  Factor 2  (Second Iteration)</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"

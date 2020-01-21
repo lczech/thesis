@@ -15,7 +15,7 @@
    viewBox="0 0 357.1214 171.25034"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (unknown)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="pf_bv_place_ilr_ordination.svg">
   <defs
      id="defs2">
@@ -1650,10 +1650,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="263.44021"
+     inkscape:cx="445.26767"
      inkscape:cy="54.102169"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
@@ -1662,11 +1662,11 @@
      fit-margin-left="1"
      fit-margin-right="1"
      fit-margin-bottom="1"
-     inkscape:window-width="1694"
-     inkscape:window-height="1028"
-     inkscape:window-x="61"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     inkscape:window-x="49"
      inkscape:window-y="24"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -1697,7 +1697,7 @@
            width="3563.8181"
            id="rect50805" /></flowRegion><flowPara
          style="font-size:117.48686981px;line-height:1.25"
-         id="flowPara50807">(b) Without Taxon Weighing</flowPara></flowRoot>    <flowRoot
+         id="flowPara50807">(b) Without Taxon Weighting</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.06605939,0,0,0.06605939,-292.46885,339.08011)"
        xml:space="preserve"
        id="flowRoot50809"
@@ -1709,7 +1709,7 @@
            x="-775.79718"
            y="-2204.3696" /></flowRegion><flowPara
          id="flowPara50815"
-         style="font-size:117.48686981px;line-height:1.25">(a) With Taxon Weighing</flowPara></flowRoot>  </g>
+         style="font-size:117.48686981px;line-height:1.25">(a) With Taxon Weighting</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"

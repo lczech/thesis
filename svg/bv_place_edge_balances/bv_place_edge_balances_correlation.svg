@@ -15,8 +15,8 @@
    viewBox="0 0 1880.945 917.17957"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="pf_bv_place_edge_balances_correlation.svg">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="bv_place_edge_balances_correlation.svg">
   <defs
      id="defs2">
     <linearGradient
@@ -102,14 +102,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.15895936"
-     inkscape:cx="3782.203"
+     inkscape:cx="3341.8389"
      inkscape:cy="1171.797"
      inkscape:document-units="mm"
-     inkscape:current-layer="g24876"
+     inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1869"
+     inkscape:window-width="1871"
      inkscape:window-height="1056"
-     inkscape:window-x="51"
+     inkscape:window-x="49"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      fit-margin-top="5"
@@ -124,7 +124,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -145,7 +145,7 @@
            width="3563.8181"
            id="rect50805" /></flowRegion><flowPara
          style="font-size:144px;line-height:1.25"
-         id="flowPara50807">(a) With Taxon Weighing</flowPara></flowRoot>    <flowRoot
+         id="flowPara50807">(a) With Taxon Weighting</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.2754802,0,0,0.2754802,903.42805,168.78609)"
        xml:space="preserve"
        id="flowRoot50809"
@@ -157,7 +157,7 @@
            x="-775.79718"
            y="-2204.3696" /></flowRegion><flowPara
          id="flowPara50815"
-         style="font-size:144px;line-height:1.25">(b) Without Taxon Weighing</flowPara></flowRoot>  </g>
+         style="font-size:144px;line-height:1.25">(b) Without Taxon Weighting</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
